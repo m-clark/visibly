@@ -4,16 +4,15 @@ Status](https://travis-ci.org/m-clark/visibly.svg?branch=master)](https://travis
 Status](https://img.shields.io/codecov/c/github/m-clark/visibly/master.svg)](https://codecov.io/github/m-clark/visibly?branch=master)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-visibly
-=======
+
+# visibly
 
 <img src="man/figures/visibly_hex.png" align="right" width = 200/>
 
 Visibly is a handful of functions I use for color palettes and themes in
 R.
 
-Example
--------
+## Example
 
 Create a palette.
 
