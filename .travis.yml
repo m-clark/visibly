@@ -1,0 +1,27 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+
+# Header
+language: r
+sudo: false
+dist: trusty
+cache: packages
+latex: false
+
+
+matrix:
+  include:
+  - r: 3.4.0
+  - r: release
+
+  allow_failures:
+
+repos:
+  CRAN: https://cloud.r-project.org
+  ropensci: http://packages.ropensci.org
+
+r_packages:
+  - covr
+
+after_success:
+  - Rscript -e "library(covr); codecov(line_exclusions = list('R/colorgorical.R'=113:139))"

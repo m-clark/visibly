@@ -1,0 +1,29 @@
+Package: visibly
+Type: Package
+Title: Functions and palettes related to visual enhancement
+Version: 0.1.0
+Authors@R: person("Michael", "Clark", role = c("aut", "cre"), email = "micl@umich.edu")
+Maintainer: Michael Clark <micl@umich.edu>
+Description: Palettes, themes, etc.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/m-clark/visibly
+BugReports: https://github.com/m-clark/visibly/issues
+Year: 2018
+Depends:
+  R (>= 3.4.0)
+Imports:
+  colortools,
+  magrittr,
+  scales
+Suggests: 
+  colorspace,
+  covr,
+  httr,
+  jsonlite,
+  lazerhawk,
+  ggplot2,
+  plotly,
+  testthat
+RoxygenNote: 6.0.1
