@@ -29,7 +29,7 @@ context('test colorgorical')
 
 library(colorspace)
 x <- RGB(runif(1000), runif(1000), runif(1000))
-x = hex2RGB('#ff5500')
+x <- hex2RGB('#ff5500')
 y <- as(x, "LAB")
 
 # test_that('colorgorical works', {

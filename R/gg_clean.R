@@ -30,7 +30,7 @@
 
 
 #' @export
-theme_trueMinimal = function(){
+theme_trueMinimal <- function(){
   ggplot2::theme(
     axis.text.x = ggplot2::element_text(colour='gray50'),
     axis.text.y = ggplot2::element_text(colour='gray50'),
@@ -47,17 +47,17 @@ theme_trueMinimal = function(){
 
 #' @rdname theme_trueMinimal
 #' @export
-theme_plotly = function(vis, MB=FALSE) {
+theme_plotly <- function(vis, MB=FALSE) {
   if(! inherits(vis, 'plotly'))  stop('vis is not a plotly object.')
-  vis = vis %>%
-    plotly::layout(xaxis = list(zeroline=F,
-                                showgrid=F),
-                   yaxis = list(zeroline=F,
-                                showgrid=F),
+  vis <- vis %>%
+    plotly::layout(xaxis = list(zeroline=FALSE,
+                                showgrid=FALSE),
+                   yaxis = list(zeroline=FALSE,
+                                showgrid=FALSE),
                    plot_bgcolor='transparent',
                    paper_bgcolor='transparent')
     if(!MB) {
-      vis = vis %>%
+      vis <- vis %>%
         plotly::config(displayModeBar=FALSE)
     }
 
@@ -66,7 +66,7 @@ theme_plotly = function(vis, MB=FALSE) {
 
 #' @rdname theme_trueMinimal
 #' @export
-theme_blank = function(vis, MB=FALSE) {
+theme_blank <- function(vis, MB=FALSE) {
   if(! inherits(vis, 'plotly'))  stop('vis is not a plotly object.')
 
   a <- list(
@@ -76,13 +76,13 @@ theme_blank = function(vis, MB=FALSE) {
     showticklabels = FALSE,
     showgrid = FALSE
   )
-  vis = vis %>%
+  vis <- vis %>%
     plotly::layout(xaxis = a,
                    yaxis = a,
                    plot_bgcolor='transparent',
                    paper_bgcolor='transparent')
   if(!MB) {
-    vis = vis %>%
+    vis <- vis %>%
       plotly::config(displayModeBar=FALSE)
   }
 

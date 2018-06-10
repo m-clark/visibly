@@ -9,7 +9,8 @@ test_that('create_palette takes HCL arg and plot',{
 })
 
 test_that('create_palette takes alpha arg',{
-  expect_type(create_palette('#ff5500', name='orange', alpha=.5, plot=T), 'list')
+  expect_type(create_palette('#ff5500', name='orange', alpha=.5, plot=T),
+              'list')
 })
 
 test_that('create_palette errs on bad alpha',{

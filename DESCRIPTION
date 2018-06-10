@@ -16,6 +16,7 @@ Depends:
 Imports:
   colortools,
   magrittr,
+  purrr,
   scales
 Suggests: 
   colorspace,

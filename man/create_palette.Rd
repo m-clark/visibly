@@ -27,7 +27,13 @@ Uses colortools package (and possibly scales) to easily create a
 }
 \details{
 Will return complementary, analogous/adjacent, split complementary,
-  triadic, square and tetradic color values relative to the initial color. Note that if you want sequential, qualitative, diverging etc., other packages like \href{https://cran.rstudio.com/web/packages/colorspace/}{RColorBrewer}, \href{https://cran.rstudio.com/web/packages/colorspace/}{colorspace}, and \href{https://cran.rstudio.com/web/packages/colortools/}{colortools} will do that for you.
+  triadic, square and tetradic color values relative to the initial color.
+  Note that if you want sequential, qualitative, diverging etc., other
+  packages like
+  \href{https://cran.rstudio.com/web/packages/colorspace/}{RColorBrewer},
+  \href{https://cran.rstudio.com/web/packages/colorspace/}{colorspace}, and
+  \href{https://cran.rstudio.com/web/packages/colortools/}{colortools} will
+  do that for you.
 }
 \examples{
 library(visibly)

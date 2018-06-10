@@ -70,15 +70,15 @@
 #'
 #'   \code{startPalette = list(c(59, 62, 70))}
 #'
-#'   The R code is based on the gist by Kamil Slowikowski found here:
-#'   \href{https://gist.github.com/slowkow/22daea426607416bfcd573ce9cbd89ab}{link}.
+#' The R code is based on the gist by Kamil Slowikowski found here:
+#' \href{https://gist.github.com/slowkow/22daea426607416bfcd573ce9cbd89ab}{link}.
 #'
 #' @references
 #'
 #' \href{http://vrl.cs.brown.edu/color/}{The colorgorical website}.
 #'
-#' \href{https://github.com/connorgr/colorgorical}{Original Python source code at
-#' GitHub}.
+#' \href{https://github.com/connorgr/colorgorical}{Original Python source code
+#' at GitHub}.
 #'
 #' @return A character vector of color values in hex form.
 #'
@@ -101,15 +101,24 @@ colorgorical <- function(n = 10,
                          startPalette = list(),
                          output = 'HEX') {
 
-  weights = c(perceptualDifference, nameDifference, nameUniqueness, pairPreference)
-  lr = as.numeric(lightnessRange)
-  output = tolower(output)  # to accept lowercase
+  weights <- c(perceptualDifference,
+              nameDifference,
+              nameUniqueness,
+              pairPreference)
+  lr <- as.numeric(lightnessRange)
+  output <- tolower(output)  # to accept lowercase
 
   # basic checks
-  if (any(c(weights > 1, weights < 0))) stop('Invalid weight supplied. All must be between 0 and 1.')
-  if (any(lr > 100 | lr < 0)) stop('Invalid value for lightnessRange supplied. Must be between 0 and 100 (as character string).')
-  if (! output %in% c('lab', 'srgb', 'hex')) stop("Invalid value for output supplied. Must be 'LAB', 'sRGB', or 'HEX'.")
-  if (!is.list(hueFilters) | !is.list(startPalette)) stop('hueFilters and startPalette must be supplied as a list.')
+  if (any(c(weights > 1, weights < 0)))
+    stop('Invalid weight supplied. All must be between 0 and 1.')
+  if (any(lr > 100 | lr < 0))
+    stop('Invalid value for lightnessRange supplied.
+
+         Must be between 0 and 100 (as character string).')
+  if (! output %in% c('lab', 'srgb', 'hex'))
+    stop("Invalid value for output supplied. Must be 'LAB', 'sRGB', or 'HEX'.")
+  if (!is.list(hueFilters) | !is.list(startPalette))
+    stop('hueFilters and startPalette must be supplied as a list.')
 
   post_body <- jsonlite::toJSON(auto_unbox = TRUE,
                                 list(
@@ -130,12 +139,14 @@ colorgorical <- function(n = 10,
                        body = post_body) %>%
     httr::content()
 
-  labs = sapply(retval$palette, unlist)
-  if (output == 'lab') return(t(labs))
+  labs <- lapply(retval$palette, unlist) %>% do.call(rbind,.)
+  if (output == 'lab') return(labs)
 
-  rgbs = grDevices::convertColor(t(labs), from = 'Lab', to = 'sRGB')
+  rgbs <- grDevices::convertColor(labs, from = 'Lab', to = 'sRGB')
   if (output == 'srgb') return(rgbs)
 
-  hex = apply(rgbs, 1, function(x) colorspace::hex(colorspace::sRGB(x[1], x[2], x[3])))
+  hex <- apply(rgbs,
+              1,
+              function(x) colorspace::hex(colorspace::sRGB(x[1], x[2], x[3])))
   return(hex)
 }

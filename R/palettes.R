@@ -1,6 +1,9 @@
 #' Commonly used palettes
 #'
-#' A list of commonly used palettes with some base color and including complementary, monochromatic, analagous, split_complementary, triadic, tetradic.  Otherwise, just ones I use e.g. colorbrewer, plotly or others of interest.
+#' A list of commonly used palettes with some base color and including
+#' complementary, monochromatic, analogous, split_complementary, triadic,
+#' tetradic.  Otherwise, just ones I use e.g. colorbrewer, plotly or others of
+#' interest.
 #'
 #' @format (Possibly) named vectors/lists of colors
 #'
@@ -18,7 +21,8 @@
 #'
 #' - Tyrian Purple2: #990024  A more web friendly version
 #'
-#' - Plotly: plotly's default colorscale, because decent documentation is next to impossible for those folks.
+#' - Plotly: plotly's default colorscale, because decent documentation is next
+#' to impossible for those folks.
 #' ...
 #' @references https://stackoverflow.com/questions/40673490/how-to-get-plotly-js-default-colors-list
 #' @source For example the colortools and colorspace packages, \url{http://paletton.com/}, \url{https://www.sessions.edu/color-calculator/},  \url{https://colorbrewer.org}
