@@ -98,6 +98,7 @@ This function accesses the colorgorical website to create a color
 }
 \examples{
 \dontrun{
+library(visibly)
 colorgorical(n=12, pairPreference = 1, startPalette = list(c(10, -60, 45)))
 }
 

@@ -18,7 +18,7 @@
 #' @importFrom magrittr '%>%'
 #'
 #' @examples
-#' library(lazerhawk)
+#' library(visibly)
 #' library(ggplot2)
 #' data(mtcars)
 #' # currently ggplot is having a problem with rlang so this is commented until they fix it

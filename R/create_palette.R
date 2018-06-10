@@ -18,6 +18,7 @@
 #' @importFrom scales col2hcl alpha
 #' @importFrom graphics layout mtext par
 #' @examples
+#' library(visibly)
 #' create_palette(colorhex = '#ff5500', name='orange')
 #' create_palette(colorhex = '#ff5500', name='orange', alpha=.5)
 #'

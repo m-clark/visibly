@@ -22,7 +22,6 @@ Suggests:
   covr,
   httr,
   jsonlite,
-  lazerhawk,
   ggplot2,
   plotly,
   testthat
