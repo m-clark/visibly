@@ -4,7 +4,7 @@
 \alias{theme_trueMinimal}
 \alias{theme_plotly}
 \alias{theme_blank}
-\title{Clean visualizations}
+\title{Clean visualization themes}
 \usage{
 theme_trueMinimal()
 
@@ -13,9 +13,10 @@ theme_plotly(vis, MB = FALSE)
 theme_blank(vis, MB = FALSE)
 }
 \arguments{
-\item{vis}{A plotly, or ggvis}
+\item{vis}{A visualization created by \link[ggplot2]{ggplot2} or
+\link[plotly]{plotly}.}
 
-\item{MB}{For plotly, an option to dispaly the mode bar. Defaults to FALSE.}
+\item{MB}{For plotly, an option to display the mode bar. Defaults to FALSE.}
 }
 \description{
 Clean up plots from their defaults.
@@ -23,23 +24,41 @@ Clean up plots from their defaults.
 \details{
 From a gray background, to unnecessary gridlines, to by-default
   reference lines, some of the more popular visualization packages come out
-  75% fantastic and 25% wtf?.  These functions remove unnecessary gridlines,
-  'de-bold' the blacks, etc. **ggplot2**: This function takes a ggplot object
+  75% fantastic and 25% questionable/arbitrary/problematic.  These functions
+  remove unnecessary gridlines, 'de-bold' the blacks, etc.
+
+  - **ggplot2**: \code{theme_trueMinimal} This function takes a ggplot object
   and removes the gray background, gridlines and adds opacity to the default
   black axes and labels, allowing the pattern of the visual to be expressed
   in unimpeded fashion.
 
-  Plotly will put reference lines at zero, and some of its 'modebar' is
-  unnecessary.  Otherwise little is changed at this point, except for
-  theme_blank, which is like theme_void for ggplot.
+  - **plotly**: \code{theme_plotly}, \code{theme_blank} removes reference
+  lines at zero, and some of its 'modebar' is unnecessary.  Otherwise little
+  is changed at this point, except for theme_blank, which is like theme_void
+  for ggplot.
+}
+\note{
+You may continue to override any aspect of these themes. For example with
+ggplot2, you would just add a theme afterward just like you would any other
+plot.
 }
 \examples{
 library(visibly)
 library(ggplot2)
+
 data(mtcars)
-# currently ggplot is having a problem with rlang so this is commented until they fix it
-# ggplot(aes(wt, mpg), data=mtcars) + theme_trueMinimal()
+
+ggplot(aes(wt, mpg), data=mtcars) +
+  geom_point() +
+  labs(title='Plot') +
+  theme_trueMinimal()
+
 library(plotly)
-mtcars \%>\% plot_ly(x=~wt, y=~mpg, mode='markers') \%>\% theme_plotly()
-mtcars \%>\% plot_ly(x=~wt, y=~mpg, mode='markers') \%>\% theme_blank()
+mtcars \%>\%
+  plot_ly(x=~wt, y=~mpg, mode='markers') \%>\%
+  theme_plotly()
+
+mtcars \%>\%
+  plot_ly(x=~wt, y=~mpg, mode='markers') \%>\%
+  theme_blank()
 }

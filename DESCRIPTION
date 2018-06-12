@@ -18,12 +18,15 @@ Imports:
   magrittr,
   purrr,
   scales
-Suggests: 
+Suggests:
   colorspace,
   covr,
   httr,
   jsonlite,
   ggplot2,
   plotly,
-  testthat
+  testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.1
+VignetteBuilder: knitr

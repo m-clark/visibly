@@ -1,0 +1,54 @@
+---
+title: "An Introduction to Visibly"
+author: "Michael Clark"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = NA
+)
+```
+
+
+
+## Examples
+
+Create a palette.
+
+```{r example}
+library(visibly)
+create_palette('papayawhip')
+```
+
+A palette based on the blue in the R logo.
+
+```{r example2}
+palettes$Rblue
+```
+
+
+A clean theme ready for the web and allowing the pattern to be the focus rather than arbitrary precision the data doesn't support anyway.
+
+```{r example3}
+library(ggplot2)
+ggplot(aes(x=wt, y=mpg, color=cyl), data=mtcars) +
+  geom_point() +
+  theme_trueMinimal()
+```
+
+For plotly too.
+
+```{r example4}
+library(plotly)
+mtcars %>% 
+  plot_ly(x=~wt, y=~mpg, color=~cyl) %>% 
+  add_markers() %>% 
+  theme_plotly()
+```
