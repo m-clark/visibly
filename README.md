@@ -17,6 +17,16 @@ in R. Inside you will find:
   - a function to interact with
     [colorgorical](http://vrl.cs.brown.edu/color/)
 
+Installation
+------------
+
+The development version then install directly from GitHub:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("m-clark/visibly")
+```
+
 Visibly is currently in its very early stages, so more may be added
 soon. For some additional palettes for those fond of another time, you
 might be interested in
