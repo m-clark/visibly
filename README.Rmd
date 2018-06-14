@@ -29,6 +29,7 @@ Visibly is a handful of functions I use for color palettes, themes, etc. in R.  
 - a function to interact with [colorgorical](http://vrl.cs.brown.edu/color/)
 
 ## Installation
+
 The development version then install directly from GitHub:
 
 ```{r, eval=FALSE}
@@ -65,17 +66,18 @@ create_palette('#ff5500',
 ```
 
 
-One of the built-in palettes is based on R's blue. Others are based on Stan's red, plotly's base colors, and the red-blue palette from RColorBrewer.  
+One of the built-in palettes is based on R's blue. Others are based on [Stan's](https://github.com/stan-dev/stan) red, [plotly's](https://github.com/ropensci/plotly) base colors, and the red-blue palette from [RColorBrewer](https://github.com/cran/RColorBrewer/blob/master/R/ColorBrewer.R).  
 
 ```{r rblue}
 palettes$Rblue
 ```
 
 
-One can create some colors from colorgorical.
+One can create some colors from [colorgorical](http://vrl.cs.brown.edu/color).
 
-```{r colorgorical, eval=FALSE}
+```{r colorgorical, eval=2, echo=1}
 colorgorical(n=6, pairPreference = 1, startPalette = list(c(10, -60, 45)), output = 'hex')
+print(c("#002B00", "#95C857", "#334D37", "#4EF185", "#378811", "#7FE7D3"))
 ```
 
 ## Use
@@ -84,13 +86,11 @@ The palette creator can create some decent categorical distinctions without too 
 
 ```{r use1}
 pal = create_palette('#ff5500', 
-                     alpha = 2/3,
-                     plot = T, 
                      name = 'orange_you_glad_you_have_this_color')
 library(ggplot2)
 # diamonds
 ggplot(mtcars, aes(x=wt, y=mpg)) +
-  geom_point(aes(color=factor(cyl)), size=10) +
+  geom_point(aes(color=factor(cyl)), size=10, alpha=.5) +
   scale_color_manual(values = pal$triadic) +
   theme_trueMinimal()
 ```
@@ -108,4 +108,4 @@ mtcars %>%
         axis.title.y = element_text(size=20, hjust=-.05))
 ```
 
-However, if you want colorblind-safe, print-safe etc., you should use packages like viridis and scico.
+However, if you want colorblind-safe, print-safe etc., you should use packages like [viridis](https://github.com/sjmgarnier/viridis) and [scico](https://github.com/thomasp85/scico).

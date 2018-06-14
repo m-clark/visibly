@@ -123,8 +123,10 @@ create_palette('#ff5500',
     [1] "#FF550080" "#AAFF0080" "#00AAFF80" "#5500FF80"
 
 One of the built-in palettes is based on R’s blue. Others are based on
-Stan’s red, plotly’s base colors, and the red-blue palette from
-RColorBrewer.
+[Stan’s](https://github.com/stan-dev/stan) red,
+[plotly’s](https://github.com/ropensci/plotly) base colors, and the
+red-blue palette from
+[RColorBrewer](https://github.com/cran/RColorBrewer/blob/master/R/ColorBrewer.R).
 
 ``` r
 palettes$Rblue
@@ -151,10 +153,11 @@ $tetradic
 ```
 
 One can create some colors from
-colorgorical.
+[colorgorical](http://vrl.cs.brown.edu/color).
 
 ``` r
-colorgorical(n=6, pairPreference = 1, startPalette = list(c(10, -60, 45)), output = 'hex')
+## colorgorical(n=6, pairPreference = 1, startPalette = list(c(10, -60, 45)), output = 'hex')
+[1] "#002B00" "#95C857" "#334D37" "#4EF185" "#378811" "#7FE7D3"
 ```
 
 ## Use
@@ -168,28 +171,16 @@ that.
 
 ``` r
 pal = create_palette('#ff5500', 
-                     alpha = 2/3,
-                     plot = T, 
                      name = 'orange_you_glad_you_have_this_color')
-```
-
-![](man/figures/README-use1-1.png)<!-- -->
-
-``` r
 library(ggplot2)
-```
-
-![](man/figures/README-use1-2.png)<!-- -->
-
-``` r
 # diamonds
 ggplot(mtcars, aes(x=wt, y=mpg)) +
-  geom_point(aes(color=factor(cyl)), size=10) +
+  geom_point(aes(color=factor(cyl)), size=10, alpha=.5) +
   scale_color_manual(values = pal$triadic) +
   theme_trueMinimal()
 ```
 
-![](man/figures/README-use1-3.png)<!-- -->
+![](man/figures/README-use1-1.png)<!-- -->
 
 ``` r
 library(dplyr)
@@ -215,4 +206,5 @@ mtcars %>%
 ![](man/figures/README-use2-1.png)<!-- -->
 
 However, if you want colorblind-safe, print-safe etc., you should use
-packages like viridis and scico.
+packages like [viridis](https://github.com/sjmgarnier/viridis) and
+[scico](https://github.com/thomasp85/scico).
