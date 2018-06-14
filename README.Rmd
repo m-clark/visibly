@@ -12,7 +12,7 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = NA,
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
 ```
 
@@ -37,3 +37,75 @@ devtools::install_github("m-clark/visibly")
 ```
 
 Visibly is currently in its very early stages, so more may be added soon.  For some additional palettes for those fond of another time, you might be interested in [NineteenEightyR](https://github.com/m-clark/NineteenEightyR).
+
+
+## Examples
+
+Create a palette. This requires the `colortools` package to create equally spaced colors.
+
+```{r example}
+library(visibly)
+create_palette('papayawhip')
+```
+
+
+Plot it to get a feel for things. 
+
+```{r plot}
+create_palette('#ff5500', plot = T)
+```
+
+There are some other options to express.
+
+```{r plot2}
+create_palette('#ff5500', 
+               alpha = .5, 
+               plot = T, 
+               name = 'orange_you_glad_you_have_this_color')
+```
+
+
+One of the built-in palettes is based on R's blue. Others are based on Stan's red, plotly's base colors, and the red-blue palette from RColorBrewer.  
+
+```{r rblue}
+palettes$Rblue
+```
+
+
+One can create some colors from colorgorical.
+
+```{r colorgorical, eval=FALSE}
+colorgorical(n=6, pairPreference = 1, startPalette = list(c(10, -60, 45)), output = 'hex')
+```
+
+## Use
+
+The palette creator can create some decent categorical distinctions without too much fuss. This also demonstrates one of the themes, which has no grid/gray, and de-bolds the black font while leaving text clear; even the fainter version will pass web standards for contrast against a white background. As shown, you can still fiddle with the theme beyond that.
+
+```{r use1}
+pal = create_palette('#ff5500', 
+                     alpha = 2/3,
+                     plot = T, 
+                     name = 'orange_you_glad_you_have_this_color')
+library(ggplot2)
+# diamonds
+ggplot(mtcars, aes(x=wt, y=mpg)) +
+  geom_point(aes(color=factor(cyl)), size=10) +
+  scale_color_manual(values = pal$triadic) +
+  theme_trueMinimal()
+```
+
+```{r use2}
+library(dplyr)
+mtcars %>% 
+  mutate(cyl = factor(cyl)) %>% 
+  tidyext::num_by(wt, cyl) %>% 
+  ggplot(aes(x=cyl, y=Mean)) +
+  geom_col(aes(fill=cyl), width=.5, alpha=.85) +
+  scale_fill_manual(values = palettes$Rblue$triadic) +
+  theme_trueMinimal() +
+  theme(legend.key.size = unit(.015, 'npc'),
+        axis.title.y = element_text(size=20, hjust=-.05))
+```
+
+However, if you want colorblind-safe, print-safe etc., you should use packages like viridis and scico.

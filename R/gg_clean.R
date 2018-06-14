@@ -52,8 +52,8 @@
 #' @export
 theme_trueMinimal <- function(){
   ggplot2::theme(
-    axis.text.x = ggplot2::element_text(colour='gray50'),
-    axis.text.y = ggplot2::element_text(colour='gray50'),
+    axis.text.x = ggplot2::element_text(colour='gray46'),
+    axis.text.y = ggplot2::element_text(colour='gray46'),
     title = ggplot2::element_text(colour='gray33'),
     legend.key = ggplot2::element_rect(fill='transparent', colour = NA),
     legend.background = ggplot2::element_rect(fill='transparent', colour = NA),
