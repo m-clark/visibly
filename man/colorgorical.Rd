@@ -80,9 +80,10 @@ This function accesses the colorgorical website to create a color
   lighter or darker colors.
 
   \bold{Add starting colors}: You can guarantee that certain colors are in
-  your palette. Note it is only guaranteed if you have already created a
-  palette at the website and start with one of the generated colors.
-  Otherwise, it appears to pick something close.
+  your palette. Note, as near as I can tell, it is only guaranteed if you
+  have already created a palette at the website and start with one of the
+  generated colors. Otherwise, it appears to pick something close to the
+  starting point(s) given the settings. See the example.
 
   NOTE: Because JSON is being used behind the scenes, for \code{hueFilters}
   and \code{startPalette}, the values must be given as a list.
@@ -100,6 +101,17 @@ The R code is based on the gist by Kamil Slowikowski found here:
 \dontrun{
 library(visibly)
 colorgorical(n=12, pairPreference = 1, startPalette = list(c(10, -60, 45)))
+
+# go from hex to lab to use single starting point, but see note about
+starting colors
+col = t(col2rgb(palettes$Rblue$Rblue))
+col = convertColor(col, from = "sRGB", to = "Lab", scale.in = 255)[1,]
+testcol = colorgorical(n=12, pairPreference = 1, startPalette = list(col))
+testcol = c(palettes$Rblue$Rblue, testcol)
+ggplot2::qplot(x=factor(testcol, levels = testcol),
+               y=1:12,
+               color=I(testcol),
+               size=I(10))
 }
 
 }
