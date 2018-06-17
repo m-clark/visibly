@@ -22,7 +22,6 @@
 #' @importFrom colortools complementary adjacent splitComp triadic square
 #'   tetradic pizza
 #' @importFrom scales col2hcl alpha
-#' @importFrom purrr map_chr
 #' @importFrom graphics layout mtext par
 #' @examples
 #' library(visibly)

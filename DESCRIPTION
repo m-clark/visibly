@@ -14,19 +14,25 @@ Year: 2018
 Depends:
   R (>= 3.4.0)
 Imports:
+  brms,
   colortools,
+  dplyr,
   magrittr,
   purrr,
-  scales
+  scales,
+  tibble,
+  lme4,
+  ggplot2,
 Suggests:
   colorspace,
   covr,
   httr,
   jsonlite,
-  ggplot2,
+  scico,
   plotly,
   testthat,
-    knitr,
-    rmarkdown
+  tidyr,
+  knitr,
+  rmarkdown
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
