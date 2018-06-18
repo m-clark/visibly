@@ -132,3 +132,4 @@ plot_fixefs.merMod <- function(model,
   }
 }
 
+# plot_fixefs.glmerMod <- plot_fixefs.merMod
