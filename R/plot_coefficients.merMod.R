@@ -9,7 +9,6 @@
 #'   it to do with as you wish (for multiple random effects, a list of ggplot
 #'   objects can be returned). Many of the options for fixed effects are
 #'   removed, as they either don't make much sense or for practical reasons.
-#' @importFrom lme4 fixef ranef
 #' @return A ggplot of the coefficients and their interval estimates. Or the
 #'   data that would be used to create the plot.
 #' @examples

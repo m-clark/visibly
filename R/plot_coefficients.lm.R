@@ -27,31 +27,31 @@ plot_coefficients.lm <- function(model,
                                  plot = TRUE,
                                  ...) {
 
-  init = summary(model)[['coefficients']]
+  init <- summary(model)[['coefficients']]
 
   if (is.character(order) && order == 'decreasing') {
-    ord = order(init[,'Estimate'], decreasing = TRUE)
+    ord <- order(init[,'Estimate'], decreasing = TRUE)
   } else if (is.character(order) && order == 'increasing') {
-    ord = order(init[,'Estimate'])
+    ord <- order(init[,'Estimate'])
   } else if (is.numeric(order)) {
-    ord = order
+    ord <- order
   }
 
-  init = init[ord,]
+  init <- init[ord,]
 
   # grab coefs and sd
-  coefs = init[,'Estimate']
-  sds = init[,'Std. Error']
+  coefs <- init[,'Estimate']
+  sds <- init[,'Std. Error']
 
   if (isFALSE(keep_intercept)) {
-    sds = sds[!grepl(names(coefs), pattern = 'Intercept')]
-    coefs = coefs[!grepl(names(coefs), pattern = 'Intercept')]
+    sds <- sds[!grepl(names(coefs), pattern = 'Intercept')]
+    coefs <- coefs[!grepl(names(coefs), pattern = 'Intercept')]
   }
 
   # create uis based on multiplier
-  ui = coefs  + outer(sds, c(-sd_multi, sd_multi))
+  ui <- coefs  + outer(sds, c(-sd_multi, sd_multi))
 
-  out =
+  out <-
     data.frame(value = coefs,
                ui) %>%
     tibble::rownames_to_column(var='Coefficient') %>%

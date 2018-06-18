@@ -14,20 +14,20 @@ Year: 2018
 Depends:
   R (>= 3.4.0)
 Imports:
-  brms,
   colortools,
   dplyr,
   magrittr,
   purrr,
   scales,
   tibble,
-  lme4,
   ggplot2,
 Suggests:
+  brms,
   colorspace,
   covr,
   httr,
   jsonlite,
+  lme4,
   scico,
   plotly,
   testthat,

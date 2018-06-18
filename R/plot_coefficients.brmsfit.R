@@ -1,6 +1,5 @@
 #' Plot fixed or random effects coefficients for brmsfit objects.
 #' @inheritParams plot_coefficients
-#' @importFrom brms fixef ranef
 #'
 #' @return A ggplot of the coefficients and their interval estimates. Or the
 #'   data that would be used to create the plot.

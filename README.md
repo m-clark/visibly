@@ -160,51 +160,11 @@ One can create some colors from
 [1] "#002B00" "#95C857" "#334D37" "#4EF185" "#378811" "#7FE7D3"
 ```
 
-## Use
-
-The palette creator can create some decent categorical distinctions
-without too much fuss. This also demonstrates one of the themes, which
-has no grid/gray, and de-bolds the black font while leaving text clear;
-even the fainter version will pass web standards for contrast against a
-white background. As shown, you can still fiddle with the theme beyond
-that.
+Pretty, and pretty easy, coefficient plots.
 
 ``` r
-pal = create_palette('#ff5500', 
-                     name = 'orange_you_glad_you_have_this_color')
-library(ggplot2)
-# diamonds
-ggplot(mtcars, aes(x=wt, y=mpg)) +
-  geom_point(aes(color=factor(cyl)), size=10, alpha=.5) +
-  scale_color_manual(values = pal$triadic) +
-  theme_trueMinimal()
+fit_lm = lm(mpg ~ ., mtcars)
+plot_coefficients(fit_lm)
 ```
 
-![](man/figures/README-use1-1.png)<!-- -->
-
-``` r
-library(dplyr)
-
-Attaching package: 'dplyr'
-The following objects are masked from 'package:stats':
-
-    filter, lag
-The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union
-mtcars %>% 
-  mutate(cyl = factor(cyl)) %>% 
-  tidyext::num_by(wt, cyl) %>% 
-  ggplot(aes(x=cyl, y=Mean)) +
-  geom_col(aes(fill=cyl), width=.5, alpha=.85) +
-  scale_fill_manual(values = palettes$Rblue$triadic) +
-  theme_trueMinimal() +
-  theme(legend.key.size = unit(.015, 'npc'),
-        axis.title.y = element_text(size=20, hjust=-.05))
-```
-
-![](man/figures/README-use2-1.png)<!-- -->
-
-However, if you want colorblind-safe, print-safe etc., you should use
-packages like [viridis](https://github.com/sjmgarnier/viridis) and
-[scico](https://github.com/thomasp85/scico).
+![](man/figures/README-fe0-1.png)<!-- -->

@@ -37,34 +37,36 @@ plot_ranefs.brmsfit <- function(model,
                                 plot,
                                 which_ranef,
                                 ...) {
-  init = ranef(model)
+  init <- brms::ranef(model)
 
   if(is.null(which_ranef))
     stop('Need the name of the random effect to be plotted.')
 
   if(isFALSE(which_ranef %in% names(init)))
-    stop(paste('which_ranef not found among names of random effects. Names are',
-               paste(names(init), collapse = ' '), '.'))
+    stop(
+      paste0('which_ranef not found among names of random effects. Names are ',
+               paste(names(init)), '.')
+      )
 
-  init = init[[which_ranef]]
-  n_ranef = dim(init)[3]
+  init <- init[[which_ranef]]
+  n_ranef <- dim(init)[3]
 
-  re_plot_list = vector('list', n_ranef)
+  re_plot_list <- vector('list', n_ranef)
 
   for (re in 1:n_ranef) {
-    res = init[,,re]
-    ord = order(res[,'Estimate'])
+    res <- init[,,re]
+    ord <- order(res[,'Estimate'])
 
-    res = res[ord,]
+    res <- res[ord,]
 
     # grab coefs and sd
-    coefs = res[,'Estimate']
-    sds = res[,'Est.Error']
+    coefs <- res[,'Estimate']
+    sds   <- res[,'Est.Error']
 
     # create uis based on multiplier
-    ui = coefs  + outer(sds, c(-sd_multi, sd_multi))
+    ui  <- coefs  + outer(sds, c(-sd_multi, sd_multi))
 
-    out =
+    out <-
       data.frame(value = coefs,
                  ui) %>%
       tibble::rownames_to_column(var='Coefficient') %>%
@@ -73,11 +75,11 @@ plot_ranefs.brmsfit <- function(model,
 
     # call internal gg
     if (plot) {
-      re_plot_list[[re]] = plot_coefs_re(out,
+      re_plot_list[[re]] <- plot_coefs_re(out,
                                          ref_line = ref_line)
 
     } else {
-      re_plot_list[[re]] = out
+      re_plot_list[[re]] <- out
     }
   }
   re_plot_list
@@ -92,7 +94,7 @@ plot_ranefs.merMod <- function(model,
                                which_ranef,
                                ...) {
 
-  init = lme4::ranef(model, condVar=TRUE)
+  init <- lme4::ranef(model, condVar=TRUE)
 
   if(is.null(which_ranef))
     stop('Need the name of the random effect to be plotted.')
@@ -101,25 +103,25 @@ plot_ranefs.merMod <- function(model,
     stop(paste('which_ranef not found among names of random effects. Names are',
                paste(names(init), collapse = ' '), '.'))
 
-  init = init[[which_ranef]]
-  group_names = rownames(init)
-  effect_names = names(init)
-  init_sd = attributes(init)$postVar %>% apply(3, diag) %>% t %>% sqrt
-  n_ranef = dim(init)[2]
+  init <- init[[which_ranef]]
+  group_names  <- rownames(init)
+  effect_names <- names(init)
+  init_sd <- attributes(init)$postVar %>% apply(3, diag) %>% t %>% sqrt
+  n_ranef <- dim(init)[2]
 
-  re_plot_list = vector('list', n_ranef)
+  re_plot_list <- vector('list', n_ranef)
 
   for (re in 1:n_ranef) {
-    coefs = init[,re]
-    ord = order(coefs)
+    coefs <- init[,re]
+    ord   <- order(coefs)
 
-    coefs = coefs[ord]
-    sds = init_sd[ord, re]
+    coefs <- coefs[ord]
+    sds   <- init_sd[ord, re]
 
     # create uis based on multiplier
-    ui = coefs  + outer(sds, c(-sd_multi, sd_multi))
+    ui  <- coefs  + outer(sds, c(-sd_multi, sd_multi))
 
-    out =
+    out <-
       data.frame(value = coefs,
                  ui) %>%
       mutate(Coefficient = group_names[ord]) %>%
@@ -128,13 +130,13 @@ plot_ranefs.merMod <- function(model,
 
     # call internal gg
     if (plot) {
-      re_plot_list[[re]] = plot_coefs_re(out,
+      re_plot_list[[re]] <- plot_coefs_re(out,
                                          ref_line = ref_line)
 
     } else {
-      re_plot_list[[re]] = out
+      re_plot_list[[re]] <- out
     }
   }
-  names(re_plot_list) = effect_names
+  names(re_plot_list) <- effect_names
   re_plot_list
 }

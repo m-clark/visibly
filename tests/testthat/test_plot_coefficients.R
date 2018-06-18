@@ -1,17 +1,18 @@
 context('test coefficient plots')
 
 
-test_lm = lm(mpg ~ ., mtcars)
+test_lm <- lm(mpg ~ ., mtcars)
 
-x = rnorm(100)
-q = rnorm(100)
-z = rnorm(100)
-y = rpois(100, exp(.25*x + .1*q - .5*z))
-test_glm = glm(y ~ x + q + z, family = poisson)
+x <- rnorm(100)
+q <- rnorm(100)
+z <- rnorm(100)
+y <- rpois(100, exp(.25*x + .1*q - .5*z))
 
-fit_mer = lme4::lmer(Reaction ~ Days + (Days|Subject), lme4::sleepstudy)
-fit_mer2 = lme4::lmer(count ~ log_Age_c + log_Base4_c * Trt + (1 | patient), brms::epilepsy)
-mer_re = plot_coefficients(fit_mer, ranef = T, which_ranef = 'Subject')
+test_glm <- glm(y ~ x + q + z, family = poisson)
+fit_mer  <- lme4::lmer(Reaction ~ Days + (Days|Subject), lme4::sleepstudy)
+fit_mer2 <- lme4::lmer(count ~ log_Age_c + log_Base4_c * Trt + (1 | patient),
+                      brms::epilepsy)
+mer_re <- plot_coefficients(fit_mer, ranef = T, which_ranef = 'Subject')
 
 test_that('It works', {
   expect_s3_class(mer_re[[1]], 'ggplot')
@@ -43,7 +44,8 @@ test_that('test order increasing', {
 
 
 test_that('test plot_coefficients.glm and trans', {
-  expect_s3_class(plot_coefficients(test_glm, trans = exp, ref_line = 1), 'ggplot')
+  expect_s3_class(plot_coefficients(test_glm, trans = exp, ref_line = 1),
+                  'ggplot')
 })
 
 
@@ -54,17 +56,17 @@ test_that('test plot_coefficients.glm and trans', {
 
 # test fixed effects plots ------------------------------------------------
 test_that('test fixef options', {
-  test_fe = plot_coefficients(fit_mer, ranef = F)
+  test_fe <- plot_coefficients(fit_mer, ranef = F)
   expect_s3_class(test_fe, 'ggplot')
 })
 
 test_that('test fixef options order increasing', {
-  test_fe = plot_coefficients(fit_mer, order = 'increasing')
+  test_fe <- plot_coefficients(fit_mer, order = 'increasing')
   expect_s3_class(test_fe, 'ggplot')
 })
 
 test_that('test fixef options order numeric', {
-  test_fe = plot_coefficients(fit_mer2, order = 4:1)
+  test_fe <- plot_coefficients(fit_mer2, order = 4:1)
   expect_s3_class(test_fe, 'ggplot')
 })
 
@@ -88,7 +90,8 @@ test_that('test error with null ranef', {
 })
 
 test_that('test can return data', {
-  expect_s3_class(plot_coefficients(fit_mer, ranef = T, which_ranef = 'Subject', plot=F)[[1]], 'data.frame')
+  expect_s3_class(plot_coefficients(fit_mer, ranef = T, which_ranef = 'Subject',
+                                    plot=F)[[1]], 'data.frame')
 })
 
 # test brms ---------------------------------------------------------------
@@ -97,17 +100,17 @@ test_that('test can return data', {
 # test fixed effects plots ------------------------------------------------
 
 test_that('test fixef options', {
-  test_fe = plot_coefficients(fit1, ranef = F)
+  test_fe <- plot_coefficients(fit1, ranef = F)
   expect_s3_class(test_fe, 'ggplot')
 })
 
 test_that('test fixef options order increasing', {
-  test_fe = plot_coefficients(fit1, order = 'increasing')
+  test_fe <- plot_coefficients(fit1, order = 'increasing')
   expect_s3_class(test_fe, 'ggplot')
 })
 
 test_that('test fixef options order numeric', {
-  test_fe = plot_coefficients(fit1, order = 4:1)
+  test_fe <- plot_coefficients(fit1, order = 4:1)
   expect_s3_class(test_fe, 'ggplot')
 })
 
@@ -120,7 +123,8 @@ test_that('no plot works', {
 
 
 test_that('test ranef options', {
-  expect_s3_class(plot_coefficients(fit1, ranef = T, which_ranef='patient')[[1]], 'ggplot')
+  expect_s3_class(
+    plot_coefficients(fit1, ranef = T, which_ranef='patient')[[1]], 'ggplot')
 })
 
 test_that('test error with wrong ranef', {
@@ -132,5 +136,7 @@ test_that('test error with null ranef', {
 })
 
 test_that('test can return data', {
-  expect_s3_class(plot_coefficients(fit1, ranef = T, which_ranef = 'patient', plot=F)[[1]], 'data.frame')
+  expect_s3_class(
+    plot_coefficients(fit1, ranef = T, which_ranef = 'patient', plot=F)[[1]],
+    'data.frame')
 })

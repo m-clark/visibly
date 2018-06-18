@@ -14,14 +14,14 @@ plot_coefs <- function(model_input,
                        ref_line,
                        trans) {
 
-  model_input = model_input %>%
+  model_input <- model_input %>%
     dplyr::mutate(bold = ifelse(sign(ui_l)*sign(ui_u) == 1, 1, .9),
-           Coefficient = factor(Coefficient, levels=Coefficient))    # sigh
+                  Coefficient = factor(Coefficient, levels=Coefficient))  # sigh
   if (!is.null(trans))
-    model_input = model_input %>%
+    model_input <- model_input %>%
       dplyr::mutate_at(vars(value, contains('ui')), trans)
 
-  listcol = model_input %>%
+  listcol <- model_input %>%
     split(.$Coefficient) %>%
     purrr::map(function(x) c(seq(x$ui_l, x$value, length.out = 2000),
                              seq(x$value, x$ui_u, length.out = 2000))) %>%
@@ -31,9 +31,9 @@ plot_coefs <- function(model_input,
     dplyr::mutate(value_sc = abs(scale(ui_value))) %>%
     dplyr::ungroup()
 
-  pointcol = scico::scico(n = 1, begin = 1, palette = palette)
+  pointcol <- scico::scico(n = 1, begin = 1, palette = palette)
   if (pointcol == "#FFFFFF")
-    pointcol = scico::scico(n = 1, begin = 0, end = 0, palette = palette)
+    pointcol <- scico::scico(n = 1, begin = 0, end = 0, palette = palette)
 
 
   model_input %>%
@@ -64,9 +64,9 @@ plot_coefs <- function(model_input,
 plot_coefs_re <- function(model_input,
                           ref_line) {
 
-  model_input = model_input %>%
+  model_input <- model_input %>%
     dplyr::mutate(bold = ifelse(sign(ui_l)*sign(ui_u) == 1, 1, .9),
-           Coefficient = factor(Coefficient, levels=Coefficient))    # sigh
+                  Coefficient = factor(Coefficient, levels=Coefficient))  # sigh
 
   model_input %>%
     ggplot2::ggplot(aes(x = Coefficient, y=value)) +

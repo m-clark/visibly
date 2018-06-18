@@ -24,4 +24,4 @@ r_packages:
   - covr
 
 after_success:
-  - Rscript -e "library(covr); codecov(line_exclusions = list('R/colorgorical.R'=123:151))"
+  - Rscript -e "library(covr); codecov(line_exclusions = list('R/colorgorical.R'=135:163))"
