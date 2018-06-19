@@ -41,6 +41,5 @@ Suggests:
 Remotes:
   m-clark/tidyext,
   thomasp85/patchwork
-
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
