@@ -21,7 +21,6 @@
 #' @return A list of colors
 #' @importFrom colortools complementary adjacent splitComp triadic square
 #'   tetradic pizza
-#' @importFrom scales col2hcl alpha
 #' @importFrom graphics layout mtext par
 #' @examples
 #' library(visibly)
@@ -34,6 +33,10 @@ create_palette <- function(colorhex,
                            toHCL=FALSE,
                            plot=FALSE,
                            alpha=1) {
+  if (!requireNamespace("colortools", quietly = TRUE)) {
+    stop("colortools package is needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
   if (is.null(name)) name <- colorhex
   if (!is.character(colorhex))
     stop('color hex must be a character string of the form #ffffff

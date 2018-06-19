@@ -18,8 +18,6 @@ Imports:
   dplyr,
   magrittr,
   purrr,
-  scales,
-  tibble,
   ggplot2,
 Suggests:
   brms,
@@ -27,12 +25,17 @@ Suggests:
   covr,
   httr,
   jsonlite,
-  lme4,
-  scico,
-  plotly,
-  testthat,
-  tidyr,
   knitr,
-  rmarkdown
+  lme4,
+  patchwork,
+  plotly,
+  rmarkdown,
+  scales,
+  scico,
+  svglite,
+  testthat,
+  tibble,
+  tidyext,
+  tidyr,
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr

@@ -16,7 +16,7 @@ plot_coefs <- function(model_input,
 
   model_input <- model_input %>%
     dplyr::mutate(bold = ifelse(sign(ui_l)*sign(ui_u) == 1, 1, .9),
-                  Coefficient = factor(Coefficient, levels=Coefficient))  # sigh
+                  Coefficient = ordered(Coefficient, levels=Coefficient))  # sigh
   if (!is.null(trans))
     model_input <- model_input %>%
       dplyr::mutate_at(vars(value, contains('ui')), trans)
@@ -29,7 +29,10 @@ plot_coefs <- function(model_input,
     tidyr::gather(key=Coefficient, value=ui_value) %>%
     dplyr::group_by(Coefficient) %>%
     dplyr::mutate(value_sc = abs(scale(ui_value))) %>%
-    dplyr::ungroup()
+    dplyr::ungroup() %>%
+    dplyr::mutate(Coefficient = ordered(Coefficient,
+                                        levels=levels(model_input$Coefficient)))
+  # sigh again
 
   pointcol <- scico::scico(n = 1, begin = 1, palette = palette)
   if (pointcol == "#FFFFFF")

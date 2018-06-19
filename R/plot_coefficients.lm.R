@@ -10,8 +10,6 @@
 #' @inheritParams plot_coefficients
 #' @return A ggplot of the coefficients and their interval estimates. Or the
 #'   data that would be used to create the plot.
-#' @importFrom tibble rownames_to_column
-#'
 #' @examples
 #' mod = lm(mpg ~ ., mtcars)
 #' plot_coefficients(mod, order = 'increasing')
@@ -29,6 +27,10 @@ plot_coefficients.lm <- function(model,
 
   init <- summary(model)[['coefficients']]
 
+  if (isFALSE(keep_intercept)) {
+    init <- init[!grepl(rownames(init), pattern = 'Intercept'), ]
+  }
+
   if (is.character(order) && order == 'decreasing') {
     ord <- order(init[,'Estimate'], decreasing = TRUE)
   } else if (is.character(order) && order == 'increasing') {
@@ -42,11 +44,6 @@ plot_coefficients.lm <- function(model,
   # grab coefs and sd
   coefs <- init[,'Estimate']
   sds <- init[,'Std. Error']
-
-  if (isFALSE(keep_intercept)) {
-    sds <- sds[!grepl(names(coefs), pattern = 'Intercept')]
-    coefs <- coefs[!grepl(names(coefs), pattern = 'Intercept')]
-  }
 
   # create uis based on multiplier
   ui <- coefs  + outer(sds, c(-sd_multi, sd_multi))
