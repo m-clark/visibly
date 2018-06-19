@@ -35,12 +35,17 @@ plot_fixefs.brmsfit <- function(model,
                                 plot,
                                 ...) {
 
-  init <- brms::fixef(model)
+  init <- broom::tidy(model, par_type = 'non-varying')
+
+  if (isFALSE(keep_intercept)) {
+    init <- init %>%
+      dplyr::filter(!grepl(term, pattern = 'Intercept'))
+  }
 
   if (is.character(order) && order == 'decreasing') {
-    ord <- order(init[,'Estimate'], decreasing = TRUE)
+    ord <- order(init[,'estimate'], decreasing = TRUE)
   } else if (is.character(order) && order == 'increasing') {
-    ord <- order(init[,'Estimate'])
+    ord <- order(init[,'estimate'])
   } else if (is.numeric(order)) {
     ord <- order
   }
@@ -48,13 +53,8 @@ plot_fixefs.brmsfit <- function(model,
   init <- init[ord,]
 
   # grab coefs and sd
-  coefs <- init[,'Estimate']
-  sds   <- init[,'Est.Error']
-
-  if (isFALSE(keep_intercept)) {
-    sds   <- sds[!grepl(names(coefs), pattern = 'Intercept')]
-    coefs <- coefs[!grepl(names(coefs), pattern = 'Intercept')]
-  }
+  coefs <- init[,'estimate']
+  sds   <- init[,'std.error']
 
   # create uis based on multiplier
   ui  <- coefs  + outer(sds, c(-sd_multi, sd_multi))
@@ -62,7 +62,7 @@ plot_fixefs.brmsfit <- function(model,
   out <-
     data.frame(value = coefs,
                ui) %>%
-    tibble::rownames_to_column(var='Coefficient') %>%
+    dplyr::mutate(Coefficient = init$term) %>%
     dplyr::rename(ui_l = X1,
                   ui_u = X2)
 
@@ -88,26 +88,27 @@ plot_fixefs.merMod <- function(model,
                                plot,
                                ...) {
 
-  init <- summary(model)$coefficients
+  init <- broom::tidy(model) %>%
+    dplyr::filter(group == 'fixed')
+
+  if (isFALSE(keep_intercept)) {
+    init <- init %>%
+      filter(!grepl(term, pattern = 'Intercept'))
+  }
 
   if (is.character(order) && order == 'decreasing') {
-    ord <- order(init[,'Estimate'], decreasing = TRUE)
+    ord <- order(init[,'estimate'], decreasing = TRUE)
   } else if (is.character(order) && order == 'increasing') {
-    ord <- order(init[,'Estimate'])
+    ord <- order(init[,'estimate'])
   } else if (is.numeric(order)) {
     ord <- order
   }
 
-  init <- init[ord,]
+  init <- init[ord, , drop = FALSE]
 
   # grab coefs and sd
-  coefs <- init[,'Estimate']
-  sds   <- init[,'Std. Error']
-
-  if (isFALSE(keep_intercept)) {
-    sds   <- sds[!grepl(names(coefs), pattern = 'Intercept')]
-    coefs <- coefs[!grepl(names(coefs), pattern = 'Intercept')]
-  }
+  coefs <- init[,'estimate']
+  sds   <- init[,'std.error']
 
   # create uis based on multiplier
   ui  <- coefs  + outer(sds, c(-sd_multi, sd_multi))
@@ -115,7 +116,7 @@ plot_fixefs.merMod <- function(model,
   out <-
     data.frame(value = coefs,
                ui) %>%
-    tibble::rownames_to_column(var='Coefficient') %>%
+    mutate(Coefficient = init$term) %>%
     dplyr::rename(ui_l = X1,
                   ui_u = X2)
 

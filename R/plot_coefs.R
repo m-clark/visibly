@@ -73,7 +73,7 @@ plot_coefs_re <- function(model_input,
 
   model_input %>%
     ggplot2::ggplot(aes(x = Coefficient, y=value)) +
-    ggplot2::geom_hline(yintercept = ref_line, alpha = .9, color='gray92') +
+    ggplot2::geom_hline(yintercept = ref_line, alpha = .25, color='#ff5500') +
     geom_linerange(aes(group=Coefficient, ymin=ui_l, ymax=ui_u, alpha=bold),
               color = 'gray50',
               size=1,

@@ -21,6 +21,7 @@ Imports:
   ggplot2,
 Suggests:
   brms,
+  broom, 
   colorspace,
   covr,
   httr,
