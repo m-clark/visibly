@@ -42,7 +42,7 @@ plot_ranefs.brmsfit <- function(model,
   if(is.null(which_ranef))
     stop('Need the name of the random effect to be plotted.')
 
-  if(isFALSE(which_ranef %in% names(init)))
+  if(!isTRUE(which_ranef %in% names(init)))
     stop(
       paste0('which_ranef not found among names of random effects. Names are ',
                paste(names(init)), '.')
@@ -99,7 +99,7 @@ plot_ranefs.merMod <- function(model,
   if(is.null(which_ranef))
     stop('Need the name of the random effect to be plotted.')
 
-  if(isFALSE(which_ranef %in% names(init)))
+  if(!isTRUE(which_ranef %in% names(init)))
     stop(paste('which_ranef not found among names of random effects. Names are',
                paste(names(init), collapse = ' '), '.'))
 

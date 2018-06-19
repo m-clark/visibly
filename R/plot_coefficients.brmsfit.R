@@ -19,7 +19,7 @@ plot_coefficients.brmsfit <- function(model,
                                       which_ranef = NULL,
                                       ...) {
 
-  if (isFALSE(ranef)) plot_fixefs(model,
+  if (!isTRUE(ranef)) plot_fixefs(model,
                                   order,
                                   sd_multi,
                                   keep_intercept,

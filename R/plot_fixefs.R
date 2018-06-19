@@ -37,7 +37,7 @@ plot_fixefs.brmsfit <- function(model,
 
   init <- broom::tidy(model, par_type = 'non-varying')
 
-  if (isFALSE(keep_intercept)) {
+  if (!isTRUE(keep_intercept)) {
     init <- init %>%
       dplyr::filter(!grepl(term, pattern = 'Intercept'))
   }
@@ -91,7 +91,7 @@ plot_fixefs.merMod <- function(model,
   init <- broom::tidy(model) %>%
     dplyr::filter(group == 'fixed')
 
-  if (isFALSE(keep_intercept)) {
+  if (!isTRUE(keep_intercept)) {
     init <- init %>%
       filter(!grepl(term, pattern = 'Intercept'))
   }

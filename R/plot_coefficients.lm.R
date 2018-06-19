@@ -27,7 +27,7 @@ plot_coefficients.lm <- function(model,
 
   init <- summary(model)[['coefficients']]
 
-  if (isFALSE(keep_intercept)) {
+  if (!isTRUE(keep_intercept)) {
     init <- init[!grepl(rownames(init), pattern = 'Intercept'), ]
   }
 
