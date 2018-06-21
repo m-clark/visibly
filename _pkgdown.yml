@@ -1,0 +1,77 @@
+title: visibly!
+title-img: logo.png
+
+authors:
+  Michael Clark:
+    href: https://m-clark.github.io
+    html: Michael Clark <img src="man/figures/lh_hex.png" height="24" />
+
+template:
+  params:
+    highlight: pygments
+    #bootswatch: sandstone
+    templates_path: inst/pkgdown
+
+highlight: pygments
+
+
+home:
+  links:
+  - text: Docs on Stats, R, and more
+    href: http://m-clark.github.io
+
+reference:
+  - title: "Dealing with color"
+    desc: >
+      Functions for getting and creating palettes.
+    contents:
+      - create_palette
+      - palettes
+      - colorgorical
+      - col2lab
+
+  - title: "Themes"
+    desc: >
+      Clean themes.
+    contents:
+      - theme_trueMinimal
+      - theme_plotly
+      - theme_blank
+
+  - title: "Plotting model results"
+    desc: >
+      Functions for plotting fixed and random effect coefficients and more.
+    contents:
+      - plot_coefficients
+      - plot_coefficients.brmsfit
+      - plot_coefficients.lm
+      - plot_coefficients.merMod
+
+figures:
+  dev: png
+  dpi: 96
+  dev.args: []
+  fig.ext: png
+  fig.width: 7.2916667
+  fig.height: ~
+  fig.retina: 2
+  fig.asp: 1.618
+
+navbar:
+  title: "whatever bc pkgdown will ignore it"
+  type: ~
+  left:
+    - text: "Reference"
+      href: "reference/index.html"
+    - text: "News"
+      href: "news/index.html"
+    - text: Articles
+      menu:
+      - text: Introduction to visibly
+        href: articles/intro.html
+  right:
+    - icon: fa-github-alt
+      href: https://github.com/m-clark
+    - icon: fa-empire
+      href: https://m-clark.github.io
+
