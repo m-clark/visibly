@@ -33,8 +33,8 @@ might be interested in
 
 ## Examples
 
-Create a palette. This requires the `colortools` package to create
-equally spaced colors.
+Create a palette. This requires the <span class="pack">colortools</span>
+package to create equally spaced colors.
 
 ``` r
 library(visibly)
@@ -61,13 +61,14 @@ $tetradic
 [1] "#FFEFD5" "#E5FFD5" "#D5E5FF" "#EFD5FF"
 ```
 
-Plot it to get a feel for things.
+Plot it to get a feel for
+things.
 
 ``` r
 create_palette('#ff5500', plot = T)
 ```
 
-![](man/figures/README-plot-1.png)<!-- -->
+<img src="man/figures/README-plot-1.svg" width="75%" style="display: block; margin: auto;" />
 
     $`#ff5500`
     [1] "#ff5500"
@@ -99,7 +100,7 @@ create_palette('#ff5500',
                name = 'orange_you_glad_you_have_this_color')
 ```
 
-![](man/figures/README-plot2-1.png)<!-- -->![](man/figures/README-plot2-2.png)<!-- -->
+<img src="man/figures/README-plot2-1.svg" width="75%" style="display: block; margin: auto;" /><img src="man/figures/README-plot2-2.svg" width="75%" style="display: block; margin: auto;" />
 
     $orange_you_glad_you_have_this_color
     [1] "#FF550080"
@@ -152,19 +153,26 @@ $tetradic
 [1] "#1f65b7" "#b7701f" "#66b71f" "#701fb7"
 ```
 
-One can create some colors from
-[colorgorical](http://vrl.cs.brown.edu/color).
+A clean theme for <span class="pack">plotly</span>.
 
 ``` r
-## colorgorical(n=6, pairPreference = 1, startPalette = list(c(10, -60, 45)), output = 'hex')
-[1] "#002B00" "#95C857" "#334D37" "#4EF185" "#378811" "#7FE7D3"
+library(plotly)
+mtcars %>% 
+  plot_ly(x=~wt, y=~mpg, color=~cyl) %>% 
+  add_markers(size =~ I(50)) %>% 
+  theme_plotly()
 ```
 
-Pretty, and pretty easy, coefficient plots.
+<img src="man/figures/README-example4-1.png" width="75%" style="display: block; margin: auto;" />
+
+Plot some model coefficients. Requires the
+<span class="pack">scico</span> package.
 
 ``` r
 fit_lm = lm(mpg ~ ., mtcars)
 plot_coefficients(fit_lm)
 ```
 
-![](man/figures/README-fe0-1.png)<!-- -->
+<img src="man/figures/README-lm0-1.svg" width="75%" style="display: block; margin: auto;" />
+
+See the [website](https://m-clark.github.io/visibly/) for more.

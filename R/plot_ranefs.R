@@ -44,8 +44,8 @@ plot_ranefs.brmsfit <- function(model,
 
   if(!isTRUE(which_ranef %in% names(init)))
     stop(
-      paste0('which_ranef not found among names of random effects. Names are ',
-               paste(names(init)), '.')
+      paste('which_ranef not found among names of random effects. Names are:',
+                 c(paste(names(init), collapse = ', ')))
       )
 
   init <- init[[which_ranef]]
@@ -82,8 +82,12 @@ plot_ranefs.brmsfit <- function(model,
       re_plot_list[[re]] <- out
     }
   }
-  re_plot_list
+  if (length(re_plot_list) == 1)
+    re_plot_list[[1]]
+  else re_plot_list
 }
+
+
 
 #' @describeIn  plot_ranefs
 plot_ranefs.merMod <- function(model,
@@ -100,13 +104,21 @@ plot_ranefs.merMod <- function(model,
     stop('Need the name of the random effect to be plotted.')
 
   if(!isTRUE(which_ranef %in% names(init)))
-    stop(paste('which_ranef not found among names of random effects. Names are',
-               paste(names(init), collapse = ' '), '.'))
+    stop(paste('which_ranef not found among names of random effects. Names are:',
+               c(paste(names(init), collapse = ', '))))
 
   init <- init[[which_ranef]]
   group_names  <- rownames(init)
   effect_names <- names(init)
-  init_sd <- attributes(init)$postVar %>% apply(3, diag) %>% t %>% sqrt
+  init_sd <- attributes(init)$postVar %>% apply(3, diag)
+
+  # check for different non-matrix return if single effect
+  if (is.null(dim(init_sd))) {
+    init_sd = matrix(sqrt(init_sd), ncol = 1)
+  } else {
+    init_sd =  t(sqrt(init_sd))
+  }
+
   n_ranef <- dim(init)[2]
 
   re_plot_list <- vector('list', n_ranef)
@@ -138,5 +150,7 @@ plot_ranefs.merMod <- function(model,
     }
   }
   names(re_plot_list) <- effect_names
-  re_plot_list
+  if (length(re_plot_list) == 1)
+    re_plot_list[[1]]
+  else re_plot_list
 }

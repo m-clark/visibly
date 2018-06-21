@@ -24,6 +24,7 @@ Suggests:
   broom, 
   colorspace,
   covr,
+  grDevices,
   httr,
   jsonlite,
   knitr,
