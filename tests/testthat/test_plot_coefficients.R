@@ -61,13 +61,13 @@ test_that('test fixef options', {
 })
 
 test_that('test fixef options order increasing', {
-  test_fe <- plot_coefficients(fit_mer, order = 'increasing')
-  expect_s3_class(test_fe, 'ggplot')
+  test_fe <- plot_coefficients(fit_mer2, order = 'increasing', plot=F)
+  expect_equal(test_fe$Coefficient[1], 'Trt1')
 })
 
 test_that('test fixef options order numeric', {
-  test_fe <- plot_coefficients(fit_mer2, order = 4:1)
-  expect_s3_class(test_fe, 'ggplot')
+  test_fe <- plot_coefficients(fit_mer2, order = 4:1, plot=F)
+  expect_equal(test_fe$Coefficient[2], 'Trt1')
 })
 
 test_that('no plot works', {
@@ -81,18 +81,29 @@ test_that('test ranef options', {
   expect_s3_class(mer_re[[1]], 'ggplot')
 })
 
-test_that('test error with wrong ranef', {
+test_that('test merMod ranef errors with wrong ranef', {
   expect_error(plot_coefficients(fit_mer, ranef = T, which_ranef = 'blah'))
 })
 
-test_that('test error with null ranef', {
+test_that('test merMod ranef errors with null ranef', {
   expect_error(plot_coefficients(fit_mer, ranef = T, which_ranef = NULL))
 })
 
-test_that('test can return data', {
+test_that('test merMod ranef can return data', {
   expect_s3_class(plot_coefficients(fit_mer, ranef = T, which_ranef = 'Subject',
                                     plot=F)[[1]], 'data.frame')
 })
+
+
+test_that('test merMod ranef can take single ranef and
+          returns ggplot with 1 ranef', {
+            expect_s3_class(plot_coefficients(fit_mer2,
+                                              ranef = T,
+                                              which_ranef = 'patient'),
+                            'ggplot')
+          })
+
+
 
 # test brms ---------------------------------------------------------------
 
@@ -105,13 +116,13 @@ test_that('test fixef options', {
 })
 
 test_that('test fixef options order increasing', {
-  test_fe <- plot_coefficients(fit1, order = 'increasing')
-  expect_s3_class(test_fe, 'ggplot')
+  test_fe <- plot_coefficients(fit1, order = 'increasing', plot=F)
+  expect_equal(test_fe$Coefficient[1], 'Trt1')
 })
 
 test_that('test fixef options order numeric', {
-  test_fe <- plot_coefficients(fit1, order = 4:1)
-  expect_s3_class(test_fe, 'ggplot')
+  test_fe <- plot_coefficients(fit1, order = 4:1, plot=F)
+  expect_equal(test_fe$Coefficient[2], 'Trt1')
 })
 
 test_that('no plot works', {
@@ -124,7 +135,7 @@ test_that('no plot works', {
 
 test_that('test ranef options', {
   expect_s3_class(
-    plot_coefficients(fit1, ranef = T, which_ranef='patient')[[1]], 'ggplot')
+    plot_coefficients(fit1, ranef = T, which_ranef='patient'), 'ggplot')
 })
 
 test_that('test error with wrong ranef', {
@@ -137,6 +148,21 @@ test_that('test error with null ranef', {
 
 test_that('test can return data', {
   expect_s3_class(
-    plot_coefficients(fit1, ranef = T, which_ranef = 'patient', plot=F)[[1]],
+    plot_coefficients(fit1, ranef = T, which_ranef = 'patient', plot=F),
     'data.frame')
 })
+
+test_that('test merMod ranef returns ggplot with 1 ranef', {
+
+            expect_s3_class(plot_coefficients(fit1,
+                                              ranef = T,
+                                              which_ranef = 'patient'),
+                            'ggplot')
+          })
+
+test_that('test merMod ranef returns list with multi ranef', {
+            test = plot_coefficients(fit_brms_slope,
+                                     ranef = T,
+                                     which_ranef = 'Subject')
+            expect_is(test, 'list')
+          })
