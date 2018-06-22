@@ -1,54 +1,199 @@
 ---
 title: "An Introduction to Visibly"
 author: "Michael Clark"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+date: <span style="font-style:normal;font-family:'Open Sans'">`r Sys.Date()`</span>
+output:
+  html_vignette:
+    toc: true
+    toc_depth: 3
+    df_print: kable
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = NA
-)
+```{r setup, include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F, error=F, collapse = TRUE,
+                      comment=NA, R.options=list(width=220),   # code 
+                      dev.args=list(bg = 'transparent'), dev='png',                                 # viz
+                      fig.align='center', out.width='75%', fig.asp=.75,                 
+                      cache.rebuild=F, cache=F)                                                         # cache
 ```
 
 
 
-## Examples
 
-Create a palette.
+## Palettes & Themes
 
-```{r example}
+One can get started by creating a palette. This uses the <span class="pack">colortools</span> package to provide evenly spaced colors.
+
+```{r example, echo=-(1:3)}
+# bc r cmd build randomly decided margins were too large when they were okay
+# before
+par(mar=c(.5,.5,.5,.5))
 library(visibly)
-create_palette('papayawhip')
+create_palette('papayawhip', plot = TRUE)
 ```
 
-A palette based on the blue in the R logo.
+Here is a palette based on the blue in the R logo.
 
 ```{r example2}
 palettes$Rblue
 ```
 
 
-A clean theme ready for the web and allowing the pattern to be the focus rather than arbitrary precision the data doesn't support anyway.
+The palette creator can create some decent categorical distinctions without too much fuss. The following also demonstrates one of the themes, which has no grid/gray, and de-bolds the black font while leaving text clear; even the fainter version will pass web standards for contrast against a white background. As shown, you can still fiddle with the theme beyond that.
 
-```{r example3}
+```{r use1}
+pal = create_palette('#ff5500', 
+                     name = 'orange_you_glad_you_have_this_color')
 library(ggplot2)
-ggplot(aes(x=wt, y=mpg, color=cyl), data=mtcars) +
-  geom_point() +
+
+ggplot(mtcars, aes(x=wt, y=mpg)) +
+  geom_point(aes(color=factor(cyl)), size=10, alpha=.5) +
+  scale_color_manual(values = pal$triadic) +
   theme_trueMinimal()
 ```
 
-For plotly too.
-
-```{r example4}
-library(plotly)
+```{r use2}
+library(dplyr)
 mtcars %>% 
-  plot_ly(x=~wt, y=~mpg, color=~cyl) %>% 
-  add_markers() %>% 
-  theme_plotly()
+  mutate(cyl = factor(cyl)) %>% 
+  tidyext::num_by(wt, cyl) %>% 
+  ggplot(aes(x=cyl, y=Mean)) +
+  geom_col(aes(fill=cyl), width=.5, alpha=.85) +
+  scale_fill_manual(values = palettes$Rblue$triadic) +
+  theme_trueMinimal() +
+  theme(legend.key.size = unit(.015, 'npc'),
+        axis.title.y = element_text(size=20, hjust=-.05))
 ```
+
+
+Another way to create palettes is with a function that works with [colorgorical](http://vrl.cs.brown.edu/color).  It connects to that website to create colors based on things like whether they perceptually go together aesthetically, whether they are more or less perceptually distinct, or even if their name is unique.
+
+```{r colorgorical, eval=2:4, echo=1}
+colorgorical(n=6, pairPreference = 1, startPalette = list(c(10, -60, 45)), output = 'hex')
+x = c("#002B00", "#95C857", "#334D37", "#4EF185", "#378811", "#7FE7D3")
+print(x)
+qplot(x=x, y=1:6, color=I(x), size=I(10))
+```
+
+```{r colorgorical2, eval=2:4, echo=1}
+colorgorical(n=10, perceptualDifference = .5, startPalette = list(c(10, -60, 45)), output = 'hex')
+x = c("#002B00", "#D57381", "#77CE3F", "#DB0EAC", "#2FF52B", 
+      "#6C208E", "#B1BF81", "#4115F9", "#518512", "#B662CA")
+print(x)
+qplot(x=x, y=1:10, color=I(x), size=I(10))
+```
+
+To get a starting palette from an R or hexadecimal value, try <span class="pack">col2lab</span>.
+
+```{r col2lab}
+col2lab('dodgerblue')
+```
+
+
+
+However, if you want palettes that are colorblind-safe, print-safe etc., especially for continuous scales, you should use packages like [viridis](https://github.com/sjmgarnier/viridis) and [scico](https://github.com/thomasp85/scico).
+
+
+
+## Plotting model results
+
+I have some visualizations for plotting uncertainty intervals for fixed and random effects of mixed models.  These require the <span class="pack">scico</span> package, as well as <span class="pack">lme4</span> and <span class="pack">brms</span> which are used to do the mixed models in the first place.
+
+### lm and glm
+
+I don't really use them aside for demonstration, but in this case the <span class="objclass">lm</span> and <span class="objclass">glm</span> objects served as a baseline.
+
+```{r lm0}
+fit_lm = lm(mpg ~ ., mtcars)
+plot_coefficients(fit_lm)
+```
+
+Change the palette, order and more.
+
+```{r lm1}
+fit_lm = lm(mpg ~ ., mtcars)
+plot_coefficients(fit_lm, 
+                  palette='oslo', 
+                  order = 'decreasing', 
+                  sd_multi = 1,
+                  keep_intercept = TRUE,
+                  ref_line = c(-1:1))
+```
+
+#### Data only
+
+You may want to do your own visualization, or go beyond the default settings. Rather than providing a couple dozen arguments for you to tweak, just so you can still feel like you can't get it just quite right.  Here's the data, do with it what you will!
+
+```{r data}
+plot_coefficients(fit_lm, plot=FALSE)
+```
+
+
+### Mixed models
+
+I do a lot of mixed models, which is my main reason for providing this functionality, so I've started to create some ways to plot the results of the separate fixed and random effects.  We'll use <span class="pack">lme4</span>.
+
+```{r fe1}
+library(lme4)
+fit_mer = lmer(Reaction ~ Days + (Days|Subject), sleepstudy)
+plot_coefficients(fit_mer)
+```
+
+And now the random effects. Fewer options can be found here, but this is intentional as you'd want them ordered and the fixed effect style would make things messy whenever there are many random effects, which is often the case. With multiple random effects, a list of ggplot objects is returned.
+
+```{r re1}
+plot_coefficients(fit_mer, ranef = TRUE, which_ranef = 'Subject')
+```
+
+Now for a different palette.  Again, these only apply to fixed effects visualizations, due to the number of categories typically seen with random effects and how the visualization is created.
+
+```{r fe2}
+fit_mer2 = lmer(count ~ log_Age_c + log_Base4_c * Trt + 
+                  (1 | patient), 
+                data = brms::epilepsy)
+plot_coefficients(fit_mer2, 
+                  palette = 'lajolla')
+```
+
+You can use <span class="pack">patchwork</span> to put them into one graph.
+
+```{r re_patchwork}
+plots = plot_coefficients(fit_mer, ranef = TRUE, which_ranef = 'Subject')
+
+library(patchwork)
+
+plots[[1]] + plots[[2]]
+```
+
+
+
+
+#### brms
+
+I like <span class="pack">brms</span> quite a bit and use it a lot. It served as the motivation for these coefficient plots, as did <span class="pack">bayesplot</span>, and <span class="pack">tidyposterior</span>.
+
+```{r fe_brms1, eval=FALSE}
+library(brms)
+fit_brms = brm(count ~ log_Age_c + log_Base4_c * Trt + 
+                 (1 | patient) + (1 | obs), 
+               data = epilepsy,
+               family = poisson)
+plot_coefficients(fit_brms)
+```
+
+```{r fe_brms1_vis, echo=FALSE}
+load('../tests/testthat/brms_res.RData')
+plot_coefficients(fit1)
+```
+
+And now the random effects.
+
+```{r re_brms1}
+plot_coefficients(fit1, ranef = TRUE, which_ranef = 'patient') +
+  theme(axis.text.x = element_text(angle = -90))
+```
+
