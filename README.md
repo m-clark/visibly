@@ -1,5 +1,7 @@
 [![Build
 Status](https://travis-ci.org/m-clark/visibly.svg?branch=master)](https://travis-ci.org/m-clark/visibly)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/m-clark/visibly?branch=master&svg=true)](https://ci.appveyor.com/project/m-clark/visibly)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/m-clark/visibly/master.svg)](https://codecov.io/github/m-clark/visibly?branch=master)
 
