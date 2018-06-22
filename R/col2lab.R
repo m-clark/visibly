@@ -18,7 +18,7 @@ col2lab <- function(color) {
     stop('Elements must be character string as named R color or
          hex (e.g. "#ffffff")')
 
-  col = t(grDevices::col2rgb(color))
-  col = grDevices::convertColor(col, from = "sRGB", to = "Lab", scale.in = 255)
+  col <- t(grDevices::col2rgb(color))
+  col <- grDevices::convertColor(col, from = "sRGB", to = "Lab", scale.in = 255)
   col
 }

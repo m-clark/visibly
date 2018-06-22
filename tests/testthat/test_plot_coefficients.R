@@ -161,7 +161,7 @@ test_that('test merMod ranef returns ggplot with 1 ranef', {
           })
 
 test_that('test merMod ranef returns list with multi ranef', {
-            test = plot_coefficients(fit_brms_slope,
+            test <- plot_coefficients(fit_brms_slope,
                                      ranef = T,
                                      which_ranef = 'Subject')
             expect_is(test, 'list')

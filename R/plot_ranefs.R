@@ -114,9 +114,9 @@ plot_ranefs.merMod <- function(model,
 
   # check for different non-matrix return if single effect
   if (is.null(dim(init_sd))) {
-    init_sd = matrix(sqrt(init_sd), ncol = 1)
+    init_sd <- matrix(sqrt(init_sd), ncol = 1)
   } else {
-    init_sd =  t(sqrt(init_sd))
+    init_sd <- t(sqrt(init_sd))
   }
 
   n_ranef <- dim(init)[2]

@@ -33,14 +33,19 @@ create_palette <- function(colorhex,
                            toHCL=FALSE,
                            plot=FALSE,
                            alpha=1) {
+
   if (!requireNamespace("colortools", quietly = TRUE)) {
-    stop("colortools package is needed for this function to work. Please install it.",
+    stop("colortools package is needed for this function to work.
+         Please install it.",
          call. = FALSE)
   }
+
   if (is.null(name)) name <- colorhex
+
   if (!is.character(colorhex))
     stop('color hex must be a character string of the form #ffffff
     or an R color name.')
+
   if (alpha < 0 | alpha > 1) stop('alpha must be between 0 and 1.')
 
   l <- list()

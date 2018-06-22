@@ -156,7 +156,7 @@ fit_mer2 = lmer(count ~ log_Age_c + log_Base4_c * Trt +
                   (1 | patient), 
                 data = brms::epilepsy)
 plot_coefficients(fit_mer2, 
-                  palette = 'lajolla')
+                  palette = 'berlin')
 ```
 
 You can use <span class="pack">patchwork</span> to put them into one graph.
