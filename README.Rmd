@@ -34,7 +34,7 @@ Visibly is a handful of functions I use for color palettes, themes, etc. in R.  
 
 The development version then install directly from GitHub:
 
-```{r, eval=FALSE}
+```{r install, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("m-clark/visibly")
 ```
@@ -44,7 +44,7 @@ Visibly is currently in its very early stages, so more may be added soon.  For s
 
 ## Examples
 
-Create a palette. This requires the <span class="pack">colortools</span> package to create equally spaced colors.
+Create a palette from a single starting point. This requires the <span class="pack">colortools</span> package to create equally spaced colors.
 
 ```{r example}
 library(visibly)

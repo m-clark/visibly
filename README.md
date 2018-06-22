@@ -33,8 +33,9 @@ might be interested in
 
 ## Examples
 
-Create a palette. This requires the <span class="pack">colortools</span>
-package to create equally spaced colors.
+Create a palette from a single starting point. This requires the
+<span class="pack">colortools</span> package to create equally spaced
+colors.
 
 ``` r
 library(visibly)

@@ -1,6 +1,11 @@
+# visibly 0.2.0
+
 ## visibly 0.2.0
 
 * Package website.
+
+
+# visibly 0.1.0
 
 ## visibly 0.1.6
 
