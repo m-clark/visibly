@@ -26,5 +26,6 @@ r_packages:
 
 after_success:
   - Rscript -e "library(covr); codecov(line_exclusions = list('R/colorgorical.R'=135:163,
-                                                              'R/create_palette.R'=36:39
+                                                              'R/create_palette.R'=38:40,
+                                                              'R/plot_coefs.R'=17:21
                                                               ))"

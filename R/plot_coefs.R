@@ -14,6 +14,12 @@ plot_coefs <- function(model_input,
                        ref_line,
                        trans) {
 
+  if (!requireNamespace("scico", quietly = TRUE)) {
+    stop("scico package is needed for this function to work.
+         Please install it.",
+         call. = FALSE)
+  }
+
   model_input <- model_input %>%
     dplyr::mutate(bold = ifelse(sign(ui_l)*sign(ui_u) == 1, 1, .9),
                   Coefficient = ordered(Coefficient, levels=Coefficient))  # sigh

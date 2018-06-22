@@ -18,6 +18,7 @@ in R. Inside you will find:
   - clean, web-friendly themes for ggplot2 and plotly
   - a function to interact with
     [colorgorical](http://vrl.cs.brown.edu/color/)
+  - coefficient plots for fixed and random effects
 
 ## Installation
 

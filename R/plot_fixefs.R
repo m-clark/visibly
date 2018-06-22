@@ -20,7 +20,6 @@ plot_fixefs <- function(model,
 
   UseMethod(generic = 'plot_fixefs')
 
-
 }
 
 #' @export
