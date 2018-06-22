@@ -159,7 +159,7 @@ A clean theme for <span class="pack">plotly</span>.
 library(plotly)
 mtcars %>% 
   plot_ly(x=~wt, y=~mpg, color=~cyl) %>% 
-  add_markers(size =~ I(50)) %>% 
+  add_markers(size =~ I(20)) %>% 
   theme_plotly()
 ```
 
