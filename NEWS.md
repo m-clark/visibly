@@ -2,6 +2,10 @@
 
 * Package website.
 
+## visibly 0.1.6
+
+* Add col2lab.
+
 ## visibly 0.1.5
 
 * Add coefficient plots.

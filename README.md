@@ -68,7 +68,7 @@ things.
 create_palette('#ff5500', plot = T)
 ```
 
-<img src="man/figures/README-plot-1.svg" width="75%" style="display: block; margin: auto;" />
+<img src="man/figures/README-plot-1.png" width="75%" style="display: block; margin: auto;" />
 
     $`#ff5500`
     [1] "#ff5500"
@@ -100,7 +100,7 @@ create_palette('#ff5500',
                name = 'orange_you_glad_you_have_this_color')
 ```
 
-<img src="man/figures/README-plot2-1.svg" width="75%" style="display: block; margin: auto;" /><img src="man/figures/README-plot2-2.svg" width="75%" style="display: block; margin: auto;" />
+<img src="man/figures/README-plot2-1.png" width="75%" style="display: block; margin: auto;" /><img src="man/figures/README-plot2-2.png" width="75%" style="display: block; margin: auto;" />
 
     $orange_you_glad_you_have_this_color
     [1] "#FF550080"
@@ -173,6 +173,6 @@ fit_lm = lm(mpg ~ ., mtcars)
 plot_coefficients(fit_lm)
 ```
 
-<img src="man/figures/README-lm0-1.svg" width="75%" style="display: block; margin: auto;" />
+<img src="man/figures/README-lm0-1.png" width="75%" style="display: block; margin: auto;" />
 
 See the [website](https://m-clark.github.io/visibly/) for more.
