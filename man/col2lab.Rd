@@ -13,7 +13,7 @@ col2lab(color)
 A matrix of LAB values useful for colorgorical starting points.
 }
 \description{
-Converts an R color
+Converts an R color or a hexadecimal string to CIE Lab.
 }
 \details{
 See the help for \link[grDevices]{convertColor}.

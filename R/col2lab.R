@@ -1,5 +1,5 @@
 #' Convert color to lab
-#' @description Converts an R color
+#' @description Converts an R color or a hexadecimal string to CIE Lab.
 #' @param color An R color or a hexadecimal string of the form "#rrggbb"
 #' @details See the help for \link[grDevices]{convertColor}.
 #' @return A matrix of LAB values useful for colorgorical starting points.
