@@ -48,5 +48,5 @@ This isn't really meant to be directly called, but is instead
 #placeholder
 }
 \seealso{
-plot_coefficients
+\link[visibly]{plot_coefficients}
 }

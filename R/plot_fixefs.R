@@ -4,7 +4,7 @@
 #' @inheritParams plot_coefficients
 #' @return a ggplot2 object or the effect estimates
 #'
-#' @seealso plot_coefficients
+#' @seealso \link[visibly]{plot_coefficients}
 #'
 #' @examples
 #' #placeholder
