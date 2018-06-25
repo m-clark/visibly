@@ -36,7 +36,7 @@ Plot 1d effects from mgcv gam model results.
 }
 \details{
 Very 'no-frills' at the moment. Only 1d or multiple 1d smooths are
-  able to be plotted.Conditional data not supplied is created by
+  able to be plotted. Conditional data not supplied is created by
   \link[tidyext]{create_prediction_data}, i.e. defaults to means for numeric,
   most common category for categorical variables.
 }
