@@ -8,15 +8,15 @@
 #'
 #' @details From a gray background, to unnecessary gridlines, to by-default
 #'   reference lines, some of the more popular visualization packages come out
-#'   75% fantastic and 25% questionable/arbitrary/problematic.  These functions
+#'   75\% fantastic and 25\% questionable/arbitrary/problematic.  These functions
 #'   remove unnecessary gridlines, 'de-bold' the blacks, etc.
 #'
-#'   - **ggplot2**: \code{theme_trueMinimal} This function takes a ggplot object
+#'   - \bold{ggplot2}: \code{theme_trueMinimal} This function takes a ggplot object
 #'   and removes the gray background, gridlines and adds opacity to the default
 #'   black axes and labels, allowing the pattern of the visual to be expressed
 #'   in unimpeded fashion.
 #'
-#'   - **plotly**: \code{theme_plotly}, \code{theme_blank} removes reference
+#'   - \bold{plotly}: \code{theme_plotly}, \code{theme_blank} removes reference
 #'   lines at zero, and some of its 'modebar' is unnecessary.  Otherwise little
 #'   is changed at this point, except for theme_blank, which is like theme_void
 #'   for ggplot.
