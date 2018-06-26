@@ -43,14 +43,14 @@ a ggplot2 object of the effects of main_var.
 Plot 1d effects from mgcv gam model results.
 }
 \details{
-Very 'no-frills' at the moment. Only 1d or multiple 1d smooths are
+This function is very 'no-frills' and in its early stages at the moment.
+Only 1d or multiple 1d numeric smooths are
   able to be plotted. Conditional data not supplied is created by
   \link[tidyext]{create_prediction_data}, i.e. defaults to means for numeric,
-  most common category for categorical variables.
+  most common category for categorical variables, and 500 observations.
 }
 \examples{
 library(mgcv) # you don't need this function if you don't have this package
-
 
 # example taken from the mgcv plot.gam help file.
 library(mgcv)

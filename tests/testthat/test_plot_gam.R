@@ -30,28 +30,17 @@ d = data_frame(
 ) %>%
   mutate(x0 = factor(x0))
 
-b <- gam(y ~ x0 + s(x1) + s(x2) + s(x3), data = d)
+d2 = data_frame(
+  x0 = rep(1:4, 50),
+  x1 = runif(n, 0, 1),
+  x2 = rnorm(n, 0, 5),
+  x3 = rnorm(n, 0, 1),
+  e  = rnorm(n, 0, sqrt(sig2)),
+  y  = 2*x0 + f1(x1) + sin(x2) + cos(x3) + e
+) %>%
+  mutate(x0 = factor(x0))
 
-#
-# plot_gam(b,
-#          model_data = d,
-#          conditional_data = data_frame(x2 = runif(500)),
-#          main_var = x2)
-#
-# plot_gam(b,
-#          model_data = d,
-#          main_var = x2)
-#
-#
-# plot_gam(b,
-#          model_data = d,
-#          main_var = vars(x2, x1))
-#
-# plot_gam(b,
-#          model_data = d,
-#          conditional_data = data_frame(x1 = runif(500),
-#                                        x2 = runif(500)),
-#          main_var = vars(x2, x1))
+b <- gam(y ~ x0 + s(x1) + s(x2) + s(x3), data = d)
 
 
 
@@ -109,6 +98,28 @@ test_that('plot_gam can do plot options',{
              ncol = 1),
     'ggplot')
 })
+
+test_that('plot_gam will do no smooth',{
+  b <- gam(y ~ x0 + x1 + s(x2, bs = 'gp') + s(x3, bs = 'ps'), data = d)
+  expect_s3_class(
+    plot_gam(b,
+             model_data = d,
+             main_var = vars(x2, x1, x3),
+             ncol = 1),
+    'ggplot')
+})
+
+test_that('plot_gam will handle different scales',{
+  b <- gam(y ~ x0 + s(x1) + s(x2) + s(x3), data = d2)
+  expect_s3_class(
+    plot_gam(b,
+             model_data = d2,
+             main_var = vars(x2, x1, x3),
+             ncol = 1),
+    'ggplot')
+})
+
+
 
 # for later
 test_that('plot_gam can do different smooths',{
