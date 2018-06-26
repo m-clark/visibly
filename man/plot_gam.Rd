@@ -6,27 +6,35 @@
 \alias{plot_gam_multi1d}
 \title{Plot Generalized Additive Model Results}
 \usage{
-plot_gam(model, model_data, conditional_data = NULL, main_var,
+plot_gam(model, model_data, main_var, conditional_data = NULL,
+  line_color = "#ff5500", ribbon_color = "#00aaff40", ncol = NULL,
+  nrow = NULL)
+
+plot_gam_1d(model, model_data, main_var, conditional_data = NULL,
   line_color = "#ff5500", ribbon_color = "#00aaff")
 
-plot_gam_1d(model, model_data, conditional_data = NULL, main_var,
-  line_color = "#ff5500", ribbon_color = "#00aaff")
-
-plot_gam_multi1d(model, model_data, conditional_data = NULL, main_var,
-  line_color = "#ff5500", ribbon_color = "#00aaff")
+plot_gam_multi1d(model, model_data, main_var, conditional_data = NULL,
+  line_color = "#ff5500", ribbon_color = "#00aaff", ncol = ncol,
+  nrow = nrow)
 }
 \arguments{
 \item{model}{The mgcv GAM.}
 
 \item{model_data}{The data used to do the GAM.}
 
-\item{conditional_data}{This is the same as the newdata argument for predict. Supply a data frame with desired values of the model covariates.}
+\item{main_var}{Which variable do you wnat to plot? Can take multiple
+variables via \code{vars()}.}
 
-\item{main_var}{Which variable do you wnat to plot? Can take multiple variables via \code{vars()}.}
+\item{conditional_data}{This is the same as the newdata argument for predict.
+Supply a data frame with desired values of the model covariates.}
 
 \item{line_color}{The color of the fitted line.}
 
 \item{ribbon_color}{The color of the uncertainty interval around the line.}
+
+\item{ncol}{If plotting multiple smooths, these are passed to facet_wrap.}
+
+\item{nrow}{If plotting multiple smooths, these are passed to facet_wrap.}
 }
 \value{
 a ggplot2 object of the effects of main_var.

@@ -1,16 +1,24 @@
 #' Plot Generalized Additive Model Results
+#'
 #' @description Plot 1d effects from mgcv gam model results.
+#'
 #' @param model The mgcv GAM.
+
 #' @param model_data The data used to do the GAM.
-#' @param conditional_data This is the same as the newdata argument for predict. Supply a data frame with desired values of the model covariates.
-#' @param main_var Which variable do you wnat to plot? Can take multiple variables via \code{vars()}.
+#' @param main_var Which variable do you wnat to plot? Can take multiple
+#'   variables via \code{vars()}.
+#' @param conditional_data This is the same as the newdata argument for predict.
+#'   Supply a data frame with desired values of the model covariates.
 #' @param line_color The color of the fitted line.
 #' @param ribbon_color The color of the uncertainty interval around the line.
+#' @param nrow If plotting multiple smooths, these are passed to facet_wrap.
+#' @param ncol If plotting multiple smooths, these are passed to facet_wrap.
 #'
-#' @details Very 'no-frills' at the moment. Only 1d or multiple 1d smooths are
+#' @details This function is very 'no-frills' and in its early stages at the moment.
+#' Only 1d or multiple 1d numeric smooths are
 #'   able to be plotted. Conditional data not supplied is created by
 #'   \link[tidyext]{create_prediction_data}, i.e. defaults to means for numeric,
-#'   most common category for categorical variables.
+#'   most common category for categorical variables, and 500 observations.
 #'
 #' @return a ggplot2 object of the effects of main_var.
 #'
@@ -75,10 +83,12 @@
 #' @export
 plot_gam <- function(model,
                      model_data,
-                     conditional_data = NULL,
                      main_var,
+                     conditional_data = NULL,
                      line_color = '#ff5500',
-                     ribbon_color = '#00aaff') {
+                     ribbon_color = '#00aaff40',
+                     ncol = NULL,
+                     nrow = NULL) {
 
   mv <- enquo(main_var)
 
@@ -96,7 +106,9 @@ plot_gam <- function(model,
                      conditional_data = conditional_data,
                      main_var = main_var,
                      line_color = line_color,
-                     ribbon_color = ribbon_color)
+                     ribbon_color = ribbon_color,
+                     ncol = ncol,
+                     nrow = nrow)
   } else {
     plot_gam_1d(model = model,
                 model_data = model_data,
@@ -113,19 +125,17 @@ plot_gam <- function(model,
 #' @rdname plot_gam
 plot_gam_1d <- function(model,
                         model_data,
-                        conditional_data = NULL,
                         main_var,
+                        conditional_data = NULL,
                         line_color = '#ff5500',
                         ribbon_color = '#00aaff') {
 
   if (is.null(conditional_data)) {
     init = select(model_data, !!main_var)
 
-    cd =
-      data_frame(!!quo_name(main_var) :=
-                   seq(min(init, na.rm = TRUE),
-                       max(init, na.rm = TRUE),
-                       length.out = 500))
+    cd = data_frame(!!quo_name(main_var) := seq(min(init, na.rm = TRUE),
+                                                max(init, na.rm = TRUE),
+                                                length.out = 500))
 
     data_list =
       create_prediction_data(model_data = model_data,
@@ -150,7 +160,7 @@ plot_gam_1d <- function(model,
 
   data_list %>%
     ggplot(aes(x=value, y=fit)) +
-    geom_ribbon(aes(ymin=ll, ymax=ul), fill=ribbon_color, alpha=.25) +
+    geom_ribbon(aes(ymin=ll, ymax=ul), fill=ribbon_color) +
     geom_line(color=line_color) +
     theme_trueMinimal()
 }
@@ -160,10 +170,12 @@ plot_gam_1d <- function(model,
 #' @rdname plot_gam
 plot_gam_multi1d <- function(model,
                              model_data,
-                             conditional_data = NULL,
                              main_var,
+                             conditional_data = NULL,
                              line_color = '#ff5500',
-                             ribbon_color = '#00aaff') {
+                             ribbon_color = '#00aaff',
+                             ncol = ncol,
+                             nrow = nrow) {
   n_terms = length(main_var)
   data_list = vector('list', n_terms)
 
@@ -171,25 +183,54 @@ plot_gam_multi1d <- function(model,
     if (is.null(conditional_data)) {
       init = select(model_data, !!main_var[[i]])
 
-      cd =
-        data_frame(!!quo_name(main_var[[i]]) :=
-                     seq(min(init, na.rm = TRUE),
-                         max(init, na.rm = TRUE),
-                         length.out = 500))
+      if (!is.numeric(unlist(init))) {
+        # cd = data_frame(!!quo_name(main_var[[i]]) :=
+        #                   unique(unlist(init)))
+        vname = names(init)
+        message(glue::glue('{vname} appears not to be numeric. Skipping.
+                           Functionality may be added in the future.'))
+        data_list[[i]] = NULL
+      } else {
+        cd = data_frame(!!quo_name(main_var[[i]]) :=
+                          seq(min(init, na.rm = TRUE),
+                              max(init, na.rm = TRUE),
+                              length.out = 500))
+
+        data_list[[i]] =
+          create_prediction_data(model_data = model_data,
+                                 conditional_data = cd) %>%
+          bind_cols(as_data_frame(predict(model, ., type = 'response', se=TRUE))) %>%
+          mutate(ll = fit - 2*se.fit,
+                 ul = fit + 2*se.fit) %>%
+          select(!!!main_var[[i]], fit, ll, ul) %>%
+          rename(value = !!main_var[[i]]) %>%
+          mutate(term = quo_name(main_var[[i]]))
+      }
+    } else {
+
+      # check if variable to be plotted is provided in the conditional data; if not simulate based on range
+      check_cd <- tryCatch(select(conditional_data, !!main_var[[i]]),
+                           error = function(c) {
+                             msg <- conditionMessage(c)
+                             invisible(structure(msg, class = "try-error"))
+                           })
+
+      if (inherits(check_cd, 'try-error')) {
+        var_range = model_data %>%
+          pull(!!main_var[[i]]) %>%
+          range()
+        cd = data_frame(
+          !!quo_name(main_var[[i]]) := seq(var_range[1],
+                                           var_range[2],
+                                           length.out = nrow(conditional_data))
+        )
+      } else {
+        cd = select(conditional_data, !!main_var[[i]])
+      }
 
       data_list[[i]] =
         create_prediction_data(model_data = model_data,
                                conditional_data = cd) %>%
-        bind_cols(as_data_frame(predict(model, ., type = 'response', se=TRUE))) %>%
-        mutate(ll = fit - 2*se.fit,
-               ul = fit + 2*se.fit) %>%
-        select(!!!main_var[[i]], fit, ll, ul) %>%
-        rename(value = !!main_var[[i]]) %>%
-        mutate(term = quo_name(main_var[[i]]))
-    } else {
-      data_list[[i]] =
-        create_prediction_data(model_data = model_data,
-                               conditional_data = select(conditional_data, !!main_var[[i]])) %>%
         bind_cols(as_data_frame(predict(model, ., type = 'response', se=TRUE))) %>%
         mutate(ll = fit - 2*se.fit,
                ul = fit + 2*se.fit) %>%
@@ -203,6 +244,6 @@ plot_gam_multi1d <- function(model,
     ggplot(aes(x=value, y=fit)) +
     geom_ribbon(aes(ymin=ll, ymax=ul), fill=ribbon_color, alpha=.25) +
     geom_line(color=line_color) +
-    facet_wrap(~ term) +
+    facet_wrap(~ term, ncol = ncol, nrow = nrow) +
     theme_trueMinimal()
 }
