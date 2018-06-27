@@ -3,11 +3,13 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{vars}
+\alias{as_data_frame}
 \alias{reexports}
 \alias{map}
 \alias{reexports}
-\alias{aes}
+\alias{ggplot}
+\alias{reexports}
+\alias{:=}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -15,10 +17,12 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{vars}}}
+  \item{dplyr}{\code{\link[dplyr]{as_data_frame}}}
 
-  \item{ggplot2}{\code{\link[ggplot2]{aes}}}
+  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}}
 
   \item{purrr}{\code{\link[purrr]{map}}}
+
+  \item{rlang}{\code{\link[rlang]{:=}}}
 }}
 

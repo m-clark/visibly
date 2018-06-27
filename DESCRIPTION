@@ -1,7 +1,7 @@
 Package: visibly
 Type: Package
 Title: Functions and palettes related to visual enhancement
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: person("Michael", "Clark", role = c("aut", "cre"), email = "micl@umich.edu")
 Maintainer: Michael Clark <micl@umich.edu>
 Description: Palettes, themes, etc.
@@ -18,17 +18,20 @@ Imports:
   dplyr,
   magrittr,
   purrr,
+  rlang,
   ggplot2,
 Suggests:
   brms,
   broom, 
   colorspace,
   covr,
+  glue,
   grDevices,
   httr,
   jsonlite,
   knitr,
   lme4,
+  mgcv,
   patchwork,
   plotly,
   rmarkdown,

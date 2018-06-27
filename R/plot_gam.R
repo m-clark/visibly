@@ -91,7 +91,7 @@ plot_gam <- function(model,
                      ncol = NULL,
                      nrow = NULL) {
 
-  mv <- enquo(main_var)
+  mv <- rlang::enquo(main_var)
 
   check_mv <- tryCatch(rlang::is_quosures(main_var), error = function(c) {
     msg <- conditionMessage(c)
@@ -134,7 +134,7 @@ plot_gam_1d <- function(model,
   init = pull(model_data, !!main_var)
 
   if (!is.numeric(init)) {
-    vname = quo_name(main_var)
+    vname = rlang::quo_name(main_var)
     return(
       message(glue::glue('{vname} appears not to be numeric. Skipping.
                            Functionality may be added in the future.')))
