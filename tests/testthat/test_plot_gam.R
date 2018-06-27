@@ -4,7 +4,7 @@ library(mgcv) # you don't need this function if you don't have this package
 
 
 # example taken from the mgcv plot.gam help file.
-library(mgcv)
+library(mgcv); library(dplyr)
 set.seed(0)
 ## fake some data...
 f1 <- function(x) {
@@ -140,6 +140,20 @@ test_that('plot_gam can do different smooths',{
              main_var = vars(x2, x1, x3, x0),
              ncol = 1),
     'ggplot')
+})
+
+test_that('plot_gam will message with categorical',{
+  b <- gam(y ~ s(x0, bs='re'), data = d)
+  expect_message(
+    plot_gam(b,
+             model_data = d,
+             main_var = x0)
+    )
+  expect_message(
+    plot_gam(b,
+             model_data = d,
+             main_var = vars(x2, x1, x3, x0))
+    )
 })
 
 

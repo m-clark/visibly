@@ -5,7 +5,7 @@
 #' @param model The mgcv GAM.
 
 #' @param model_data The data used to do the GAM.
-#' @param main_var Which variable do you wnat to plot? Can take multiple
+#' @param main_var Which variable do you want to plot? Can take multiple
 #'   variables via \code{vars()}.
 #' @param conditional_data This is the same as the newdata argument for predict.
 #'   Supply a data frame with desired values of the model covariates.
@@ -14,19 +14,21 @@
 #' @param nrow If plotting multiple smooths, these are passed to facet_wrap.
 #' @param ncol If plotting multiple smooths, these are passed to facet_wrap.
 #'
-#' @details This function is very 'no-frills' and in its early stages at the moment.
-#' Only 1d or multiple 1d numeric smooths are
-#'   able to be plotted. Conditional data not supplied is created by
-#'   \link[tidyext]{create_prediction_data}, i.e. defaults to means for numeric,
-#'   most common category for categorical variables, and 500 observations.
+#' @details This function is very 'no-frills' and in its early stages at the
+#'   moment. Only 1d or multiple 1d numeric smooths are able to be plotted, and
+#'   nothing using categorical variables (e.g. 'by'). If conditional data is not supplied,
+#'   it will be created by \link[tidyext]{create_prediction_data}, i.e. defaults
+#'   to means for numeric, most common category for categorical variables, and
+#'   500 observations.
 #'
 #' @return a ggplot2 object of the effects of main_var.
 #'
+#' @importFrom stats predict
+#'
 #' @examples
 #' library(mgcv) # you don't need this function if you don't have this package
-#'
+#' library(dplyr)
 #' # example taken from the mgcv plot.gam help file.
-#' library(mgcv)
 #' set.seed(0)
 #' ## fake some data...
 #' f1 <- function(x) {
@@ -128,6 +130,15 @@ plot_gam_1d <- function(model,
                         conditional_data = NULL,
                         line_color = '#ff5500',
                         ribbon_color = '#00aaff') {
+
+  init = pull(model_data, !!main_var)
+
+  if (!is.numeric(init)) {
+    vname = quo_name(main_var)
+    return(
+      message(glue::glue('{vname} appears not to be numeric. Skipping.
+                           Functionality may be added in the future.')))
+  }
 
   if (is.null(conditional_data)) {
     init = select(model_data, !!main_var)

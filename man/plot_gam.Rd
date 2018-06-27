@@ -22,7 +22,7 @@ plot_gam_multi1d(model, model_data, main_var, conditional_data = NULL,
 
 \item{model_data}{The data used to do the GAM.}
 
-\item{main_var}{Which variable do you wnat to plot? Can take multiple
+\item{main_var}{Which variable do you want to plot? Can take multiple
 variables via \code{vars()}.}
 
 \item{conditional_data}{This is the same as the newdata argument for predict.
@@ -43,17 +43,17 @@ a ggplot2 object of the effects of main_var.
 Plot 1d effects from mgcv gam model results.
 }
 \details{
-This function is very 'no-frills' and in its early stages at the moment.
-Only 1d or multiple 1d numeric smooths are
-  able to be plotted. Conditional data not supplied is created by
-  \link[tidyext]{create_prediction_data}, i.e. defaults to means for numeric,
-  most common category for categorical variables, and 500 observations.
+This function is very 'no-frills' and in its early stages at the
+  moment. Only 1d or multiple 1d numeric smooths are able to be plotted, and
+  nothing using categorical variables (e.g. 'by'). If conditional data is not supplied,
+  it will be created by \link[tidyext]{create_prediction_data}, i.e. defaults
+  to means for numeric, most common category for categorical variables, and
+  500 observations.
 }
 \examples{
 library(mgcv) # you don't need this function if you don't have this package
-
+library(dplyr)
 # example taken from the mgcv plot.gam help file.
-library(mgcv)
 set.seed(0)
 ## fake some data...
 f1 <- function(x) {
