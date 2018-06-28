@@ -6,7 +6,7 @@
 \alias{plot_gam_multi1d}
 \title{Plot Generalized Additive Model Results}
 \usage{
-plot_gam(model, model_data, main_var = NULL, conditional_data = NULL,
+plot_gam(model, model_data, main_var, conditional_data = NULL,
   line_color = "#ff5500", ribbon_color = "#00aaff40", ncol = NULL,
   nrow = NULL)
 
@@ -22,8 +22,8 @@ plot_gam_multi1d(model, model_data, main_var, conditional_data = NULL,
 
 \item{model_data}{The data used to do the GAM.}
 
-\item{main_var}{Which variable do you want to plot? Can take multiple
-variables via \code{vars()}.}
+\item{main_var}{Which variable do you want to plot? Uses bare variable names
+and can take multiple variables via \code{vars()}.}
 
 \item{conditional_data}{This is the same as the newdata argument for predict.
 Supply a data frame with desired values of the model covariates.}

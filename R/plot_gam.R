@@ -5,8 +5,8 @@
 #' @param model The mgcv GAM.
 
 #' @param model_data The data used to do the GAM.
-#' @param main_var Which variable do you want to plot? Can take multiple
-#'   variables via \code{vars()}.
+#' @param main_var Which variable do you want to plot? Uses bare variable names
+#'   and can take multiple variables via \code{vars()}.
 #' @param conditional_data This is the same as the newdata argument for predict.
 #'   Supply a data frame with desired values of the model covariates.
 #' @param line_color The color of the fitted line.
@@ -84,19 +84,20 @@
 #' @export
 plot_gam <- function(model,
                      model_data,
-                     main_var = NULL,
+                     main_var,
                      conditional_data = NULL,
                      line_color = '#ff5500',
                      ribbon_color = '#00aaff40',
                      ncol = NULL,
                      nrow = NULL) {
 
-  if (is.null(main_var)) {
+  mv <- rlang::enquo(main_var)
+
+  if (rlang::quo_is_missing(mv)) {
     main_var =  map_chr(model$smooth, function(x) x$vn)
     # main_var = vars(one_of(main_var))
   }
 
-  mv <- rlang::enquo(main_var)
 
   check_mv <- tryCatch(rlang::is_quosures(main_var), error = function(c) {
     msg <- conditionMessage(c)
