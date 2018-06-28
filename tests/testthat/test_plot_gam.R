@@ -44,6 +44,9 @@ b <- gam(y ~ x0 + s(x1) + s(x2) + s(x3), data = d)
 
 
 
+
+
+
 test_that('plot_gam returns a ggplot',{
   expect_s3_class(plot_gam(b, main_var = x2, model_data = d), 'ggplot')
 })
@@ -123,7 +126,8 @@ test_that('plot_gam will handle different scales',{
 
 # for later
 test_that('plot_gam can do different smooths',{
-  b <- gam(y ~ x0 + s(x1, bs = 'cr') + s(x2, bs = 'gp') + s(x3, bs = 'ps'), data = d)
+  b <- gam(y ~ x0 + s(x1, bs = 'cr') + s(x2, bs = 'gp') +
+             s(x3, bs = 'ps'), data = d)
   expect_s3_class(
     plot_gam(b,
              model_data = d,
@@ -133,7 +137,8 @@ test_that('plot_gam can do different smooths',{
 })
 
 test_that('plot_gam can do different smooths',{
-  b <- gam(y ~ s(x0, bs='re') + s(x1, bs = 'ds') + s(x2, bs = 'cc') + s(x3, bs = 'ps'), data = d)
+  b <- gam(y ~ s(x0, bs='re') + s(x1, bs = 'ds') + s(x2, bs = 'cc') +
+             s(x3, bs = 'ps'), data = d)
   expect_s3_class(
     plot_gam(b,
              model_data = d,
@@ -156,6 +161,36 @@ test_that('plot_gam will message with categorical',{
     )
 })
 
+
+test_that('plot_gam can do different dist',{
+  d <- gamSim(1, n = 400, dist = "binary", scale = .33)
+
+  binom_fit <- gam(
+    y ~ s(x0) + s(x1) + s(x2) + s(x3),
+    family = binomial,
+    data = d,
+    method = "REML"
+  )
+  expect_s3_class(
+    plot_gam(binom_fit,
+             model_data = d,
+             main_var = vars(x2, x1, x3, x0),
+             ncol = 1),
+    'ggplot')
+
+  d <- gamSim(1, n = 400, dist = "poisson", scale = .2)
+
+  pois_fit <- gam(y ~ s(x0) + s(x1) + s(x2) + s(x3),
+                  family = poisson,
+                  data = d)
+  expect_s3_class(
+    plot_gam(pois_fit,
+             model_data = d,
+             main_var = vars(x2, x1, x3, x0),
+             ncol = 1),
+    'ggplot')
+
+})
 
 
 # covr::file_coverage(source_files = 'R/plot_gam.R', test_files = 'tests/testthat/test_plot_gam.R')

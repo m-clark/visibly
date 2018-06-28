@@ -84,12 +84,17 @@
 #' @export
 plot_gam <- function(model,
                      model_data,
-                     main_var,
+                     main_var = NULL,
                      conditional_data = NULL,
                      line_color = '#ff5500',
                      ribbon_color = '#00aaff40',
                      ncol = NULL,
                      nrow = NULL) {
+
+  if (is.null(main_var)) {
+    main_var =  map_chr(model$smooth, function(x) x$vn)
+    # main_var = vars(one_of(main_var))
+  }
 
   mv <- rlang::enquo(main_var)
 

@@ -31,7 +31,7 @@ Visibly is a handful of functions I use for color palettes, themes, etc. in R.  
 - a function to quickly and easily create palettes with using `colortools::complementary` `colortools::adjacent` etc. 
 - clean, web-friendly themes for ggplot2 and plotly
 - a function to interact with [colorgorical](http://vrl.cs.brown.edu/color/)
-- coefficient plots for fixed and random effects
+- coefficient plots for fixed and random effects, plotting of 1d gam smooths.
 
 ## Installation
 
