@@ -1,4 +1,8 @@
-# visibly 0.2.0
+# visibly 0.2.1
+
+## visibly 0.2.1
+
+* Add plot_gam.
 
 ## visibly 0.2.0
 

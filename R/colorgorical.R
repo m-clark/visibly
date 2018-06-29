@@ -158,7 +158,7 @@ colorgorical <- function(n = 10,
   if (output == 'srgb') return(rgbs)
 
   hex <- apply(rgbs,
-              1,
-              function(x) colorspace::hex(colorspace::sRGB(x[1], x[2], x[3])))
+               1,
+               function(x) colorspace::hex(colorspace::sRGB(x[1], x[2], x[3])))
   return(hex)
 }

@@ -40,19 +40,21 @@ plot_gam_check <- function(model,
 
   resid <- residuals(model, type=type)
 
-  # taken from original gam.check
+  # taken from original gam.check (currently not sure how to check this)
   if (is.matrix(model$linear.predictors) && !is.matrix(resid)) {
     linpred <- napredict(model$na.action, model$linear.predictors[, 1])
   } else {
     linpred <- napredict(model$na.action, model$linear.predictors)
   }
 
+  y_name = colnames(model$model)[1]
+
   fit_dat <- data_frame(
     `fitted values` = fitted(model),
     residuals = resid,
     `linear predictor` = linpred,
-    y = model$y
-  )
+  ) %>%
+    bind_cols(model$model[, 1, drop=FALSE])
 
   res_fit_plot <-
     ggplot(aes(x = `linear predictor`, y=residuals), data=fit_dat) +
@@ -66,7 +68,7 @@ plot_gam_check <- function(model,
     fit_plot <-
       ggplot(aes(x = `fitted values`, y=model$y), data=fit_dat) +
       geom_point(aes(), alpha=.25) +
-      labs(y = 'y') +
+      labs(y = y_name) +
       theme_trueMinimal()
   } else {
     fit_plot <-
@@ -79,7 +81,9 @@ plot_gam_check <- function(model,
       scale_fill_viridis_d(end=.5) +
       theme_trueMinimal() +
       theme(
-        legend.title = element_blank()
+        legend.title = element_blank(),
+        legend.key.size = unit(.005, 'npc'),
+        legend.text = element_text(margin = margin(l=3))
       )
   }
 
@@ -109,14 +113,16 @@ plot_gam_check <- function(model,
     kchck <- k.check(model, subsample = 5000, n.rep = 200)
 
     if (!is.null(kchck)) {
-      cat("Basis dimension (k) checking results. Low p-value (k-index<1) may\n")
-      cat("indicate that k is too low, especially if edf is close to k'.\n\n")
+      message("Basis dimension (k) checking results. Low p-value (k-index<1) may")
+      message("indicate that k is too low, especially if edf is close to k'.\n\n")
       printCoefmat(kchck, digits = 3)
     }
   }
 
    if (single_page && !requireNamespace('gridExtra', quietly=TRUE)) {
      message('Sorry, gridExtra required for single page plot')
+     ps
+   } else if (!single_page) {
      ps
    } else {
     gridExtra::grid.arrange(grobs=ps, ncol = 2)

@@ -197,3 +197,26 @@ plot_coefficients(fit1, ranef = TRUE, which_ranef = 'patient') +
   theme(axis.text.x = element_text(angle = -90))
 ```
 
+### GAM
+
+Some very rudimentary plotting of basic GAM effects provided by the <span class="pack">mgcv</span> are provided.  I really like the package, but am not crazy for the default plots, and some offered by some other packages are okay, but may not be polished enough or do the smooth plots I'd eventually like to do.
+
+```{r gam}
+library(mgcv)
+d = gamSim()
+
+gam_model = gam(y ~ x0 + s(x1) + s(x2, bs='gp') + s(x3, bs='ps'), data=d)
+
+plot_gam(gam_model,
+         main_var = x2)
+
+plot_gam(gam_model, 
+         main_var = vars(x1, x2, x3),
+         ncol = 1, 
+         line_color = palettes$Rblue$Rblue, 
+         ribbon_color = palettes$Rblue$complementary[2])
+
+plot_gam_check(gam_model)
+```
+
+Right now, the requested effects should be for continuous 1d smooths only.

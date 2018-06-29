@@ -59,21 +59,15 @@
 #' library(visibly)
 #'
 #' plot_gam(b,
-#'          model_data = d,
 #'          conditional_data = data_frame(x2 = runif(500)),
 #'          main_var = x2)
 #'
-#' plot_gam(b,
-#'          model_data = d,
-#'          main_var = x2)
+#' plot_gam(b, main_var = x2)
 #'
 #'
-#' plot_gam(b,
-#'          model_data = d,
-#'          main_var = vars(x2, x1))
+#' plot_gam(b, main_var = vars(x2, x1))
 #'
 #' plot_gam(b,
-#'          model_data = d,
 #'          conditional_data = data_frame(x1 = runif(500),
 #'                                        x2 = runif(500)),
 #'          main_var = vars(x2, x1))
@@ -83,13 +77,17 @@
 
 #' @export
 plot_gam <- function(model,
-                     model_data,
                      main_var,
                      conditional_data = NULL,
                      line_color = '#ff5500',
                      ribbon_color = '#00aaff40',
                      ncol = NULL,
                      nrow = NULL) {
+
+  if (!inherits(model, 'gam'))
+    stop('This function is for gam objects from mgcv')
+
+  model_data = model$model
 
   mv <- rlang::enquo(main_var)
 

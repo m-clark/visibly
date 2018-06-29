@@ -6,9 +6,8 @@
 \alias{plot_gam_multi1d}
 \title{Plot Generalized Additive Model Results}
 \usage{
-plot_gam(model, model_data, main_var, conditional_data = NULL,
-  line_color = "#ff5500", ribbon_color = "#00aaff40", ncol = NULL,
-  nrow = NULL)
+plot_gam(model, main_var, conditional_data = NULL, line_color = "#ff5500",
+  ribbon_color = "#00aaff40", ncol = NULL, nrow = NULL)
 
 plot_gam_1d(model, model_data, main_var, conditional_data = NULL,
   line_color = "#ff5500", ribbon_color = "#00aaff")
@@ -19,8 +18,6 @@ plot_gam_multi1d(model, model_data, main_var, conditional_data = NULL,
 }
 \arguments{
 \item{model}{The mgcv GAM.}
-
-\item{model_data}{The data used to do the GAM.}
 
 \item{main_var}{Which variable do you want to plot? Uses bare variable names
 and can take multiple variables via \code{vars()}.}
@@ -35,6 +32,8 @@ Supply a data frame with desired values of the model covariates.}
 \item{ncol}{If plotting multiple smooths, these are passed to facet_wrap.}
 
 \item{nrow}{If plotting multiple smooths, these are passed to facet_wrap.}
+
+\item{model_data}{The data used to do the GAM.}
 }
 \value{
 a ggplot2 object of the effects of main_var.
@@ -84,21 +83,15 @@ b <- gam(y ~ x0 + s(x1) + s(x2) + s(x3), data = d)
 library(visibly)
 
 plot_gam(b,
-         model_data = d,
          conditional_data = data_frame(x2 = runif(500)),
          main_var = x2)
 
-plot_gam(b,
-         model_data = d,
-         main_var = x2)
+plot_gam(b, main_var = x2)
 
 
-plot_gam(b,
-         model_data = d,
-         main_var = vars(x2, x1))
+plot_gam(b, main_var = vars(x2, x1))
 
 plot_gam(b,
-         model_data = d,
          conditional_data = data_frame(x1 = runif(500),
                                        x2 = runif(500)),
          main_var = vars(x2, x1))
