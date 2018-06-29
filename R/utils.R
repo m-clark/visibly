@@ -25,19 +25,28 @@ purrr::map_chr
 purrr::flatten
 
 
-#' @importFrom ggplot2 ggplot aes geom_ribbon geom_linerange geom_line
-#' geom_point geom_hline labs facet_wrap
+#' @importFrom ggplot2 ggplot aes coord_flip element_blank facet_wrap
+#'   geom_density geom_hline geom_ribbon geom_linerange geom_line geom_point
+#'   geom_qq geom_qq_line labs scale_color_viridis_d scale_fill_viridis_d theme ylim
 #' @export
 ggplot2::ggplot
 ggplot2::aes
-ggplot2::geom_ribbon
+ggplot2::geom_density
+ggplot2::facet_wrap
 ggplot2::geom_linerange
 ggplot2::geom_line
-ggplot2::geom_point
 ggplot2::geom_hline
-ggplot2::facet_wrap
+ggplot2::geom_point
+ggplot2::geom_qq
+ggplot2::geom_qq_line
+ggplot2::geom_ribbon
 ggplot2::labs
 ggplot2::coord_flip
+ggplot2::ylim
+ggplot2::theme
+ggplot2::element_blank
+ggplot2::scale_color_viridis_d
+ggplot2::scale_fill_viridis_d
 
 
 #' @importFrom rlang := quo_name

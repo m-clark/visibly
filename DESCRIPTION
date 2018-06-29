@@ -27,6 +27,7 @@ Suggests:
   covr,
   glue,
   grDevices,
+  gridExtra,
   httr,
   jsonlite,
   knitr,

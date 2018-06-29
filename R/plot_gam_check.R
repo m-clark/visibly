@@ -1,0 +1,124 @@
+#' The visualization part of gam.check
+#'
+#' Residual plots etc.
+#'
+#' @param model The mgcv gam model
+#' @param single_page Plot all on a single page. Requires
+#' \link[gridExtra]{grid.arrange}
+#' @param scatter Whether to plot fitted vs. observed target variable as scatter
+#'   plot or density. Default is FALSE (density).
+#' @param type The type of residuals wanted. Usually one of "deviance",
+#'   "pearson","scaled.pearson", "working", or "response"., See
+#'   \link[mgcv]{residuals.gam}.
+#' @param kcheck If you want the slightly less verbose basis dimension (k)
+#'   checking results. Default is FALSE. When true, only uses the defaults of
+#'   gam.check.  If you need to do more, use mgcv.
+#'
+#' @details Just a single page version of gam.check.
+#'
+#' @return A ggplot that provides visual inspection of residuals and more.
+#' @seealso \link[mgcv]{gam.check}
+#' @examples
+#' library(mgcv); library(visibly)
+#'
+#' d <- gamSim(1, n = 400)
+#'
+#' g_fit <- gam(y ~ s(x0) + s(x1) + s(x2) + s(x3), data = d)
+#'
+#' plot_gam_check(g_fit)
+#' plot_gam_check(g_fit, scatter=TRUE)
+#'
+#' @importFrom stats fitted napredict printCoefmat residuals sd
+#' @importFrom utils getFromNamespace
+#' @export
+plot_gam_check <- function(model,
+                           single_page = TRUE,
+                           type = "deviance",
+                           scatter = FALSE,
+                           kcheck = FALSE) {
+
+
+  resid <- residuals(model, type=type)
+
+  # taken from original gam.check
+  if (is.matrix(model$linear.predictors) && !is.matrix(resid)) {
+    linpred <- napredict(model$na.action, model$linear.predictors[, 1])
+  } else {
+    linpred <- napredict(model$na.action, model$linear.predictors)
+  }
+
+  fit_dat <- data_frame(
+    `fitted values` = fitted(model),
+    residuals = resid,
+    `linear predictor` = linpred,
+    y = model$y
+  )
+
+  res_fit_plot <-
+    ggplot(aes(x = `linear predictor`, y=residuals), data=fit_dat) +
+    geom_hline(yintercept = 0, alpha=.25, color='#ff5500') +
+    geom_point(aes(size=abs(residuals)), alpha=.25, show.legend = FALSE) +
+    ylim(values = c(min(fit_dat$residuals)-sd(fit_dat$residuals),
+                    max(fit_dat$residuals)+sd(fit_dat$residuals))) +
+    theme_trueMinimal()
+
+  if (scatter) {
+    fit_plot <-
+      ggplot(aes(x = `fitted values`, y=model$y), data=fit_dat) +
+      geom_point(aes(), alpha=.25) +
+      labs(y = 'y') +
+      theme_trueMinimal()
+  } else {
+    fit_plot <-
+    fit_dat %>%
+      select(-residuals, -`linear predictor`) %>%
+      tidyr::gather(key=var) %>%
+      ggplot(aes(x = value, fill=var, color=var)) +
+      geom_density(alpha=.25) +
+      scale_color_viridis_d(end=.5) +
+      scale_fill_viridis_d(end=.5) +
+      theme_trueMinimal() +
+      theme(
+        legend.title = element_blank()
+      )
+  }
+
+  res_dens_plot <-
+    ggplot(aes(x = residuals), data=fit_dat) +
+    geom_density(color='#440154FF',
+                 fill='#440154FF',
+                 alpha=.25,
+                 show.legend = FALSE) +
+    theme_trueMinimal()
+
+  qq_plot <-
+    ggplot(aes(sample = residuals), data=fit_dat) +
+    geom_qq_line(alpha=.25, color='#ff5500') +
+    geom_qq(alpha=.1) +
+    labs(y='sample', x='theoretical') +
+    theme_trueMinimal()
+
+  ps  <- list(qq_plot,
+              res_fit_plot,
+              res_dens_plot,
+              fit_plot)
+
+  # from mgcv
+  if (kcheck) {
+    k.check = getFromNamespace("k.check", "mgcv")
+    kchck <- k.check(model, subsample = 5000, n.rep = 200)
+
+    if (!is.null(kchck)) {
+      cat("Basis dimension (k) checking results. Low p-value (k-index<1) may\n")
+      cat("indicate that k is too low, especially if edf is close to k'.\n\n")
+      printCoefmat(kchck, digits = 3)
+    }
+  }
+
+   if (single_page && !requireNamespace('gridExtra', quietly=TRUE)) {
+     message('Sorry, gridExtra required for single page plot')
+     ps
+   } else {
+    gridExtra::grid.arrange(grobs=ps, ncol = 2)
+   }
+}
