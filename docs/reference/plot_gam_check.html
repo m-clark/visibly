@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert color to lab — col2lab • visibly!</title>
+<title>The visualization part of gam.check — plot_gam_check • visibly!</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Convert color to lab — col2lab" />
+<meta property="og:title" content="The visualization part of gam.check — plot_gam_check" />
 
-<meta property="og:description" content="Converts an R color or a hexadecimal string to CIE Lab." />
+<meta property="og:description" content="Residual plots etc." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,49 +111,71 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert color to lab</h1>
-    <small class="dont-index">Source: <a href='https://github.com/m-clark/visibly/blob/master/R/col2lab.R'><code>R/col2lab.R</code></a></small>
-    <div class="hidden name"><code>col2lab.Rd</code></div>
+    <h1>The visualization part of gam.check</h1>
+    <small class="dont-index">Source: <a href='https://github.com/m-clark/visibly/blob/master/R/plot_gam_check.R'><code>R/plot_gam_check.R</code></a></small>
+    <div class="hidden name"><code>plot_gam_check.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Converts an R color or a hexadecimal string to CIE Lab.</p>
+    <p>Residual plots etc.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>col2lab</span>(<span class='no'>color</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_gam_check</span>(<span class='no'>model</span>, <span class='kw'>single_page</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"deviance"</span>,
+  <span class='kw'>scatter</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>kcheck</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>color</th>
-      <td><p>An R color or a hexadecimal string of the form "#rrggbb"</p></td>
+      <th>model</th>
+      <td><p>The mgcv gam model</p></td>
+    </tr>
+    <tr>
+      <th>single_page</th>
+      <td><p>Plot all on a single page. Requires
+<a href='http://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob'>grid.arrange</a></p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>The type of residuals wanted. Usually one of "deviance",
+"pearson","scaled.pearson", "working", or "response"., See
+<a href='http://www.rdocumentation.org/packages/mgcv/topics/residuals.gam'>residuals.gam</a>.</p></td>
+    </tr>
+    <tr>
+      <th>scatter</th>
+      <td><p>Whether to plot fitted vs. observed target variable as scatter
+plot or density. Default is FALSE (density).</p></td>
+    </tr>
+    <tr>
+      <th>kcheck</th>
+      <td><p>If you want the slightly less verbose basis dimension (k)
+checking results. Default is FALSE. When true, only uses the defaults of
+gam.check.  If you need to do more, use mgcv.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A matrix of LAB values useful for colorgorical starting points.</p>
+    <p>A ggplot that provides visual inspection of residuals and more.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>See the help for <a href='http://www.rdocumentation.org/packages/grDevices/topics/convertColor'>convertColor</a>.</p>
+    <p>Just a single page version of gam.check.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='colorgorical.html'>colorgorical</a> <a href='http://www.rdocumentation.org/packages/grDevices/topics/col2rgb'>col2rgb</a> <a href='http://www.rdocumentation.org/packages/grDevices/topics/convertColor'>convertColor</a></p></div>
+    <div class='dont-index'><p><a href='http://www.rdocumentation.org/packages/mgcv/topics/gam.check'>gam.check</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>visibly</span>)
-<span class='fu'>col2lab</span>(<span class='st'>'red'</span>)</div><div class='output co'>#&gt;             L      a.x        b
-#&gt; [1,] 53.48418 80.01027 67.38407</div><div class='input'><span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='st'>'red'</span>, <span class='st'>'white'</span>, <span class='st'>'blue'</span>)
-<span class='fu'>col2lab</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;              L      a.x          b
-#&gt; [1,]  53.48418 80.01027   67.38407
-#&gt; [2,] 100.00000  0.00000    0.00000
-#&gt; [3,]  32.24075 78.82042 -107.93632</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>mgcv</span>); <span class='fu'>library</span>(<span class='no'>visibly</span>)
+
+<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/gamSim'>gamSim</a></span>(<span class='fl'>1</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>400</span>)</div><div class='output co'>#&gt; Gu &amp; Wahba 4 term additive model</div><div class='input'>
+<span class='no'>g_fit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/gam'>gam</a></span>(<span class='no'>y</span> ~ <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/s'>s</a></span>(<span class='no'>x0</span>) + <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/s'>s</a></span>(<span class='no'>x1</span>) + <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/s'>s</a></span>(<span class='no'>x2</span>) + <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/s'>s</a></span>(<span class='no'>x3</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>)
+
+<span class='fu'>plot_gam_check</span>(<span class='no'>g_fit</span>)</div><div class='img'><img src='plot_gam_check-1.png' alt='' width='700' height='1133' /></div><div class='input'><span class='fu'>plot_gam_check</span>(<span class='no'>g_fit</span>, <span class='kw'>scatter</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='plot_gam_check-2.png' alt='' width='700' height='1133' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
