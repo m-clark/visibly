@@ -46,6 +46,8 @@ reference:
       - plot_coefficients.brmsfit
       - plot_coefficients.lm
       - plot_coefficients.merMod
+      - plot_gam
+      - plot_gam_check
 
 figures:
   dev: png

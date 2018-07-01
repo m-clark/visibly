@@ -2,7 +2,7 @@
 
 ## visibly 0.2.1
 
-* Add plot_gam.
+* Add plot_gam, plot_gam_check.
 
 ## visibly 0.2.0
 

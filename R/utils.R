@@ -28,7 +28,7 @@ purrr::flatten
 #' @importFrom ggplot2 ggplot aes coord_flip element_blank element_text
 #'   facet_wrap geom_density geom_hline geom_ribbon geom_linerange geom_line
 #'   geom_point geom_qq geom_qq_line labs margin scale_color_viridis_d
-#'   scale_fill_viridis_d unit theme ylim
+#'   scale_fill_viridis_d scale_size_continuous theme unit ylim
 #' @export
 ggplot2::ggplot
 ggplot2::aes
@@ -49,6 +49,7 @@ ggplot2::element_blank
 ggplot2::element_text
 ggplot2::scale_color_viridis_d
 ggplot2::scale_fill_viridis_d
+ggplot2::scale_size_continuous
 ggplot2::unit
 ggplot2::margin
 
