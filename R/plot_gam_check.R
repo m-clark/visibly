@@ -60,7 +60,7 @@ plot_gam_check <- function(model,
     ggplot(aes(x = `linear predictor`, y=residuals), data=fit_dat) +
     geom_hline(yintercept = 0, alpha=.25, color='#ff5500') +
     geom_point(aes(size=abs(residuals)), alpha=.25, show.legend = FALSE) +
-    scale_size_continuous(range = c(1,10), trans = 'exp') +
+    scale_size_continuous(range = c(1, 6), trans = 'exp') +
     ylim(values = c(min(fit_dat$residuals)-sd(fit_dat$residuals),
                     max(fit_dat$residuals)+sd(fit_dat$residuals))) +
     theme_trueMinimal()
