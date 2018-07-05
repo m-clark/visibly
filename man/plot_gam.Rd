@@ -9,10 +9,10 @@
 plot_gam(model, main_var, conditional_data = NULL, line_color = "#ff5500",
   ribbon_color = "#00aaff40", ncol = NULL, nrow = NULL)
 
-plot_gam_1d(model, model_data, main_var, conditional_data = NULL,
+plot_gam_1d(model, main_var, conditional_data = NULL,
   line_color = "#ff5500", ribbon_color = "#00aaff")
 
-plot_gam_multi1d(model, model_data, main_var, conditional_data = NULL,
+plot_gam_multi1d(model, main_var, conditional_data = NULL,
   line_color = "#ff5500", ribbon_color = "#00aaff", ncol = ncol,
   nrow = nrow)
 }
@@ -32,8 +32,6 @@ Supply a data frame with desired values of the model covariates.}
 \item{ncol}{If plotting multiple smooths, these are passed to facet_wrap.}
 
 \item{nrow}{If plotting multiple smooths, these are passed to facet_wrap.}
-
-\item{model_data}{The data used to do the GAM.}
 }
 \value{
 a ggplot2 object of the effects of main_var.

@@ -3,8 +3,6 @@
 #' @description Plot 1d effects from mgcv gam model results.
 #'
 #' @param model The mgcv GAM.
-
-#' @param model_data The data used to do the GAM.
 #' @param main_var Which variable do you want to plot? Uses bare variable names
 #'   and can take multiple variables via \code{vars()}.
 #' @param conditional_data This is the same as the newdata argument for predict.
@@ -107,7 +105,6 @@ plot_gam <- function(model,
 
   if (class(check_mv) != 'try-error') {
     plot_gam_multi1d(model = model,
-                     model_data = model_data,
                      conditional_data = conditional_data,
                      main_var = main_var,
                      line_color = line_color,
@@ -116,7 +113,6 @@ plot_gam <- function(model,
                      nrow = nrow)
   } else {
     plot_gam_1d(model = model,
-                model_data = model_data,
                 conditional_data = conditional_data,
                 main_var = mv,
                 line_color = line_color,
@@ -129,12 +125,12 @@ plot_gam <- function(model,
 
 #' @rdname plot_gam
 plot_gam_1d <- function(model,
-                        model_data,
                         main_var,
                         conditional_data = NULL,
                         line_color = '#ff5500',
                         ribbon_color = '#00aaff') {
 
+  model_data = model$model
   init = pull(model_data, !!main_var)
 
   if (!is.numeric(init)) {
@@ -183,13 +179,14 @@ plot_gam_1d <- function(model,
 
 #' @rdname plot_gam
 plot_gam_multi1d <- function(model,
-                             model_data,
                              main_var,
                              conditional_data = NULL,
                              line_color = '#ff5500',
                              ribbon_color = '#00aaff',
                              ncol = ncol,
                              nrow = nrow) {
+
+  model_data = model$model
   n_terms = length(main_var)
   data_list = vector('list', n_terms)
 
