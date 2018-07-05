@@ -9,6 +9,21 @@
 #' @param ... Options to scale_fill_viridis_c for plot_gam_2d or
 #'   scale_color_viridis_d for plot_gam_by
 #'
+#' @details These functions plot the predictions for two covariates in a GAM
+#'   model produced by the \link[mgcv]{mgcv} package. The \code{plot_gam_2d}
+#'   function is used for plotting two continuous predictors, while
+#'   \code{plot_gam_by} is used in the case where one of the variables is
+#'   categorical. If \code{plot_gam_2d} is called with the second variable being
+#'   categorical or of very few distinct values, a message will follow along
+#'   with a switch to \code{plot_gam_by}. One can override this with the
+#'   \code{force_2d} argument.
+#'
+#' @note Any attempt to use a non-numeric variable for the main_var will result in
+#'   failure.
+#'
+#' @note If you are using gamm or gamm4 then you need to supply the mgcv model
+#'   as the model object.
+#'
 #' @return A ggplot of the 2d effect.
 #' @inheritParams plot_gam
 #' @importFrom stats na.omit
@@ -19,6 +34,7 @@
 #' d = gamSim(2, scale=.1)$data
 #' mod <- gam(y ~ s(x, z), data = d)
 #' plot_gam_2d(mod, main_var = x, second_var = z)
+#' plot_gam_2d(mod, main_var = x, second_var = z, option='C')
 #'
 #' d2 = gamSim(4)
 #' mod_by <- gam(y ~ s(x2, by=fac), data = d2)
