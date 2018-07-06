@@ -1,5 +1,8 @@
 context('test plot_gam')
 
+
+# initial prep ------------------------------------------------------------
+
 library(mgcv) # you don't need this function if you don't have this package
 
 
@@ -19,6 +22,11 @@ by_mod3 <- gam(y ~ s(x2, fac, bs='fs'), data = d2)
 by_mod4 <- gam(y ~ s(x2, fac, bs='re'), data = d2, method = 'REML')
 # by_mod5 <- gam(y ~ s(x2, fac, bs=c('tp','re')), data = d2)
 
+
+
+# plot_gam_2d -------------------------------------------------------------
+
+
 test_that('plot_gam_2d returns a ggplot',{
   expect_s3_class(plot_gam_2d(b, main_var = x, second_var = z), 'ggplot')
 })
@@ -36,6 +44,12 @@ test_that('plot_gam_2d takes viridis args',{
                   'ggplot')
 })
 
+
+
+# plot_gam_by -------------------------------------------------------------
+
+
+
 test_that('plot_gam_by returns a ggplot',{
   expect_s3_class(plot_gam_by(by_mod1, main_var = x2, by_var = fac), 'ggplot')
 })
@@ -52,9 +66,6 @@ test_that('plot_gam_by works with random effect',{
   expect_s3_class(plot_gam_by(by_mod4, main_var = x2, by_var = fac), 'ggplot')
 })
 
-# test_that('plot_gam_by works with random effect part 2',{
-#   expect_s3_class(plot_gam_by(by_mod4, main_var = x2, by_var = fac), 'ggplot')
-# })
 
 
 test_that('plot_gam will handle different scales',{
