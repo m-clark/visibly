@@ -49,10 +49,13 @@ plot_gam_2d <- function(model,
                         force_2d = FALSE,
                         ...) {
 
-  model_data = model$model
+  if (!inherits(model, 'gam'))
+    stop('This function is for gam objects from mgcv')
 
-  test_second_var = model_data %>% pull(!!enquo(second_var))
-  do_by = n_distinct(test_second_var)
+  model_data <- model$model
+
+  test_second_var <- model_data %>% pull(!!enquo(second_var))
+  do_by <- n_distinct(test_second_var)
 
   if (!inherits(test_second_var, c('numeric', 'integer')) |
       do_by <= 5 &&
@@ -71,13 +74,13 @@ plot_gam_2d <- function(model,
     )
   }
 
-  mv = rlang::enquo(main_var)
-  sv = rlang::enquo(second_var)
+  mv <- rlang::enquo(main_var)
+  sv <- rlang::enquo(second_var)
 
-  mv_range = range(na.omit(model_data %>% pull(!!mv)))
-  sv_range = range(na.omit(model_data %>% pull(!!sv)))
+  mv_range <- range(na.omit(model_data %>% pull(!!mv)))
+  sv_range <- range(na.omit(model_data %>% pull(!!sv)))
 
-  cd = data_frame(!!quo_name(mv) := seq(mv_range[1],
+  cd <- data_frame(!!quo_name(mv) := seq(mv_range[1],
                                         mv_range[2],
                                         length.out = n_plot),
                   !!quo_name(sv) := seq(sv_range[1],
@@ -85,13 +88,13 @@ plot_gam_2d <- function(model,
                                         length.out = n_plot)) %>%
     tidyr::expand(!!mv, !!sv)
 
-  data_list =
+  data_list <-
     create_prediction_data(model_data = model_data,
                            conditional_data = cd) %>%
     mutate(prediction = predict(model, ., type = 'response'))
 
   data_list %>%
-  ggplot(aes(x=!!mv, y=!!sv)) +
+    ggplot(aes(x=!!mv, y=!!sv)) +
     geom_tile(aes(fill=prediction)) +
     scale_fill_viridis_c(...) +
     theme_trueMinimal()
@@ -106,24 +109,27 @@ plot_gam_by <- function(model,
                         n_plot=500,
                         ...) {
 
-  model_data = model$model
-  mv = rlang::enquo(main_var)
-  bv = rlang::enquo(by_var)
+  if (!inherits(model, 'gam'))
+    stop('This function is for gam objects from mgcv')
 
-  mv_range = range(na.omit(model_data %>% pull(!!mv)))
+  model_data <- model$model
+  mv <- rlang::enquo(main_var)
+  bv <- rlang::enquo(by_var)
 
-  cd = tidyr::crossing(!!quo_name(mv) := seq(mv_range[1],
+  mv_range <- range(na.omit(model_data %>% pull(!!mv)))
+
+  cd <- tidyr::crossing(!!quo_name(mv) := seq(mv_range[1],
                                              mv_range[2],
                                              length.out = n_plot),
                        !!quo_name(bv) := model_data %>% pull(!!bv) %>% unique())
 
-  data_list =
+  data_list <-
     create_prediction_data(model_data = model_data,
                            conditional_data = cd) %>%
     mutate(prediction = predict(model, ., type = 'response'))
 
   if (inherits(data_list %>% pull(!!bv), 'numeric'))
-    data_list = data_list %>%
+    data_list <- data_list %>%
     mutate(!!quo_name(bv) := as.factor(!!bv))
 
   data_list %>%

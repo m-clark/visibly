@@ -104,8 +104,10 @@ plot_ranefs.merMod <- function(model,
     stop('Need the name of the random effect to be plotted.')
 
   if(!isTRUE(which_ranef %in% names(init)))
-    stop(paste('which_ranef not found among names of random effects. Names are:',
-               c(paste(names(init), collapse = ', '))))
+    stop(
+      paste('which_ranef not found among names of random effects. Names are:',
+               c(paste(names(init), collapse = ', ')))
+      )
 
   init <- init[[which_ranef]]
   group_names  <- rownames(init)

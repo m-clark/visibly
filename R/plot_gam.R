@@ -85,13 +85,12 @@ plot_gam <- function(model,
   if (!inherits(model, 'gam'))
     stop('This function is for gam objects from mgcv')
 
-  model_data = model$model
+  model_data <- model$model
 
   mv <- rlang::enquo(main_var)
 
   if (rlang::quo_is_missing(mv)) {
-    main_var =  map_chr(model$smooth, function(x) x$vn)
-    # main_var = vars(one_of(main_var))
+    main_var <- map_chr(model$smooth, function(x) x$vn)
   }
 
 
@@ -130,37 +129,41 @@ plot_gam_1d <- function(model,
                         line_color = '#ff5500',
                         ribbon_color = '#00aaff') {
 
-  model_data = model$model
-  init = pull(model_data, !!main_var)
+  model_data <- model$model
+  init <- pull(model_data, !!main_var)
 
   if (!is.numeric(init)) {
-    vname = rlang::quo_name(main_var)
+    vname <- rlang::quo_name(main_var)
     return(
       message(glue::glue('{vname} appears not to be numeric. Skipping.
                            Functionality may be added in the future.')))
   }
 
   if (is.null(conditional_data)) {
-    init = select(model_data, !!main_var)
+    init <- select(model_data, !!main_var)
 
-    cd = data_frame(!!quo_name(main_var) := seq(min(init, na.rm = TRUE),
-                                                max(init, na.rm = TRUE),
-                                                length.out = 500))
+    cd <- data_frame(!!quo_name(main_var) := seq(min(init, na.rm = TRUE),
+                                                 max(init, na.rm = TRUE),
+                                                 length.out = 500))
 
-    data_list =
+    data_list <-
       create_prediction_data(model_data = model_data,
                              conditional_data = cd) %>%
-      bind_cols(as_data_frame(predict(model, ., type = 'response', se=TRUE))) %>%
+      bind_cols(
+        as_data_frame(
+          predict(model, ., type = 'response', se=TRUE))) %>%
       mutate(ll = fit - 2*se.fit,
              ul = fit + 2*se.fit) %>%
       select(!!!main_var, fit, ll, ul) %>%
       rename(value = !!main_var) %>%
       mutate(term = quo_name(main_var))
   } else {
-    data_list =
+    data_list <-
       create_prediction_data(model_data = model_data,
                              conditional_data = conditional_data) %>%
-      bind_cols(as_data_frame(predict(model, ., type = 'response', se=TRUE))) %>%
+      bind_cols(
+        as_data_frame(
+          predict(model, ., type = 'response', se=TRUE))) %>%
       mutate(ll = fit - 2*se.fit,
              ul = fit + 2*se.fit) %>%
       select(!!!main_var, fit, ll, ul) %>%
@@ -186,31 +189,33 @@ plot_gam_multi1d <- function(model,
                              ncol = ncol,
                              nrow = nrow) {
 
-  model_data = model$model
-  n_terms = length(main_var)
-  data_list = vector('list', n_terms)
+  model_data <- model$model
+  n_terms <- length(main_var)
+  data_list <- vector('list', n_terms)
 
   for (i in 1:n_terms){
     if (is.null(conditional_data)) {
-      init = select(model_data, !!main_var[[i]])
+      init <- select(model_data, !!main_var[[i]])
 
       if (!is.numeric(unlist(init))) {
         # cd = data_frame(!!quo_name(main_var[[i]]) :=
         #                   unique(unlist(init)))
-        vname = names(init)
+        vname <- names(init)
         message(glue::glue('{vname} appears not to be numeric. Skipping.
                            Functionality may be added in the future.'))
-        data_list[[i]] = NULL
+        data_list[[i]] <- NULL
       } else {
-        cd = data_frame(!!quo_name(main_var[[i]]) :=
+        cd <- data_frame(!!quo_name(main_var[[i]]) :=
                           seq(min(init, na.rm = TRUE),
                               max(init, na.rm = TRUE),
                               length.out = 500))
 
-        data_list[[i]] =
+        data_list[[i]] <-
           create_prediction_data(model_data = model_data,
                                  conditional_data = cd) %>%
-          bind_cols(as_data_frame(predict(model, ., type = 'response', se=TRUE))) %>%
+          bind_cols(as_data_frame(
+            predict(model, ., type = 'response', se=TRUE))
+          ) %>%
           mutate(ll = fit - 2*se.fit,
                  ul = fit + 2*se.fit) %>%
           select(!!!main_var[[i]], fit, ll, ul) %>%
@@ -219,7 +224,8 @@ plot_gam_multi1d <- function(model,
       }
     } else {
 
-      # check if variable to be plotted is provided in the conditional data; if not simulate based on range
+      # check if variable to be plotted is provided in the conditional data; if
+      # not simulate based on range
       check_cd <- tryCatch(select(conditional_data, !!main_var[[i]]),
                            error = function(c) {
                              msg <- conditionMessage(c)
@@ -227,22 +233,24 @@ plot_gam_multi1d <- function(model,
                            })
 
       if (inherits(check_cd, 'try-error')) {
-        var_range = model_data %>%
+        var_range <- model_data %>%
           pull(!!main_var[[i]]) %>%
           range()
-        cd = data_frame(
+        cd <- data_frame(
           !!quo_name(main_var[[i]]) := seq(var_range[1],
                                            var_range[2],
                                            length.out = nrow(conditional_data))
         )
       } else {
-        cd = select(conditional_data, !!main_var[[i]])
+        cd <- select(conditional_data, !!main_var[[i]])
       }
 
-      data_list[[i]] =
+      data_list[[i]] <-
         create_prediction_data(model_data = model_data,
                                conditional_data = cd) %>%
-        bind_cols(as_data_frame(predict(model, ., type = 'response', se=TRUE))) %>%
+        bind_cols(
+          as_data_frame(
+            predict(model, ., type = 'response', se=TRUE))) %>%
         mutate(ll = fit - 2*se.fit,
                ul = fit + 2*se.fit) %>%
         select(!!!main_var[[i]], fit, ll, ul) %>%

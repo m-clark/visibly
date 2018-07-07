@@ -47,7 +47,7 @@ plot_gam_check <- function(model,
     linpred <- napredict(model$na.action, model$linear.predictors)
   }
 
-  y_name = colnames(model$model)[1]
+  y_name <- colnames(model$model)[1]
 
   fit_dat <- data_frame(
     `fitted values` = fitted(model),
@@ -110,12 +110,19 @@ plot_gam_check <- function(model,
 
   # from mgcv
   if (kcheck) {
-    k.check = getFromNamespace("k.check", "mgcv")
+    k.check <- getFromNamespace("k.check", "mgcv")
     kchck <- k.check(model, subsample = 5000, n.rep = 200)
 
     if (!is.null(kchck)) {
-      message("Basis dimension (k) checking results. Low p-value (k-index<1) may")
-      message("indicate that k is too low, especially if edf is close to k'.\n\n")
+      message(
+        paste0(
+          strwrap(
+             "Basis dimension (k) checking results. Low p-value
+             (k-index < 1) \nmay indicate that k is too low,
+             especially if edf is close to k'.\n",
+             width=70), collapse='\n'
+          )
+        )
       printCoefmat(kchck, digits = 3)
     }
   }

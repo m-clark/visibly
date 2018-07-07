@@ -1,4 +1,8 @@
-# visibly 0.2.1
+# visibly 0.2.2
+
+## visibly 0.2.2
+
+* Add plot_gam_2d, plot_gam_by.
 
 ## visibly 0.2.1
 

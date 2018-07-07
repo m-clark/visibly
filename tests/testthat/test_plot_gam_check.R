@@ -20,7 +20,7 @@ f3 <- function(x) {
 n <- 200
 sig2 <- 4
 
-d = data_frame(
+d <- data_frame(
   x0 = rep(1:4, 50),
   x1 = runif(n, 0, 1),
   x2 = runif(n, 0, 1),
@@ -30,7 +30,7 @@ d = data_frame(
 ) %>%
   mutate(x0 = factor(x0))
 
-d2 = data_frame(
+d2 <- data_frame(
   x0 = rep(1:4, 50),
   x1 = runif(n, 0, 1),
   x2 = rnorm(n, 0, 5),
