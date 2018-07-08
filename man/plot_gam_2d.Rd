@@ -18,7 +18,8 @@ plot_gam_by(model, main_var, by_var, conditional_data = NULL, n_plot = 500,
 \item{main_var}{Which variable do you want to plot? Uses bare variable names
 and can take multiple variables via \code{vars()}.}
 
-\item{second_var}{The second continuous variable of interest.}
+\item{second_var}{Required for plot_gam_2d. The second continuous variable of
+interest.}
 
 \item{conditional_data}{This is the same as the newdata argument for predict.
 Supply a data frame with desired values of the model covariates.}
@@ -32,7 +33,7 @@ This will override that.}
 \item{...}{Options to scale_fill_viridis_c for plot_gam_2d or
 scale_color_viridis_d for plot_gam_by}
 
-\item{by_var}{For plot_gam_by, the categorical variable of interest.}
+\item{by_var}{Required for plot_gam_by. The categorical variable of interest.}
 }
 \value{
 A ggplot of the 2d effect.

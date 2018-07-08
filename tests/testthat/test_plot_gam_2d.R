@@ -1,4 +1,4 @@
-context('test plot_gam')
+context('test plot_gam_2d')
 
 
 # initial prep ------------------------------------------------------------
@@ -29,6 +29,19 @@ by_mod4 <- gam(y ~ s(x2, fac, bs='re'), data = d2, method = 'REML')
 
 test_that('plot_gam_2d returns a ggplot',{
   expect_s3_class(plot_gam_2d(b, main_var = x, second_var = z), 'ggplot')
+})
+
+test_that('plot_gam_2d fails if not gam object',{
+  expect_error(plot_gam_2d(lm(y ~ x*z, d), main_var = x, second_var=z))
+})
+
+test_that('plot_gam_2d fails if no main_var',{
+  expect_error(plot_gam_2d(b))
+})
+
+test_that('plot_gam_2d fails if no second/by_var',{
+  expect_error(plot_gam_2d(b, main_var = x))
+  expect_error(plot_gam_by(by_mod1, main_var = x2))
 })
 
 test_that('plot_gam_2d fails if not gam object',{

@@ -37,6 +37,8 @@ plot_gam_check <- function(model,
                            scatter = FALSE,
                            kcheck = FALSE) {
 
+  if (!inherits(model, 'gam'))
+    stop('This function is for gam objects from mgcv')
 
   resid <- residuals(model, type=type)
 

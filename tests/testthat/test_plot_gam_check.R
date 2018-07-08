@@ -48,6 +48,10 @@ test_that('plot_gam_check returns a ggplot',{
   expect_s3_class(plot_gam_check(b), 'grob')
 })
 
+test_that('plot_gam_check fails if not gam object',{
+  expect_error(plot_gam_check(lm(y ~ x1, d)))
+})
+
 # note that char will use multi1d
 test_that('plot_gam_check can do multi page',{
   expect_is(plot_gam_check(b, single_page = FALSE), 'list')

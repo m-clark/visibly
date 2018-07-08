@@ -1,7 +1,8 @@
 #' Plot 2-way GAM smooths
 #' Plot 2-dimensional smooth terms
-#' @param second_var The second continuous variable of interest.
-#' @param by_var For plot_gam_by, the categorical variable of interest.
+#' @param second_var Required for plot_gam_2d. The second continuous variable of
+#'   interest.
+#' @param by_var Required for plot_gam_by. The categorical variable of interest.
 #' @param n_plot How many plotting points for the main_var/second_var? Default
 #'   is 100, creating a 100 x 100 grid of points.
 #' @param force_2d If the second_var has <= 5 values, the plot_gam_by is called.
@@ -52,6 +53,12 @@ plot_gam_2d <- function(model,
   if (!inherits(model, 'gam'))
     stop('This function is for gam objects from mgcv')
 
+  if(missing(main_var))
+    stop('main_var and second_var are required.')
+
+  if(missing(second_var))
+    stop('main_var and second_var are required.')
+
   model_data <- model$model
 
   test_second_var <- model_data %>% pull(!!enquo(second_var))
@@ -77,8 +84,8 @@ plot_gam_2d <- function(model,
   mv <- rlang::enquo(main_var)
   sv <- rlang::enquo(second_var)
 
-  mv_range <- range(na.omit(model_data %>% pull(!!mv)))
-  sv_range <- range(na.omit(model_data %>% pull(!!sv)))
+  mv_range <- range(na.omit(pull(model_data, !!mv)))
+  sv_range <- range(na.omit(pull(model_data, !!sv)))
 
   cd <- data_frame(!!quo_name(mv) := seq(mv_range[1],
                                         mv_range[2],
@@ -111,6 +118,12 @@ plot_gam_by <- function(model,
 
   if (!inherits(model, 'gam'))
     stop('This function is for gam objects from mgcv')
+
+  if(missing(main_var))
+    stop('main_var and by_var are required.')
+
+  if(missing(by_var))
+    stop('main_var and by_var are required.')
 
   model_data <- model$model
   mv <- rlang::enquo(main_var)

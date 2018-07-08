@@ -53,9 +53,9 @@ test_that('plot_gam returns a ggplot',{
 
 
 test_that('plot_gam fails if not gam object',{
-
   expect_error(plot_gam(lm(y ~ x1, d), main_var = x1))
 })
+
 
 # note that char will use multi1d
 test_that('plot_gam can handle character',{
