@@ -219,4 +219,33 @@ plot_gam(gam_model,
 plot_gam_check(gam_model)
 ```
 
-Right now, the requested effects should be for continuous 1d smooths only.
+
+
+#### 2d smooths
+
+Some initial functionality is provided for continuous-by-continuous interactions and continuous-by-categorical interaction plots.
+
+```{r gam2d, echo=-1}
+set.seed(1234)
+d = gamSim(2, scale = .1)$data
+gam_model = gam(y ~ s(x, z, bs='gp'), data=d)
+
+plot_gam_2d(gam_model,
+            main_var = x,
+            second_var = z,
+            n_plot = 200)
+```
+
+
+A categorical moderator.
+
+```{r gamby, echo=-1}
+set.seed(1234)
+d = gamSim(4)
+gam_model = gam(y ~ s(x2, fac, bs='fs'), data=d)
+
+plot_gam_by(gam_model,
+            main_var = x2,
+            by_var = fac)
+```
+

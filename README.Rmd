@@ -35,7 +35,7 @@ Visibly is a handful of functions I use for color palettes, themes, etc. in R.  
 
 ## Installation
 
-The development version then install directly from GitHub:
+Install the development version directly from GitHub:
 
 ```{r install, eval=FALSE}
 # install.packages("devtools")

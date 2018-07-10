@@ -48,6 +48,8 @@ reference:
       - plot_coefficients.merMod
       - plot_gam
       - plot_gam_check
+      - plot_gam_2d
+      - plot_gam_by
 
 figures:
   dev: png
