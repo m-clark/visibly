@@ -29,5 +29,5 @@ after_success:
                                                               'R/create_palette.R'=38:40,
                                                               'R/plot_coefs.R'=18:20,
                                                               'R/plot_gam_check.R'=c(119:120, 133:134),
-                                                              'R/color_contrast_checker.R'=63:64
+                                                              'R/color_contrast_checker.R'=65:70
                                                               ))"
