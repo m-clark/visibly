@@ -1,4 +1,8 @@
-# visibly 0.2.2
+# visibly 0.2.3
+
+## visibly 0.2.3
+
+* Add color_contrast_checker, col2hex.
 
 ## visibly 0.2.2
 

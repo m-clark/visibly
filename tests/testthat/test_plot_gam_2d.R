@@ -71,6 +71,10 @@ test_that('plot_gam_by fails if not gam object',{
   expect_error(plot_gam_by(lm(y ~ x*z, d), main_var = x, by_var = z))
 })
 
+test_that('plot_gam_by fails if no main_var',{
+  expect_error(plot_gam_by(b))
+})
+
 test_that('plot_gam_by will use numeric',{
   expect_s3_class(plot_gam_by(by_mod2, main_var = x2, by_var = fac_num),
                   'ggplot')
