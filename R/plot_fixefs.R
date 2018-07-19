@@ -87,7 +87,8 @@ plot_fixefs.merMod <- function(model,
                                plot,
                                ...) {
 
-  init <- broom::tidy(model) %>%
+  # suppress char/fac warnings
+  init <- suppressWarnings({broom::tidy(model)}) %>%
     dplyr::filter(group == 'fixed')
 
   if (!isTRUE(keep_intercept)) {
@@ -96,9 +97,9 @@ plot_fixefs.merMod <- function(model,
   }
 
   if (is.character(order) && order == 'decreasing') {
-    ord <- order(init[,'estimate'], decreasing = TRUE)
+    ord <- order(dplyr::pull(init, estimate), decreasing = TRUE)
   } else if (is.character(order) && order == 'increasing') {
-    ord <- order(init[,'estimate'])
+    ord <- order(dplyr::pull(init, estimate))
   } else if (is.numeric(order)) {
     ord <- order
   }
@@ -106,8 +107,8 @@ plot_fixefs.merMod <- function(model,
   init <- init[ord, , drop = FALSE]
 
   # grab coefs and sd
-  coefs <- init[,'estimate']
-  sds   <- init[,'std.error']
+  coefs <- dplyr::pull(init, estimate)
+  sds   <- dplyr::pull(init, std.error)
 
   # create uis based on multiplier
   ui  <- coefs  + outer(sds, c(-sd_multi, sd_multi))
