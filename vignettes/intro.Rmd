@@ -93,6 +93,32 @@ To get a starting palette from an R or hexadecimal value, try <span class="pack"
 col2lab('dodgerblue')
 ```
 
+You can check your to see if your chosen color combinations would pass web standards for contrast sensitivity.  For example, if you use blue for your hyperlinks and consider it against a white background for a webpage it passes.
+
+```{r color_contrast_checker}
+color_contrast_checker(foreground = 'blue')
+```
+
+However, if you consider the background as the surrounding text, perhaps not.
+
+```{r color_contrast_checker2}
+color_contrast_checker(foreground = 'blue', background = 'black')
+```
+
+Default ggplot2 colors don't contrast well with the background. Ack!
+
+```{r color_contrast_checker3}
+iris %>% 
+  ggplot(aes(Petal.Length, Petal.Width, color=Species)) + 
+  geom_point()
+
+scales::show_col(scales::hue_pal()(3))
+
+color_contrast_checker(foreground = '#F8766D', background = 'gray92')
+color_contrast_checker(foreground = '#00BA38', background = 'gray92')
+color_contrast_checker(foreground = '#619CFF', background = 'gray92')
+```
+
 
 
 However, if you want palettes that are colorblind-safe, print-safe etc., especially for continuous scales, you should use packages like [viridis](https://github.com/sjmgarnier/viridis) and [scico](https://github.com/thomasp85/scico).

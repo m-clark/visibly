@@ -28,7 +28,9 @@ reference:
       - create_palette
       - palettes
       - colorgorical
+      - col2hex
       - col2lab
+      - color_contrast_checker
 
   - title: "Themes"
     desc: >
@@ -73,6 +75,10 @@ navbar:
       menu:
       - text: Introduction to visibly
         href: articles/intro.html
+      - text: Palettes & Themes
+        href: articles/intro.html##palettes-themes
+      - text: Plot Models
+        href: articles/intro.html#plotting-model-results
   right:
     - icon: fa-github-alt
       href: https://github.com/m-clark

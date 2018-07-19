@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -31,6 +33,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 <meta property="og:title" content="Function reference" />
+
 
 
 <!-- mathjax -->
@@ -56,8 +59,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">visibly</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.2</span>
+        <a class="navbar-link" href="../index.html">visibly!</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.3</span>
       </span>
     </div>
 
@@ -78,6 +81,12 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/intro.html">Introduction to visibly</a>
+    </li>
+    <li>
+      <a href="../articles/intro.html##palettes-themes">Palettes &amp; Themes</a>
+    </li>
+    <li>
+      <a href="../articles/intro.html#plotting-model-results">Plot Models</a>
     </li>
   </ul>
 </li>
@@ -114,6 +123,7 @@
     <table class="ref-index">
 
     <colgroup>
+      
       <col class="alias" />
       <col class="title" />
     </colgroup>
@@ -126,29 +136,41 @@
         </th>
       </tr>
       <tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="create_palette.html">create_palette()</a></code> </p>
         </td>
         <td><p>Create a color palette</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="palettes.html">palettes</a></code> </p>
         </td>
         <td><p>Commonly used palettes</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="colorgorical.html">colorgorical()</a></code> </p>
         </td>
         <td><p>Create a colorgorical palette</p></td>
       </tr><tr>
-        <!--  -->
+        
+        <td>
+          <p><code><a href="col2hex.html">col2hex()</a></code> </p>
+        </td>
+        <td><p>Convert color to hex</p></td>
+      </tr><tr>
+        
         <td>
           <p><code><a href="col2lab.html">col2lab()</a></code> </p>
         </td>
         <td><p>Convert color to lab</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="color_contrast_checker.html">color_contrast_checker()</a></code> </p>
+        </td>
+        <td><p>Color contrast</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -158,7 +180,7 @@
         </th>
       </tr>
       <tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="theme_trueMinimal.html">theme_trueMinimal()</a></code> <code><a href="theme_trueMinimal.html">theme_plotly()</a></code> <code><a href="theme_trueMinimal.html">theme_blank()</a></code> </p>
         </td>
@@ -172,43 +194,43 @@
         </th>
       </tr>
       <tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="plot_coefficients.html">plot_coefficients()</a></code> </p>
         </td>
         <td><p>Plot coefficients</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="plot_coefficients.brmsfit.html">plot_coefficients(<i>&lt;brmsfit&gt;</i>)</a></code> </p>
         </td>
         <td><p>Plot fixed or random effects coefficients for brmsfit objects.</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="plot_coefficients.lm.html">plot_coefficients(<i>&lt;lm&gt;</i>)</a></code> <code><a href="plot_coefficients.lm.html">plot_coefficients(<i>&lt;glm&gt;</i>)</a></code> </p>
         </td>
         <td><p>Plot coefficients for standard linear models.</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="plot_coefficients.merMod.html">plot_coefficients(<i>&lt;merMod&gt;</i>)</a></code> </p>
         </td>
         <td><p>Plot fixed or random effects coefficients for merMod objects.</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="plot_gam.html">plot_gam()</a></code> <code><a href="plot_gam.html">plot_gam_1d()</a></code> <code><a href="plot_gam.html">plot_gam_multi1d()</a></code> </p>
         </td>
         <td><p>Plot Generalized Additive Model Results</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="plot_gam_check.html">plot_gam_check()</a></code> </p>
         </td>
         <td><p>The visualization part of gam.check</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="plot_gam_2d.html">plot_gam_2d()</a></code> <code><a href="plot_gam_2d.html">plot_gam_by()</a></code> </p>
         </td>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot coefficients with uncertainty — plot_fixefs • visibly!</title>
+<title>Convert color to hex — col2hex • visibly!</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,10 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot coefficients with uncertainty — plot_fixefs" />
+<meta property="og:title" content="Convert color to hex — col2hex" />
 
-<meta property="og:description" content="This isn't really meant to be directly called, but is instead
-  internally used by the plot_coefficients function." />
+<meta property="og:description" content="Convert color to hex" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,86 +120,52 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot coefficients with uncertainty</h1>
-    <small class="dont-index">Source: <a href='https://github.com/m-clark/visibly/blob/master/R/plot_fixefs.R'><code>R/plot_fixefs.R</code></a></small>
-    <div class="hidden name"><code>plot_fixefs.Rd</code></div>
+    <h1>Convert color to hex</h1>
+    <small class="dont-index">Source: <a href='https://github.com/m-clark/visibly/blob/master/R/col2hex.R'><code>R/col2hex.R</code></a></small>
+    <div class="hidden name"><code>col2hex.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This isn't really meant to be directly called, but is instead
-  internally used by the plot_coefficients function.</p>
+    <p>Convert color to hex</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_fixefs</span>(<span class='no'>model</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>"decreasing"</span>, <span class='kw'>sd_multi</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>keep_intercept</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"bilbao"</span>, <span class='kw'>ref_line</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>trans</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for brmsfit</span>
-<span class='fu'>plot_fixefs</span>(<span class='no'>model</span>, <span class='no'>order</span>, <span class='no'>sd_multi</span>, <span class='no'>keep_intercept</span>, <span class='no'>palette</span>,
-  <span class='no'>ref_line</span>, <span class='no'>trans</span>, <span class='no'>plot</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for merMod</span>
-<span class='fu'>plot_fixefs</span>(<span class='no'>model</span>, <span class='no'>order</span>, <span class='no'>sd_multi</span>, <span class='no'>keep_intercept</span>, <span class='no'>palette</span>,
-  <span class='no'>ref_line</span>, <span class='no'>trans</span>, <span class='no'>plot</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>col2hex</span>(<span class='no'>color</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>model</th>
-      <td><p>The model that is the point of this function. For example, lm, glm, gam, lme4, brms.</p></td>
+      <th>color</th>
+      <td><p>Character string. An R color or color as hex.</p></td>
     </tr>
     <tr>
-      <th>order</th>
-      <td><p>The order of the plots- "increasing", "decreasing", or a numeric
-vector giving the order. The default is NULL, i.e. the default ordering. Not applied to random effects.</p></td>
-    </tr>
-    <tr>
-      <th>sd_multi</th>
-      <td><p>The multiplier that determines the width of the interval. Default is 2.</p></td>
-    </tr>
-    <tr>
-      <th>keep_intercept</th>
-      <td><p>Default is FALSE. Intercepts are typically on a very
-different scale than covariate effects.</p></td>
-    </tr>
-    <tr>
-      <th>palette</th>
-      <td><p>A scico palette. Default is 'bilbao'.</p></td>
-    </tr>
-    <tr>
-      <th>ref_line</th>
-      <td><p>A reference line. Default is zero.</p></td>
-    </tr>
-    <tr>
-      <th>trans</th>
-      <td><p>A transformation function to be applied to the coefficients
-(e.g. exponentiation).</p></td>
-    </tr>
-    <tr>
-      <th>plot</th>
-      <td><p>Default is TRUE, but sometimes you just want the data.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other arguments applied for specific methods.</p></td>
+      <th>alpha</th>
+      <td><p>Transparency. A value from 0 to 1 (default).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a ggplot2 object or the effect estimates</p>
+    <p>A character string of a hexadecimal color</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function is primarily to be used on R colors, and will convert
+  them to hexmode sufficient for typical use in visualization, web
+  presentation, etc.  If you already have a hex value, it can be useful for
+  tacking on the alpha level.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='plot_coefficients.html'>plot_coefficients</a></p></div>
+    <div class='dont-index'><p><a href='http://www.rdocumentation.org/packages/base/topics/hexmode'>as.hexmode</a> <a href='http://www.rdocumentation.org/packages/grDevices/topics/colors'>colors</a>
+<a href='http://www.rdocumentation.org/packages/grDevices/topics/col2rgb'>col2rgb</a> <a href='http://www.rdocumentation.org/packages/grDevices/topics/rgb'>rgb</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>#placeholder
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>visibly</span>)
+<span class='fu'>col2hex</span>(<span class='st'>'red'</span>)</div><div class='output co'>#&gt; [1] "#FF0000FF"</div><div class='input'><span class='fu'>col2hex</span>(<span class='st'>'#ff5500'</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>.1</span>)</div><div class='output co'>#&gt; [1] "#FF55001A"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -208,6 +173,8 @@ different scale than covariate effects.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

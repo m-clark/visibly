@@ -18,11 +18,12 @@ in R. Inside you will find:
   - clean, web-friendly themes for ggplot2 and plotly
   - a function to interact with
     [colorgorical](http://vrl.cs.brown.edu/color/)
-  - coefficient plots for fixed and random effects
+  - coefficient plots for fixed and random effects, plotting of GAM
+    results.
 
 ## Installation
 
-The development version then install directly from GitHub:
+Install the development version directly from GitHub:
 
 ``` r
 # install.packages("devtools")
@@ -179,4 +180,5 @@ plot_coefficients(fit_lm)
 
 <img src="man/figures/README-lm0-1.png" width="75%" style="display: block; margin: auto;" />
 
-See the [website](https://m-clark.github.io/visibly/) for more.
+See the [intro](https://m-clark.github.io/visibly/articles/intro.html)
+for more.
