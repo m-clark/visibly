@@ -24,7 +24,9 @@
 to impossible for those folks.
 ...}
 \source{
-For example the colortools and colorspace packages, \url{http://paletton.com/}, \url{https://www.sessions.edu/color-calculator/},  \url{https://colorbrewer.org}
+For example the colortools and colorspace packages,
+  \url{https://colorbrewer.org}, \url{http://paletton.com/},
+  \url{https://www.sessions.edu/color-calculator/},
 }
 \usage{
 palettes

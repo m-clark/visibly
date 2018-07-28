@@ -19,8 +19,6 @@
 #'   do that for you.
 #'
 #' @return A list of colors
-#' @importFrom colortools complementary adjacent splitComp triadic square
-#'   tetradic pizza
 #' @importFrom graphics layout mtext par
 #' @examples
 #' library(visibly)

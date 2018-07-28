@@ -24,7 +24,11 @@
 #' - Plotly: plotly's default colorscale, because decent documentation is next
 #' to impossible for those folks.
 #' ...
-#' @references https://stackoverflow.com/questions/40673490/how-to-get-plotly-js-default-colors-list
-#' @source For example the colortools and colorspace packages, \url{http://paletton.com/}, \url{https://www.sessions.edu/color-calculator/},  \url{https://colorbrewer.org}
+#' @references
+#'   https://stackoverflow.com/questions/40673490/how-to-get-plotly-js-default-colors-list
+#'
+#' @source For example the colortools and colorspace packages,
+#'   \url{https://colorbrewer.org}, \url{http://paletton.com/},
+#'   \url{https://www.sessions.edu/color-calculator/},
 'palettes'
 

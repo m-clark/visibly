@@ -4,7 +4,7 @@ Title: Functions and palettes related to visual enhancement
 Version: 0.2.3
 Authors@R: person("Michael", "Clark", role = c("aut", "cre"), email = "micl@umich.edu")
 Maintainer: Michael Clark <micl@umich.edu>
-Description: Palettes, themes, etc.
+Description: Functions and palettes related to visual enhancement. Palettes, themes, visualization of model results, etc.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -14,7 +14,6 @@ Year: 2018
 Depends:
   R (>= 3.4.0)
 Imports:
-  colortools,
   dplyr,
   magrittr,
   purrr,
@@ -24,6 +23,7 @@ Suggests:
   brms,
   broom, 
   colorspace,
+  colortools,
   covr,
   glue,
   grDevices,
