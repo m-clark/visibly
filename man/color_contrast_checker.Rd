@@ -28,10 +28,11 @@ This uses the api at
   accessibility.
 }
 \examples{
+\dontrun{
 library(visibly)
 color_contrast_checker(foreground = 'red', background = 'papayawhip')
 
 # standard blue is not good for contrasting links from other text
 color_contrast_checker(foreground = '#000080', background = 'black')
-
+}
 }
