@@ -6,13 +6,21 @@
 \alias{theme_blank}
 \title{Clean visualization themes}
 \usage{
-theme_trueMinimal()
+theme_trueMinimal(font_size = 12, font_family = "",
+  center_axis_labels = FALSE)
 
 theme_plotly(vis, MB = FALSE)
 
 theme_blank(vis, MB = FALSE)
 }
 \arguments{
+\item{font_size}{Font size for axis labels in theme_trueMinimal}
+
+\item{font_family}{Font family for axis labels in theme_trueMinimal}
+
+\item{center_axis_labels}{Logical. Center axis labels in theme_trueMinimal.
+Default is FALSE.}
+
 \item{vis}{A visualization created by \link[ggplot2]{ggplot2} or
 \link[plotly]{plotly}.}
 
@@ -61,4 +69,5 @@ mtcars \%>\%
 mtcars \%>\%
   plot_ly(x=~wt, y=~mpg, mode='markers') \%>\%
   theme_blank()
+
 }

@@ -4,6 +4,10 @@
 #'
 #' @param vis A visualization created by \link[ggplot2]{ggplot2} or
 #'   \link[plotly]{plotly}.
+#' @param font_size Font size for axis labels in theme_trueMinimal
+#' @param font_family Font family for axis labels in theme_trueMinimal
+#' @param center_axis_labels Logical. Center axis labels in theme_trueMinimal.
+#'   Default is FALSE.
 #' @param MB For plotly, an option to display the mode bar. Defaults to FALSE.
 #'
 #' @details From a gray background, to unnecessary gridlines, to by-default
@@ -46,15 +50,35 @@
 #' mtcars %>%
 #'   plot_ly(x=~wt, y=~mpg, mode='markers') %>%
 #'   theme_blank()
-
-
-
+#'
 #' @export
-theme_trueMinimal <- function(){
+theme_trueMinimal <- function(font_size = 12,
+                              font_family = "",
+                              center_axis_labels = FALSE){
+  if (center_axis_labels) {
+    axis_just <- 0.5
+  }
+  else {
+    axis_just <- 1
+  }
   ggplot2::theme(
-    axis.text.x = ggplot2::element_text(colour='gray46'),
-    axis.text.y = ggplot2::element_text(colour='gray46'),
-    title = ggplot2::element_text(colour='gray33'),
+    text = ggplot2::element_text(
+      family = font_family,
+      face = "plain",
+      colour = "gray46",
+      size = font_size,
+      hjust = 0.5,
+      vjust = 0.5,
+      angle = 0,
+      lineheight = 0.9,
+      margin = ggplot2::margin(),
+      debug = FALSE
+    ),
+    # axis.text.x = ggplot2::element_text(),
+    # axis.text.y = ggplot2::element_text(),
+    axis.title.x = ggplot2::element_text(hjust = axis_just),
+    axis.title.y = ggplot2::element_text(hjust = axis_just),
+    title = ggplot2::element_text(colour='gray33', size = font_size*1.25),
     legend.key = ggplot2::element_rect(fill='transparent', colour = NA),
     legend.background = ggplot2::element_rect(fill='transparent', colour = NA),
     panel.background = ggplot2::element_blank(),
