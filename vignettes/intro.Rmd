@@ -158,7 +158,7 @@ It occurred to me while updating this functionality that a 3-d approach might ac
 corr_heat(cor_matrix, three_d = TRUE, diagonal = NA)
 ```
 
-<img src='man/figures/plotly3d_1.png' style="display:block; margin: 0 auto;">
+<img src='../man/figures/plotly3d_1.png' style="display:block; margin: 0 auto;">
 
 Note that when you use it, the 3d visualization is interactive, so twist and tilt away!
 
@@ -168,7 +168,7 @@ There are multiple orderings available to help bring out the structure.  This ma
 corr_heat(cor(mtcars), three_d = TRUE, ordering = 'polar')
 ```
 
-<img src='man/figures/plotly3d_2.png' style="display:block; margin: 0 auto;">
+<img src='../man/figures/plotly3d_2.png' style="display:block; margin: 0 auto;">
 
 Who knew the <span class="objclass">mtcars</span> data set could actually be interesting!
 
