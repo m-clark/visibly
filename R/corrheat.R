@@ -50,7 +50,7 @@ corrheat <- function(cormat,
   # Other checks ------------------------------------------------------------
 
   if (!rlang::is_null(n_factors) &&
-      as.integer(n_factors) != n_factors | !is.numeric(n_factors))
+      (as.integer(n_factors) != n_factors | !is.numeric(n_factors)))
     stop('n_factors must be integer/numeric.')
 
 
@@ -69,7 +69,7 @@ corrheat <- function(cormat,
     message('No FA options specified, using psych package defaults')
     args = list(r=cormat, nfactors=nf)
   } else {
-      args = append(list(r=cormat, nfactors=nf), psychOptions)
+    args = append(list(r=cormat, nfactors=nf), psychOptions)
   }
 
   suppressWarnings({
