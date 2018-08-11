@@ -41,7 +41,7 @@
 #' @seealso \code{\link[psych]{bfi}}
 
 #' @examples
-#' library(heatR)
+#' library(visibly)
 #' data(bfi)
 #' summary(bfi)
 #'

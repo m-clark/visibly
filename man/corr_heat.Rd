@@ -4,22 +4,27 @@
 \alias{corr_heat}
 \title{Visualize a correlation matrix}
 \usage{
-corr_heat(cormat, n_factors = NULL, psychOptions = NULL,
-  ordering = c("fa", "polar", "raw", "first", "absolute"), three_d = FALSE,
-  diagonal = 1, dir = -1, pal = "vik")
+corr_heat(cormat, n_factors = NULL, psych_opts = NULL, ordering = c("fa",
+  "raw", "absolute", "first", "polar"), three_d = FALSE, diagonal = 1,
+  dir = -1, pal = "vik")
 }
 \arguments{
 \item{cormat}{A correlation matrix}
 
-\item{n_factors}{The number of factors for the factor analysis. Default is NULL.}
+\item{n_factors}{The number of factors for the factor analysis. Default is
+NULL.}
 
-\item{psychOptions}{a list of arguments to pass to \code{psych::fa}}
+\item{psych_opts}{a list of arguments to pass to \code{psych::fa}.}
 
 \item{ordering}{Order of the result. See details}
 
 \item{three_d}{Return a surface plot.}
 
 \item{diagonal}{Value for the diagonal. Must be 1 (default) or NA.}
+
+\item{dir}{Passed to \link[scico]{scico}.}
+
+\item{pal}{Passed to \link[scico]{scico}.}
 }
 \value{
 A plotly object
@@ -45,20 +50,44 @@ Correlation matrices are typically better visualized rather than parsed
   The ordering is based on the results of a factor analysis
   from the \link[psych]{psych} package (which is required). It can be based
   on \code{\link[psych]{fa.sort}} (default), max raw ("raw") loading,
-  absolute ("absolute") values of the loadings, or polar coordinates (see
-  \link[psych]{polar} ) across all factors.
+  absolute ("absolute") values of the loadings, loadings of the first factor
+  only ('first'), or polar coordinates (see \link[psych]{polar} ) across all
+  factors.
 
   By default the number of factors is chosen to more likely 'just work' for
   visualization purposes.  If the number of columns is three or fewer, it
   will force only one factor, otherwise it will be
   \code{floor(sqrt(ncol(x)))}).  While you may supply the number of factors,
   as well as other options to the \link[psych]{fa} function via
-  \code{psychOptions}, if you want explore a factor analysis you should you
-  probably should do that separately.
+  \code{psych_opts}, if you want explore a factor analysis you should you
+  probably should do that separately. In addition, factor analysis can't fix
+  a poorly conditioned correlation matrix, and errors in the analysis may
+  result in the plot failing.
+
+  There are two options regarding the palette, the name of the
+  \link[scico]{scico} palette and the direction, in case you want to flip the
+  color scheme.  Typically you'll want to use a diverging palette such as vik
+  or cork.  If you have all positive (or rarely, negative), you might
+  consider the sequential ones like bilbao or oslo. The lower or upper limit
+  of the color bar will change accordingly.
+
+  I'm normally against 3-d images as they really don't apply in many cases
+  where they are used, but I think it can actually assist in seeing factor
+  structure here.
 }
 \examples{
+\dontrun{
+# not run due to package dependencies noted above. make sure to install them.
 library(visibly)
+data('bfi')
+corr_heat(cor(bfi, use='pair'), diagonal = NA, pal = 'broc')
+corr_heat(cor(bfi, use='pair'), diagonal = NA, pal = 'broc', dir=1)
+corr_heat(psych::Harman23.cor$cov, n_factors = 2, pal = 'oslo')
+corr_heat(cormat = cor(mtcars))
+corr_heat(cormat = cor(mtcars), ordering = 'polar', three_d=TRUE)
+}
 
-corr_heat(cormat = cor(mtcars), ordering = 'polar')
-
+}
+\seealso{
+\link[scico]{scico}, \link[plotly]{plotly}, \link[psych]{fa}
 }

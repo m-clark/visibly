@@ -5,11 +5,93 @@
 \alias{reexports}
 \alias{as_data_frame}
 \alias{reexports}
+\alias{contains}
+\alias{reexports}
+\alias{data_frame}
+\alias{reexports}
+\alias{filter}
+\alias{reexports}
+\alias{group_by}
+\alias{reexports}
+\alias{mutate}
+\alias{reexports}
+\alias{mutate_if}
+\alias{reexports}
+\alias{n_distinct}
+\alias{reexports}
+\alias{pull}
+\alias{reexports}
+\alias{rename}
+\alias{reexports}
+\alias{select}
+\alias{reexports}
+\alias{select_if}
+\alias{reexports}
+\alias{slice}
+\alias{reexports}
+\alias{ungroup}
+\alias{reexports}
+\alias{vars}
+\alias{reexports}
 \alias{map}
+\alias{reexports}
+\alias{map_chr}
+\alias{reexports}
+\alias{flatten}
 \alias{reexports}
 \alias{ggplot}
 \alias{reexports}
+\alias{aes}
+\alias{reexports}
+\alias{geom_density}
+\alias{reexports}
+\alias{facet_wrap}
+\alias{reexports}
+\alias{geom_linerange}
+\alias{reexports}
+\alias{geom_line}
+\alias{reexports}
+\alias{geom_hline}
+\alias{reexports}
+\alias{geom_point}
+\alias{reexports}
+\alias{geom_qq}
+\alias{reexports}
+\alias{geom_qq_line}
+\alias{reexports}
+\alias{geom_ribbon}
+\alias{reexports}
+\alias{geom_tile}
+\alias{reexports}
+\alias{labs}
+\alias{reexports}
+\alias{coord_flip}
+\alias{reexports}
+\alias{ylim}
+\alias{reexports}
+\alias{theme}
+\alias{reexports}
+\alias{element_blank}
+\alias{reexports}
+\alias{element_text}
+\alias{reexports}
+\alias{scale_color_viridis_d}
+\alias{reexports}
+\alias{scale_fill_viridis_d}
+\alias{reexports}
+\alias{scale_fill_viridis_c}
+\alias{reexports}
+\alias{scale_size_continuous}
+\alias{reexports}
+\alias{unit}
+\alias{reexports}
+\alias{margin}
+\alias{reexports}
 \alias{:=}
+\alias{reexports}
+\alias{quo_name}
+\alias{reexports}
+\alias{enquo}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -17,12 +99,12 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{as_data_frame}}}
+  \item{dplyr}{\code{\link[dplyr]{as_data_frame}}, \code{\link[dplyr]{contains}}, \code{\link[dplyr]{data_frame}}, \code{\link[dplyr]{filter}}, \code{\link[dplyr]{group_by}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr]{mutate_if}}, \code{\link[dplyr]{n_distinct}}, \code{\link[dplyr]{pull}}, \code{\link[dplyr]{rename}}, \code{\link[dplyr]{select}}, \code{\link[dplyr]{select_if}}, \code{\link[dplyr]{slice}}, \code{\link[dplyr]{ungroup}}, \code{\link[dplyr]{vars}}}
 
-  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}}
+  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}, \code{\link[ggplot2]{aes}}, \code{\link[ggplot2]{geom_density}}, \code{\link[ggplot2]{facet_wrap}}, \code{\link[ggplot2]{geom_linerange}}, \code{\link[ggplot2]{geom_line}}, \code{\link[ggplot2]{geom_hline}}, \code{\link[ggplot2]{geom_point}}, \code{\link[ggplot2]{geom_qq}}, \code{\link[ggplot2]{geom_qq_line}}, \code{\link[ggplot2]{geom_ribbon}}, \code{\link[ggplot2]{geom_tile}}, \code{\link[ggplot2]{labs}}, \code{\link[ggplot2]{coord_flip}}, \code{\link[ggplot2]{ylim}}, \code{\link[ggplot2]{theme}}, \code{\link[ggplot2]{element_blank}}, \code{\link[ggplot2]{element_text}}, \code{\link[ggplot2]{scale_color_viridis_d}}, \code{\link[ggplot2]{scale_fill_viridis_d}}, \code{\link[ggplot2]{scale_fill_viridis_c}}, \code{\link[ggplot2]{scale_size_continuous}}, \code{\link[ggplot2]{unit}}, \code{\link[ggplot2]{margin}}}
 
-  \item{purrr}{\code{\link[purrr]{map}}}
+  \item{purrr}{\code{\link[purrr]{map}}, \code{\link[purrr]{map_chr}}, \code{\link[purrr]{flatten}}}
 
-  \item{rlang}{\code{\link[rlang]{:=}}}
+  \item{rlang}{\code{\link[rlang]{:=}}, \code{\link[rlang]{quo_name}}, \code{\link[rlang]{enquo}}}
 }}
 
