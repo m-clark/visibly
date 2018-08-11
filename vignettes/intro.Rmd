@@ -125,7 +125,51 @@ However, if you want palettes that are colorblind-safe, print-safe etc., especia
 
 
 
-## Plotting model results
+## Descriptive Visualization
+
+People often want to (and should) examine correlation matrices as a prelude to modeling.  One problem is that it is difficult to make much sense from the matrix when there are more than a few columns in the original data, as there are too many pairwise values present.  However a little reshuffling of the rows/columns, and visually depicting the values by color can make patterns pop out quickly.
+
+You have plenty of options for this sort of endeavor, such as corrplot, psych, and heatmaply.  However, they offer only static plots or reorder based on a cluster analysis.  I originally had [a function](https://github.com/m-clark/heatR) that would provide some interactivity, but while utilizing a factor analytic approach. I've now deprecated that standalone package and brought the functionality here. The corr_heat function provides an easy way to visualize your correlations.
+
+```{r corrheat1}
+data('bfi', package = 'visibly')
+cor_matrix = cor(bfi, use='pair')
+corr_heat(cor_matrix)
+```
+
+The psych package is used to for the factor analysis, which is better suited to survey data and similar settings, where items are of the same type, and you can supply arguments to its fa function. The plot comes from plotly, and hovering over the squares provides the value.
+
+```{r corrheat2}
+corr_heat(cor_matrix, n_factors = 2, psych_opts = list(fm='ml', rot='oblimin'))
+```
+
+The color scheme is based on the previously mentioned scico package.
+
+```{r corrheat3}
+corr_heat(cor_matrix, pal = 'broc')
+```
+
+
+We can see that while there might be the usual 'Big Five' personality structure, it may also really just be two underlying constructs- neuroticism vs. the rest, at least for this sample.
+
+It occurred to me while updating this functionality that a 3-d approach might actually be useful here (it isn't the vast majority of the time).  When looking at the previous structure in 3-d, we probably would only think about two factors of items.
+
+```{r corrheat3d, dev='svglite'}
+corr_heat(cor_matrix, three_d = TRUE, diagonal = NA)
+```
+
+There are multiple orderings available to help bring out the structure.  This may be particularly useful if you are not dealing with measurement error type data.
+
+```{r corrheat4, dev='svglite'}
+corr_heat(cor(mtcars), three_d = TRUE, ordering = 'polar')
+```
+
+Who knew the mtcars data set could actually be interesting!
+
+
+
+
+## Plotting Model Results
 
 I have some visualizations for plotting uncertainty intervals for fixed and random effects of mixed models.  These require the <span class="pack">scico</span> package, as well as <span class="pack">lme4</span> and <span class="pack">brms</span> which are used to do the mixed models in the first place.
 

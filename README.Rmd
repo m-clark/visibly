@@ -88,6 +88,15 @@ mtcars %>%
   theme_plotly()
 ```
 
+Visualize a correlation matrix.
+
+```{r corrheat1}
+data('bfi', package = 'visibly')
+cor_matrix = cor(bfi, use='pair')
+corr_heat(cor_matrix)
+```
+
+
 Plot some model coefficients.  Requires the <span class="pack">scico</span> package.
 
 ```{r lm0}

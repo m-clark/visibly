@@ -1,4 +1,8 @@
-# visibly 0.2.3
+# visibly 0.2
+
+## visibly 0.2.4
+
+* Add corr_heat.
 
 ## visibly 0.2.3
 
@@ -17,7 +21,8 @@
 * Package website.
 
 
-# visibly 0.1.0
+
+# visibly 0.1
 
 ## visibly 0.1.6
 

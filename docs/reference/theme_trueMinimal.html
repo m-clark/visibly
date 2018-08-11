@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">visibly!</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
       </span>
     </div>
 
@@ -87,6 +87,9 @@
     </li>
     <li>
       <a href="../articles/intro.html##palettes-themes">Palettes &amp; Themes</a>
+    </li>
+    <li>
+      <a href="../articles/intro.html#descriptive-visualization">Descriptive visualization</a>
     </li>
     <li>
       <a href="../articles/intro.html#plotting-model-results">Plot Models</a>
@@ -131,7 +134,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_trueMinimal</span>()
+    <pre class="usage"><span class='fu'>theme_trueMinimal</span>(<span class='kw'>font_size</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>font_family</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>center_axis_labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>theme_plotly</span>(<span class='no'>vis</span>, <span class='kw'>MB</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
@@ -140,6 +144,19 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>font_size</th>
+      <td><p>Font size for axis labels in theme_trueMinimal</p></td>
+    </tr>
+    <tr>
+      <th>font_family</th>
+      <td><p>Font family for axis labels in theme_trueMinimal</p></td>
+    </tr>
+    <tr>
+      <th>center_axis_labels</th>
+      <td><p>Logical. Center axis labels in theme_trueMinimal.
+Default is FALSE.</p></td>
+    </tr>
     <tr>
       <th>vis</th>
       <td><p>A visualization created by <a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot2-package'>ggplot2</a> or
@@ -199,7 +216,8 @@ plot.</p>
   <span class='fu'><a href='http://www.rdocumentation.org/packages/plotly/topics/plot_ly'>plot_ly</a></span>(<span class='kw'>x</span><span class='kw'>=</span>~<span class='no'>wt</span>, <span class='kw'>y</span><span class='kw'>=</span>~<span class='no'>mpg</span>, <span class='kw'>mode</span><span class='kw'>=</span><span class='st'>'markers'</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>theme_blank</span>()</div><div class='output co'>#&gt; <span class='message'>No trace type specified:</span>
 #&gt; <span class='message'>  Based on info supplied, a 'scatter' trace seems appropriate.</span>
-#&gt; <span class='message'>  Read more about this trace type -&gt; https://plot.ly/r/reference/#scatter</span></div></pre>
+#&gt; <span class='message'>  Read more about this trace type -&gt; https://plot.ly/r/reference/#scatter</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -143,7 +143,7 @@ corr_heat <- function(cormat,
   }
 
   # to get rid of GPArotation warning
-  faResult <- do.call(suppressWarnings({psych::fa}), args)
+  faResult <- suppressMessages({do.call(psych::fa, args)})
 
 
 
@@ -192,6 +192,7 @@ corr_heat <- function(cormat,
     zerolinecolor = 'transparent',
     title = ''
   )
+
   ylo <- list(
     tickmode = "array",
     tickvals = 1:nrow(cormat)-1,

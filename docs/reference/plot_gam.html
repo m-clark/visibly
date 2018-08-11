@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">visibly!</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
       </span>
     </div>
 
@@ -87,6 +87,9 @@
     </li>
     <li>
       <a href="../articles/intro.html##palettes-themes">Palettes &amp; Themes</a>
+    </li>
+    <li>
+      <a href="../articles/intro.html#descriptive-visualization">Descriptive visualization</a>
     </li>
     <li>
       <a href="../articles/intro.html#plotting-model-results">Plot Models</a>
@@ -151,7 +154,7 @@
     <tr>
       <th>main_var</th>
       <td><p>Which variable do you want to plot? Uses bare variable names
-and can take multiple variables via <code>vars()</code>.</p></td>
+and can take multiple variables via <code><a href='http://dplyr.tidyverse.org/reference/vars.html'>vars()</a></code>.</p></td>
     </tr>
     <tr>
       <th>conditional_data</th>
@@ -217,7 +220,7 @@ Supply a data frame with desired values of the model covariates.</p></td>
 <span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>200</span>
 <span class='no'>sig2</span> <span class='kw'>&lt;-</span> <span class='fl'>4</span>
 
-<span class='no'>d</span> <span class='kw'>=</span> <span class='fu'><a href='http://dplyr.tidyverse.org/reference/reexports.html'>data_frame</a></span>(
+<span class='no'>d</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>data_frame</a></span>(
   <span class='kw'>x0</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>50</span>),
   <span class='kw'>x1</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span>),
   <span class='kw'>x2</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span>),
@@ -232,13 +235,13 @@ Supply a data frame with desired values of the model covariates.</p></td>
 <span class='fu'>library</span>(<span class='no'>visibly</span>)
 
 <span class='fu'>plot_gam</span>(<span class='no'>b</span>,
-         <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='fu'><a href='http://dplyr.tidyverse.org/reference/reexports.html'>data_frame</a></span>(<span class='kw'>x2</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>500</span>)),
+         <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>data_frame</a></span>(<span class='kw'>x2</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>500</span>)),
          <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x2</span>)</div><div class='img'><img src='plot_gam-1.png' alt='' width='700' height='1133' /></div><div class='input'>
 <span class='fu'>plot_gam</span>(<span class='no'>b</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x2</span>)</div><div class='img'><img src='plot_gam-2.png' alt='' width='700' height='1133' /></div><div class='input'>
 
 <span class='fu'>plot_gam</span>(<span class='no'>b</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='fu'><a href='http://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='no'>x2</span>, <span class='no'>x1</span>))</div><div class='img'><img src='plot_gam-3.png' alt='' width='700' height='1133' /></div><div class='input'>
 <span class='fu'>plot_gam</span>(<span class='no'>b</span>,
-         <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='fu'><a href='http://dplyr.tidyverse.org/reference/reexports.html'>data_frame</a></span>(<span class='kw'>x1</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>500</span>),
+         <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>data_frame</a></span>(<span class='kw'>x1</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>500</span>),
                                        <span class='kw'>x2</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>500</span>)),
          <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='fu'><a href='http://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='no'>x2</span>, <span class='no'>x1</span>))</div><div class='img'><img src='plot_gam-4.png' alt='' width='700' height='1133' /></div><div class='input'>
 <span class='co'># compare with mgcv plot</span>

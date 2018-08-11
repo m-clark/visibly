@@ -40,6 +40,12 @@ reference:
       - theme_plotly
       - theme_blank
 
+  - title: "Descriptive Visualization"
+    desc: >
+      Plotting correlations.
+    contents:
+      - corr_heat
+
   - title: "Plotting model results"
     desc: >
       Functions for plotting fixed and random effect coefficients and more.
@@ -77,6 +83,8 @@ navbar:
         href: articles/intro.html
       - text: Palettes & Themes
         href: articles/intro.html##palettes-themes
+      - text: Descriptive visualization
+        href: articles/intro.html#descriptive-visualization
       - text: Plot Models
         href: articles/intro.html#plotting-model-results
   right:
