@@ -129,7 +129,7 @@ However, if you want palettes that are colorblind-safe, print-safe etc., especia
 
 People often want to (and should) examine correlation matrices as a prelude to modeling.  One problem is that it is difficult to make much sense from the matrix when there are more than a few columns in the original data, as there are too many pairwise values present.  However a little reshuffling of the rows/columns, and visually depicting the values by color can make patterns pop out quickly.
 
-You have plenty of options for this sort of endeavor, such as corrplot, psych, and heatmaply.  However, they offer only static plots or reorder based on a cluster analysis.  I originally had [a function](https://github.com/m-clark/heatR) that would provide some interactivity, but while utilizing a factor analytic approach. I've now deprecated that standalone package and brought the functionality here. The corr_heat function provides an easy way to visualize your correlations.
+You have plenty of options for this sort of endeavor, such as <span class="pack">corrplot</span>, <span class="pack">psych</span>, and <span class="pack">heatmaply.</span>  However, they offer only static plots, or reorder based on a cluster analysis.  I originally had [a function](https://github.com/m-clark/heatR) that would provide some interactivity, but while utilizing a factor analytic approach. I've now deprecated that standalone package and brought the functionality here. The <span class="pack">corr_heat</span> function provides an easy way to visualize your correlations.
 
 ```{r corrheat1}
 data('bfi', package = 'visibly')
@@ -137,7 +137,7 @@ cor_matrix = cor(bfi, use='pair')
 corr_heat(cor_matrix)
 ```
 
-The psych package is used to for the factor analysis, which is better suited to survey data and similar settings, where items are of the same type, and you can supply arguments to its fa function. The plot comes from plotly, and hovering over the squares provides the value.
+The <span class="pack">psych</span> package is used to for the factor analysis, which is better suited to survey data and similar settings, where items are of the same type, and you can supply arguments to its <span class="func">fa</span> function. The plot comes from <span class="pack">plotly</span>, and hovering over the squares provides the value.
 
 ```{r corrheat2}
 corr_heat(cor_matrix, n_factors = 2, psych_opts = list(fm='ml', rot='oblimin'))
@@ -158,13 +158,19 @@ It occurred to me while updating this functionality that a 3-d approach might ac
 corr_heat(cor_matrix, three_d = TRUE, diagonal = NA)
 ```
 
+<img src='man/figures/plotly3d_1.png' style="display:block; margin: 0 auto;">
+
+Note that when you use it, the 3d visualization is interactive, so twist and tilt away!
+
 There are multiple orderings available to help bring out the structure.  This may be particularly useful if you are not dealing with measurement error type data.
 
 ```{r corrheat4, dev='svglite'}
 corr_heat(cor(mtcars), three_d = TRUE, ordering = 'polar')
 ```
 
-Who knew the mtcars data set could actually be interesting!
+<img src='man/figures/plotly3d_2.png' style="display:block; margin: 0 auto;">
+
+Who knew the <span class="objclass">mtcars</span> data set could actually be interesting!
 
 
 
