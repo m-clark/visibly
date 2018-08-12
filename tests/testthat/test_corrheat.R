@@ -99,8 +99,8 @@ test_that('handle all pos', {
 })
 
 test_that('handle all neg', {
-  nh = -Harman23.cor$cov
-  diag(nh) = 1
+  nh <- -Harman23.cor$cov
+  diag(nh)  1
   suppressWarnings({
   expect_s3_class(corr_heat(nh, n_factors = 1, pal='bilbao'), 'plotly')
   })

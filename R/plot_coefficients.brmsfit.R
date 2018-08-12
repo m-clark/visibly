@@ -6,6 +6,8 @@
 #' @examples
 #' # placeholder
 #'
+#' @family model visualization
+#'
 #' @export
 plot_coefficients.brmsfit <- function(model,
                                       order = 'decreasing',

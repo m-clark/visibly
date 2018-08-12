@@ -10,7 +10,12 @@
 #'
 #' - a function to interact with colorgorical
 #'
-#' - coefficient plots for fixed and random effects, plotting of GAM results.
+#' - a heatmap for correlation matrices
+#'
+#' - coefficient plots for fixed and random effects, plotting of GAM results...
+#'
+#' and more!
+#'
 #' @docType package
 #' @name visibly
 NULL

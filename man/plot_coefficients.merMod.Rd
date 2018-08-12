@@ -56,4 +56,12 @@ This plots the fixed or random effects of lme4 objects. For more
 library(lme4)
 fit_mer = lmer(Reaction ~ Days + (Days|Subject), sleepstudy)
 plot_coefficients(fit_mer, ranef = TRUE, which_ranef = 'Subject')
+
+}
+\seealso{
+Other model visualization: \code{\link{plot_coefficients.brmsfit}},
+  \code{\link{plot_coefficients.lm}},
+  \code{\link{plot_coefficients}},
+  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_check}},
+  \code{\link{plot_gam}}
 }

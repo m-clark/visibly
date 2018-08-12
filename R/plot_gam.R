@@ -72,7 +72,9 @@
 #'
 #' # compare with mgcv plot
 #' plot(b, pages=1)
-
+#'
+#' @family model visualization
+#'
 #' @export
 plot_gam <- function(model,
                      main_var,

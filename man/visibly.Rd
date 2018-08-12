@@ -17,5 +17,9 @@ Visibly is a handful of functions for color palettes, themes, etc. in R.  Inside
 
 - a function to interact with colorgorical
 
-- coefficient plots for fixed and random effects, plotting of GAM results.
+- a heatmap for correlation matrices
+
+- coefficient plots for fixed and random effects, plotting of GAM results...
+
+and more!
 }

@@ -21,7 +21,7 @@
 #'   data that would be used to create the plot.
 #'
 #' @export
-#'
+#' @family model visualization
 #' @examples
 #' mod = lm(mpg ~ ., mtcars)
 #' plot_coefficients(mod, order = 'increasing')

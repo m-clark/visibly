@@ -30,6 +30,9 @@
 #'
 #' @importFrom stats fitted napredict printCoefmat residuals sd
 #' @importFrom utils getFromNamespace
+#'
+#' @family model visualization
+#'
 #' @export
 plot_gam_check <- function(model,
                            single_page = TRUE,

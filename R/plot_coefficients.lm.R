@@ -14,6 +14,8 @@
 #' mod = lm(mpg ~ ., mtcars)
 #' plot_coefficients(mod, order = 'increasing')
 #'
+#' @family model visualization
+#'
 #' @export
 plot_coefficients.lm <- function(model,
                                  order = 'decreasing',
@@ -67,6 +69,9 @@ plot_coefficients.lm <- function(model,
 }
 
 #' @rdname plot_coefficients.lm
+#'
+#' @family model visualization
+#'
 #' @export
 plot_coefficients.glm <- plot_coefficients.lm
 

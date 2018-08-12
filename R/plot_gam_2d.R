@@ -41,6 +41,8 @@
 #' mod_by <- gam(y ~ s(x2, by=fac), data = d2)
 #' plot_gam_by(mod_by, main_var = x2, by_var = fac)
 #'
+#' @family model visualization
+#'
 #' @export
 plot_gam_2d <- function(model,
                         main_var,

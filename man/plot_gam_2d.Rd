@@ -73,3 +73,10 @@ mod_by <- gam(y ~ s(x2, by=fac), data = d2)
 plot_gam_by(mod_by, main_var = x2, by_var = fac)
 
 }
+\seealso{
+Other model visualization: \code{\link{plot_coefficients.brmsfit}},
+  \code{\link{plot_coefficients.lm}},
+  \code{\link{plot_coefficients.merMod}},
+  \code{\link{plot_coefficients}},
+  \code{\link{plot_gam_check}}, \code{\link{plot_gam}}
+}

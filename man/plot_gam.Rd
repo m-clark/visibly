@@ -96,4 +96,12 @@ plot_gam(b,
 
 # compare with mgcv plot
 plot(b, pages=1)
+
+}
+\seealso{
+Other model visualization: \code{\link{plot_coefficients.brmsfit}},
+  \code{\link{plot_coefficients.lm}},
+  \code{\link{plot_coefficients.merMod}},
+  \code{\link{plot_coefficients}},
+  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_check}}
 }

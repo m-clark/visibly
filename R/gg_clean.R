@@ -30,6 +30,7 @@
 #' plot.
 #'
 #' @importFrom magrittr '%>%'
+#' @family themes
 #'
 #' @examples
 #' library(visibly)

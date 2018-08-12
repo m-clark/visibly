@@ -51,3 +51,16 @@ mod = lm(mpg ~ ., mtcars)
 plot_coefficients(mod, order = 'increasing')
 
 }
+\seealso{
+Other model visualization: \code{\link{plot_coefficients.brmsfit}},
+  \code{\link{plot_coefficients.merMod}},
+  \code{\link{plot_coefficients}},
+  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_check}},
+  \code{\link{plot_gam}}
+
+Other model visualization: \code{\link{plot_coefficients.brmsfit}},
+  \code{\link{plot_coefficients.merMod}},
+  \code{\link{plot_coefficients}},
+  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_check}},
+  \code{\link{plot_gam}}
+}

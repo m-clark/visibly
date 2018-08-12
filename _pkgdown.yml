@@ -4,7 +4,7 @@ title-img: logo.png
 authors:
   Michael Clark:
     href: https://m-clark.github.io
-    html: Michael Clark <img src="man/figures/lh_hex.png" height="24" />
+    html: <img src="man/figures/mc_logo.png" width=10% style='display:inline'/>
 
 template:
   params:

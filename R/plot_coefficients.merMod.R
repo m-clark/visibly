@@ -15,6 +15,8 @@
 #' library(lme4)
 #' fit_mer = lmer(Reaction ~ Days + (Days|Subject), sleepstudy)
 #' plot_coefficients(fit_mer, ranef = TRUE, which_ranef = 'Subject')
+#'
+#' @family model visualization
 #' @export
 plot_coefficients.merMod <- function(model,
                                      order = 'decreasing',
