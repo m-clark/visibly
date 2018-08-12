@@ -84,6 +84,10 @@ test_that('will take psych options', {
 
 # misc --------------------------------------------------------------------
 
+test_that('Will ignore FA and just return the plot', {
+  expect_s3_class(corr_heat(main, plot_only = T), 'plotly')
+})
+
 test_that('can do 3d', {
   expect_s3_class(corr_heat(main, n_factors = 2, three_d = TRUE), 'plotly')
 })

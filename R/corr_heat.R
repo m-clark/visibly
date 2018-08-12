@@ -9,6 +9,8 @@
 #' @param diagonal Value for the diagonal. Must be 1 (default) or NA.
 #' @param dir Passed to \link[scico]{scico}.
 #' @param pal Passed to \link[scico]{scico}.
+#' @param plot_only Don't run the factor analysis and just return the heatmap.
+#'   Default is FALSE.
 #'
 #' @details
 #'   Correlation matrices are typically better visualized rather than parsed
@@ -20,10 +22,10 @@
 #'   specific type of data more amenable to a measurement error approach (e.g.
 #'   items from a particular scale).
 #'
-#'   \code{corrheat} produces a color coded matrix in which Blue represents
-#'   positive, and Red, negative correlations, and fades to white the smaller
-#'   the values are. It is interactive, such that one can hover over the image
-#'   to obtain the correlation value.
+#'   The default \code{corrheat} visualization produces a color-coded heatmap in
+#'   which Blue represents positive, and Red, negative correlations (the 'vik'
+#'   palette), and fades to white the smaller the values are. It is interactive,
+#'   such that one can hover over the image to obtain the correlation value.
 #'
 #'   The ordering is based on the results of a factor analysis
 #'   from the \link[psych]{psych} package (which is required). It can be based
@@ -32,19 +34,19 @@
 #'   only ('first'), or polar coordinates (see \link[psych]{polar} ) across all
 #'   factors.
 #'
-#'   By default the number of factors is chosen to more likely 'just work' for
+#'   By default, the number of factors is chosen to more likely 'just work' for
 #'   visualization purposes.  If the number of columns is three or fewer, it
 #'   will force only one factor, otherwise it will be
 #'   \code{floor(sqrt(ncol(x)))}).  While you may supply the number of factors,
 #'   as well as other options to the \link[psych]{fa} function via
-#'   \code{psych_opts}, if you want explore a factor analysis you should you
+#'   \code{psych_opts}, if you want to explore a factor analysis you should you
 #'   probably should do that separately. In addition, factor analysis can't fix
 #'   a poorly conditioned correlation matrix, and errors in the analysis may
 #'   result in the plot failing.
 #'
 #'   There are two options regarding the palette, the name of the
 #'   \link[scico]{scico} palette and the direction, in case you want to flip the
-#'   color scheme.  Typically you'll want to use a diverging palette such as vik
+#'   color scheme.  Typically, you'll want to use a diverging palette such as vik
 #'   or cork.  If you have all positive (or rarely, negative), you might
 #'   consider the sequential ones like bilbao or oslo. The lower or upper limit
 #'   of the color bar will change accordingly.
@@ -77,7 +79,8 @@ corr_heat <- function(cormat,
                      three_d = FALSE,
                      diagonal = 1,
                      dir = -1,
-                     pal = 'vik') {
+                     pal = 'vik',
+                     plot_only = FALSE) {
 
   if (!requireNamespace("psych", quietly = TRUE)) {
     stop(strwrap("psych package and its dependency, the GPArotation package,
@@ -120,73 +123,76 @@ corr_heat <- function(cormat,
   if(!diagonal %in% c(1, NA)) stop('diagonal argument must be 1 or NA.')
 
   if(!pal %in% scico::scico_palette_names())
-    stop('pal must be one of the scico palettes.
-         See scico::scico_palette_names().')
+    stop(strwrap('pal must be one of the scico palettes.
+                 See scico::scico_palette_names().'))
+
 
 
   # Factor analysis ---------------------------------------------------------
 
-  # number of factors to use
-  if (!rlang::is_null(n_factors) && n_factors >= 4) {
-    nf <- n_factors
-  } else if (nc < 4) {  # necessary?
-    nf <- 1
-  } else {
-    nf <- floor(sqrt(nc))
+  if (!plot_only) {
+
+    # number of factors to use
+    if (!rlang::is_null(n_factors) && n_factors >= 4) {
+      nf <- n_factors
+    } else if (nc < 4) {  # necessary?
+      nf <- 1
+    } else {
+      nf <- floor(sqrt(nc))
+    }
+
+    if (is.null(psych_opts)) {
+      message('No FA options specified, using psych package defaults')
+      args <- list(r=cormat, nfactors=nf)
+    } else {
+      args <- append(list(r=cormat, nfactors=nf), psych_opts)
+    }
+
+    # to get rid of GPArotation warning
+
+    faResult <- suppressMessages({do.call(psych::fa, args)})
+
+    # Order results -----------------------------------------------------------
+
+    load <- faResult$loadings
+    class(load) <- 'matrix'
+
+    mat_order <- ordering[1]
+
+    if (mat_order == 'absolute') {
+      cluster <- apply(abs(load), 1, which.max)
+      ord <- sort(cluster, index.return = TRUE)
+      index <- ord$ix
+    } else if (mat_order == 'raw') {
+      cluster <- apply(load, 1, which.max)
+      ord <- sort(cluster, index.return = TRUE)
+      index <- ord$ix
+    } else if (mat_order == 'first'){
+      load <- data.frame(var=rownames(load), load)
+      index <- order(load[,1], decreasing=TRUE)
+    } else {
+      sortload <- psych::fa.sort(load, polar = (mat_order=='polar'))
+      index <- rownames(sortload)
+    }
+
+    # reorder cormat
+    cormat <- cormat[index, index]
+
   }
-
-  if (is.null(psych_opts)) {
-    message('No FA options specified, using psych package defaults')
-    args <- list(r=cormat, nfactors=nf)
-  } else {
-    args <- append(list(r=cormat, nfactors=nf), psych_opts)
-  }
-
-  # to get rid of GPArotation warning
-  faResult <- suppressMessages({do.call(psych::fa, args)})
-
-
-
-  # Order results -----------------------------------------------------------
-
-  load <- faResult$loadings
-  class(load) <- 'matrix'
-
-  mat_order <- ordering[1]
-
-  if (mat_order == 'absolute') {
-    cluster <- apply(abs(load), 1, which.max)
-    ord <- sort(cluster, index.return = TRUE)
-    index <- ord$ix
-  } else if (mat_order == 'raw') {
-    cluster <- apply(load, 1, which.max)
-    ord <- sort(cluster, index.return = TRUE)
-    index <- ord$ix
-  } else if (mat_order == 'first'){
-    load <- data.frame(var=rownames(load), load)
-    index <- order(load[,1], decreasing=TRUE)
-  } else {
-    sortload <- psych::fa.sort(load, polar = (mat_order=='polar'))
-    index <- rownames(sortload)
-  }
-
-  # reorder cormat
-  cormat <- cormat[index, index]
-
 
   # Plot Setup --------------------------------------------------------------
 
   diag(cormat) <- diagonal
-  pal <- scico::scico(500, direction=dir, palette = pal)
+  pal <- scico::scico(500, direction = dir, palette = pal)
   cors <- cormat[lower.tri(cormat)]
-  ll <- ifelse(all(cors>0), 0, -1)
-  ul <- ifelse(all(cors<0), 0, 1)
+  ll <- ifelse(all(cors > 0), 0, -1)
+  ul <- ifelse(all(cors < 0), 0, 1)
 
   # plotly will drop names because, who needs those anyway? it will also reverse
   # the axes just for fun!
   xlo <- list(
     tickmode = "array",
-    tickvals = 1:nrow(cormat)-1,
+    tickvals = 1:nrow(cormat) - 1,
     ticktext = rownames(cormat),
     gridcolor = 'transparent',
     zerolinecolor = 'transparent',
@@ -195,7 +201,7 @@ corr_heat <- function(cormat,
 
   ylo <- list(
     tickmode = "array",
-    tickvals = 1:nrow(cormat)-1,
+    tickvals = 1:nrow(cormat) - 1,
     ticktext = rownames(cormat),
     gridcolor = 'transparent',
     zerolinecolor = 'transparent',
@@ -204,8 +210,6 @@ corr_heat <- function(cormat,
   )
 
   zlo <- list(
-    # tickmode = "array",
-    # tickvals = 1:nrow(cormat)-1,
     ticktext = '',
     gridcolor = 'transparent',
     zerolinecolor = 'transparent',
@@ -216,27 +220,29 @@ corr_heat <- function(cormat,
   # Plot --------------------------------------------------------------------
 
   if (three_d) {
-
     p <-
-      plotly::plot_ly(z = ~cormat, name='') %>%
+      plotly::plot_ly(z = ~cormat, name = "") %>%
       plotly::add_surface(colors = pal) %>%
       plotly::colorbar(limits = c(ll, ul)) %>%
-      plotly::layout(scene = list(xaxis=xlo,  # scene!
-                                  yaxis=ylo,
-                                  zaxis=zlo)
-      ) %>%
+      plotly::layout(scene = list(      # scene!
+        xaxis = xlo,
+        yaxis = ylo,
+        zaxis = zlo
+      )) %>%
       theme_plotly()
 
     # plotly gives a warning it can't do limits, then does them; this appears
-    # the only way to supprsess
+    # the only way to suppress
     suppressWarnings({print(p)})
 
   } else {
     plotly::plot_ly(z = ~cormat) %>%
       plotly::add_heatmap(colors = pal) %>%
       plotly::colorbar(limits = c(ll, ul)) %>%
-      plotly::layout(xaxis=xlo,
-                     yaxis=ylo) %>%
+      plotly::layout(
+        xaxis = xlo,
+        yaxis = ylo
+      ) %>%
       theme_plotly()
   }
 

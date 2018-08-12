@@ -6,7 +6,7 @@
 \usage{
 corr_heat(cormat, n_factors = NULL, psych_opts = NULL, ordering = c("fa",
   "raw", "absolute", "first", "polar"), three_d = FALSE, diagonal = 1,
-  dir = -1, pal = "vik")
+  dir = -1, pal = "vik", plot_only = FALSE)
 }
 \arguments{
 \item{cormat}{A correlation matrix}
@@ -25,6 +25,9 @@ NULL.}
 \item{dir}{Passed to \link[scico]{scico}.}
 
 \item{pal}{Passed to \link[scico]{scico}.}
+
+\item{plot_only}{Don't run the factor analysis and just return the heatmap.
+Default is FALSE.}
 }
 \value{
 A plotly object
@@ -42,10 +45,10 @@ Correlation matrices are typically better visualized rather than parsed
   specific type of data more amenable to a measurement error approach (e.g.
   items from a particular scale).
 
-  \code{corrheat} produces a color coded matrix in which Blue represents
-  positive, and Red, negative correlations, and fades to white the smaller
-  the values are. It is interactive, such that one can hover over the image
-  to obtain the correlation value.
+  The default \code{corrheat} visualization produces a color-coded heatmap in
+  which Blue represents positive, and Red, negative correlations (the 'vik'
+  palette), and fades to white the smaller the values are. It is interactive,
+  such that one can hover over the image to obtain the correlation value.
 
   The ordering is based on the results of a factor analysis
   from the \link[psych]{psych} package (which is required). It can be based
@@ -54,19 +57,19 @@ Correlation matrices are typically better visualized rather than parsed
   only ('first'), or polar coordinates (see \link[psych]{polar} ) across all
   factors.
 
-  By default the number of factors is chosen to more likely 'just work' for
+  By default, the number of factors is chosen to more likely 'just work' for
   visualization purposes.  If the number of columns is three or fewer, it
   will force only one factor, otherwise it will be
   \code{floor(sqrt(ncol(x)))}).  While you may supply the number of factors,
   as well as other options to the \link[psych]{fa} function via
-  \code{psych_opts}, if you want explore a factor analysis you should you
+  \code{psych_opts}, if you want to explore a factor analysis you should you
   probably should do that separately. In addition, factor analysis can't fix
   a poorly conditioned correlation matrix, and errors in the analysis may
   result in the plot failing.
 
   There are two options regarding the palette, the name of the
   \link[scico]{scico} palette and the direction, in case you want to flip the
-  color scheme.  Typically you'll want to use a diverging palette such as vik
+  color scheme.  Typically, you'll want to use a diverging palette such as vik
   or cork.  If you have all positive (or rarely, negative), you might
   consider the sequential ones like bilbao or oslo. The lower or upper limit
   of the color bar will change accordingly.
