@@ -105,5 +105,18 @@ fit_lm = lm(mpg ~ ., mtcars)
 plot_coefficients(fit_lm)
 ```
 
+Plot GAM results
+
+```{r gam}
+library(mgcv)
+d = gamSim()
+
+gam_model = gam(y ~ x0 + s(x1) + s(x2, bs='gp') + s(x3, bs='ps'), data=d)
+
+plot_gam(gam_model, main_var = x2)
+plot_gam_check(gam_model)
+```
+
+
 
 See the [intro](https://m-clark.github.io/visibly/articles/intro.html) for more.

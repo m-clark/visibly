@@ -35,9 +35,9 @@ Install the development version directly from GitHub:
 devtools::install_github("m-clark/visibly")
 ```
 
-Visibly is currently in its very early stages, so more may be added
-soon. For some additional palettes for those fond of another time, you
-might be interested in
+Visibly is currently in its early stages, so more may be added soon. For
+some additional palettes for those fond of another time, you might be
+interested in
 [NineteenEightyR](https://github.com/m-clark/NineteenEightyR).
 
 ## Examples
@@ -194,6 +194,26 @@ plot_coefficients(fit_lm)
 ```
 
 <img src="man/figures/README-lm0-1.png" width="75%" style="display: block; margin: auto;" />
+
+Plot GAM results
+
+``` r
+library(mgcv)
+d = gamSim()
+Gu & Wahba 4 term additive model
+
+gam_model = gam(y ~ x0 + s(x1) + s(x2, bs='gp') + s(x3, bs='ps'), data=d)
+
+plot_gam(gam_model, main_var = x2)
+```
+
+<img src="man/figures/README-gam-1.png" width="75%" style="display: block; margin: auto;" />
+
+``` r
+plot_gam_check(gam_model)
+```
+
+<img src="man/figures/README-gam-2.png" width="75%" style="display: block; margin: auto;" />
 
 See the [intro](https://m-clark.github.io/visibly/articles/intro.html)
 for more.
