@@ -136,7 +136,7 @@
 
     <pre class="usage"><span class='fu'>corr_heat</span>(<span class='no'>cormat</span>, <span class='kw'>n_factors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>psych_opts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ordering</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"fa"</span>,
   <span class='st'>"raw"</span>, <span class='st'>"absolute"</span>, <span class='st'>"first"</span>, <span class='st'>"polar"</span>), <span class='kw'>three_d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>diagonal</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>dir</span> <span class='kw'>=</span> -<span class='fl'>1</span>, <span class='kw'>pal</span> <span class='kw'>=</span> <span class='st'>"vik"</span>)</pre>
+  <span class='kw'>dir</span> <span class='kw'>=</span> -<span class='fl'>1</span>, <span class='kw'>pal</span> <span class='kw'>=</span> <span class='st'>"vik"</span>, <span class='kw'>plot_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,6 +174,11 @@ NULL.</p></td>
       <th>pal</th>
       <td><p>Passed to <a href='http://www.rdocumentation.org/packages/scico/topics/scico'>scico</a>.</p></td>
     </tr>
+    <tr>
+      <th>plot_only</th>
+      <td><p>Don't run the factor analysis and just return the heatmap.
+Default is FALSE.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -190,28 +195,28 @@ NULL.</p></td>
   be too small column-wise to be useful for a cluster analysis, or may be a
   specific type of data more amenable to a measurement error approach (e.g.
   items from a particular scale).</p>
-<p><code>corrheat</code> produces a color coded matrix in which Blue represents
-  positive, and Red, negative correlations, and fades to white the smaller
-  the values are. It is interactive, such that one can hover over the image
-  to obtain the correlation value.</p>
+<p>The default <code>corrheat</code> visualization produces a color-coded heatmap in
+  which Blue represents positive, and Red, negative correlations (the 'vik'
+  palette), and fades to white the smaller the values are. It is interactive,
+  such that one can hover over the image to obtain the correlation value.</p>
 <p>The ordering is based on the results of a factor analysis
   from the <a href='http://www.rdocumentation.org/packages/psych/topics/00.psych-package'>psych</a> package (which is required). It can be based
   on <code><a href='http://www.rdocumentation.org/packages/psych/topics/fa.sort'>fa.sort</a></code> (default), max raw ("raw") loading,
   absolute ("absolute") values of the loadings, loadings of the first factor
   only ('first'), or polar coordinates (see <a href='http://www.rdocumentation.org/packages/psych/topics/polar'>polar</a> ) across all
   factors.</p>
-<p>By default the number of factors is chosen to more likely 'just work' for
+<p>By default, the number of factors is chosen to more likely 'just work' for
   visualization purposes.  If the number of columns is three or fewer, it
   will force only one factor, otherwise it will be
   <code>floor(sqrt(ncol(x)))</code>).  While you may supply the number of factors,
   as well as other options to the <a href='http://www.rdocumentation.org/packages/psych/topics/fa'>fa</a> function via
-  <code>psych_opts</code>, if you want explore a factor analysis you should you
+  <code>psych_opts</code>, if you want to explore a factor analysis you should you
   probably should do that separately. In addition, factor analysis can't fix
   a poorly conditioned correlation matrix, and errors in the analysis may
   result in the plot failing.</p>
 <p>There are two options regarding the palette, the name of the
   <a href='http://www.rdocumentation.org/packages/scico/topics/scico'>scico</a> palette and the direction, in case you want to flip the
-  color scheme.  Typically you'll want to use a diverging palette such as vik
+  color scheme.  Typically, you'll want to use a diverging palette such as vik
   or cork.  If you have all positive (or rarely, negative), you might
   consider the sequential ones like bilbao or oslo. The lower or upper limit
   of the color bar will change accordingly.</p>

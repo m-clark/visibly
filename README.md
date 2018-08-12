@@ -4,6 +4,11 @@ Status](https://travis-ci.org/m-clark/visibly.svg?branch=master)](https://travis
 Status](https://ci.appveyor.com/api/projects/status/github/m-clark/visibly?branch=master&svg=true)](https://ci.appveyor.com/project/m-clark/visibly)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/m-clark/visibly/master.svg)](https://codecov.io/github/m-clark/visibly?branch=master)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Lifecycle
+Status](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
 
 # visibly
 
@@ -169,6 +174,16 @@ mtcars %>%
 ```
 
 <img src="man/figures/README-example4-1.png" width="75%" style="display: block; margin: auto;" />
+
+Visualize a correlation matrix.
+
+``` r
+data('bfi', package = 'visibly')
+cor_matrix = cor(bfi, use='pair')
+corr_heat(cor_matrix)
+```
+
+<img src="man/figures/README-corrheat1-1.png" width="75%" style="display: block; margin: auto;" />
 
 Plot some model coefficients. Requires the
 <span class="pack">scico</span> package.

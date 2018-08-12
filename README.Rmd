@@ -7,7 +7,8 @@ output:
 [![Build Status](https://travis-ci.org/m-clark/visibly.svg?branch=master)](https://travis-ci.org/m-clark/visibly)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/m-clark/visibly?branch=master&svg=true)](https://ci.appveyor.com/project/m-clark/visibly)
 [![Coverage Status](https://img.shields.io/codecov/c/github/m-clark/visibly/master.svg)](https://codecov.io/github/m-clark/visibly?branch=master)
-
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Lifecycle Status](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
 
 
 ```{r setup, echo=FALSE, include=FALSE, cache=FALSE}
@@ -42,7 +43,7 @@ Install the development version directly from GitHub:
 devtools::install_github("m-clark/visibly")
 ```
 
-Visibly is currently in its very early stages, so more may be added soon.  For some additional palettes for those fond of another time, you might be interested in [NineteenEightyR](https://github.com/m-clark/NineteenEightyR).
+Visibly is currently in its early stages, so more may be added soon.  For some additional palettes for those fond of another time, you might be interested in [NineteenEightyR](https://github.com/m-clark/NineteenEightyR).
 
 
 ## Examples
