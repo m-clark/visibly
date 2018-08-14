@@ -4,7 +4,7 @@ Title: Functions and palettes related to visual enhancement
 Version: 0.2.4
 Authors@R: person("Michael", "Clark", role = c("aut", "cre"), email = "micl@umich.edu")
 Maintainer: Michael Clark <micl@umich.edu>
-Description: Functions and palettes related to visual enhancement. Palettes, themes, visualization of data and model results, etc.
+Description: Tools for visual enhancement, including palettes, themes, visualization of data and model results, etc.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

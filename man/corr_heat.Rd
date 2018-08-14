@@ -20,7 +20,7 @@ NULL.}
 
 \item{three_d}{Return a surface plot.}
 
-\item{diagonal}{Value for the diagonal. Must be 1 (default) or NA.}
+\item{diagonal}{Value for the diagonal. Must be 1 (default), 0, or NA.}
 
 \item{dir}{Passed to \link[scico]{scico}.}
 
@@ -77,6 +77,12 @@ Correlation matrices are typically better visualized rather than parsed
   I'm normally against 3-d images as they really don't apply in many cases
   where they are used, but I think it can actually assist in seeing factor
   structure here.
+}
+\note{
+This function essentially assumes a \emph{complete} correlation matrix like that
+  returned from \link[stats]{cor}, and one which should have row/column
+  names. With \code{plot_only = TRUE}, you may potentially supply any matrix,
+  as the factor analysis will not be done.
 }
 \examples{
 \dontrun{

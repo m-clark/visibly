@@ -6,7 +6,7 @@
 #' @param psych_opts a list of arguments to pass to \code{psych::fa}.
 #' @param ordering Order of the result. See details
 #' @param three_d Return a surface plot.
-#' @param diagonal Value for the diagonal. Must be 1 (default) or NA.
+#' @param diagonal Value for the diagonal. Must be 1 (default), 0, or NA.
 #' @param dir Passed to \link[scico]{scico}.
 #' @param pal Passed to \link[scico]{scico}.
 #' @param plot_only Don't run the factor analysis and just return the heatmap.
@@ -55,6 +55,11 @@
 #'   where they are used, but I think it can actually assist in seeing factor
 #'   structure here.
 #'
+#' @note This function essentially assumes a \emph{complete} correlation matrix like that
+#'   returned from \link[stats]{cor}, and one which should have row/column
+#'   names. With \code{plot_only = TRUE}, you may potentially supply any matrix,
+#'   as the factor analysis will not be done.
+#'
 #' @return A plotly object
 #'
 #' @seealso \link[scico]{scico}, \link[plotly]{plotly}, \link[psych]{fa}
@@ -73,14 +78,14 @@
 #'
 #' @export
 corr_heat <- function(cormat,
-                     n_factors = NULL,
-                     psych_opts = NULL,
-                     ordering = c('fa', 'raw', 'absolute', 'first', 'polar'),
-                     three_d = FALSE,
-                     diagonal = 1,
-                     dir = -1,
-                     pal = 'vik',
-                     plot_only = FALSE) {
+                      n_factors = NULL,
+                      psych_opts = NULL,
+                      ordering = c('fa', 'raw', 'absolute', 'first', 'polar'),
+                      three_d = FALSE,
+                      diagonal = 1,
+                      dir = -1,
+                      pal = 'vik',
+                      plot_only = FALSE) {
 
   if (!requireNamespace("psych", quietly = TRUE)) {
     stop(strwrap("psych package and its dependency, the GPArotation package,
@@ -88,11 +93,13 @@ corr_heat <- function(cormat,
                  Please install."),
          call. = FALSE)
   }
+
   if (!requireNamespace("plotly", quietly = TRUE)) {
     stop("plotly package is required to make the visualization.
          Please install it.",
          call. = FALSE)
   }
+
   if (!requireNamespace("scico", quietly = TRUE)) {
     stop("scico package is needed for the color.
          Please install it.",
@@ -103,14 +110,15 @@ corr_heat <- function(cormat,
   # Check that x is a square, symmetric matrix ------------------------------
 
   if (!is.matrix(cormat))
-    stop("x does not appear to be something like a matrix.")
+    stop("cormat does not appear to be a matrix.")
 
   nr <- dim(cormat)[1]
   nc <- dim(cormat)[2]
 
-  if(nr != nc) stop("x must be a square matrix")
+  if (!plot_only && nr != nc) stop("cormat must be a square matrix")
 
-  if(!isSymmetric(cormat)) stop('x must be a symmetric matrix')
+  if (!plot_only && !isSymmetric(cormat))
+    stop('cormat must be a symmetric matrix')
 
   # Other checks ------------------------------------------------------------
 
@@ -118,11 +126,11 @@ corr_heat <- function(cormat,
       (as.integer(n_factors) != n_factors | !is.numeric(n_factors)))
     stop('n_factors must be integer/numeric.')
 
-  if (!dir %in% c(-1, 1)) stop('dir argument must be -1 or 1.')
+  if (!dir %in% c(-1, 1)) stop('dir argument must be -1, 0, or 1.')
 
-  if(!diagonal %in% c(1, NA)) stop('diagonal argument must be 1 or NA.')
+  if (!diagonal %in% c(1, 0, NA)) stop('diagonal argument must be 1 or NA.')
 
-  if(!pal %in% scico::scico_palette_names())
+  if (!pal %in% scico::scico_palette_names())
     stop(strwrap('pal must be one of the scico palettes.
                  See scico::scico_palette_names().'))
 
@@ -131,31 +139,32 @@ corr_heat <- function(cormat,
   # Factor analysis ---------------------------------------------------------
 
   if (!plot_only) {
+    if (rlang::is_null(dimnames(cormat)))
+      stop('Need a correlation matrix with row and column names')
 
     # number of factors to use
-    if (!rlang::is_null(n_factors) && n_factors >= 4) {
-      nf <- n_factors
-    } else if (nc < 4) {  # necessary?
-      nf <- 1
+    if (!rlang::is_null(n_factors) && nc < 4) {  # necessary?
+      n_factors <- 1
     } else {
-      nf <- floor(sqrt(nc))
+      n_factors <- floor(sqrt(nc))
     }
 
-    if (is.null(psych_opts)) {
-      message('No FA options specified, using psych package defaults')
-      args <- list(r=cormat, nfactors=nf)
+    if (rlang::is_null(psych_opts)) {
+      message('No FA options specified, using psych package defaults.')
+      args <- list(r = cormat, nfactors = n_factors)
     } else {
-      args <- append(list(r=cormat, nfactors=nf), psych_opts)
+      args <- append(list(r = cormat, nfactors = n_factors), psych_opts)
     }
 
-    # to get rid of GPArotation warning
+    # suppress to get rid of GPArotation message
 
-    faResult <- suppressMessages({do.call(psych::fa, args)})
+    fa_result <- suppressMessages({do.call(psych::fa, args)})
 
     # Order results -----------------------------------------------------------
 
-    load <- faResult$loadings
+    load <- fa_result$loadings
     class(load) <- 'matrix'
+    rn = rownames(load)
 
     mat_order <- ordering[1]
 
@@ -167,12 +176,11 @@ corr_heat <- function(cormat,
       cluster <- apply(load, 1, which.max)
       ord <- sort(cluster, index.return = TRUE)
       index <- ord$ix
-    } else if (mat_order == 'first'){
-      load <- data.frame(var=rownames(load), load)
-      index <- order(load[,1], decreasing=TRUE)
+    } else if (mat_order == 'first') {
+      index <- rownames(load)[order(load[, 1], decreasing = TRUE)]
     } else {
-      sortload <- psych::fa.sort(load, polar = (mat_order=='polar'))
-      index <- rownames(sortload)
+      sorted_load <- psych::fa.sort(load, polar = (mat_order == 'polar'))
+      index <- rownames(sorted_load)
     }
 
     # reorder cormat
@@ -183,10 +191,12 @@ corr_heat <- function(cormat,
   # Plot Setup --------------------------------------------------------------
 
   diag(cormat) <- diagonal
-  pal <- scico::scico(500, direction = dir, palette = pal)
   cors <- cormat[lower.tri(cormat)]
+  pal <- scico::scico(500, direction = dir, palette = pal)
+
+  # limits for colorbar
   ll <- ifelse(all(cors > 0), 0, -1)
-  ul <- ifelse(all(cors < 0), 0, 1)
+  ul <- ifelse(all(cors < 0), 0,  1)
 
   # plotly will drop names because, who needs those anyway? it will also reverse
   # the axes just for fun!
@@ -233,7 +243,7 @@ corr_heat <- function(cormat,
 
     # plotly gives a warning it can't do limits, then does them; this appears
     # the only way to suppress
-    suppressWarnings({print(p)})
+    suppressWarnings({ print(p) })
 
   } else {
     plotly::plot_ly(z = ~cormat) %>%
@@ -247,3 +257,4 @@ corr_heat <- function(cormat,
   }
 
 }
+

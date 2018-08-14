@@ -16,6 +16,7 @@ highlight: pygments
 
 
 home:
+  strip_header: true
   links:
   - text: Docs on Stats, R, and more
     href: http://m-clark.github.io

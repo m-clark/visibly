@@ -105,3 +105,18 @@ test_that('handle all neg', {
   expect_s3_class(corr_heat(nh, n_factors = 1, pal='bilbao'), 'plotly')
   })
 })
+
+
+test_that('errors bare matrix', {
+  h23 <- Harman23.cor$cov
+  dimnames(h23) <- NULL
+  expect_error(corr_heat(h23))
+})
+
+test_that('errors with NA and fa', {
+  h23 <- Harman23.cor$cov
+  h23[, 2] <- NA
+  h23[2, ] <- NA
+  # h23[2, 2] <- 1
+  expect_error(corr_heat(h23))
+})

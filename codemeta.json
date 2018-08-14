@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "visibly",
-  "description": "Functions and palettes related to visual enhancement. Palettes, themes, visualization of data and model results, etc.",
+  "description": "Tools for visual enhancement, including palettes, themes, visualization of data and model results, etc.",
   "name": "visibly: Functions and palettes related to visual enhancement",
   "codeRepository": "https://github.com/m-clark/visibly",
   "issueTracker": "https://github.com/m-clark/visibly/issues",
@@ -387,7 +387,7 @@
   ],
   "releaseNotes": "https://github.com/m-clark/visibly/blob/master/NEWS.md",
   "readme": "https://github.com/m-clark/visibly/blob/master/README.md",
-  "fileSize": "32532.937KB",
+  "fileSize": "33201.5KB",
   "contIntegration": [
     "https://travis-ci.org/m-clark/visibly",
     "https://ci.appveyor.com/project/m-clark/visibly",
@@ -414,5 +414,6 @@
     "brms",
     "r-package",
     "heatmap"
-  ]
+  ],
+  "developmentStatus": "https://www.repostatus.org/#active"
 }
