@@ -30,3 +30,7 @@ test_that('plot_gam_3d fails if not gam object',{
 test_that('plot_gam_3d fails if no main_var',{
   expect_error(plot_gam_3d(b))
 })
+
+test_that('plot_gam_3d fails if no second_var',{
+  expect_error(plot_gam_3d(b, main_var = x))
+})

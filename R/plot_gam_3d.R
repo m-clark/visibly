@@ -1,5 +1,5 @@
 #' @title Plot 2d smooths in 3d
-
+#' @description  3d plot of 2d smooths for generalized additive models.
 #' @param model The mgcv gam model
 #'
 #' @param main_var The 'x' axis.
@@ -102,9 +102,12 @@ plot_gam_3d <- function(model,
   data_list %>%
     plotly::plot_ly(x = unique(.$x),
                     y = unique(.$y),
-                    colors = colorRamp(scico::scico(nrow(.), ...))) %>%
-    plotly::add_surface(z=~pred_mat, text = custom_txt, hoverinfo='text') %>%
-    plotly::layout(scene = list(      # scene!
+                    colors = grDevices::colorRamp(scico::scico(nrow(.), ...))) %>%
+    plotly::add_surface(z =  ~ pred_mat,
+                        text = custom_txt,
+                        hoverinfo = 'text') %>%
+    plotly::layout(
+      scene = list(# scene!
       xaxis = xlo,
       yaxis = ylo,
       zaxis = zlo
