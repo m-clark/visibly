@@ -41,10 +41,6 @@ test_that('plot_gam_2d fails if no second/by_var',{
   expect_error(plot_gam_by(by_mod1, main_var = x2))
 })
 
-test_that('plot_gam_2d fails if not gam object',{
-  expect_error(plot_gam_2d(lm(y ~ x*z, d), main_var = x, second_var=z))
-})
-
 test_that('plot_gam_2d will switch to by',{
   expect_message(plot_gam_2d(by_mod2, main_var = x2, second_var = fac_num))
 })

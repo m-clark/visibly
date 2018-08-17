@@ -27,6 +27,9 @@ cost of your own waiting time.}
 \value{
 A plotly surface object
 }
+\description{
+3d plot of 2d smooths for generalized additive models.
+}
 \details{
 This works like \link[visibly]{plot_gam_2d}, the only difference
   being that a 3d plot is generated instead. It uses \link[scico]{scico} for

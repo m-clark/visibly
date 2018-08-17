@@ -50,6 +50,6 @@ Plot fixed or random effects coefficients for brmsfit objects.
 Other model visualization: \code{\link{plot_coefficients.lm}},
   \code{\link{plot_coefficients.merMod}},
   \code{\link{plot_coefficients}},
-  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_check}},
-  \code{\link{plot_gam}}
+  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_3d}},
+  \code{\link{plot_gam_check}}, \code{\link{plot_gam}}
 }
