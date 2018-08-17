@@ -16,7 +16,7 @@ highlight: pygments
 
 
 home:
-  strip_header: true
+  #strip_header: true
   links:
   - text: Docs on Stats, R, and more
     href: http://m-clark.github.io
@@ -58,6 +58,7 @@ reference:
       - plot_gam
       - plot_gam_check
       - plot_gam_2d
+      - plot_gam_3d
       - plot_gam_by
 
 figures:

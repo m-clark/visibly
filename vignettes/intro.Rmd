@@ -154,21 +154,18 @@ We can see that while there might be the usual 'Big Five' personality structure,
 
 It occurred to me while updating this functionality that a 3-d approach might actually be useful here (it isn't the vast majority of the time).  When looking at the previous structure in 3-d, we probably would only think about two factors of items.
 
-```{r corrheat3d, dev='svglite'}
-corr_heat(cor_matrix, three_d = TRUE, diagonal = NA)
+```{r corrheat3d}
+p = corr_heat(cor_matrix, three_d = TRUE, diagonal = NA)
+p
 ```
 
-<img src='../man/figures/plotly3d_1.png' style="display:block; margin: 0 auto;">
-
-Note that when you use it, the 3d visualization is interactive, so twist and tilt away!
 
 There are multiple orderings available to help bring out the structure.  This may be particularly useful if you are not dealing with measurement error type data.
 
-```{r corrheat4, dev='svglite'}
-corr_heat(cor(mtcars), three_d = TRUE, ordering = 'polar')
+```{r corrheat4}
+p = corr_heat(cor(mtcars), three_d = TRUE, ordering = 'polar')
+p
 ```
-
-<img src='../man/figures/plotly3d_2.png' style="display:block; margin: 0 auto;">
 
 Who knew the <span class="objclass">mtcars</span> data set could actually be interesting!
 
@@ -311,6 +308,17 @@ plot_gam_2d(gam_model,
             second_var = z,
             n_plot = 200)
 ```
+
+
+In 3d.
+
+```{r gam3d}
+plot_gam_3d(gam_model,
+            main_var = x,
+            second_var = z,
+            n_plot = 200)
+```
+
 
 
 A categorical moderator.

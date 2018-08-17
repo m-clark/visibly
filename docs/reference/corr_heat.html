@@ -164,7 +164,7 @@ NULL.</p></td>
     </tr>
     <tr>
       <th>diagonal</th>
-      <td><p>Value for the diagonal. Must be 1 (default) or NA.</p></td>
+      <td><p>Value for the diagonal. Must be 1 (default), 0, or NA.</p></td>
     </tr>
     <tr>
       <th>dir</th>
@@ -224,6 +224,13 @@ Default is FALSE.</p></td>
   where they are used, but I think it can actually assist in seeing factor
   structure here.</p>
     
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>This function essentially assumes a <em>complete</em> correlation matrix like that
+  returned from <a href='http://www.rdocumentation.org/packages/stats/topics/cor'>cor</a>, and one which should have row/column
+  names. With <code>plot_only = TRUE</code>, you may potentially supply any matrix,
+  as the factor analysis will not be done.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='http://www.rdocumentation.org/packages/scico/topics/scico'>scico</a>, <a href='http://www.rdocumentation.org/packages/plotly/topics/plotly'>plotly</a>, <a href='http://www.rdocumentation.org/packages/psych/topics/fa'>fa</a></p></div>
@@ -250,6 +257,8 @@ Default is FALSE.</p></td>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

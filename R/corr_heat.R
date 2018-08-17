@@ -242,7 +242,8 @@ corr_heat <- function(cormat,
       theme_plotly()
 
     # plotly gives a warning it can't do limits, then does them; this appears
-    # the only way to suppress
+    # the only way to suppress, but then won't work for Rmd html output; see
+    # issue #1202
     suppressWarnings({ print(p) })
 
   } else {

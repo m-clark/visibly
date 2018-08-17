@@ -1,5 +1,9 @@
 # visibly 0.2
 
+## visibly 0.2.5
+
+* Add plot_gam_3d.
+
 ## visibly 0.2.4
 
 * Add corr_heat.

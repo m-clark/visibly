@@ -101,67 +101,11 @@ create_palette('#ff5500', plot = T)
     $tetradic
     [1] "#FF5500" "#AAFF00" "#00AAFF" "#5500FF"
 
-There are some other options to express.
-
-``` r
-create_palette('#ff5500', 
-               alpha = .5, 
-               plot = T, 
-               name = 'orange_you_glad_you_have_this_color')
-```
-
-<img src="man/figures/README-plot2-1.png" width="75%" style="display: block; margin: auto;" /><img src="man/figures/README-plot2-2.png" width="75%" style="display: block; margin: auto;" />
-
-    $orange_you_glad_you_have_this_color
-    [1] "#FF550080"
-    
-    $complementary
-    [1] "#FF550080" "#00AAFF80"
-    
-    $analogous
-    [1] "#FF550080" "#FFD50080" "#FF002B80"
-    
-    $split_complentary
-    [1] "#FF550080" "#00FFD480" "#002BFF80"
-    
-    $triadic
-    [1] "#FF550080" "#00FF5580" "#5500FF80"
-    
-    $square
-    [1] "#FF550080" "#2AFF0080" "#00AAFF80" "#D500FF80"
-    
-    $tetradic
-    [1] "#FF550080" "#AAFF0080" "#00AAFF80" "#5500FF80"
-
 One of the built-in palettes is based on R’s blue. Others are based on
 [Stan’s](https://github.com/stan-dev/stan) red,
 [plotly’s](https://github.com/ropensci/plotly) base colors, and the
 red-blue palette from
 [RColorBrewer](https://github.com/cran/RColorBrewer/blob/master/R/ColorBrewer.R).
-
-``` r
-palettes$Rblue
-$Rblue
-[1] "#1f65b7"
-
-$complementary
-[1] "#1f65b7" "#b7701f"
-
-$monochromatic
-[1] "#1f65b7" "#366caa" "#4a719e" "#5a7491"
-
-$analogous
-[1] "#1f65b7" "#241fb7" "#1fb2b7"
-
-$split_complementary
-[1] "#1f65b7" "#b2b71f" "#b7241f"
-
-$triadic
-[1] "#1f65b7" "#66b71f" "#b71f66"
-
-$tetradic
-[1] "#1f65b7" "#b7701f" "#66b71f" "#701fb7"
-```
 
 A clean theme for <span class="pack">plotly</span>.
 
@@ -175,7 +119,7 @@ mtcars %>%
 
 <img src="man/figures/README-example4-1.png" width="75%" style="display: block; margin: auto;" />
 
-Visualize a correlation matrix.
+Visualize a correlation matrix via factor analysis.
 
 ``` r
 data('bfi', package = 'visibly')
@@ -183,7 +127,9 @@ cor_matrix = cor(bfi, use='pair')
 corr_heat(cor_matrix)
 ```
 
-<img src="man/figures/README-corrheat1-1.png" width="75%" style="display: block; margin: auto;" />
+<img src='man/figures/corr_heat.png' style="display:block; margin: 0 auto;" width=50%>
+<br>
+<img src='man/figures/corr_heat_3d.png' style="display:block; margin: 0 auto;" width=50%>
 
 Plot some model coefficients. Requires the
 <span class="pack">scico</span> package.

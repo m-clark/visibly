@@ -62,22 +62,8 @@ Plot it to get a feel for things.
 create_palette('#ff5500', plot = T)
 ```
 
-There are some other options to express.
-
-```{r plot2}
-create_palette('#ff5500', 
-               alpha = .5, 
-               plot = T, 
-               name = 'orange_you_glad_you_have_this_color')
-```
-
-
 One of the built-in palettes is based on R's blue. Others are based on [Stan's](https://github.com/stan-dev/stan) red, [plotly's](https://github.com/ropensci/plotly) base colors, and the red-blue palette from [RColorBrewer](https://github.com/cran/RColorBrewer/blob/master/R/ColorBrewer.R).
 
-
-```{r rblue}
-palettes$Rblue
-```
 
 A clean theme for <span class="pack">plotly</span>.
 
@@ -89,13 +75,17 @@ mtcars %>%
   theme_plotly()
 ```
 
-Visualize a correlation matrix.
+Visualize a correlation matrix via factor analysis.
 
-```{r corrheat1}
+```{r corrheat1, eval=FALSE}
 data('bfi', package = 'visibly')
 cor_matrix = cor(bfi, use='pair')
 corr_heat(cor_matrix)
 ```
+
+<img src='man/figures/corr_heat.png' style="display:block; margin: 0 auto;" width=50%>
+<br>
+<img src='man/figures/corr_heat_3d.png' style="display:block; margin: 0 auto;" width=50%>
 
 
 Plot some model coefficients.  Requires the <span class="pack">scico</span> package.
