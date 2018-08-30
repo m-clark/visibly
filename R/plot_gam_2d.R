@@ -7,7 +7,7 @@
 #'   is 100, creating a 100 x 100 grid of points.
 #' @param force_2d If the second_var has <= 5 values, the plot_gam_by is called.
 #'   This will override that.
-#' @param ... Options to scale_fill_viridis_c for plot_gam_2d or
+#' @param ... Options to scale_fill_scico for plot_gam_2d or
 #'   scale_color_viridis_d for plot_gam_by
 #'
 #' @details These functions plot the predictions for two covariates in a GAM
@@ -25,6 +25,8 @@
 #' @note If you are using gamm or gamm4 then you need to supply the mgcv model
 #'   as the model object.
 #'
+#'
+#' @seealso \link[scico]{scale_fill_scico} \link[ggplot2]{scale_colour_viridis_d}
 #' @return A ggplot of the 2d effect.
 #' @inheritParams plot_gam
 #' @importFrom stats na.omit
@@ -35,7 +37,7 @@
 #' d = gamSim(2, scale=.1)$data
 #' mod <- gam(y ~ s(x, z), data = d)
 #' plot_gam_2d(mod, main_var = x, second_var = z)
-#' plot_gam_2d(mod, main_var = x, second_var = z, option='C')
+#' plot_gam_2d(mod, main_var = x, second_var = z, palette='oslo')
 #'
 #' d2 = gamSim(4)
 #' mod_by <- gam(y ~ s(x2, by=fac), data = d2)
@@ -105,7 +107,7 @@ plot_gam_2d <- function(model,
   data_list %>%
     ggplot(aes(x=!!mv, y=!!sv)) +
     geom_tile(aes(fill=prediction)) +
-    scale_fill_viridis_c(...) +
+    scico::scale_fill_scico(...) +
     theme_trueMinimal()
 }
 
@@ -150,6 +152,6 @@ plot_gam_by <- function(model,
   data_list %>%
     ggplot(aes(x=!!mv, y=prediction, color=!!bv)) +
     geom_line() +
-    scale_color_viridis_d(...) +
+    ggplot2::scale_colour_viridis_d(...) +
     theme_trueMinimal()
 }

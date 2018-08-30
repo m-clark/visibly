@@ -387,7 +387,7 @@
   ],
   "releaseNotes": "https://github.com/m-clark/visibly/blob/master/NEWS.md",
   "readme": "https://github.com/m-clark/visibly/blob/master/README.md",
-  "fileSize": "33327.132KB",
+  "fileSize": "33326.986KB",
   "contIntegration": [
     "https://travis-ci.org/m-clark/visibly",
     "https://ci.appveyor.com/project/m-clark/visibly",

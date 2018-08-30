@@ -71,3 +71,4 @@ mtcars \%>\%
   theme_blank()
 
 }
+\concept{themes}

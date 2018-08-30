@@ -6,8 +6,9 @@
 \alias{plot_gam_multi1d}
 \title{Plot Generalized Additive Model Results}
 \usage{
-plot_gam(model, main_var, conditional_data = NULL, line_color = "#ff5500",
-  ribbon_color = "#00aaff40", ncol = NULL, nrow = NULL)
+plot_gam(model, main_var, conditional_data = NULL,
+  line_color = "#ff5500", ribbon_color = "#00aaff40", ncol = NULL,
+  nrow = NULL)
 
 plot_gam_1d(model, main_var, conditional_data = NULL,
   line_color = "#ff5500", ribbon_color = "#00aaff")
@@ -106,3 +107,4 @@ Other model visualization: \code{\link{plot_coefficients.brmsfit}},
   \code{\link{plot_gam_2d}}, \code{\link{plot_gam_3d}},
   \code{\link{plot_gam_check}}
 }
+\concept{model visualization}

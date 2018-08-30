@@ -52,3 +52,4 @@ Other model visualization: \code{\link{plot_coefficients.brmsfit}},
   \code{\link{plot_gam_2d}}, \code{\link{plot_gam_check}},
   \code{\link{plot_gam}}
 }
+\concept{model visualization}

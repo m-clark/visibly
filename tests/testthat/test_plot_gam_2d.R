@@ -45,8 +45,8 @@ test_that('plot_gam_2d will switch to by',{
   expect_message(plot_gam_2d(by_mod2, main_var = x2, second_var = fac_num))
 })
 
-test_that('plot_gam_2d takes viridis args',{
-  expect_s3_class(plot_gam_2d(b, main_var = x, second_var = z, option='C'),
+test_that('plot_gam_2d takes scico args',{
+  expect_s3_class(plot_gam_2d(b, main_var = x, second_var = z, palette='tokyo'),
                   'ggplot')
 })
 

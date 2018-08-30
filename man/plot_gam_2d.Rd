@@ -9,8 +9,8 @@ Plot 2-dimensional smooth terms}
 plot_gam_2d(model, main_var, second_var, conditional_data = NULL,
   n_plot = 100, force_2d = FALSE, ...)
 
-plot_gam_by(model, main_var, by_var, conditional_data = NULL, n_plot = 500,
-  ...)
+plot_gam_by(model, main_var, by_var, conditional_data = NULL,
+  n_plot = 500, ...)
 }
 \arguments{
 \item{model}{The mgcv GAM.}
@@ -30,7 +30,7 @@ is 100, creating a 100 x 100 grid of points.}
 \item{force_2d}{If the second_var has <= 5 values, the plot_gam_by is called.
 This will override that.}
 
-\item{...}{Options to scale_fill_viridis_c for plot_gam_2d or
+\item{...}{Options to scale_fill_scico for plot_gam_2d or
 scale_color_viridis_d for plot_gam_by}
 
 \item{by_var}{Required for plot_gam_by. The categorical variable of interest.}
@@ -66,7 +66,7 @@ set.seed(0)
 d = gamSim(2, scale=.1)$data
 mod <- gam(y ~ s(x, z), data = d)
 plot_gam_2d(mod, main_var = x, second_var = z)
-plot_gam_2d(mod, main_var = x, second_var = z, option='C')
+plot_gam_2d(mod, main_var = x, second_var = z, palette='oslo')
 
 d2 = gamSim(4)
 mod_by <- gam(y ~ s(x2, by=fac), data = d2)
@@ -74,6 +74,8 @@ plot_gam_by(mod_by, main_var = x2, by_var = fac)
 
 }
 \seealso{
+\link[scico]{scale_fill_scico} \link[ggplot2]{scale_colour_viridis_d}
+
 Other model visualization: \code{\link{plot_coefficients.brmsfit}},
   \code{\link{plot_coefficients.lm}},
   \code{\link{plot_coefficients.merMod}},
@@ -81,3 +83,4 @@ Other model visualization: \code{\link{plot_coefficients.brmsfit}},
   \code{\link{plot_gam_3d}}, \code{\link{plot_gam_check}},
   \code{\link{plot_gam}}
 }
+\concept{model visualization}

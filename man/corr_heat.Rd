@@ -4,9 +4,10 @@
 \alias{corr_heat}
 \title{Visualize a correlation matrix}
 \usage{
-corr_heat(cormat, n_factors = NULL, psych_opts = NULL, ordering = c("fa",
-  "raw", "absolute", "first", "polar"), three_d = FALSE, diagonal = 1,
-  dir = -1, pal = "vik", plot_only = FALSE)
+corr_heat(cormat, n_factors = NULL, psych_opts = NULL,
+  ordering = c("fa", "raw", "absolute", "first", "polar"),
+  three_d = FALSE, diagonal = 1, dir = -1, pal = "vik",
+  plot_only = FALSE)
 }
 \arguments{
 \item{cormat}{A correlation matrix}

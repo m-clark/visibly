@@ -6,7 +6,8 @@
 \usage{
 plot_coefficients(model, order = "decreasing", sd_multi = 2,
   keep_intercept = FALSE, palette = "bilbao", ref_line = 0,
-  trans = NULL, plot = TRUE, ranef = FALSE, which_ranef = NULL, ...)
+  trans = NULL, plot = TRUE, ranef = FALSE, which_ranef = NULL,
+  ...)
 }
 \arguments{
 \item{model}{The model that is the point of this function. For example, lm, glm, gam, lme4, brms.}
@@ -53,3 +54,4 @@ Other model visualization: \code{\link{plot_coefficients.brmsfit}},
   \code{\link{plot_gam_2d}}, \code{\link{plot_gam_3d}},
   \code{\link{plot_gam_check}}, \code{\link{plot_gam}}
 }
+\concept{model visualization}
