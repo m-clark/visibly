@@ -67,13 +67,17 @@ One of the built-in palettes is based on R's blue. Others are based on [Stan's](
 
 A clean theme for <span class="pack">plotly</span>.
 
-```{r example4}
+<!-- Plotly does all wonder of screwup here because size is so hard, so just export the png -->
+
+```{r example4, eval=FALSE}
 library(plotly)
 mtcars %>% 
   plot_ly(x=~wt, y=~mpg, color=~cyl) %>% 
-  add_markers(marker=list(size=25)) %>% 
+  add_markers(marker=list(size=15)) %>% 
   theme_plotly()
 ```
+
+<img src="man/figures/plotly_wtf.png" style="display:block; margin: 0 auto;" width='50%'>
 
 Visualize a correlation matrix via factor analysis.
 
