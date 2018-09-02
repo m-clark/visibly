@@ -7,7 +7,7 @@
 \title{Plot Generalized Additive Model Results}
 \usage{
 plot_gam(model, main_var, conditional_data = NULL,
-  line_color = "#ff5500", ribbon_color = "#00aaff40", ncol = NULL,
+  line_color = "#7B321C", ribbon_color = "#28688640", ncol = NULL,
   nrow = NULL)
 
 plot_gam_1d(model, main_var, conditional_data = NULL,
@@ -38,18 +38,17 @@ Supply a data frame with desired values of the model covariates.}
 a ggplot2 object of the effects of main_var.
 }
 \description{
-Plot 1d effects from mgcv gam model results.
+Plot 1d marginal effects from mgcv GAM model results.
 }
 \details{
-This function is very 'no-frills' and in its early stages at the
-  moment. Only 1d or multiple 1d numeric smooths are able to be plotted, and
-  nothing using categorical variables (e.g. 'by'). If conditional data is not supplied,
-  it will be created by \link[tidyext]{create_prediction_data}, i.e. defaults
-  to means for numeric, most common category for categorical variables, and
-  500 observations.
+This function is fairly 'no-frills' and at the moment. Only 1d or
+  multiple 1d smooths of numeric variables are able to be plotted. If
+  conditional data is not supplied, it will be created by
+  \link[visibly]{create_prediction_data}, which defaults to means for numeric,
+  most common category for categorical variables, and 500 observations.
 }
 \examples{
-library(mgcv) # you don't need this function if you don't have this package
+library(mgcv) # you don't need this function if you don't use this package
 library(dplyr)
 # example taken from the mgcv plot.gam help file.
 set.seed(0)
