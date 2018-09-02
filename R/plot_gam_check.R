@@ -53,9 +53,19 @@ plot_gam_check <- function(model,
   }
 
   y_name <- colnames(model$model)[1]
+  fits =  predict(model, type = 'response')
+
+  # for ordinal/multinom, get most likely category
+  catcheck = grepl(model$family$family, pattern = 'Ord|multi')
+  if (catcheck) {
+    probs = fits # for scatter
+    fits = apply(fits, 1, which.max)
+    fits = sort(unique(model$y))[fits]
+  }
+
 
   fit_dat <- data_frame(
-    `fitted values` = fitted(model),
+    `fitted values` = fits,
     residuals = resid,
     `linear predictor` = linpred,
   ) %>%
@@ -71,11 +81,23 @@ plot_gam_check <- function(model,
     theme_trueMinimal()
 
   if (scatter) {
-    fit_plot <-
-      ggplot(aes(x = `fitted values`, y=model$y), data=fit_dat) +
-      geom_point(aes(), alpha=.25) +
-      labs(y = y_name) +
-      theme_trueMinimal()
+    if (!catcheck) {
+      fit_plot <-
+        ggplot(aes(x = `fitted values`, y=model$y), data=fit_dat) +
+        geom_point(aes(), alpha=.25) +
+        labs(y = y_name) +
+        theme_trueMinimal()
+    } else {
+      cat_fit_dat = data.frame(y = model$y,
+                           probs) %>%
+        tidyr::gather(key = y, value = `fitted values`) #%>%
+        # mutate(y = as.numeric(factor(y)))
+      fit_plot <-
+        ggplot(aes(x = `fitted values`, y=y), data=cat_fit_dat) +
+        geom_point(aes(), alpha=.25) +
+        labs(y = y_name) +
+        theme_trueMinimal()
+    }
   } else {
     fit_plot <-
     fit_dat %>%
