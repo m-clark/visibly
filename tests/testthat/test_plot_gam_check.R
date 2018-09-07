@@ -89,6 +89,7 @@ test_that('plot_gam_check can do other families',{
 
   expect_s3_class(plot_gam_check(negbin_model), 'grob')
 
+
   # Ordinal
   set.seed(3); n<-400
   dat <- gamSim(1, n = n)
@@ -105,10 +106,12 @@ test_that('plot_gam_check can do other families',{
   dat$y <- y
 
   ord_model <- gam(y ~ s(x0) + s(x1) + s(x2) + s(x3),
-             family = ocat(R = R),
-             data = dat)
+                   family = ocat(R = R),
+                   data = dat)
+
   expect_s3_class(plot_gam_check(ord_model), 'grob')
   expect_s3_class(plot_gam_check(ord_model, scatter = TRUE), 'grob')
+
 
   # Multinomial
   n <- 1000
@@ -130,15 +133,14 @@ test_that('plot_gam_check can do other families',{
 
   ## simulate multinomial response with these probabilities
   y <- apply(cp, 1, function(x) min(which(x > runif(1)))) - 1
-
-  # y = factor(y, labels = c('a', 'b', 'c'))  # gam won't take factors
+  # gam won't take factors
 
   multinom_model <- gam(list(y ~ s(x1) + s(x2),
                                ~ s(x1) + s(x2)),
-                           data = data.frame(y = y,
-                                             x1 = x1,
-                                             x2 = x2),
-                           family = multinom(K = 2))
+                        data = data.frame(y = y,
+                                          x1 = x1,
+                                          x2 = x2),
+                        family = multinom(K = 2))
   expect_s3_class(plot_gam_check(multinom_model), 'grob')
   expect_s3_class(plot_gam_check(multinom_model, scatter = TRUE), 'grob')
 })

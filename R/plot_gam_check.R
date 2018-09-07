@@ -88,12 +88,12 @@ plot_gam_check <- function(model,
         labs(y = y_name) +
         theme_trueMinimal()
     } else {
-      cat_fit_dat = data.frame(y = model$y,
+      cat_fit_dat <- data.frame(y = model$y,
                            probs) %>%
-        tidyr::gather(key = y, value = `fitted values`) #%>%
-        # mutate(y = as.numeric(factor(y)))
+        tidyr::gather(key = y, value = `fitted values`)
+
       fit_plot <-
-        ggplot(aes(x = `fitted values`, y=y), data=cat_fit_dat) +
+        ggplot(aes(x = `fitted values`, y = y), data = cat_fit_dat) +
         geom_point(aes(), alpha=.25) +
         labs(y = y_name) +
         theme_trueMinimal()

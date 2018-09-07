@@ -1,6 +1,6 @@
 #' Plot Generalized Additive Model Results
 #'
-#' @description Plot 1d effects from mgcv gam model results.
+#' @description Plot 1d marginal effects from mgcv GAM model results.
 #'
 #' @param model The mgcv GAM.
 #' @param main_var Which variable do you want to plot? Uses bare variable names
@@ -12,19 +12,18 @@
 #' @param nrow If plotting multiple smooths, these are passed to facet_wrap.
 #' @param ncol If plotting multiple smooths, these are passed to facet_wrap.
 #'
-#' @details This function is very 'no-frills' and in its early stages at the
-#'   moment. Only 1d or multiple 1d numeric smooths are able to be plotted, and
-#'   nothing using categorical variables (e.g. 'by'). If conditional data is not supplied,
-#'   it will be created by \link[tidyext]{create_prediction_data}, i.e. defaults
-#'   to means for numeric, most common category for categorical variables, and
-#'   500 observations.
+#' @details This function is fairly 'no-frills' and at the moment. Only 1d or
+#'   multiple 1d smooths of numeric variables are able to be plotted. If
+#'   conditional data is not supplied, it will be created by
+#'   \link[visibly]{create_prediction_data}, which defaults to means for numeric,
+#'   most common category for categorical variables, and 500 observations.
 #'
 #' @return a ggplot2 object of the effects of main_var.
 #'
 #' @importFrom stats predict
 #'
 #' @examples
-#' library(mgcv) # you don't need this function if you don't have this package
+#' library(mgcv) # you don't need this function if you don't use this package
 #' library(dplyr)
 #' # example taken from the mgcv plot.gam help file.
 #' set.seed(0)
@@ -79,8 +78,8 @@
 plot_gam <- function(model,
                      main_var,
                      conditional_data = NULL,
-                     line_color = '#ff5500',
-                     ribbon_color = '#00aaff40',
+                     line_color = '#7B321C',
+                     ribbon_color = '#28688640',
                      ncol = NULL,
                      nrow = NULL) {
 
@@ -195,6 +194,7 @@ plot_gam_multi1d <- function(model,
   n_terms <- length(main_var)
   data_list <- vector('list', n_terms)
 
+  # create conditional data
   for (i in 1:n_terms){
     if (is.null(conditional_data)) {
       init <- select(model_data, !!main_var[[i]])
@@ -263,7 +263,7 @@ plot_gam_multi1d <- function(model,
 
   bind_rows(data_list) %>%
     ggplot(aes(x=value, y=fit)) +
-    geom_ribbon(aes(ymin=ll, ymax=ul), fill=ribbon_color, alpha=.25) +
+    geom_ribbon(aes(ymin=ll, ymax=ul), fill=ribbon_color) +
     geom_line(color=line_color) +
     facet_wrap(~ term, ncol = ncol, nrow = nrow, scales = 'free') +
     theme_trueMinimal()

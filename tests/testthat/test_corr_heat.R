@@ -118,5 +118,5 @@ test_that('errors with NA and fa', {
   h23[, 2] <- NA
   h23[2, ] <- NA
   # h23[2, 2] <- 1
-  expect_error(corr_heat(h23))
+  expect_error(suppressWarnings(corr_heat(h23)))
 })
