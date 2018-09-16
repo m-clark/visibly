@@ -34,7 +34,7 @@
   
 <meta property="og:title" content="Plot Generalized Additive Model Results — plot_gam" />
 
-<meta property="og:description" content="Plot 1d effects from mgcv gam model results." />
+<meta property="og:description" content="Plot 1d marginal effects from mgcv GAM model results." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,12 +130,13 @@
 
     <div class="ref-description">
     
-    <p>Plot 1d effects from mgcv gam model results.</p>
+    <p>Plot 1d marginal effects from mgcv GAM model results.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_gam</span>(<span class='no'>model</span>, <span class='no'>main_var</span>, <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>line_color</span> <span class='kw'>=</span> <span class='st'>"#ff5500"</span>,
-  <span class='kw'>ribbon_color</span> <span class='kw'>=</span> <span class='st'>"#00aaff40"</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>plot_gam</span>(<span class='no'>model</span>, <span class='no'>main_var</span>, <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>line_color</span> <span class='kw'>=</span> <span class='st'>"#7B321C"</span>, <span class='kw'>ribbon_color</span> <span class='kw'>=</span> <span class='st'>"#28688640"</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>plot_gam_1d</span>(<span class='no'>model</span>, <span class='no'>main_var</span>, <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>line_color</span> <span class='kw'>=</span> <span class='st'>"#ff5500"</span>, <span class='kw'>ribbon_color</span> <span class='kw'>=</span> <span class='st'>"#00aaff"</span>)
@@ -185,12 +186,11 @@ Supply a data frame with desired values of the model covariates.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function is very 'no-frills' and in its early stages at the
-  moment. Only 1d or multiple 1d numeric smooths are able to be plotted, and
-  nothing using categorical variables (e.g. 'by'). If conditional data is not supplied,
-  it will be created by <a href='http://www.rdocumentation.org/packages/tidyext/topics/create_prediction_data'>create_prediction_data</a>, i.e. defaults
-  to means for numeric, most common category for categorical variables, and
-  500 observations.</p>
+    <p>This function is fairly 'no-frills' and at the moment. Only 1d or
+  multiple 1d smooths of numeric variables are able to be plotted. If
+  conditional data is not supplied, it will be created by
+  <a href='create_prediction_data.html'>create_prediction_data</a>, which defaults to means for numeric,
+  most common category for categorical variables, and 500 observations.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -203,7 +203,7 @@ Supply a data frame with desired values of the model covariates.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>mgcv</span>) <span class='co'># you don't need this function if you don't have this package</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: nlme</span></div><div class='output co'>#&gt; <span class='message'></span>
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>mgcv</span>) <span class='co'># you don't need this function if you don't use this package</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: nlme</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘nlme’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:lme4’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    lmList</span></div><div class='output co'>#&gt; <span class='message'>This is mgcv 1.8-24. For overview type 'help("mgcv-package")'.</span></div><div class='input'><span class='fu'>library</span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>

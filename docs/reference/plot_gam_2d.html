@@ -142,8 +142,8 @@ Plot 2-dimensional smooth terms</p>
     <pre class="usage"><span class='fu'>plot_gam_2d</span>(<span class='no'>model</span>, <span class='no'>main_var</span>, <span class='no'>second_var</span>, <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>n_plot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>force_2d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
-<span class='fu'>plot_gam_by</span>(<span class='no'>model</span>, <span class='no'>main_var</span>, <span class='no'>by_var</span>, <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n_plot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-  <span class='no'>...</span>)</pre>
+<span class='fu'>plot_gam_by</span>(<span class='no'>model</span>, <span class='no'>main_var</span>, <span class='no'>by_var</span>, <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>n_plot</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,8 +179,9 @@ This will override that.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Options to scale_fill_viridis_c for plot_gam_2d or
-scale_color_viridis_d for plot_gam_by</p></td>
+      <td><p>Options to scale_fill_scico for plot_gam_2d or
+scale_color_viridis_d for plot_gam_by (scale_color_scico_d if using scico
+development version).</p></td>
     </tr>
     <tr>
       <th>by_var</th>
@@ -212,7 +213,8 @@ scale_color_viridis_d for plot_gam_by</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other model visualization: <code><a href='plot_coefficients.brmsfit.html'>plot_coefficients.brmsfit</a></code>,
+    <div class='dont-index'><p><a href='http://www.rdocumentation.org/packages/scico/topics/ggplot2-scales'>scale_fill_scico</a> <a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_viridis'>scale_colour_viridis_d</a></p>
+<p>Other model visualization: <code><a href='plot_coefficients.brmsfit.html'>plot_coefficients.brmsfit</a></code>,
   <code><a href='plot_coefficients.lm.html'>plot_coefficients.lm</a></code>,
   <code><a href='plot_coefficients.merMod.html'>plot_coefficients.merMod</a></code>,
   <code><a href='plot_coefficients.html'>plot_coefficients</a></code>,
@@ -225,7 +227,7 @@ scale_color_viridis_d for plot_gam_by</p></td>
 <span class='fu'>set.seed</span>(<span class='fl'>0</span>)
 
 <span class='no'>d</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/gamSim'>gamSim</a></span>(<span class='fl'>2</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>.1</span>)$<span class='no'>data</span></div><div class='output co'>#&gt; Bivariate smoothing example</div><div class='input'><span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/gam'>gam</a></span>(<span class='no'>y</span> ~ <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/s'>s</a></span>(<span class='no'>x</span>, <span class='no'>z</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>)
-<span class='fu'>plot_gam_2d</span>(<span class='no'>mod</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>second_var</span> <span class='kw'>=</span> <span class='no'>z</span>)</div><div class='img'><img src='plot_gam_2d-1.png' alt='' width='700' height='1133' /></div><div class='input'><span class='fu'>plot_gam_2d</span>(<span class='no'>mod</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>second_var</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>option</span><span class='kw'>=</span><span class='st'>'C'</span>)</div><div class='img'><img src='plot_gam_2d-2.png' alt='' width='700' height='1133' /></div><div class='input'>
+<span class='fu'>plot_gam_2d</span>(<span class='no'>mod</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>second_var</span> <span class='kw'>=</span> <span class='no'>z</span>)</div><div class='img'><img src='plot_gam_2d-1.png' alt='' width='700' height='1133' /></div><div class='input'><span class='fu'>plot_gam_2d</span>(<span class='no'>mod</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>second_var</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>palette</span><span class='kw'>=</span><span class='st'>'oslo'</span>)</div><div class='img'><img src='plot_gam_2d-2.png' alt='' width='700' height='1133' /></div><div class='input'>
 <span class='no'>d2</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/gamSim'>gamSim</a></span>(<span class='fl'>4</span>)</div><div class='output co'>#&gt; Factor `by' variable example</div><div class='input'><span class='no'>mod_by</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/gam'>gam</a></span>(<span class='no'>y</span> ~ <span class='fu'><a href='http://www.rdocumentation.org/packages/mgcv/topics/s'>s</a></span>(<span class='no'>x2</span>, <span class='kw'>by</span><span class='kw'>=</span><span class='no'>fac</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d2</span>)
 <span class='fu'>plot_gam_by</span>(<span class='no'>mod_by</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x2</span>, <span class='kw'>by_var</span> <span class='kw'>=</span> <span class='no'>fac</span>)</div><div class='img'><img src='plot_gam_2d-3.png' alt='' width='700' height='1133' /></div><div class='input'>
 </div></pre>
