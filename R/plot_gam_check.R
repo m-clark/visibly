@@ -99,14 +99,24 @@ plot_gam_check <- function(model,
         theme_trueMinimal()
     }
   } else {
+    # check for palette until scico updates on CRAN; use viridis if not
+    if (!requireNamespace("scico", quietly = TRUE) ||
+        !'batlow' %in% scico::scico_palette_names()) {
+      col_scale = scale_color_viridis_d(end=.5)
+      fill_scale = scale_fill_viridis_d(end=.5)
+    } else {
+      col_scale = scico::scale_color_scico_d(palette='batlow')
+      fill_scale = scico::scale_fill_scico_d(palette='batlow')
+    }
+
     fit_plot <-
     fit_dat %>%
       select(-residuals, -`linear predictor`) %>%
       tidyr::gather(key=var) %>%
       ggplot(aes(x = value, fill=var, color=var)) +
       geom_density(alpha=.25) +
-      scale_color_viridis_d(end=.5) +
-      scale_fill_viridis_d(end=.5) +
+      col_scale +
+      fill_scale +
       theme_trueMinimal() +
       theme(
         legend.title = element_blank(),
@@ -117,8 +127,8 @@ plot_gam_check <- function(model,
 
   res_dens_plot <-
     ggplot(aes(x = residuals), data=fit_dat) +
-    geom_density(color='#440154FF',
-                 fill='#440154FF',
+    geom_density(color='#001959',
+                 fill='#001959',
                  alpha=.25,
                  show.legend = FALSE) +
     theme_trueMinimal()

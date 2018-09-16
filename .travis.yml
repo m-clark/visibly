@@ -29,6 +29,7 @@ after_success:
                                                               'R/corr_heat.R'=90:107,
                                                               'R/create_palette.R'=35:39,
                                                               'R/plot_coefs.R'=18:20,
-                                                              'R/plot_gam_check.R'=c(119:120, 133:134),
+                                                              'R/plot_gam_check.R'=c(103:110, 119:120, 167:169),
+                                                              'R/plot_gam_2d.R'=c(154:156),
                                                               'R/color_contrast_checker.R'=65:70
                                                               ))"

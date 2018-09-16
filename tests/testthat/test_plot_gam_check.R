@@ -1,8 +1,5 @@
 context('test plot_gam_check')
 
-library(mgcv) # you don't need this function if you don't have this package
-
-
 # example taken from the mgcv plot.gam help file.
 library(mgcv); library(dplyr)
 set.seed(0)

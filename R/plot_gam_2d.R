@@ -8,7 +8,8 @@
 #' @param force_2d If the second_var has <= 5 values, the plot_gam_by is called.
 #'   This will override that.
 #' @param ... Options to scale_fill_scico for plot_gam_2d or
-#'   scale_color_viridis_d for plot_gam_by
+#'   scale_color_viridis_d for plot_gam_by (scale_color_scico_d if using scico
+#'   development version).
 #'
 #' @details These functions plot the predictions for two covariates in a GAM
 #'   model produced by the \link[mgcv]{mgcv} package. The \code{plot_gam_2d}
@@ -149,9 +150,17 @@ plot_gam_by <- function(model,
     data_list <- data_list %>%
     mutate(!!quo_name(bv) := as.factor(!!bv))
 
+  # check for palette until scico updates on CRAN; use viridis if not
+  if (!requireNamespace("scico", quietly = TRUE) ||
+      !'batlow' %in% scico::scico_palette_names()) {
+    col_scale = scale_color_viridis_d(...)
+  } else {
+    col_scale = scico::scale_color_scico_d(...)
+  }
+
   data_list %>%
     ggplot(aes(x=!!mv, y=prediction, color=!!bv)) +
     geom_line() +
-    ggplot2::scale_colour_viridis_d(...) +
+    col_scale +
     theme_trueMinimal()
 }

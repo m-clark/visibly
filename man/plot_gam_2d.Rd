@@ -31,7 +31,8 @@ is 100, creating a 100 x 100 grid of points.}
 This will override that.}
 
 \item{...}{Options to scale_fill_scico for plot_gam_2d or
-scale_color_viridis_d for plot_gam_by}
+scale_color_viridis_d for plot_gam_by (scale_color_scico_d if using scico
+development version).}
 
 \item{by_var}{Required for plot_gam_by. The categorical variable of interest.}
 }

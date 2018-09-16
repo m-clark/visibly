@@ -124,10 +124,7 @@ test_that('plot_gam will handle different scales',{
 
 test_that('plot_gam can take no main_var',{
   b <- gam(y ~ x0 + s(x1) + s(x2) + s(x3), data = d2)
-  expect_s3_class(
-    plot_gam(b,
-             ncol = 1),
-    'ggplot')
+  expect_s3_class(plot_gam(b, ncol = 1),'ggplot')
 })
 
 

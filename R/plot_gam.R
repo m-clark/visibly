@@ -94,14 +94,11 @@ plot_gam <- function(model,
     main_var <- map_chr(model$smooth, function(x) x$vn)
   }
 
-
   check_mv <- tryCatch(rlang::is_quosures(main_var), error = function(c) {
     msg <- conditionMessage(c)
     invisible(structure(msg, class = "try-error"))
   })
 
-  # if (class(check_mv) == 'try-error' | is.logical(check_mv) && !check_mv)
-  #   main_var <- quos(!!mv)
 
   if (class(check_mv) != 'try-error') {
     plot_gam_multi1d(model = model,

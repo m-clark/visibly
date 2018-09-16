@@ -1,6 +1,7 @@
 context('test corr_heat')
 
 main <- cor(mtcars)
+m_small <- matrix(runif(25), ncol = 3)
 m_asym <- matrix(runif(25), ncol = 5)
 m_nonsq <- matrix(runif(30), ncol = 6)
 
@@ -51,6 +52,10 @@ test_that('can take n_factors', {
 
 test_that('will automate less than 4 cols', {
   expect_s3_class(corr_heat(cor(mtcars[,1:3])), 'plotly')
+})
+
+test_that('will automate less than 4 cols', {
+  expect_s3_class(corr_heat(cor(mtcars[,1:3]), n_factors = 2), 'plotly')
 })
 
 test_that('will automate more than 4 cols', {
