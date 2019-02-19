@@ -32,7 +32,7 @@
 #' @importFrom utils type.convert
 #'
 #' @examples
-#' library(tidyext)
+#' library(visibly)
 #' create_prediction_data(iris)
 #' create_prediction_data(iris, num = median,
 #'                        expand.grid(
@@ -76,8 +76,16 @@ create_prediction_data <- function(model_data,
     }
   }
 
-  pred_data <- model_data %>%
-    select_if(! colnames(.) %in% names(conditional_data)) %>%
+  # quick fix of lack of select_not; return to later?
+  if (!is.null(conditional_data)) {
+    not_these <- names(conditional_data)
+    pred_data <- model_data %>%
+      select(-dplyr::one_of(not_these))
+  } else {
+    pred_data <- model_data
+  }
+
+  pred_data <- pred_data %>%
     mutate_if(function(x) is.numeric(x), num, ...) %>%
     mutate_if(function(x)
       rlang::inherits_any(x, c('factor', 'string', 'logical', 'Date')),

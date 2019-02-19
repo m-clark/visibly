@@ -46,7 +46,7 @@ This is a port of the tidyext function...
   as columns in the \code{conditional_data} are treated as above.
 }
 \examples{
-library(tidyext)
+library(visibly)
 create_prediction_data(iris)
 create_prediction_data(iris, num = median,
                        expand.grid(
