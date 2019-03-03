@@ -16,36 +16,51 @@ matrix:
   - r: release
 
   allow_failures:
-  - r: 3.4.0
+  #- r: 3.4.0
 
+  r_binary_packages:
+    - devtools
+    - rstan
+    - rstanarm
+    - RCurl
+    - dplyr
+    - glue
+    - magrittr
+    - stringi
+    - stringr
+    - munsell
+    - rlang
+    - reshape2
+    - scales
+    - tibble
+    - ggplot2
+    - StanHeaders
+    - Rcpp
+    - RcppEigen
+    - BH
 
-r_binary_packages:
-  - rstan
-  - rstanarm
-  - RCurl
-  - dplyr
-  - glue
-  - magrittr
-  - stringi
-  - stringr
-  - munsell
-  - rlang
-  - reshape2
-  - scales
-  - tibble
-  - ggplot2
-  - StanHeaders
-  - Rcpp
-  - RcppEigen
-  - BH
+  # for rstan
+   - os: linux
+     dist: trusty
+     r: release
+     r_binary_packages:
+       - devtools
+     addons:
+       apt:
+         sources:
+           - ubuntu-toolchain-r-test
+         packages:
+           - g++-7
+     env:
+       - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
 
-# for rstan
+
 before_install:
-  - mkdir -p ~/.R && echo "CXX14=g++-6" > ~/.R/Makevars
+  - mkdir -p ~/.R && echo "CXX14=g++-7" > ~/.R/Makevars
   - echo "CXX14FLAGS += -g -O2 -pedantic -g0 -fPIC" >> ~/.R/Makevars
   - cat ~/.R/Makevars
   - sudo apt-get -y install libnlopt-dev
