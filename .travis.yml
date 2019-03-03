@@ -16,6 +16,28 @@ matrix:
   - r: release
 
   allow_failures:
+  - r: 3.4.0
+
+
+r_binary_packages:
+  - rstan
+  - rstanarm
+  - RCurl
+  - dplyr
+  - glue
+  - magrittr
+  - stringi
+  - stringr
+  - munsell
+  - rlang
+  - reshape2
+  - scales
+  - tibble
+  - ggplot2
+  - StanHeaders
+  - Rcpp
+  - RcppEigen
+  - BH
 
 repos:
   CRAN: https://cloud.r-project.org
