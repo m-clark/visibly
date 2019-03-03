@@ -3,12 +3,17 @@
 
 # Header
 language: r
-sudo: false
-dist: trusty
+sudo: true
+# dist: trusty
 cache: packages
 latex: false
 
 warnings_are_errors: false
+
+r_packages:
+  - covr
+r_build_args: '--no-build-vignettes'
+r_check_args: '--ignore-vignettes'
 
 matrix:
   include:
@@ -58,7 +63,7 @@ repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
 
-
+# for rstan
 before_install:
   - mkdir -p ~/.R && echo "CXX14=g++-7" > ~/.R/Makevars
   - echo "CXX14FLAGS += -g -O2 -pedantic -g0 -fPIC" >> ~/.R/Makevars
@@ -66,8 +71,7 @@ before_install:
   - sudo apt-get -y install libnlopt-dev
   - sudo apt-get update
 
-r_packages:
-  - covr
+
 
 after_success:
   - Rscript -e "library(covr); codecov(line_exclusions = list('R/colorgorical.R'=135:163,
