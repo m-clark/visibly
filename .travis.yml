@@ -22,53 +22,40 @@ matrix:
   allow_failures:
   #- r: 3.4.0
 
-  #r_binary_packages:
-  #  - devtools
-  #  - rstan
-  #  - rstanarm
-  #  - RCurl
-  #  - dplyr
-  #  - glue
-  #  - magrittr
-  #  - stringi
-  #  - stringr
-  #  - munsell
-  #  - rlang
-  #  - reshape2
-  #  - scales
-  #  - tibble
-  #  - ggplot2
-  #  - StanHeaders
-  #  - Rcpp
-  #  - RcppEigen
-  #  - BH
+#  r_binary_packages:
+#    - devtools
+#    - rstan
+#    - rstanarm
+#    - RCurl
+#    - dplyr
+#    - glue
+#    - magrittr
+#    - stringi
+#    - stringr
+#    - munsell
+#    - rlang
+#    - reshape2
+#    - scales
+#    - tibble
+#    - ggplot2
+#    - StanHeaders
+#    - Rcpp
+#    - RcppEigen
+#    - BH
 
-  # for rstan
-#   - os: linux
-#     dist: trusty
-#     r: release
-#     r_binary_packages:
-#       - devtools
-#     addons:
-#       apt:
-#         sources:
-#           - ubuntu-toolchain-r-test
-#         packages:
-#           - g++-7
-#     env:
-#       - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+
+
+# from https://discourse.mc-stan.org/t/building-rstanarm-like-packagee-on-travis-with-c-14/6054/10?
+before_install:
+  - mkdir -p ~/.R
+  - echo "CXX14FLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined" >> ~/.R/Makevars
+  - echo "CXX14=g++ -std=c++1y -fPIC" >> ~/.R/Makevars
 
 repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
 
-# for rstan
-# before_install:
-#   - mkdir -p ~/.R && echo "CXX14=g++-7" > ~/.R/Makevars
-#   - echo "CXX14FLAGS += -g -O2 -pedantic -g0 -fPIC" >> ~/.R/Makevars
-#   - cat ~/.R/Makevars
-#   - sudo apt-get -y install libnlopt-dev
-#   - sudo apt-get update
+
 
 
 
