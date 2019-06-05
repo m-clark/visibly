@@ -53,12 +53,12 @@ plot_gam_3d <- function(model,
   mv_range <- range(na.omit(pull(model_data, !!mv)))
   sv_range <- range(na.omit(pull(model_data, !!sv)))
 
-  cd <- data_frame(!!quo_name(mv) := seq(mv_range[1],
-                                         mv_range[2],
-                                         length.out = n_plot),
-                   !!quo_name(sv) := seq(sv_range[1],
-                                         sv_range[2],
-                                         length.out = n_plot)) %>%
+  cd <- tibble::tibble(!!quo_name(mv) := seq(mv_range[1],
+                                     mv_range[2],
+                                     length.out = n_plot),
+               !!quo_name(sv) := seq(sv_range[1],
+                                     sv_range[2],
+                                     length.out = n_plot)) %>%
     tidyr::expand(!!mv, !!sv)
 
   data_list <-

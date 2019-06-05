@@ -11,12 +11,14 @@
 #' @param ribbon_color The color of the uncertainty interval around the line.
 #' @param nrow If plotting multiple smooths, these are passed to facet_wrap.
 #' @param ncol If plotting multiple smooths, these are passed to facet_wrap.
-#'
-#' @details This function is fairly 'no-frills' and at the moment. Only 1d or
+
+#' @details This function is fairly 'no-frills' at the moment. Only 1d or
 #'   multiple 1d smooths of numeric variables are able to be plotted. If
 #'   conditional data is not supplied, it will be created by
-#'   \link[visibly]{create_prediction_data}, which defaults to means for numeric,
-#'   most common category for categorical variables, and 500 observations.
+#'   \link[visibly]{create_prediction_data}, which defaults to means for
+#'   numeric, most common category for categorical variables, and 500
+#'   observations.  It currently will fail if you have a mix of 2d and 1d and do
+#'   not specify a smooth.
 #'
 #' @return a ggplot2 object of the effects of main_var.
 #'
@@ -73,6 +75,7 @@
 #' plot(b, pages=1)
 #'
 #' @family model visualization
+#' @importFrom tibble tibble as_tibble
 #'
 #' @export
 plot_gam <- function(model,
@@ -148,7 +151,7 @@ plot_gam_1d <- function(model,
       create_prediction_data(model_data = model_data,
                              conditional_data = cd) %>%
       bind_cols(
-        as_data_frame(
+        tibble::as_tibble(
           predict(model, ., type = 'response', se=TRUE))) %>%
       mutate(ll = fit - 2*se.fit,
              ul = fit + 2*se.fit) %>%
@@ -160,7 +163,7 @@ plot_gam_1d <- function(model,
       create_prediction_data(model_data = model_data,
                              conditional_data = conditional_data) %>%
       bind_cols(
-        as_data_frame(
+        tibble::as_tibble(
           predict(model, ., type = 'response', se=TRUE))) %>%
       mutate(ll = fit - 2*se.fit,
              ul = fit + 2*se.fit) %>%
@@ -212,7 +215,7 @@ plot_gam_multi1d <- function(model,
         data_list[[i]] <-
           create_prediction_data(model_data = model_data,
                                  conditional_data = cd) %>%
-          bind_cols(as_data_frame(
+          bind_cols(tibble::as_tibble(
             predict(model, ., type = 'response', se=TRUE))
           ) %>%
           mutate(ll = fit - 2*se.fit,
@@ -248,7 +251,7 @@ plot_gam_multi1d <- function(model,
         create_prediction_data(model_data = model_data,
                                conditional_data = cd) %>%
         bind_cols(
-          as_data_frame(
+          tibble::as_tibble(
             predict(model, ., type = 'response', se=TRUE))) %>%
         mutate(ll = fit - 2*se.fit,
                ul = fit + 2*se.fit) %>%

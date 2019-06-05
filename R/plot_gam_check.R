@@ -64,7 +64,7 @@ plot_gam_check <- function(model,
   }
 
 
-  fit_dat <- data_frame(
+  fit_dat <- tibble(
     `fitted values` = fits,
     residuals = resid,
     `linear predictor` = linpred,

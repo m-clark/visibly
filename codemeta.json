@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "visibly",
   "description": "Tools for visual enhancement, including palettes, themes, visualization of data and model results, etc.",
@@ -7,14 +10,14 @@
   "codeRepository": "https://github.com/m-clark/visibly",
   "issueTracker": "https://github.com/m-clark/visibly/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.2",
+    "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.2 (2018-12-20)",
+  "runtimePlatform": "R version 3.6.0 (2019-04-26)",
   "author": [
     {
       "@type": "Person",
@@ -285,18 +288,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "tibble",
-      "name": "tibble",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tibble"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "tidyext",
       "name": "tidyext",
       "sameAs": "https://github.com/m-clark/tidyext"
@@ -380,12 +371,52 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=ggplot2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
     }
   ],
   "releaseNotes": "https://github.com/m-clark/visibly/blob/master/NEWS.md",
   "readme": "https://github.com/m-clark/visibly/blob/master/README.md",
-  "fileSize": "34568.334KB",
-  "contIntegration": ["https://travis-ci.org/m-clark/visibly", "https://ci.appveyor.com/project/m-clark/visibly", "https://codecov.io/github/m-clark/visibly?branch=master"],
+  "fileSize": "33875.502KB",
+  "contIntegration": [
+    "https://travis-ci.org/m-clark/visibly",
+    "https://ci.appveyor.com/project/m-clark/visibly",
+    "https://codecov.io/github/m-clark/visibly?branch=master"
+  ],
   "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": ["r", "visualization", "palettes", "stan", "ggplot2-themes", "plotly-theme", "colorgorical", "adjacent", "complementary", "triadic", "tetradic", "coefficients", "random-effects", "gam", "mixed-models", "mermod", "mgcv", "brms", "r-package", "heatmap"]
+  "keywords": [
+    "r",
+    "visualization",
+    "palettes",
+    "stan",
+    "ggplot2-themes",
+    "plotly-theme",
+    "colorgorical",
+    "adjacent",
+    "complementary",
+    "triadic",
+    "tetradic",
+    "coefficients",
+    "random-effects",
+    "gam",
+    "mixed-models",
+    "mermod",
+    "mgcv",
+    "brms",
+    "r-package",
+    "heatmap"
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {}
 }

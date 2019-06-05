@@ -1,7 +1,7 @@
 Package: visibly
 Type: Package
 Title: Functions and palettes related to visual enhancement
-Version: 0.2.5
+Version: 0.2.6
 Authors@R: person("Michael", "Clark", role = c("aut", "cre"), email = "micl@umich.edu")
 Maintainer: Michael Clark <micl@umich.edu>
 Description: Tools for visual enhancement, including palettes, themes, visualization of data and model results, etc.
@@ -19,6 +19,7 @@ Imports:
   purrr,
   rlang,
   ggplot2,
+  tibble,
 Suggests:
   brms,
   broom, 
@@ -42,7 +43,6 @@ Suggests:
   scico,
   svglite,
   testthat,
-  tibble,
   tidyext,
   tidyr,
 Remotes:

@@ -10,7 +10,7 @@ y <- rpois(100, exp(.25*x + .1*q - .5*z))
 
 test_glm <- glm(y ~ x + q + z, family = poisson)
 fit_mer  <- lme4::lmer(Reaction ~ Days + (Days|Subject), lme4::sleepstudy)
-fit_mer2 <- lme4::lmer(count ~ log_Age_c + log_Base4_c * Trt + (1 | patient),
+fit_mer2 <- lme4::lmer(count ~ zAge + zBase * Trt + (1 | patient),
                       brms::epilepsy)
 mer_re <- plot_coefficients(fit_mer, ranef = T, which_ranef = 'Subject')
 

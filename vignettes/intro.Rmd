@@ -225,7 +225,7 @@ plot_coefficients(fit_mer, ranef = TRUE, which_ranef = 'Subject')
 Now for a different palette.  Again, these only apply to fixed effects visualizations, due to the number of categories typically seen with random effects and how the visualization is created.
 
 ```{r fe2}
-fit_mer2 = lmer(count ~ log_Age_c + log_Base4_c * Trt + 
+fit_mer2 = lmer(count ~ zAge + zBase * Trt + 
                   (1 | patient), 
                 data = brms::epilepsy)
 plot_coefficients(fit_mer2, 
