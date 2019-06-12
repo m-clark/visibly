@@ -18,11 +18,11 @@ theme_plotly(vis, MB = FALSE)
 theme_blank(vis, MB = FALSE)
 }
 \arguments{
-\item{font_size}{Font size for axis labels in theme_trueMinimal}
+\item{font_size}{Font size for axis labels in theme_clean}
 
-\item{font_family}{Font family for axis labels in theme_trueMinimal}
+\item{font_family}{Font family for axis labels in theme_clean}
 
-\item{center_axis_labels}{Logical. Center axis labels in theme_trueMinimal.
+\item{center_axis_labels}{Logical. Center axis labels in theme_clean.
 Default is FALSE.}
 
 \item{vis}{A visualization created by \link[ggplot2]{ggplot2} or
@@ -43,7 +43,7 @@ From a gray background, to unnecessary gridlines, to by-default
   and removes the gray background, gridlines and adds opacity to the default
   black axes and labels, allowing the pattern of the visual to be expressed
   in unimpeded fashion.  \code{theme_trueMinimal} was the old name of this
-  function and still works.
+  function and is still usable.
 
   - \bold{plotly}: \code{theme_plotly}, \code{theme_blank} removes reference
   lines at zero, and some of its 'modebar' is unnecessary.  Otherwise little
