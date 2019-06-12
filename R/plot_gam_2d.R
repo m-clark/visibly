@@ -110,7 +110,7 @@ plot_gam_2d <- function(model,
     ggplot(aes(x=!!mv, y=!!sv)) +
     geom_tile(aes(fill=prediction)) +
     scico::scale_fill_scico(...) +
-    theme_trueMinimal()
+    theme_clean()
 }
 
 #' @rdname plot_gam_2d
@@ -163,5 +163,5 @@ plot_gam_by <- function(model,
     ggplot(aes(x=!!mv, y=prediction, color=!!bv)) +
     geom_line() +
     col_scale +
-    theme_trueMinimal()
+    theme_clean()
 }

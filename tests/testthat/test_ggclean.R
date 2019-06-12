@@ -20,12 +20,12 @@ test_that('Check if plotly object returned', {
 
 
 test_that('Check if ggplot object returned', {
-  expect_s3_class(ggplot2::qplot(x = rnorm(100)) + theme_trueMinimal(),
+  expect_s3_class(ggplot2::qplot(x = rnorm(100)) + theme_clean(),
                   'ggplot')
 })
 
 test_that('Center axis', {
-  g <- ggplot2::qplot(x = rnorm(100)) + theme_trueMinimal(center_axis_labels = T)
+  g <- ggplot2::qplot(x = rnorm(100)) + theme_clean(center_axis_labels = T)
   expect_equal(g$theme$axis.title.x$hjust, .5)
 })
 

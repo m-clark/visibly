@@ -78,7 +78,7 @@ plot_gam_check <- function(model,
     scale_size_continuous(range = c(1, 6), trans = 'exp') +
     ylim(values = c(min(fit_dat$residuals)-sd(fit_dat$residuals),
                     max(fit_dat$residuals)+sd(fit_dat$residuals))) +
-    theme_trueMinimal()
+    theme_clean()
 
   if (scatter) {
     if (!catcheck) {
@@ -86,7 +86,7 @@ plot_gam_check <- function(model,
         ggplot(aes(x = `fitted values`, y=model$y), data=fit_dat) +
         geom_point(aes(), alpha=.25) +
         labs(y = y_name) +
-        theme_trueMinimal()
+        theme_clean()
     } else {
       cat_fit_dat <- data.frame(y = model$y,
                            probs) %>%
@@ -96,7 +96,7 @@ plot_gam_check <- function(model,
         ggplot(aes(x = `fitted values`, y = y), data = cat_fit_dat) +
         geom_point(aes(), alpha=.25) +
         labs(y = y_name) +
-        theme_trueMinimal()
+        theme_clean()
     }
   } else {
     # check for palette until scico updates on CRAN; use viridis if not
@@ -117,7 +117,7 @@ plot_gam_check <- function(model,
       geom_density(alpha=.25) +
       col_scale +
       fill_scale +
-      theme_trueMinimal() +
+      theme_clean() +
       theme(
         legend.title = element_blank(),
         legend.key.size = unit(.005, 'npc'),
@@ -131,14 +131,14 @@ plot_gam_check <- function(model,
                  fill='#001959',
                  alpha=.25,
                  show.legend = FALSE) +
-    theme_trueMinimal()
+    theme_clean()
 
   qq_plot <-
     ggplot(aes(sample = residuals), data=fit_dat) +
     geom_qq_line(alpha=.25, color='#ff5500') +
     geom_qq(alpha=.1) +
     labs(y='sample', x='theoretical') +
-    theme_trueMinimal()
+    theme_clean()
 
   ps  <- list(qq_plot,
               res_fit_plot,

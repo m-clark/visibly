@@ -53,7 +53,7 @@ library(ggplot2)
 ggplot(mtcars, aes(x=wt, y=mpg)) +
   geom_point(aes(color=factor(cyl)), size=10, alpha=.5) +
   scale_color_manual(values = pal$triadic) +
-  theme_trueMinimal()
+  theme_clean()
 ```
 
 ```{r use2}
@@ -64,7 +64,7 @@ mtcars %>%
   ggplot(aes(x=cyl, y=Mean)) +
   geom_col(aes(fill=cyl), width=.5, alpha=.85) +
   scale_fill_manual(values = palettes$Rblue$triadic) +
-  theme_trueMinimal() +
+  theme_clean() +
   theme(legend.key.size = unit(.015, 'npc'),
         axis.title.y = element_text(size=20, hjust=-.05))
 ```

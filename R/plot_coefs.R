@@ -63,7 +63,7 @@ plot_coefs <- function(model_input,
     scico::scale_color_scico(begin = 1, end = 0, palette = palette) +
     ggplot2::coord_flip() +
     ggplot2::labs(x='', y='Coefficient') +
-    theme_trueMinimal()
+    theme_clean()
 
 
 }
@@ -94,7 +94,7 @@ plot_coefs_re <- function(model_input,
                         color = 'lightblue',
                         alpha=1) +
     ggplot2::labs(x='', y='Coefficient') +
-    theme_trueMinimal()
+    theme_clean()
 
 
 }

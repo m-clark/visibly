@@ -176,7 +176,7 @@ plot_gam_1d <- function(model,
     ggplot(aes(x=value, y=fit)) +
     geom_ribbon(aes(ymin=ll, ymax=ul), fill=ribbon_color) +
     geom_line(color=line_color) +
-    theme_trueMinimal()
+    theme_clean()
 }
 
 
@@ -266,5 +266,5 @@ plot_gam_multi1d <- function(model,
     geom_ribbon(aes(ymin=ll, ymax=ul), fill=ribbon_color) +
     geom_line(color=line_color) +
     facet_wrap(~ term, ncol = ncol, nrow = nrow, scales = 'free') +
-    theme_trueMinimal()
+    theme_clean()
 }
