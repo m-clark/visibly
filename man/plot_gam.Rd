@@ -68,7 +68,7 @@ f3 <- function(x) {
 n <- 200
 sig2 <- 4
 
-d = data_frame(
+d = tibble(
   x0 = rep(1:4, 50),
   x1 = runif(n, 0, 1),
   x2 = runif(n, 0, 1),
@@ -83,7 +83,7 @@ b <- gam(y ~ x0 + s(x1) + s(x2) + s(x3), data = d)
 library(visibly)
 
 plot_gam(b,
-         conditional_data = data_frame(x2 = runif(500)),
+         conditional_data = tibble(x2 = runif(500)),
          main_var = x2)
 
 plot_gam(b, main_var = x2)
@@ -92,7 +92,7 @@ plot_gam(b, main_var = x2)
 plot_gam(b, main_var = vars(x2, x1))
 
 plot_gam(b,
-         conditional_data = data_frame(x1 = runif(500),
+         conditional_data = tibble(x1 = runif(500),
                                        x2 = runif(500)),
          main_var = vars(x2, x1))
 

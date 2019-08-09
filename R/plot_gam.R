@@ -43,7 +43,7 @@
 #' n <- 200
 #' sig2 <- 4
 #'
-#' d = data_frame(
+#' d = tibble(
 #'   x0 = rep(1:4, 50),
 #'   x1 = runif(n, 0, 1),
 #'   x2 = runif(n, 0, 1),
@@ -58,7 +58,7 @@
 #' library(visibly)
 #'
 #' plot_gam(b,
-#'          conditional_data = data_frame(x2 = runif(500)),
+#'          conditional_data = tibble(x2 = runif(500)),
 #'          main_var = x2)
 #'
 #' plot_gam(b, main_var = x2)
@@ -67,7 +67,7 @@
 #' plot_gam(b, main_var = vars(x2, x1))
 #'
 #' plot_gam(b,
-#'          conditional_data = data_frame(x1 = runif(500),
+#'          conditional_data = tibble(x1 = runif(500),
 #'                                        x2 = runif(500)),
 #'          main_var = vars(x2, x1))
 #'
@@ -143,34 +143,24 @@ plot_gam_1d <- function(model,
   if (is.null(conditional_data)) {
     init <- select(model_data, !!main_var)
 
-    cd <- data_frame(!!quo_name(main_var) := seq(min(init, na.rm = TRUE),
-                                                 max(init, na.rm = TRUE),
-                                                 length.out = 500))
+    conditional_data <- tibble(
+      !!quo_name(main_var) := seq(min(init, na.rm = TRUE),
+                                  max(init, na.rm = TRUE),
+                                  length.out = 500))
+  }
 
-    data_list <-
-      create_prediction_data(model_data = model_data,
-                             conditional_data = cd) %>%
-      bind_cols(
-        tibble::as_tibble(
-          predict(model, ., type = 'response', se=TRUE))) %>%
-      mutate(ll = fit - 2*se.fit,
-             ul = fit + 2*se.fit) %>%
-      select(!!!main_var, fit, ll, ul) %>%
-      rename(value = !!main_var) %>%
-      mutate(term = quo_name(main_var))
-  } else {
-    data_list <-
+  data_list <-
       create_prediction_data(model_data = model_data,
                              conditional_data = conditional_data) %>%
       bind_cols(
         tibble::as_tibble(
-          predict(model, ., type = 'response', se=TRUE))) %>%
-      mutate(ll = fit - 2*se.fit,
-             ul = fit + 2*se.fit) %>%
-      select(!!!main_var, fit, ll, ul) %>%
+          predict(model, ., se=TRUE))) %>%
+      mutate(ll = model$family$linkinv(fit - 2*se.fit),
+             ul = model$family$linkinv(fit + 2*se.fit),
+             fit = model$family$linkinv(fit)) %>%
+      select(!!main_var, fit, ll, ul) %>%
       rename(value = !!main_var) %>%
       mutate(term = quo_name(main_var))
-  }
 
   data_list %>%
     ggplot(aes(x=value, y=fit)) +
@@ -200,14 +190,14 @@ plot_gam_multi1d <- function(model,
       init <- select(model_data, !!main_var[[i]])
 
       if (!is.numeric(unlist(init))) {
-        # cd = data_frame(!!quo_name(main_var[[i]]) :=
+        # cd = tibble(!!quo_name(main_var[[i]]) :=
         #                   unique(unlist(init)))
         vname <- names(init)
         message(glue::glue('{vname} appears not to be numeric. Skipping.
                            Functionality may be added in the future.'))
         data_list[[i]] <- NULL
       } else {
-        cd <- data_frame(!!quo_name(main_var[[i]]) :=
+        cd <- tibble(!!quo_name(main_var[[i]]) :=
                           seq(min(init, na.rm = TRUE),
                               max(init, na.rm = TRUE),
                               length.out = 500))
@@ -216,11 +206,11 @@ plot_gam_multi1d <- function(model,
           create_prediction_data(model_data = model_data,
                                  conditional_data = cd) %>%
           bind_cols(tibble::as_tibble(
-            predict(model, ., type = 'response', se=TRUE))
-          ) %>%
-          mutate(ll = fit - 2*se.fit,
-                 ul = fit + 2*se.fit) %>%
-          select(!!!main_var[[i]], fit, ll, ul) %>%
+            predict(model, ., se=TRUE))) %>%
+          mutate(ll = model$family$linkinv(fit - 2*se.fit),
+                 ul = model$family$linkinv(fit + 2*se.fit),
+                 fit = model$family$linkinv(fit)) %>%
+          select(!!main_var[[i]], fit, ll, ul) %>%
           rename(value = !!main_var[[i]]) %>%
           mutate(term = quo_name(main_var[[i]]))
       }
@@ -238,7 +228,7 @@ plot_gam_multi1d <- function(model,
         var_range <- model_data %>%
           pull(!!main_var[[i]]) %>%
           range()
-        cd <- data_frame(
+        cd <- tibble(
           !!quo_name(main_var[[i]]) := seq(var_range[1],
                                            var_range[2],
                                            length.out = nrow(conditional_data))
@@ -252,10 +242,11 @@ plot_gam_multi1d <- function(model,
                                conditional_data = cd) %>%
         bind_cols(
           tibble::as_tibble(
-            predict(model, ., type = 'response', se=TRUE))) %>%
-        mutate(ll = fit - 2*se.fit,
-               ul = fit + 2*se.fit) %>%
-        select(!!!main_var[[i]], fit, ll, ul) %>%
+            predict(model, ., se=TRUE))) %>%
+        mutate(ll = model$family$linkinv(fit - 2*se.fit),
+               ul = model$family$linkinv(fit + 2*se.fit),
+               fit = model$family$linkinv(fit)) %>%
+        select(!!main_var[[i]], fit, ll, ul) %>%
         rename(value = !!main_var[[i]]) %>%
         mutate(term = quo_name(main_var[[i]]))
     }

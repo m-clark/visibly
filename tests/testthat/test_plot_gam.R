@@ -20,7 +20,7 @@ f3 <- function(x) {
 n <- 200
 sig2 <- 4
 
-d <- data_frame(
+d <- tibble(
   x0 = rep(1:4, 50),
   x1 = runif(n, 0, 1),
   x2 = runif(n, 0, 1),
@@ -30,7 +30,7 @@ d <- data_frame(
 ) %>%
   mutate(x0 = factor(x0))
 
-d2 <- data_frame(
+d2 <- tibble(
   x0 = rep(1:4, 50),
   x1 = runif(n, 0, 1),
   x2 = rnorm(n, 0, 5),
@@ -70,7 +70,7 @@ test_that('plot_gam can handle multi character',{
 test_that('plot_gam can take conditional data',{
   expect_s3_class(
     plot_gam(b,
-             conditional_data = data_frame(x2 = runif(500)),
+             conditional_data = tibble(x2 = runif(500)),
              main_var = x2),
     'ggplot')
 })
@@ -85,7 +85,7 @@ test_that('plot_gam can do multiple 1d smooths',{
 test_that('plot_gam can handle incomplete conditional data',{
   expect_s3_class(
     plot_gam(b,
-             conditional_data = data_frame(#x1 = runif(500),
+             conditional_data = tibble(#x1 = runif(500),
                                            x2 = runif(500)),
              main_var = vars(x2, x1)),
     'ggplot')
@@ -177,6 +177,15 @@ test_that('plot_gam can do different dist',{
              ncol = 1),
     'ggplot')
 
+
+  # test that it will return correctly scaled results
+  p = plot_gam(binom_fit,
+               main_var = vars(x2, x1, x3, x0),
+               ncol = 1)
+  expect_gt(min(dplyr::select(p$data, fit, ul, ll)), 0)
+  expect_lt(max(dplyr::select(p$data, fit, ul, ll)), 1)
+
+  # test poisson
   d <- gamSim(1, n = 400, dist = "poisson", scale = .2)
 
   pois_fit <- gam(y ~ s(x0) + s(x1) + s(x2) + s(x3),

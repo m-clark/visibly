@@ -6,8 +6,6 @@ dplyr::as_data_frame
 #' @export
 dplyr::contains
 #' @export
-dplyr::data_frame
-#' @export
 dplyr::filter
 #' @export
 dplyr::group_by
@@ -28,18 +26,15 @@ dplyr::select_if
 #' @export
 dplyr::slice
 #' @export
+dplyr::tibble
+#' @export
 dplyr::ungroup
 #' @export
 dplyr::vars
 
 
 #' @importFrom purrr map map_chr flatten
-#' @export
-purrr::map
-#' @export
-purrr::map_chr
-#' @export
-purrr::flatten
+
 
 
 #' @importFrom ggplot2 ggplot aes coord_flip element_blank element_text
