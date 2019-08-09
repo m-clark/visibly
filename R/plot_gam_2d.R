@@ -67,7 +67,7 @@ plot_gam_2d <- function(model,
 
   model_data <- model$model
 
-  test_second_var <- model_data %>% pull(!!enquo(second_var))
+  test_second_var <- model_data %>% pull(!!rlang::enquo(second_var))
   do_by <- n_distinct(test_second_var)
 
   if (!inherits(test_second_var, c('numeric', 'integer')) |
@@ -79,8 +79,8 @@ plot_gam_2d <- function(model,
                        numeric/integer if necessary.'))
     return(
       plot_gam_by(model = model,
-                  main_var = !!enquo(main_var),
-                  by_var   = !!enquo(second_var),
+                  main_var = !!rlang::enquo(main_var),
+                  by_var   = !!rlang::enquo(second_var),
                   conditional_data = conditional_data,
                   n_plot = n_plot,
                   ...)
@@ -93,10 +93,10 @@ plot_gam_2d <- function(model,
   mv_range <- range(na.omit(pull(model_data, !!mv)))
   sv_range <- range(na.omit(pull(model_data, !!sv)))
 
-  cd <- tibble::tibble(!!quo_name(mv) := seq(mv_range[1],
+  cd <- tibble::tibble(!!rlang::quo_name(mv) := seq(mv_range[1],
                                              mv_range[2],
                                              length.out = n_plot),
-                       !!quo_name(sv) := seq(sv_range[1],
+                       !!rlang::quo_name(sv) := seq(sv_range[1],
                                              sv_range[2],
                                              length.out = n_plot)) %>%
     tidyr::expand(!!mv, !!sv)
@@ -137,10 +137,10 @@ plot_gam_by <- function(model,
 
   mv_range <- range(na.omit(model_data %>% pull(!!mv)))
 
-  cd <- tidyr::crossing(!!quo_name(mv) := seq(mv_range[1],
+  cd <- tidyr::crossing(!!rlang::quo_name(mv) := seq(mv_range[1],
                                              mv_range[2],
                                              length.out = n_plot),
-                       !!quo_name(bv) := model_data %>% pull(!!bv) %>% unique())
+                       !!rlang::quo_name(bv) := model_data %>% pull(!!bv) %>% unique())
 
   data_list <-
     create_prediction_data(model_data = model_data,
@@ -149,7 +149,7 @@ plot_gam_by <- function(model,
 
   if (inherits(data_list %>% pull(!!bv), 'numeric'))
     data_list <- data_list %>%
-    mutate(!!quo_name(bv) := as.factor(!!bv))
+    mutate(!!rlang::quo_name(bv) := as.factor(!!bv))
 
   # check for palette until scico updates on CRAN; use viridis if not
   if (!requireNamespace("scico", quietly = TRUE) ||

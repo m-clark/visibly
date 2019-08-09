@@ -94,7 +94,7 @@ plot_gam <- function(model,
   mv <- rlang::enquo(main_var)
 
   if (rlang::quo_is_missing(mv)) {
-    main_var <- map_chr(model$smooth, function(x) x$vn)
+    main_var <- purrr::map_chr(model$smooth, function(x) x$vn)
   }
 
   check_mv <- tryCatch(rlang::is_quosures(main_var), error = function(c) {
@@ -144,7 +144,7 @@ plot_gam_1d <- function(model,
     init <- select(model_data, !!main_var)
 
     conditional_data <- tibble(
-      !!quo_name(main_var) := seq(min(init, na.rm = TRUE),
+      !!rlang::quo_name(main_var) := seq(min(init, na.rm = TRUE),
                                   max(init, na.rm = TRUE),
                                   length.out = 500))
   }
@@ -160,7 +160,7 @@ plot_gam_1d <- function(model,
              fit = model$family$linkinv(fit)) %>%
       select(!!main_var, fit, ll, ul) %>%
       rename(value = !!main_var) %>%
-      mutate(term = quo_name(main_var))
+      mutate(term = rlang::quo_name(main_var))
 
   data_list %>%
     ggplot(aes(x=value, y=fit)) +
@@ -190,14 +190,14 @@ plot_gam_multi1d <- function(model,
       init <- select(model_data, !!main_var[[i]])
 
       if (!is.numeric(unlist(init))) {
-        # cd = tibble(!!quo_name(main_var[[i]]) :=
+        # cd = tibble(!!rlang::quo_name(main_var[[i]]) :=
         #                   unique(unlist(init)))
         vname <- names(init)
         message(glue::glue('{vname} appears not to be numeric. Skipping.
                            Functionality may be added in the future.'))
         data_list[[i]] <- NULL
       } else {
-        cd <- tibble(!!quo_name(main_var[[i]]) :=
+        cd <- tibble(!!rlang::quo_name(main_var[[i]]) :=
                           seq(min(init, na.rm = TRUE),
                               max(init, na.rm = TRUE),
                               length.out = 500))
@@ -212,7 +212,7 @@ plot_gam_multi1d <- function(model,
                  fit = model$family$linkinv(fit)) %>%
           select(!!main_var[[i]], fit, ll, ul) %>%
           rename(value = !!main_var[[i]]) %>%
-          mutate(term = quo_name(main_var[[i]]))
+          mutate(term = rlang::quo_name(main_var[[i]]))
       }
     } else {
 
@@ -229,7 +229,7 @@ plot_gam_multi1d <- function(model,
           pull(!!main_var[[i]]) %>%
           range()
         cd <- tibble(
-          !!quo_name(main_var[[i]]) := seq(var_range[1],
+          !!rlang::quo_name(main_var[[i]]) := seq(var_range[1],
                                            var_range[2],
                                            length.out = nrow(conditional_data))
         )
@@ -248,7 +248,7 @@ plot_gam_multi1d <- function(model,
                fit = model$family$linkinv(fit)) %>%
         select(!!main_var[[i]], fit, ll, ul) %>%
         rename(value = !!main_var[[i]]) %>%
-        mutate(term = quo_name(main_var[[i]]))
+        mutate(term = rlang::quo_name(main_var[[i]]))
     }
   }
 

@@ -10,15 +10,15 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/m-clark/visibly
 BugReports: https://github.com/m-clark/visibly/issues
-Year: 2018
+Year: 2019
 Depends:
-  R (>= 3.5.0)
+  R (>= 3.5.0),
+  ggplot2
 Imports:
   dplyr,
   magrittr,
   purrr,
   rlang,
-  ggplot2,
   tibble,
 Suggests:
   brms,

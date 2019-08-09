@@ -1,6 +1,5 @@
 context('test create_prediction_data')
 
-
 test_that('create_prediction_data returns a data frame', {
   expect_is(create_prediction_data(iris), 'data.frame')
 })

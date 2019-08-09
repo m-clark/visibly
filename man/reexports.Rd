@@ -3,48 +3,7 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{as_data_frame}
-\alias{contains}
-\alias{filter}
-\alias{group_by}
-\alias{mutate}
-\alias{mutate_if}
-\alias{n_distinct}
-\alias{pull}
-\alias{rename}
-\alias{select}
-\alias{select_if}
-\alias{slice}
-\alias{tibble}
-\alias{ungroup}
-\alias{vars}
-\alias{ggplot}
-\alias{aes}
-\alias{geom_density}
-\alias{facet_wrap}
-\alias{geom_linerange}
-\alias{geom_line}
-\alias{geom_hline}
-\alias{geom_point}
-\alias{geom_qq}
-\alias{geom_qq_line}
-\alias{geom_ribbon}
-\alias{geom_tile}
-\alias{labs}
-\alias{coord_flip}
-\alias{ylim}
-\alias{theme}
-\alias{element_blank}
-\alias{element_text}
-\alias{scale_color_viridis_d}
-\alias{scale_fill_viridis_d}
-\alias{scale_fill_viridis_c}
-\alias{scale_size_continuous}
-\alias{unit}
-\alias{margin}
 \alias{:=}
-\alias{quo_name}
-\alias{enquo}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -52,10 +11,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{as_data_frame}}, \code{\link[dplyr]{contains}}, \code{\link[dplyr]{filter}}, \code{\link[dplyr]{group_by}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr]{mutate_if}}, \code{\link[dplyr]{n_distinct}}, \code{\link[dplyr]{pull}}, \code{\link[dplyr]{rename}}, \code{\link[dplyr]{select}}, \code{\link[dplyr]{select_if}}, \code{\link[dplyr]{slice}}, \code{\link[dplyr]{tibble}}, \code{\link[dplyr]{ungroup}}, \code{\link[dplyr]{vars}}}
-
-  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}, \code{\link[ggplot2]{aes}}, \code{\link[ggplot2]{geom_density}}, \code{\link[ggplot2]{facet_wrap}}, \code{\link[ggplot2]{geom_linerange}}, \code{\link[ggplot2]{geom_line}}, \code{\link[ggplot2]{geom_hline}}, \code{\link[ggplot2]{geom_point}}, \code{\link[ggplot2]{geom_qq}}, \code{\link[ggplot2]{geom_qq_line}}, \code{\link[ggplot2]{geom_ribbon}}, \code{\link[ggplot2]{geom_tile}}, \code{\link[ggplot2]{labs}}, \code{\link[ggplot2]{coord_flip}}, \code{\link[ggplot2]{ylim}}, \code{\link[ggplot2]{theme}}, \code{\link[ggplot2]{element_blank}}, \code{\link[ggplot2]{element_text}}, \code{\link[ggplot2]{scale_color_viridis_d}}, \code{\link[ggplot2]{scale_fill_viridis_d}}, \code{\link[ggplot2]{scale_fill_viridis_c}}, \code{\link[ggplot2]{scale_size_continuous}}, \code{\link[ggplot2]{unit}}, \code{\link[ggplot2]{margin}}}
-
-  \item{rlang}{\code{\link[rlang]{:=}}, \code{\link[rlang]{quo_name}}, \code{\link[rlang]{enquo}}}
+  \item{rlang}{\code{\link[rlang]{:=}}}
 }}
 

@@ -80,17 +80,17 @@ create_prediction_data <- function(model_data,
   if (!is.null(conditional_data)) {
     not_these <- names(conditional_data)
     pred_data <- model_data %>%
-      select(-dplyr::one_of(not_these))
+      dplyr::select(-dplyr::one_of(not_these))
   } else {
     pred_data <- model_data
   }
 
   pred_data <- pred_data %>%
-    mutate_if(function(x) is.numeric(x), num, ...) %>%
-    mutate_if(function(x)
+    dplyr::mutate_if(function(x) is.numeric(x), num, ...) %>%
+    dplyr::mutate_if(function(x)
       rlang::inherits_any(x, c('factor', 'string', 'logical', 'Date')),
               catfun) %>%
-    slice(1)
+    dplyr::slice(1)
 
   if (!is.null(conditional_data)) {
     data.frame(conditional_data, pred_data)

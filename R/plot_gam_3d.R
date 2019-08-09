@@ -53,10 +53,10 @@ plot_gam_3d <- function(model,
   mv_range <- range(na.omit(pull(model_data, !!mv)))
   sv_range <- range(na.omit(pull(model_data, !!sv)))
 
-  cd <- tibble::tibble(!!quo_name(mv) := seq(mv_range[1],
+  cd <- tibble::tibble(!!rlang::quo_name(mv) := seq(mv_range[1],
                                      mv_range[2],
                                      length.out = n_plot),
-               !!quo_name(sv) := seq(sv_range[1],
+               !!rlang::quo_name(sv) := seq(sv_range[1],
                                      sv_range[2],
                                      length.out = n_plot)) %>%
     tidyr::expand(!!mv, !!sv)
@@ -66,8 +66,8 @@ plot_gam_3d <- function(model,
                            conditional_data = cd) %>%
     mutate(prediction = predict(model, ., type = 'response'))
 
-  mv_name <- quo_name(mv)
-  sv_name <- quo_name(sv)
+  mv_name <- rlang::quo_name(mv)
+  sv_name <- rlang::quo_name(sv)
 
   xlo <- list(
     gridcolor = 'transparent',
