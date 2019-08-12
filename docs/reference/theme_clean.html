@@ -151,20 +151,20 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>font_size</th>
-      <td><p>Font size for axis labels in theme_trueMinimal</p></td>
+      <td><p>Font size for axis labels in theme_clean</p></td>
     </tr>
     <tr>
       <th>font_family</th>
-      <td><p>Font family for axis labels in theme_trueMinimal</p></td>
+      <td><p>Font family for axis labels in theme_clean</p></td>
     </tr>
     <tr>
       <th>center_axis_labels</th>
-      <td><p>Logical. Center axis labels in theme_trueMinimal.
+      <td><p>Logical. Center axis labels in theme_clean.
 Default is FALSE.</p></td>
     </tr>
     <tr>
       <th>vis</th>
-      <td><p>A visualization created by <a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot2-package'>ggplot2</a> or
+      <td><p>A visualization created by <a href='https://ggplot2.tidyverse.org/reference/ggplot2-package.html'>ggplot2</a> or
 <a href='https://www.rdocumentation.org/packages/plotly/topics/plotly'>plotly</a>.</p></td>
     </tr>
     <tr>
@@ -183,7 +183,7 @@ Default is FALSE.</p></td>
   and removes the gray background, gridlines and adds opacity to the default
   black axes and labels, allowing the pattern of the visual to be expressed
   in unimpeded fashion.  <code>theme_trueMinimal</code> was the old name of this
-  function and still works.</p>
+  function and is still usable.</p>
 <p>- <b>plotly</b>: <code>theme_plotly</code>, <code>theme_blank</code> removes reference
   lines at zero, and some of its 'modebar' is unnecessary.  Otherwise little
   is changed at this point, except for theme_blank, which is like theme_void
@@ -202,20 +202,20 @@ plot.</p>
 
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>mtcars</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>mtcars</span>) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>() +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>title</span><span class='kw'>=</span><span class='st'>'Plot'</span>) +
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>mtcars</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>title</span><span class='kw'>=</span><span class='st'>'Plot'</span>) +
   <span class='fu'>theme_clean</span>()</div><div class='img'><img src='theme_clean-1.png' alt='' width='700' height='1133' /></div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>mtcars</span>) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>() +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>title</span><span class='kw'>=</span><span class='st'>'Plot'</span>) +
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>mtcars</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>title</span><span class='kw'>=</span><span class='st'>'Plot'</span>) +
   <span class='fu'>theme_clean</span>(<span class='kw'>center_axis_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='theme_clean-2.png' alt='' width='700' height='1133' /></div><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>plotly</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'plotly'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:ggplot2':</span>
+#&gt; <span class='message'>Attaching package: ‘plotly’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:ggplot2’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    last_plot</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:stats':</span>
+#&gt; <span class='message'>    last_plot</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:graphics':</span>
+#&gt; <span class='message'>    filter</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:graphics’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    layout</span></div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://www.rdocumentation.org/packages/plotly/topics/plot_ly'>plot_ly</a></span>(<span class='kw'>x</span><span class='kw'>=</span>~<span class='no'>wt</span>, <span class='kw'>y</span><span class='kw'>=</span>~<span class='no'>mpg</span>, <span class='kw'>mode</span><span class='kw'>=</span><span class='st'>'markers'</span>) <span class='kw'>%&gt;%</span>

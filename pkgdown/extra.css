@@ -218,6 +218,9 @@ pre, code {
   background: #d9edf7; /*#f2f2c7 #F5F5F5*/
   border-bottom: 1px solid #EAEAEA;
   font-family: 'Helvetica Neue', Helvetica, 'Open Sans', Arial, sans-serif;
+  line-height: 22.5px;   /* Avoid bigger than rest of site */
+  min-height: 50px;
+  height: 75px;   /* Avoid bigger than rest of site */
   /* width: 70%;
   padding-left: 15%; */ /*maybe change later*/
 }
