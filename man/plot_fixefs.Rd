@@ -6,15 +6,41 @@
 \alias{plot_fixefs.merMod}
 \title{Plot coefficients with uncertainty}
 \usage{
-plot_fixefs(model, order = "decreasing", sd_multi = 2,
-  keep_intercept = FALSE, palette = "bilbao", ref_line = 0,
-  trans = NULL, plot = TRUE, ...)
+plot_fixefs(
+  model,
+  order = "decreasing",
+  sd_multi = 2,
+  keep_intercept = FALSE,
+  palette = "bilbao",
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  ...
+)
 
-\method{plot_fixefs}{brmsfit}(model, order, sd_multi, keep_intercept,
-  palette, ref_line, trans, plot, ...)
+\method{plot_fixefs}{brmsfit}(
+  model,
+  order,
+  sd_multi,
+  keep_intercept,
+  palette,
+  ref_line,
+  trans,
+  plot,
+  ...
+)
 
-\method{plot_fixefs}{merMod}(model, order, sd_multi, keep_intercept,
-  palette, ref_line, trans, plot, ...)
+\method{plot_fixefs}{merMod}(
+  model,
+  order,
+  sd_multi,
+  keep_intercept,
+  palette,
+  ref_line,
+  trans,
+  plot,
+  ...
+)
 }
 \arguments{
 \item{model}{The model that is the point of this function. For example, lm, glm, gam, lme4, brms.}

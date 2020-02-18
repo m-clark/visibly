@@ -4,8 +4,7 @@
 \alias{create_palette}
 \title{Create a color palette}
 \usage{
-create_palette(colorhex, name = NULL, toHCL = FALSE, plot = FALSE,
-  alpha = 1)
+create_palette(colorhex, name = NULL, toHCL = FALSE, plot = FALSE, alpha = 1)
 }
 \arguments{
 \item{colorhex}{Hexadecimal value of color or an R color name.}

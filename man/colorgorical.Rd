@@ -4,10 +4,17 @@
 \alias{colorgorical}
 \title{Create a colorgorical palette}
 \usage{
-colorgorical(n = 10, perceptualDifference = 0, nameDifference = 0,
-  nameUniqueness = 0, pairPreference = 0, hueFilters = list(),
-  lightnessRange = c("25", "85"), startPalette = list(),
-  output = "HEX")
+colorgorical(
+  n = 10,
+  perceptualDifference = 0,
+  nameDifference = 0,
+  nameUniqueness = 0,
+  pairPreference = 0,
+  hueFilters = list(),
+  lightnessRange = c("25", "85"),
+  startPalette = list(),
+  output = "HEX"
+)
 }
 \arguments{
 \item{n}{Number of color values to return.}

@@ -1,6 +1,7 @@
 #' Generate prediction data
 #'
-#' @description A port of the tidyext function.
+#' @description Straightforward way to quickly create data to make model
+#'   predictions.
 #'
 #' @param model_data The original data. Ideally this would come from a model
 #'   object.
@@ -11,9 +12,7 @@
 #' @param cat Set categorical variables to the reference level ('ref') or the
 #'   most frequently occurring category (most_common, the default).
 #' @param ... Additional arguments to num, e.g. \code{na.rm=T}
-#' @details This is a port of the tidyext function...
-#'
-#'   Given data that was used in a model, create data that can be used
+#' @details Given data that was used in a model, create data that can be used
 #'   for predictions at key values, especially as a prelude to visualization.
 #'   Some package functions can be found that do this, but are specific to
 #'   certain models or don't quite provide the flexibility I want. Specifically,
@@ -28,11 +27,11 @@
 #'   as columns in the \code{conditional_data} are treated as above.
 #'
 #' @return A data frame suitable for the \code{newdata} argument for predict functions.
-#' @seealso \link[tidyext]{create_prediction_data}
+#'
 #' @importFrom utils type.convert
 #'
 #' @examples
-#' library(visibly)
+#' library(tidyext)
 #' create_prediction_data(iris)
 #' create_prediction_data(iris, num = median,
 #'                        expand.grid(
@@ -55,42 +54,48 @@ create_prediction_data <- function(model_data,
   if (cat == 'most_common') {
     catfun <- function(x) {
       cx <- class(x)
+
       x <- suppressWarnings(names(sort(table(x), decreasing = TRUE))[1])
+      # problem: how to get label of vector and return the proper class.
+      # assigning a class with `class` won't work; type.convert (and readr's
+      # version) will not allow a class argument. `as` will error even when
+      # as.factor or whatever would work. initial code with type.convert was fine
+      # but found to drop leading zeros just using type.convert.
+
       if (cx == 'Date') {
         x <-  as.Date(x)
+      } else if (cx %in% c('character', 'factor')){
+        x <- methods::as(x, 'character')
       } else {
-        x <- type.convert(x, cx)
+        x <- type.convert(x)
       }
+      x
     }
   } else {
     # use reference level
     catfun <-  function(x) {
       cx <- class(x)
+
       x <- levels(factor(x))[1]
+
       if (cx == 'Date') {
         x <-  as.Date(x)
+      } else if (cx %in% c('character', 'factor')){
+        x <- methods::as(x, 'character')
       } else {
-        x <- type.convert(x, cx)
+        x <- type.convert(x)
       }
       x
     }
   }
 
-  # quick fix of lack of select_not; return to later?
-  if (!is.null(conditional_data)) {
-    not_these <- names(conditional_data)
-    pred_data <- model_data %>%
-      dplyr::select(-dplyr::one_of(not_these))
-  } else {
-    pred_data <- model_data
-  }
-
-  pred_data <- pred_data %>%
-    dplyr::mutate_if(function(x) is.numeric(x), num, ...) %>%
-    dplyr::mutate_if(function(x)
-      rlang::inherits_any(x, c('factor', 'string', 'logical', 'Date')),
+  pred_data <- model_data %>%
+    select_if(! colnames(.) %in% names(conditional_data)) %>%
+    mutate_if(function(x) is.numeric(x), num, ...) %>%
+    mutate_if(function(x)
+      rlang::inherits_any(x, c('factor', 'character', 'logical', 'Date')),
               catfun) %>%
-    dplyr::slice(1)
+    slice(1)
 
   if (!is.null(conditional_data)) {
     data.frame(conditional_data, pred_data)

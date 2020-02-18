@@ -4,10 +4,19 @@
 \alias{plot_coefficients.brmsfit}
 \title{Plot fixed or random effects coefficients for brmsfit objects.}
 \usage{
-\method{plot_coefficients}{brmsfit}(model, order = "decreasing",
-  sd_multi = 2, keep_intercept = FALSE, palette = "bilbao",
-  ref_line = 0, trans = NULL, plot = TRUE, ranef = FALSE,
-  which_ranef = NULL, ...)
+\method{plot_coefficients}{brmsfit}(
+  model,
+  order = "decreasing",
+  sd_multi = 2,
+  keep_intercept = FALSE,
+  palette = "bilbao",
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  ranef = FALSE,
+  which_ranef = NULL,
+  ...
+)
 }
 \arguments{
 \item{model}{The model that is the point of this function. For example, lm, glm, gam, lme4, brms.}
@@ -47,10 +56,13 @@ Plot fixed or random effects coefficients for brmsfit objects.
 
 }
 \seealso{
-Other model visualization: \code{\link{plot_coefficients.lm}},
-  \code{\link{plot_coefficients.merMod}},
-  \code{\link{plot_coefficients}},
-  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_3d}},
-  \code{\link{plot_gam_check}}, \code{\link{plot_gam}}
+Other model visualization: 
+\code{\link{plot_coefficients.lm}()},
+\code{\link{plot_coefficients.merMod}()},
+\code{\link{plot_coefficients}()},
+\code{\link{plot_gam_2d}()},
+\code{\link{plot_gam_3d}()},
+\code{\link{plot_gam_check}()},
+\code{\link{plot_gam}()}
 }
 \concept{model visualization}

@@ -5,13 +5,29 @@
 \alias{plot_coefficients.glm}
 \title{Plot coefficients for standard linear models.}
 \usage{
-\method{plot_coefficients}{lm}(model, order = "decreasing",
-  sd_multi = 2, keep_intercept = FALSE, palette = "bilbao",
-  ref_line = 0, trans = NULL, plot = TRUE, ...)
+\method{plot_coefficients}{lm}(
+  model,
+  order = "decreasing",
+  sd_multi = 2,
+  keep_intercept = FALSE,
+  palette = "bilbao",
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  ...
+)
 
-\method{plot_coefficients}{glm}(model, order = "decreasing",
-  sd_multi = 2, keep_intercept = FALSE, palette = "bilbao",
-  ref_line = 0, trans = NULL, plot = TRUE, ...)
+\method{plot_coefficients}{glm}(
+  model,
+  order = "decreasing",
+  sd_multi = 2,
+  keep_intercept = FALSE,
+  palette = "bilbao",
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  ...
+)
 }
 \arguments{
 \item{model}{The lm or glm model}
@@ -52,16 +68,22 @@ plot_coefficients(mod, order = 'increasing')
 
 }
 \seealso{
-Other model visualization: \code{\link{plot_coefficients.brmsfit}},
-  \code{\link{plot_coefficients.merMod}},
-  \code{\link{plot_coefficients}},
-  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_3d}},
-  \code{\link{plot_gam_check}}, \code{\link{plot_gam}}
+Other model visualization: 
+\code{\link{plot_coefficients.brmsfit}()},
+\code{\link{plot_coefficients.merMod}()},
+\code{\link{plot_coefficients}()},
+\code{\link{plot_gam_2d}()},
+\code{\link{plot_gam_3d}()},
+\code{\link{plot_gam_check}()},
+\code{\link{plot_gam}()}
 
-Other model visualization: \code{\link{plot_coefficients.brmsfit}},
-  \code{\link{plot_coefficients.merMod}},
-  \code{\link{plot_coefficients}},
-  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_3d}},
-  \code{\link{plot_gam_check}}, \code{\link{plot_gam}}
+Other model visualization: 
+\code{\link{plot_coefficients.brmsfit}()},
+\code{\link{plot_coefficients.merMod}()},
+\code{\link{plot_coefficients}()},
+\code{\link{plot_gam_2d}()},
+\code{\link{plot_gam_3d}()},
+\code{\link{plot_gam_check}()},
+\code{\link{plot_gam}()}
 }
 \concept{model visualization}

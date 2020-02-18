@@ -6,14 +6,19 @@
 \alias{plot_ranefs.merMod}
 \title{Plot coefficients with uncertainty}
 \usage{
-plot_ranefs(model, sd_multi = 2, ref_line = 0, trans = NULL,
-  plot = TRUE, which_ranef = NULL, ...)
+plot_ranefs(
+  model,
+  sd_multi = 2,
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  which_ranef = NULL,
+  ...
+)
 
-\method{plot_ranefs}{brmsfit}(model, sd_multi, ref_line, trans, plot,
-  which_ranef, ...)
+\method{plot_ranefs}{brmsfit}(model, sd_multi, ref_line, trans, plot, which_ranef, ...)
 
-\method{plot_ranefs}{merMod}(model, sd_multi, ref_line, trans, plot,
-  which_ranef, ...)
+\method{plot_ranefs}{merMod}(model, sd_multi, ref_line, trans, plot, which_ranef, ...)
 }
 \arguments{
 \item{model}{The brmsfit or lme4 model}

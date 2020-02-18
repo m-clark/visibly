@@ -4,8 +4,15 @@
 \alias{plot_gam_3d}
 \title{Plot 2d smooths in 3d}
 \usage{
-plot_gam_3d(model, main_var, second_var, conditional_data = NULL,
-  n_plot = 100, dmb = FALSE, ...)
+plot_gam_3d(
+  model,
+  main_var,
+  second_var,
+  conditional_data = NULL,
+  n_plot = 100,
+  dmb = FALSE,
+  ...
+)
 }
 \arguments{
 \item{model}{The mgcv gam model}
@@ -45,11 +52,13 @@ plot_gam_3d(mod, main_var = x, second_var = z)
 plot_gam_3d(mod, main_var = x, second_var = z, palette='tokyo')
 }
 \seealso{
-Other model visualization: \code{\link{plot_coefficients.brmsfit}},
-  \code{\link{plot_coefficients.lm}},
-  \code{\link{plot_coefficients.merMod}},
-  \code{\link{plot_coefficients}},
-  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_check}},
-  \code{\link{plot_gam}}
+Other model visualization: 
+\code{\link{plot_coefficients.brmsfit}()},
+\code{\link{plot_coefficients.lm}()},
+\code{\link{plot_coefficients.merMod}()},
+\code{\link{plot_coefficients}()},
+\code{\link{plot_gam_2d}()},
+\code{\link{plot_gam_check}()},
+\code{\link{plot_gam}()}
 }
 \concept{model visualization}

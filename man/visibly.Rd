@@ -3,7 +3,6 @@
 \docType{package}
 \name{visibly}
 \alias{visibly}
-\alias{visibly-package}
 \title{visibly: Functions and palettes related to visual enhancement.}
 \description{
 Visibly is a handful of functions for color palettes, themes, etc. in R.  Inside you will find:

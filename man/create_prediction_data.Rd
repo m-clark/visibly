@@ -4,8 +4,13 @@
 \alias{create_prediction_data}
 \title{Generate prediction data}
 \usage{
-create_prediction_data(model_data, conditional_data = NULL, num = mean,
-  cat = "most_common", ...)
+create_prediction_data(
+  model_data,
+  conditional_data = NULL,
+  num = mean,
+  cat = "most_common",
+  ...
+)
 }
 \arguments{
 \item{model_data}{The original data. Ideally this would come from a model
@@ -26,12 +31,11 @@ most frequently occurring category (most_common, the default).}
 A data frame suitable for the \code{newdata} argument for predict functions.
 }
 \description{
-A port of the tidyext function.
+Straightforward way to quickly create data to make model
+  predictions.
 }
 \details{
-This is a port of the tidyext function...
-
-  Given data that was used in a model, create data that can be used
+Given data that was used in a model, create data that can be used
   for predictions at key values, especially as a prelude to visualization.
   Some package functions can be found that do this, but are specific to
   certain models or don't quite provide the flexibility I want. Specifically,
@@ -46,7 +50,7 @@ This is a port of the tidyext function...
   as columns in the \code{conditional_data} are treated as above.
 }
 \examples{
-library(visibly)
+library(tidyext)
 create_prediction_data(iris)
 create_prediction_data(iris, num = median,
                        expand.grid(
@@ -60,7 +64,4 @@ test_mod = lm(mpg  ~ wt + cyl, mtcars)
 nd = create_prediction_data(test_mod$model)
 predict(test_mod, newdata = nd)
 
-}
-\seealso{
-\link[tidyext]{create_prediction_data}
 }

@@ -6,16 +6,33 @@
 \alias{plot_gam_multi1d}
 \title{Plot Generalized Additive Model Results}
 \usage{
-plot_gam(model, main_var, conditional_data = NULL,
-  line_color = "#7B321C", ribbon_color = "#28688640", ncol = NULL,
-  nrow = NULL)
+plot_gam(
+  model,
+  main_var,
+  conditional_data = NULL,
+  line_color = "#7B321C",
+  ribbon_color = "#28688640",
+  ncol = NULL,
+  nrow = NULL
+)
 
-plot_gam_1d(model, main_var, conditional_data = NULL,
-  line_color = "#ff5500", ribbon_color = "#00aaff")
+plot_gam_1d(
+  model,
+  main_var,
+  conditional_data = NULL,
+  line_color = "#ff5500",
+  ribbon_color = "#00aaff"
+)
 
-plot_gam_multi1d(model, main_var, conditional_data = NULL,
-  line_color = "#ff5500", ribbon_color = "#00aaff", ncol = ncol,
-  nrow = nrow)
+plot_gam_multi1d(
+  model,
+  main_var,
+  conditional_data = NULL,
+  line_color = "#ff5500",
+  ribbon_color = "#00aaff",
+  ncol = ncol,
+  nrow = nrow
+)
 }
 \arguments{
 \item{model}{The mgcv GAM.}
@@ -101,11 +118,13 @@ plot(b, pages=1)
 
 }
 \seealso{
-Other model visualization: \code{\link{plot_coefficients.brmsfit}},
-  \code{\link{plot_coefficients.lm}},
-  \code{\link{plot_coefficients.merMod}},
-  \code{\link{plot_coefficients}},
-  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_3d}},
-  \code{\link{plot_gam_check}}
+Other model visualization: 
+\code{\link{plot_coefficients.brmsfit}()},
+\code{\link{plot_coefficients.lm}()},
+\code{\link{plot_coefficients.merMod}()},
+\code{\link{plot_coefficients}()},
+\code{\link{plot_gam_2d}()},
+\code{\link{plot_gam_3d}()},
+\code{\link{plot_gam_check}()}
 }
 \concept{model visualization}

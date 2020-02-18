@@ -1,5 +1,12 @@
 # visibly 0.2
 
+## visibly 0.2.7
+* Fix issue with imported function `create_prediction_data`.
+
+## visibly 0.2.6
+
+* Update site etc.
+
 ## visibly 0.2.5
 
 * Add plot_gam_3d.

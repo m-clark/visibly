@@ -7,11 +7,9 @@
 \alias{theme_blank}
 \title{Clean visualization themes}
 \usage{
-theme_clean(font_size = 12, font_family = "",
-  center_axis_labels = FALSE)
+theme_clean(font_size = 12, font_family = "", center_axis_labels = FALSE)
 
-theme_trueMinimal(font_size = 12, font_family = "",
-  center_axis_labels = FALSE)
+theme_trueMinimal(font_size = 12, font_family = "", center_axis_labels = FALSE)
 
 theme_plotly(vis, MB = FALSE)
 

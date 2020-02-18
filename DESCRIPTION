@@ -1,7 +1,7 @@
 Package: visibly
 Type: Package
 Title: Functions and palettes related to visual enhancement
-Version: 0.2.6
+Version: 0.2.7
 Authors@R: person("Michael", "Clark", role = c("aut", "cre"), email = "micl@umich.edu")
 Maintainer: Michael Clark <micl@umich.edu>
 Description: Tools for visual enhancement, including palettes, themes, visualization of data and model results, etc.
@@ -10,7 +10,7 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/m-clark/visibly
 BugReports: https://github.com/m-clark/visibly/issues
-Year: 2019
+Year: 2020
 Depends:
   R (>= 3.5.0),
   ggplot2
@@ -34,6 +34,7 @@ Suggests:
   jsonlite,
   knitr,
   lme4,
+  methods,
   mgcv,
   patchwork,
   plotly,
@@ -48,5 +49,5 @@ Suggests:
 Remotes:
   m-clark/tidyext,
   thomasp85/patchwork
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr

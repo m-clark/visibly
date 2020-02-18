@@ -4,8 +4,13 @@
 \alias{plot_gam_check}
 \title{The visualization part of gam.check}
 \usage{
-plot_gam_check(model, single_page = TRUE, type = "deviance",
-  scatter = FALSE, kcheck = FALSE)
+plot_gam_check(
+  model,
+  single_page = TRUE,
+  type = "deviance",
+  scatter = FALSE,
+  kcheck = FALSE
+)
 }
 \arguments{
 \item{model}{The mgcv gam model}
@@ -47,11 +52,13 @@ plot_gam_check(g_fit, scatter=TRUE)
 \seealso{
 \link[mgcv]{gam.check}
 
-Other model visualization: \code{\link{plot_coefficients.brmsfit}},
-  \code{\link{plot_coefficients.lm}},
-  \code{\link{plot_coefficients.merMod}},
-  \code{\link{plot_coefficients}},
-  \code{\link{plot_gam_2d}}, \code{\link{plot_gam_3d}},
-  \code{\link{plot_gam}}
+Other model visualization: 
+\code{\link{plot_coefficients.brmsfit}()},
+\code{\link{plot_coefficients.lm}()},
+\code{\link{plot_coefficients.merMod}()},
+\code{\link{plot_coefficients}()},
+\code{\link{plot_gam_2d}()},
+\code{\link{plot_gam_3d}()},
+\code{\link{plot_gam}()}
 }
 \concept{model visualization}

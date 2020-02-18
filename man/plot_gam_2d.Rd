@@ -6,11 +6,24 @@
 \title{Plot 2-way GAM smooths
 Plot 2-dimensional smooth terms}
 \usage{
-plot_gam_2d(model, main_var, second_var, conditional_data = NULL,
-  n_plot = 100, force_2d = FALSE, ...)
+plot_gam_2d(
+  model,
+  main_var,
+  second_var,
+  conditional_data = NULL,
+  n_plot = 100,
+  force_2d = FALSE,
+  ...
+)
 
-plot_gam_by(model, main_var, by_var, conditional_data = NULL,
-  n_plot = 500, ...)
+plot_gam_by(
+  model,
+  main_var,
+  by_var,
+  conditional_data = NULL,
+  n_plot = 500,
+  ...
+)
 }
 \arguments{
 \item{model}{The mgcv GAM.}
@@ -77,11 +90,13 @@ plot_gam_by(mod_by, main_var = x2, by_var = fac)
 \seealso{
 \link[scico]{scale_fill_scico} \link[ggplot2]{scale_colour_viridis_d}
 
-Other model visualization: \code{\link{plot_coefficients.brmsfit}},
-  \code{\link{plot_coefficients.lm}},
-  \code{\link{plot_coefficients.merMod}},
-  \code{\link{plot_coefficients}},
-  \code{\link{plot_gam_3d}}, \code{\link{plot_gam_check}},
-  \code{\link{plot_gam}}
+Other model visualization: 
+\code{\link{plot_coefficients.brmsfit}()},
+\code{\link{plot_coefficients.lm}()},
+\code{\link{plot_coefficients.merMod}()},
+\code{\link{plot_coefficients}()},
+\code{\link{plot_gam_3d}()},
+\code{\link{plot_gam_check}()},
+\code{\link{plot_gam}()}
 }
 \concept{model visualization}
