@@ -38,7 +38,7 @@ color_contrast_checker <- function(foreground, background='#FFFFFF') {
   if (foreground %in% colors()){
     foreground <- col2hex(foreground)
   } else {
-    if (!nchar(foreground) == 7 | !grepl('^#', foreground))
+    if (!nchar(foreground) %in% c(7, 9) | !grepl('^#', foreground))
       stop(strwrap('foreground must be an R color, e.g. see colors(),
                    or a hex of the form #ff5500'))
   }
@@ -46,7 +46,7 @@ color_contrast_checker <- function(foreground, background='#FFFFFF') {
   if (background %in% colors()) {
     background <- col2hex(background)
   } else {
-    if (!nchar(background) == 7 | !grepl('^#', background))
+    if (!nchar(background) %in% c(7, 9) | !grepl('^#', background))
       stop(strwrap('background must be an R color, e.g. see colors(),
                    or a hex of the form #ff5500'))
   }

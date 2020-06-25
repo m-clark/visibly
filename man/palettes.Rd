@@ -4,7 +4,8 @@
 \name{palettes}
 \alias{palettes}
 \title{Commonly used palettes}
-\format{(Possibly) named vectors/lists of colors
+\format{
+(Possibly) named vectors/lists of colors
 
 - orange : #ff5500
 
@@ -22,7 +23,8 @@
 
 - Plotly: plotly's default colorscale, because decent documentation is next
 to impossible for those folks.
-...}
+...
+}
 \source{
 For example the colortools and colorspace packages,
   \url{https://colorbrewer.org}, \url{http://paletton.com/},

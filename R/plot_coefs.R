@@ -32,12 +32,16 @@ plot_coefs <- function(model_input,
     purrr::map(function(x) c(seq(x$ui_l, x$value, length.out = 2000),
                              seq(x$value, x$ui_u, length.out = 2000))) %>%
     dplyr::bind_rows() %>%
-    tidyr::gather(key=Coefficient, value=ui_value) %>%
+    tidyr::pivot_longer(
+      dplyr::everything(),
+      names_to = 'Coefficient',
+      values_to = 'ui_value'
+    ) %>%
     dplyr::group_by(Coefficient) %>%
     dplyr::mutate(value_sc = abs(scale(ui_value))) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(Coefficient = ordered(Coefficient,
-                                        levels=levels(model_input$Coefficient)))
+                                        levels = levels(model_input$Coefficient)))
   # sigh again
 
   pointcol <- scico::scico(n = 1, begin = 1, palette = palette)

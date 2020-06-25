@@ -1,8 +1,8 @@
 context('test corr_heat')
 
 main <- cor(mtcars)
-m_small <- matrix(runif(25), ncol = 3)
-m_asym <- matrix(runif(25), ncol = 5)
+m_asym <- suppressWarnings({matrix(runif(25), ncol = 3)})
+m_small <- matrix(runif(25), ncol = 5)
 m_nonsq <- matrix(runif(30), ncol = 6)
 
 # z <- corr_heat(main, n_factors = 2)
@@ -94,7 +94,8 @@ test_that('Will ignore FA and just return the plot', {
 })
 
 test_that('can do 3d', {
-  expect_s3_class(corr_heat(main, n_factors = 2, three_d = TRUE), 'plotly')
+  # testthat reports warning that can't be picked up via debugging, so suppressing for now 2020-06
+  expect_s3_class(suppressWarnings({corr_heat(main, n_factors = 2, three_d = TRUE)}), 'plotly')
 })
 
 

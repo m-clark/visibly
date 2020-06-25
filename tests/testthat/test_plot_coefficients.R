@@ -40,6 +40,7 @@ test_that('test order numeric', {
 
 test_that('test order increasing', {
   expect_s3_class(plot_coefficients(test_lm, order = 'increasing'), 'ggplot')
+  expect_equal(plot_coefficients(test_lm, order = 'increasing', plot = FALSE)$Coefficient[1], 'wt')
 })
 
 

@@ -72,29 +72,37 @@ plot_gam_check <- function(model,
     bind_cols(model$model[, 1, drop=FALSE])
 
   res_fit_plot <-
-    ggplot(aes(x = `linear predictor`, y=residuals), data=fit_dat) +
-    geom_hline(yintercept = 0, alpha=.25, color='#ff5500') +
-    geom_point(aes(size=abs(residuals)), alpha=.25, show.legend = FALSE) +
+    ggplot(aes(x = `linear predictor`, y = residuals), data = fit_dat) +
+    geom_hline(yintercept = 0,
+               alpha = .25,
+               color = '#ff5500') +
+    geom_point(aes(size = abs(residuals)), alpha = .25, show.legend = FALSE) +
     scale_size_continuous(range = c(1, 6), trans = 'exp') +
-    ylim(values = c(min(fit_dat$residuals)-sd(fit_dat$residuals),
-                    max(fit_dat$residuals)+sd(fit_dat$residuals))) +
+    ylim(values = c(
+      min(fit_dat$residuals) - sd(fit_dat$residuals),
+      max(fit_dat$residuals) + sd(fit_dat$residuals)
+    )) +
     theme_clean()
 
   if (scatter) {
     if (!catcheck) {
       fit_plot <-
-        ggplot(aes(x = `fitted values`, y=model$y), data=fit_dat) +
-        geom_point(aes(), alpha=.25) +
+        ggplot(aes(x = `fitted values`, y = model$y), data = fit_dat) +
+        geom_point(aes(), alpha = .25) +
         labs(y = y_name) +
         theme_clean()
     } else {
       cat_fit_dat <- data.frame(y = model$y,
-                           probs) %>%
-        tidyr::gather(key = y, value = `fitted values`)
+                                probs) %>%
+        tidyr::pivot_longer(
+          -y,
+          names_to = 'cat',
+          values_to = 'fitted values'
+        )
 
       fit_plot <-
         ggplot(aes(x = `fitted values`, y = y), data = cat_fit_dat) +
-        geom_point(aes(), alpha=.25) +
+        geom_point(aes(), alpha = .25) +
         labs(y = y_name) +
         theme_clean()
     }
@@ -102,20 +110,20 @@ plot_gam_check <- function(model,
     # check for palette until scico updates on CRAN; use viridis if not
     if (!requireNamespace("scico", quietly = TRUE) ||
         !'batlow' %in% scico::scico_palette_names()) {
-      col_scale = scale_color_viridis_d(end=.5)
+      col_scale  = scale_color_viridis_d(end=.5)
       fill_scale = scale_fill_viridis_d(end=.5)
     } else {
-      col_scale = scico::scale_color_scico_d(palette='batlow')
+      col_scale  = scico::scale_color_scico_d(palette='batlow')
       fill_scale = scico::scale_fill_scico_d(palette='batlow')
     }
 
     fit_plot <-
-    fit_dat %>%
-      select(-residuals, -`linear predictor`) %>%
-      tidyr::gather(key=var) %>%
-      ggplot(aes(x = value, fill=var, color=var)) +
-      geom_density(alpha=.25) +
-      col_scale +
+      fit_dat %>%
+      select(-residuals,-`linear predictor`) %>%
+      tidyr::pivot_longer(dplyr::everything(), names_to = 'var') %>%
+      ggplot(aes(x = value, fill = var, color = var)) +
+      geom_density(alpha = .25) +
+      col_scale+
       fill_scale +
       theme_clean() +
       theme(

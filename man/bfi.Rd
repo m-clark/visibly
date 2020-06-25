@@ -4,7 +4,8 @@
 \name{bfi}
 \alias{bfi}
 \title{25 Personality items representing 5 factors}
-\format{The data from 2800 subjects.
+\format{
+The data from 2800 subjects.
 
 \describe{
   \item{A1:}{Am indifferent to the feelings of others. (q_146)}
@@ -32,7 +33,8 @@
   \item{O3:}{Carry the conversation to a higher level. (q_492)}
   \item{O4:}{Spend time reflecting on things. (q_1738)}
   \item{O5:}{Will not probe deeply into a subject. (q_1964)}
-}}
+}
+}
 \usage{
 bfi
 }

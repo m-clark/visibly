@@ -108,7 +108,7 @@ The R code is based on the gist by Kamil Slowikowski found here:
 \examples{
 \dontrun{
 library(visibly)
-colorgorical(n=12, pairPreference = 1, startPalette = list(c(10, -60, 45)))
+colorgorical(n = 12, pairPreference = 1, startPalette = list(c(10, -60, 45)))
 
 # go from hex to lab to use single starting point, but see note about
 starting colors

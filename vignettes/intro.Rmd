@@ -8,17 +8,28 @@ output:
     toc_depth: 3
     df_print: kable
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{An Introduction to Visibly}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(echo = T, message=F, warning=F, error=F, collapse = TRUE,
-                      comment=NA, R.options=list(width=220),   # code 
-                      dev.args=list(bg = 'transparent'), dev='png',                                 # viz
-                      fig.align='center', out.width='75%', fig.asp=.75,                 
-                      cache.rebuild=F, cache=F)                                                     # cache
+knitr::opts_chunk$set(
+  echo = T,
+  message = F,
+  warning = F,
+  error = F,
+  collapse = TRUE,
+  comment = NA,
+  R.options = list(width = 220),
+  dev.args = list(bg = 'transparent'),
+  dev = 'png',
+  fig.align = 'center',
+  out.width = '75%',
+  fig.asp = .75,
+  cache.rebuild = F,
+  cache = F
+)                                                     # cache
 ```
 
 
@@ -73,18 +84,61 @@ mtcars %>%
 Another way to create palettes is with a function that works with [colorgorical](http://vrl.cs.brown.edu/color).  It connects to that website to create colors based on things like whether they perceptually go together aesthetically, whether they are more or less perceptually distinct, or even if their name is unique.
 
 ```{r colorgorical, eval=2:4, echo=1}
-colorgorical(n=6, pairPreference = 1, startPalette = list(c(10, -60, 45)), output = 'hex')
-x = c("#002B00", "#95C857", "#334D37", "#4EF185", "#378811", "#7FE7D3")
+colorgorical(
+  n = 6,
+  pairPreference = 1,
+  startPalette = list(c(10,-60, 45)),
+  output = 'hex'
+)
+
+x = c(
+  "#002B00",
+  "#95C857",
+  "#334D37",
+  "#4EF185",
+  "#378811",
+  "#7FE7D3"
+)
+
 print(x)
-qplot(x=x, y=1:6, color=I(x), size=I(10))
+
+qplot(
+  x = x,
+  y = 1:6,
+  color = I(x),
+  size = I(10)
+)
 ```
 
 ```{r colorgorical2, eval=2:4, echo=1}
-colorgorical(n=10, perceptualDifference = .5, startPalette = list(c(10, -60, 45)), output = 'hex')
-x = c("#002B00", "#D57381", "#77CE3F", "#DB0EAC", "#2FF52B", 
-      "#6C208E", "#B1BF81", "#4115F9", "#518512", "#B662CA")
+colorgorical(
+  n = 10,
+  perceptualDifference = .5,
+  startPalette = list(c(10,-60, 45)),
+  output = 'hex'
+)
+
+x = c(
+  "#002B00",
+  "#D57381",
+  "#77CE3F",
+  "#DB0EAC",
+  "#2FF52B",
+  "#6C208E",
+  "#B1BF81",
+  "#4115F9",
+  "#518512",
+  "#B662CA"
+)
+
 print(x)
-qplot(x=x, y=1:10, color=I(x), size=I(10))
+
+qplot(
+  x = x,
+  y = 1:10,
+  color = I(x),
+  size = I(10)
+)
 ```
 
 To get a starting palette from an R or hexadecimal value, try <span class="pack">col2lab</span>.

@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/m-clark/visibly",
   "issueTracker": "https://github.com/m-clark/visibly/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.0",
+    "version": "4.0.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.0 (2019-04-26)",
+  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
   "author": [
     {
       "@type": "Person",
@@ -186,6 +186,11 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "mgcv",
       "name": "mgcv",
       "provider": {
@@ -200,6 +205,12 @@
       "@type": "SoftwareApplication",
       "identifier": "patchwork",
       "name": "patchwork",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
       "sameAs": "https://github.com/thomasp85/patchwork"
     },
     {
@@ -314,6 +325,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "ggplot2",
+      "name": "ggplot2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "provider": {
@@ -362,18 +385,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "ggplot2",
-      "name": "ggplot2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
       "provider": {
@@ -387,7 +398,7 @@
   ],
   "releaseNotes": "https://github.com/m-clark/visibly/blob/master/NEWS.md",
   "readme": "https://github.com/m-clark/visibly/blob/master/README.md",
-  "fileSize": "33875.502KB",
+  "fileSize": "35970.127KB",
   "contIntegration": [
     "https://travis-ci.org/m-clark/visibly",
     "https://ci.appveyor.com/project/m-clark/visibly",
