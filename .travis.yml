@@ -16,7 +16,7 @@ r_check_args: '--ignore-vignettes'
 
 matrix:
   include:
-  - r: 3.5.0
+  - r: 3.6.0
   - r: release
 
   allow_failures:
