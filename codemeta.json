@@ -321,7 +321,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.5.0"
+      "version": ">= 3.6.0"
     },
     {
       "@type": "SoftwareApplication",
@@ -398,7 +398,7 @@
   ],
   "releaseNotes": "https://github.com/m-clark/visibly/blob/master/NEWS.md",
   "readme": "https://github.com/m-clark/visibly/blob/master/README.md",
-  "fileSize": "35970.127KB",
+  "fileSize": "35970.126KB",
   "contIntegration": [
     "https://travis-ci.org/m-clark/visibly",
     "https://ci.appveyor.com/project/m-clark/visibly",
