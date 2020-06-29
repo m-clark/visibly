@@ -36,6 +36,7 @@ Suggests:
   lme4,
   methods,
   mgcv,
+  mnormt,
   patchwork,
   plotly,
   psych,
@@ -49,5 +50,5 @@ Suggests:
 Remotes:
   m-clark/tidyext,
   thomasp85/patchwork
-RoxygenNote: 7.1.0.9000
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr

@@ -9,3 +9,4 @@
 ^pkgdown
 ^appveyor\.yml$
 ^codemeta\.json$
+^\.github$

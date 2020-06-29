@@ -203,6 +203,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "mnormt",
+      "name": "mnormt",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=mnormt"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "patchwork",
       "name": "patchwork",
       "provider": {
@@ -398,7 +410,7 @@
   ],
   "releaseNotes": "https://github.com/m-clark/visibly/blob/master/NEWS.md",
   "readme": "https://github.com/m-clark/visibly/blob/master/README.md",
-  "fileSize": "35970.126KB",
+  "fileSize": "35970.14KB",
   "contIntegration": [
     "https://travis-ci.org/m-clark/visibly",
     "https://ci.appveyor.com/project/m-clark/visibly",

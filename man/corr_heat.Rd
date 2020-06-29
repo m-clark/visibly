@@ -71,8 +71,8 @@ Correlation matrices are typically better visualized rather than parsed
   \code{floor(sqrt(ncol(x)))}).  While you may supply the number of factors,
   as well as other options to the \link[psych]{fa} function via
   \code{psych_opts}, if you want to explore a factor analysis you should you
-  probably should do that separately. In addition, factor analysis can't fix
-  a poorly conditioned correlation matrix, and errors in the analysis may
+  probably do that separately. In addition, factor analysis can't fix a
+  poorly conditioned correlation matrix, and errors in the analysis may
   result in the plot failing.
 
   There are two options regarding the palette, the name of the
