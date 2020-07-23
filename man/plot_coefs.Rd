@@ -18,9 +18,9 @@ plot_coefs(model_input, palette, ref_line, trans)
 }
 \value{
 A ggplot of the coefficients with their corresponding uncertainty
-  bars.
+bars.
 }
 \description{
 This isn't really meant to be directly called, but is instead
-  internally used by the plot_coefficients function.
+internally used by the plot_coefficients function.
 }

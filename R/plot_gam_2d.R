@@ -7,18 +7,22 @@
 #'   is 100, creating a 100 x 100 grid of points.
 #' @param force_2d If the second_var has <= 5 values, the plot_gam_by is called.
 #'   This will override that.
+#' @param conditional_data This is the same as the newdata argument for predict
+#'   and passed to [create_prediction_data()]. Supply a data frame with desired
+#'   values of the model covariates.  Given the nature of this plot, this should
+#'   likely only be a single row for other covariate values.
 #' @param ... Options to scale_fill_scico for plot_gam_2d or
 #'   scale_color_viridis_d for plot_gam_by (scale_color_scico_d if using scico
 #'   development version).
 #'
 #' @details These functions plot the predictions for two covariates in a GAM
-#'   model produced by the \link[mgcv]{mgcv} package. The \code{plot_gam_2d}
+#'   model produced by the \link[mgcv]{mgcv} package. The `plot_gam_2d`
 #'   function is used for plotting two continuous predictors, while
-#'   \code{plot_gam_by} is used in the case where one of the variables is
-#'   categorical. If \code{plot_gam_2d} is called with the second variable being
+#'   `plot_gam_by` is used in the case where one of the variables is
+#'   categorical. If `plot_gam_2d` is called with the second variable being
 #'   categorical or of very few distinct values, a message will follow along
-#'   with a switch to \code{plot_gam_by}. One can override this with the
-#'   \code{force_2d} argument.
+#'   with a switch to `plot_gam_by`. One can override this with the
+#'   `force_2d` argument.
 #'
 #' @note Any attempt to use a non-numeric variable for the main_var will result in
 #'   failure.
@@ -99,7 +103,7 @@ plot_gam_2d <- function(model,
                        !!rlang::quo_name(sv) := seq(sv_range[1],
                                              sv_range[2],
                                              length.out = n_plot)) %>%
-    tidyr::expand(!!mv, !!sv)
+    tidyr::expand(!!mv, !!sv, conditional_data)
 
   data_list <-
     create_prediction_data(model_data = model_data,
@@ -107,8 +111,8 @@ plot_gam_2d <- function(model,
     mutate(prediction = predict(model, ., type = 'response'))
 
   data_list %>%
-    ggplot(aes(x=!!mv, y=!!sv)) +
-    geom_tile(aes(fill=prediction)) +
+    ggplot(aes(x = !!mv, y = !!sv)) +
+    geom_tile(aes(fill = prediction)) +
     scico::scale_fill_scico(...) +
     theme_clean()
 }

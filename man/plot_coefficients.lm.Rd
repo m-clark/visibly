@@ -53,11 +53,11 @@ different scale than covariate effects.}
 }
 \value{
 A ggplot of the coefficients and their interval estimates. Or the
-  data that would be used to create the plot.
+data that would be used to create the plot.
 }
 \description{
 A basic plot of coefficients with their uncertainty interval for
-  lm and glm objects.
+lm and glm objects.
 }
 \details{
 This is more or less a function that serves as the basis for other models I actually use.

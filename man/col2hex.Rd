@@ -19,9 +19,9 @@ Convert color to hex
 }
 \details{
 This function is primarily to be used on R colors, and will convert
-  them to hexmode sufficient for typical use in visualization, web
-  presentation, etc.  If you already have a hex value, it can be useful for
-  tacking on the alpha level.
+them to hexmode sufficient for typical use in visualization, web
+presentation, etc.  If you already have a hex value, it can be useful for
+tacking on the alpha level.
 }
 \examples{
 library(visibly)

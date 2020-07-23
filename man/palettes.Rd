@@ -6,29 +6,23 @@
 \title{Commonly used palettes}
 \format{
 (Possibly) named vectors/lists of colors
-
-- orange : #ff5500
-
-- stanred: #b2001d
-
-- RdBu_11: RdBu palette from colorbrewer for sequence of 11
-
-- Rblue: #1f65b7
-
-- Latvian Red: #9E1B34
-
-- Tyrian Purple: #3c6602
-
-- Tyrian Purple2: #990024  A more web friendly version
-
-- Plotly: plotly's default colorscale, because decent documentation is next
+\itemize{
+\item orange : #ff5500
+\item stanred: #b2001d
+\item RdBu_11: RdBu palette from colorbrewer for sequence of 11
+\item Rblue: #1f65b7
+\item Latvian Red: #9E1B34
+\item Tyrian Purple: #3c6602
+\item Tyrian Purple2: #990024  A more web friendly version
+\item Plotly: plotly's default colorscale, because decent documentation is next
 to impossible for those folks.
 ...
 }
+}
 \source{
 For example the colortools and colorspace packages,
-  \url{https://colorbrewer.org}, \url{http://paletton.com/},
-  \url{https://www.sessions.edu/color-calculator/},
+\url{https://colorbrewer.org}, \url{http://paletton.com/},
+\url{https://www.sessions.edu/color-calculator/},
 }
 \usage{
 palettes

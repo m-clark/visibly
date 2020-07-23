@@ -59,12 +59,12 @@ Plot 1d marginal effects from mgcv GAM model results.
 }
 \details{
 This function is fairly 'no-frills' at the moment. Only 1d or
-  multiple 1d smooths of numeric variables are able to be plotted. If
-  conditional data is not supplied, it will be created by
-  \link[visibly]{create_prediction_data}, which defaults to means for
-  numeric, most common category for categorical variables, and 500
-  observations.  It currently will fail if you have a mix of 2d and 1d and do
-  not specify a smooth.
+multiple 1d smooths of numeric variables are able to be plotted. If
+conditional data is not supplied, it will be created by
+\link[visibly]{create_prediction_data}, which defaults to means for
+numeric, most common category for categorical variables, and 500
+observations.  It currently will fail if you have a mix of 2d and 1d and do
+not specify a smooth.
 }
 \examples{
 library(mgcv) # you don't need this function if you don't use this package

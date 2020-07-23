@@ -34,8 +34,10 @@ and can take multiple variables via \code{vars()}.}
 \item{second_var}{Required for plot_gam_2d. The second continuous variable of
 interest.}
 
-\item{conditional_data}{This is the same as the newdata argument for predict.
-Supply a data frame with desired values of the model covariates.}
+\item{conditional_data}{This is the same as the newdata argument for predict
+and passed to \code{\link[=create_prediction_data]{create_prediction_data()}}. Supply a data frame with desired
+values of the model covariates.  Given the nature of this plot, this should
+likely only be a single row for other covariate values.}
 
 \item{n_plot}{How many plotting points for the main_var/second_var? Default
 is 100, creating a 100 x 100 grid of points.}
@@ -58,20 +60,20 @@ Plot 2-dimensional smooth terms
 }
 \details{
 These functions plot the predictions for two covariates in a GAM
-  model produced by the \link[mgcv]{mgcv} package. The \code{plot_gam_2d}
-  function is used for plotting two continuous predictors, while
-  \code{plot_gam_by} is used in the case where one of the variables is
-  categorical. If \code{plot_gam_2d} is called with the second variable being
-  categorical or of very few distinct values, a message will follow along
-  with a switch to \code{plot_gam_by}. One can override this with the
-  \code{force_2d} argument.
+model produced by the \link[mgcv]{mgcv} package. The \code{plot_gam_2d}
+function is used for plotting two continuous predictors, while
+\code{plot_gam_by} is used in the case where one of the variables is
+categorical. If \code{plot_gam_2d} is called with the second variable being
+categorical or of very few distinct values, a message will follow along
+with a switch to \code{plot_gam_by}. One can override this with the
+\code{force_2d} argument.
 }
 \note{
 Any attempt to use a non-numeric variable for the main_var will result in
-  failure.
+failure.
 
 If you are using gamm or gamm4 then you need to supply the mgcv model
-  as the model object.
+as the model object.
 }
 \examples{
 library(mgcv); library(dplyr)

@@ -14,18 +14,18 @@ white/'#FFFFFF'.}
 }
 \value{
 If you have \link[jsonlite]{jsonlite}, it will return a data frame of
-  the ratio and which standards are passed. Otherwise you get the same
-  information but as a character vector.
+the ratio and which standards are passed. Otherwise you get the same
+information but as a character vector.
 }
 \description{
 Get the color contrast of two colors
 }
 \details{
 This uses the api at
-  \href{https://webaim.org/resources/contrastchecker/}{webaim.org} to
-  determine the contrast ratio of the foreground color to the background
-  color.  This is useful to ensure chosen colors meet web standards for
-  accessibility.
+\href{https://webaim.org/resources/contrastchecker/}{webaim.org} to
+determine the contrast ratio of the foreground color to the background
+color.  This is useful to ensure chosen colors meet web standards for
+accessibility.
 }
 \examples{
 \dontrun{

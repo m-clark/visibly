@@ -69,7 +69,7 @@ a ggplot2 object or the effect estimates
 }
 \description{
 This isn't really meant to be directly called, but is instead
-  internally used by the plot_coefficients function.
+internally used by the plot_coefficients function.
 }
 \examples{
 #placeholder

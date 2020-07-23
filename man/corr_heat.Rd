@@ -45,52 +45,52 @@ Visualize a correlation matrix
 }
 \details{
 Correlation matrices are typically better visualized rather than parsed
-  numerically, and while one can do so with various packages at this point,
-  they either don't reorder the data, don't show the actual values, or only
-  order based on cluster analysis, and one often may not want the cluster
-  based approach to ordering if dealing with a correlation matrix, which may
-  be too small column-wise to be useful for a cluster analysis, or may be a
-  specific type of data more amenable to a measurement error approach (e.g.
-  items from a particular scale).
+numerically, and while one can do so with various packages at this point,
+they either don't reorder the data, don't show the actual values, or only
+order based on cluster analysis, and one often may not want the cluster
+based approach to ordering if dealing with a correlation matrix, which may
+be too small column-wise to be useful for a cluster analysis, or may be a
+specific type of data more amenable to a measurement error approach (e.g.
+items from a particular scale).
 
-  The default \code{corrheat} visualization produces a color-coded heatmap in
-  which Blue represents positive, and Red, negative correlations (the 'vik'
-  palette), and fades to white the smaller the values are. It is interactive,
-  such that one can hover over the image to obtain the correlation value.
+The default \code{corrheat} visualization produces a color-coded heatmap in
+which Blue represents positive, and Red, negative correlations (the 'vik'
+palette), and fades to white the smaller the values are. It is interactive,
+such that one can hover over the image to obtain the correlation value.
 
-  The ordering is based on the results of a factor analysis
-  from the \link[psych]{psych} package (which is required). It can be based
-  on \code{\link[psych]{fa.sort}} (default), max raw ("raw") loading,
-  absolute ("absolute") values of the loadings, loadings of the first factor
-  only ('first'), or polar coordinates (see \link[psych]{polar} ) across all
-  factors.
+The ordering is based on the results of a factor analysis
+from the \link[psych]{psych} package (which is required). It can be based
+on \code{\link[psych]{fa.sort}} (default), max raw ("raw") loading,
+absolute ("absolute") values of the loadings, loadings of the first factor
+only ('first'), or polar coordinates (see \link[psych]{polar} ) across all
+factors.
 
-  By default, the number of factors is chosen to more likely 'just work' for
-  visualization purposes.  If the number of columns is three or fewer, it
-  will force only one factor, otherwise it will be
-  \code{floor(sqrt(ncol(x)))}).  While you may supply the number of factors,
-  as well as other options to the \link[psych]{fa} function via
-  \code{psych_opts}, if you want to explore a factor analysis you should you
-  probably do that separately. In addition, factor analysis can't fix a
-  poorly conditioned correlation matrix, and errors in the analysis may
-  result in the plot failing.
+By default, the number of factors is chosen to more likely 'just work' for
+visualization purposes.  If the number of columns is three or fewer, it
+will force only one factor, otherwise it will be
+\code{floor(sqrt(ncol(x)))}).  While you may supply the number of factors,
+as well as other options to the \link[psych]{fa} function via
+\code{psych_opts}, if you want to explore a factor analysis you should you
+probably do that separately. In addition, factor analysis can't fix a
+poorly conditioned correlation matrix, and errors in the analysis may
+result in the plot failing.
 
-  There are two options regarding the palette, the name of the
-  \link[scico]{scico} palette and the direction, in case you want to flip the
-  color scheme.  Typically, you'll want to use a diverging palette such as vik
-  or cork.  If you have all positive (or rarely, negative), you might
-  consider the sequential ones like bilbao or oslo. The lower or upper limit
-  of the color bar will change accordingly.
+There are two options regarding the palette, the name of the
+\link[scico]{scico} palette and the direction, in case you want to flip the
+color scheme.  Typically, you'll want to use a diverging palette such as vik
+or cork.  If you have all positive (or rarely, negative), you might
+consider the sequential ones like bilbao or oslo. The lower or upper limit
+of the color bar will change accordingly.
 
-  I'm normally against 3-d images as they really don't apply in many cases
-  where they are used, but I think it can actually assist in seeing factor
-  structure here.
+I'm normally against 3-d images as they really don't apply in many cases
+where they are used, but I think it can actually assist in seeing factor
+structure here.
 }
 \note{
 This function essentially assumes a \emph{complete} correlation matrix like that
-  returned from \link[stats]{cor}, and one which should have row/column
-  names. With \code{plot_only = TRUE}, you may potentially supply any matrix,
-  as the factor analysis will not be done.
+returned from \link[stats]{cor}, and one which should have row/column
+names. With \code{plot_only = TRUE}, you may potentially supply any matrix,
+as the factor analysis will not be done.
 }
 \examples{
 \dontrun{

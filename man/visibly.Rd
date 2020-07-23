@@ -8,17 +8,14 @@
 Visibly is a handful of functions for color palettes, themes, etc. in R.  Inside you will find:
 }
 \details{
-- some ready-made palettes, e.g. based on R blue and Stan red
-
-- a function to quickly and easily create palettes with using `colortools::complementary` `colortools::adjacent` etc.
-
-- clean, web-friendly themes for ggplot2 and plotly
-
-- a function to interact with colorgorical
-
-- a heatmap for correlation matrices
-
-- coefficient plots for fixed and random effects, plotting of GAM results...
+\itemize{
+\item some ready-made palettes, e.g. based on R blue and Stan red
+\item a function to quickly and easily create palettes with using \code{colortools::complementary} \code{colortools::adjacent} etc.
+\item clean, web-friendly themes for ggplot2 and plotly
+\item a function to interact with colorgorical
+\item a heatmap for correlation matrices
+\item coefficient plots for fixed and random effects, plotting of GAM results...
+}
 
 and more!
 }

@@ -51,4 +51,5 @@ Remotes:
   m-clark/tidyext,
   thomasp85/patchwork
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

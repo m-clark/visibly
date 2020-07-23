@@ -32,22 +32,22 @@ A data frame suitable for the \code{newdata} argument for predict functions.
 }
 \description{
 Straightforward way to quickly create data to make model
-  predictions.
+predictions.
 }
 \details{
 Given data that was used in a model, create data that can be used
-  for predictions at key values, especially as a prelude to visualization.
-  Some package functions can be found that do this, but are specific to
-  certain models or don't quite provide the flexibility I want. Specifically,
-  this allows for an arbitrary function to apply to numeric variables, and
-  for categorical(ish) variables, one has the option for the most common
-  category (ties go to the first category), or the reference level if a
-  factor. For now class Date is treated as categorical.
+for predictions at key values, especially as a prelude to visualization.
+Some package functions can be found that do this, but are specific to
+certain models or don't quite provide the flexibility I want. Specifically,
+this allows for an arbitrary function to apply to numeric variables, and
+for categorical(ish) variables, one has the option for the most common
+category (ties go to the first category), or the reference level if a
+factor. For now class Date is treated as categorical.
 
-  In addition, one may supply their own data to set certain variables at any
-  particular values via the \code{conditional_data} argument, for example,
-  using \code{expand.grid} or \code{tidyr::crossing}. Variables not supplied
-  as columns in the \code{conditional_data} are treated as above.
+In addition, one may supply their own data to set certain variables at any
+particular values via the \code{conditional_data} argument, for example,
+using \code{expand.grid} or \code{tidyr::crossing}. Variables not supplied
+as columns in the \code{conditional_data} are treated as above.
 }
 \examples{
 library(tidyext)

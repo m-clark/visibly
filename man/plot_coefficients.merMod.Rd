@@ -46,20 +46,20 @@ different scale than covariate effects.}
 }
 \value{
 A ggplot of the coefficients and their interval estimates. Or the
-  data that would be used to create the plot.
+data that would be used to create the plot.
 }
 \description{
 Plot fixed or random effects coefficients for merMod objects.
 }
 \details{
 This plots the fixed or random effects of lme4 objects. For more
-  information on the fixed effects, see \link[visibly]{plot_coefficients}.It
-  requires the \link[lme4]{lme4} package.  The plot for random effects is
-  basically the dotplot demonstrated at \code{?lme4::ranef}, but instead uses
-  \link[ggplot2]{ggplot2} so you would have a little easier time working with
-  it to do with as you wish (for multiple random effects, a list of ggplot
-  objects can be returned). Many of the options for fixed effects are
-  removed, as they either don't make much sense or for practical reasons.
+information on the fixed effects, see \link[visibly]{plot_coefficients}.It
+requires the \link[lme4]{lme4} package.  The plot for random effects is
+basically the dotplot demonstrated at \code{?lme4::ranef}, but instead uses
+\link[ggplot2]{ggplot2} so you would have a little easier time working with
+it to do with as you wish (for multiple random effects, a list of ggplot
+objects can be returned). Many of the options for fixed effects are
+removed, as they either don't make much sense or for practical reasons.
 }
 \examples{
 library(lme4)

@@ -33,20 +33,20 @@ Clean up plots from their defaults.
 }
 \details{
 From a gray background, to unnecessary gridlines, to by-default
-  reference lines, some of the more popular visualization packages come out
-  75\% fantastic and 25\% questionable/arbitrary/problematic.  These
-  functions remove unnecessary gridlines, 'de-bold' the blacks, etc.
-
-  - \bold{ggplot2}: \code{theme_clean} This function takes a ggplot object
-  and removes the gray background, gridlines and adds opacity to the default
-  black axes and labels, allowing the pattern of the visual to be expressed
-  in unimpeded fashion.  \code{theme_trueMinimal} was the old name of this
-  function and is still usable.
-
-  - \bold{plotly}: \code{theme_plotly}, \code{theme_blank} removes reference
-  lines at zero, and some of its 'modebar' is unnecessary.  Otherwise little
-  is changed at this point, except for theme_blank, which is like theme_void
-  for ggplot.
+reference lines, some of the more popular visualization packages come out
+75\\% fantastic and 25\\% questionable/arbitrary/problematic.  These
+functions remove unnecessary gridlines, 'de-bold' the blacks, etc.
+\itemize{
+\item \bold{ggplot2}: \code{theme_clean} This function takes a ggplot object
+and removes the gray background, gridlines and adds opacity to the default
+black axes and labels, allowing the pattern of the visual to be expressed
+in unimpeded fashion.  \code{theme_trueMinimal} was the old name of this
+function and is still usable.
+\item \bold{plotly}: \code{theme_plotly}, \code{theme_blank} removes reference
+lines at zero, and some of its 'modebar' is unnecessary.  Otherwise little
+is changed at this point, except for theme_blank, which is like theme_void
+for ggplot.
+}
 }
 \note{
 You may continue to override any aspect of these themes. For example with

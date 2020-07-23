@@ -8,7 +8,7 @@ library(mgcv); library(dplyr)
 set.seed(0)
 d <- gamSim(2, scale=.1)$data
 d$misc <- rnorm(nrow(d), mean = 50, sd = 10)
-b <- gam(y ~ s(x, z), data = d)
+b <- gam(y ~ s(x, z) + misc, data = d)
 
 
 d2 <- gamSim(4)
@@ -50,6 +50,33 @@ test_that('plot_gam_2d takes scico args',{
                   'ggplot')
 })
 
+test_that('plot_gam_2d takes conditional_data',{
+  expect_s3_class(plot_gam_2d(
+    b,
+    main_var = x,
+    second_var = z,
+    conditional_data = data.frame(misc = 50)
+  ),
+  'ggplot')
+})
+
+test_that('plot_gam_2d takes conditional_data',{
+  expect_false(
+    identical(
+      plot_gam_2d(
+        b,
+        main_var = x,
+        second_var = z,
+        conditional_data = data.frame(misc = 50)
+      ),
+      plot_gam_2d(
+        b,
+        main_var = x,
+        second_var = z
+      )
+    ),
+  'ggplot')
+})
 
 
 # plot_gam_by -------------------------------------------------------------

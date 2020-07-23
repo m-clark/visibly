@@ -39,8 +39,8 @@ A plotly surface object
 }
 \details{
 This works like \link[visibly]{plot_gam_2d}, the only difference
-  being that a 3d plot is generated instead. It uses \link[scico]{scico} for
-  the palette.  It is expected that the two input variables are continuous
+being that a 3d plot is generated instead. It uses \link[scico]{scico} for
+the palette.  It is expected that the two input variables are continuous
 }
 \examples{
 library(mgcv); library(visibly)

@@ -46,7 +46,7 @@ different scale than covariate effects.}
 }
 \value{
 A ggplot of the coefficients and their interval estimates. Or the
-  data that would be used to create the plot.
+data that would be used to create the plot.
 }
 \description{
 Plot fixed or random effects coefficients for brmsfit objects.

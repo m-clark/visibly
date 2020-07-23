@@ -44,63 +44,63 @@ A character vector of color values in hex form.
 }
 \description{
 An interface for creating palettes from
-  \href{http://vrl.cs.brown.edu/color/}{colorgorical}.
+\href{http://vrl.cs.brown.edu/color/}{colorgorical}.
 }
 \details{
 This function accesses the colorgorical website to create a color
-  palette. It requires two other packages to work: \code{httr} and
-  \code{jsonlite}, and if you want a hex value, \code{colorspace}.
+palette. It requires two other packages to work: \code{httr} and
+\code{jsonlite}, and if you want a hex value, \code{colorspace}.
 
-  The following are relevant parts from the descriptions at the website.
+The following are relevant parts from the descriptions at the website.
 
-  \bold{Perceptual Distance}: Increasing Perceptual Distance favors palette
-  colors that are more easily discriminable to the human eye. To accurately
-  model human color acuity, this is performed using CIEDE2000 in CIE Lab
-  color space.
+\bold{Perceptual Distance}: Increasing Perceptual Distance favors palette
+colors that are more easily discriminable to the human eye. To accurately
+model human color acuity, this is performed using CIEDE2000 in CIE Lab
+color space.
 
-  \bold{Name Difference}: Increasing Name Difference favors palette colors
-  that share few common names. This is similar to perceptual distance, but
-  can lead to different results in certain areas of color space. This happens
-  when there are many different names for perceptually close colors (e.g.,
-  red and pink are perceptually close but named differently). Colorgorical
-  calculates this using Heer and Stone's Name Difference function, which is
-  built on top of the XKCD color-name survey.
+\bold{Name Difference}: Increasing Name Difference favors palette colors
+that share few common names. This is similar to perceptual distance, but
+can lead to different results in certain areas of color space. This happens
+when there are many different names for perceptually close colors (e.g.,
+red and pink are perceptually close but named differently). Colorgorical
+calculates this using Heer and Stone's Name Difference function, which is
+built on top of the XKCD color-name survey.
 
-  \bold{Pair Preference}: Increasing Pair Preference favors palette colors
-  that are, on average, predicted to be more aesthetically preferable
-  together. Typically these colors are similar in hue, have different
-  lightness, and are cooler colors (blues and greens). Pair Preference is
-  based off of Schloss and Palmer's research on color preference.
+\bold{Pair Preference}: Increasing Pair Preference favors palette colors
+that are, on average, predicted to be more aesthetically preferable
+together. Typically these colors are similar in hue, have different
+lightness, and are cooler colors (blues and greens). Pair Preference is
+based off of Schloss and Palmer's research on color preference.
 
-  \bold{Name Uniqueness}: Increasing Name Uniqueness favors palette colors
-  that are uniquely named. Some colors like red are readily named and are
-  favored, whereas other colors are less obviously named and are ignored.
-  Like, Name Difference, Name Uniqueness is based on Heer and Stone's
-  color-name research.
+\bold{Name Uniqueness}: Increasing Name Uniqueness favors palette colors
+that are uniquely named. Some colors like red are readily named and are
+favored, whereas other colors are less obviously named and are ignored.
+Like, Name Difference, Name Uniqueness is based on Heer and Stone's
+color-name research.
 
-  \bold{Select hue filter}: You can limit which colors are selected by either
-  dragging over the wheel to select a hue range, or by entering the angles
-  manually (e.g., select only reds). You can also make multiple selections
-  after one another to select many different hue ranges (e.g., select both
-  greens and purples).
+\bold{Select hue filter}: You can limit which colors are selected by either
+dragging over the wheel to select a hue range, or by entering the angles
+manually (e.g., select only reds). You can also make multiple selections
+after one another to select many different hue ranges (e.g., select both
+greens and purples).
 
-  \bold{Select lightness range}: You can change whether Colorgorical samples
-  lighter or darker colors.
+\bold{Select lightness range}: You can change whether Colorgorical samples
+lighter or darker colors.
 
-  \bold{Add starting colors}: You can guarantee that certain colors are in
-  your palette. Note, as near as I can tell, it is only guaranteed if you
-  have already created a palette at the website and start with one of the
-  generated colors. Otherwise, it appears to pick something close to the
-  starting point(s) given the settings. See the example.
+\bold{Add starting colors}: You can guarantee that certain colors are in
+your palette. Note, as near as I can tell, it is only guaranteed if you
+have already created a palette at the website and start with one of the
+generated colors. Otherwise, it appears to pick something close to the
+starting point(s) given the settings. See the example.
 
-  NOTE: Because JSON is being used behind the scenes, for \code{hueFilters}
-  and \code{startPalette}, the values must be given as a list.
+NOTE: Because JSON is being used behind the scenes, for \code{hueFilters}
+and \code{startPalette}, the values must be given as a list.
 
-  For example:
+For example:
 
-  \code{hueFilters = list(c(90, 180))}
+\code{hueFilters = list(c(90, 180))}
 
-  \code{startPalette = list(c(59, 62, 70))}
+\code{startPalette = list(c(59, 62, 70))}
 
 The R code is based on the gist by Kamil Slowikowski found here:
 \href{https://gist.github.com/slowkow/22daea426607416bfcd573ce9cbd89ab}{link}.
