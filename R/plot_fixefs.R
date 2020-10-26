@@ -8,15 +8,17 @@
 #'
 #' @examples
 #' #placeholder
-plot_fixefs <- function(model,
-                        order = 'decreasing',
-                        sd_multi = 2,
-                        keep_intercept = FALSE,
-                        palette = 'bilbao',
-                        ref_line = 0,
-                        trans = NULL,
-                        plot = TRUE,
-                        ...) {
+plot_fixefs <- function(
+  model,
+  order = 'decreasing',
+  sd_multi = 2,
+  keep_intercept = FALSE,
+  palette = 'bilbao',
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  ...
+) {
 
   UseMethod(generic = 'plot_fixefs')
 
@@ -77,19 +79,24 @@ plot_fixefs.brmsfit <- function(model,
 }
 
 #' @rdname plot_fixefs
-plot_fixefs.merMod <- function(model,
-                               order,
-                               sd_multi,
-                               keep_intercept,
-                               palette,
-                               ref_line,
-                               trans,
-                               plot,
-                               ...) {
+plot_fixefs.merMod <- function(
+  model,
+  order,
+  sd_multi,
+  keep_intercept,
+  palette,
+  ref_line,
+  trans,
+  plot,
+  ...
+  ) {
 
   # suppress char/fac warnings
-  init <- suppressWarnings({broom::tidy(model)}) %>%
-    dplyr::filter(group == 'fixed')
+  init <- summary(model)$coefficients %>%
+    dplyr::as_tibble(rownames = 'term') %>%
+    dplyr::rename_with(function(x)
+      gsub(tolower(x), pattern = ' |\\. ', replacement = '.')) %>%
+    mutate(term = gsub(term, pattern = '\\(|\\)', replacement = ''))
 
   if (!isTRUE(keep_intercept)) {
     init <- init %>%
@@ -123,9 +130,9 @@ plot_fixefs.merMod <- function(model,
   # call internal gg
   if (plot) {
     plot_coefs(out,
-               palette = palette,
+               palette  = palette,
                ref_line = ref_line,
-               trans =  trans)
+               trans    =  trans)
   } else {
     out
   }
