@@ -29,6 +29,7 @@
 plot_coefficients <- function(model,
                               order = 'decreasing',
                               sd_multi = 2,
+                              prob = .95,
                               keep_intercept = FALSE,
                               palette = 'bilbao',
                               ref_line = 0,

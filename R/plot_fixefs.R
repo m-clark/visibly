@@ -12,6 +12,7 @@ plot_fixefs <- function(
   model,
   order = 'decreasing',
   sd_multi = 2,
+  prob = .95,
   keep_intercept = FALSE,
   palette = 'bilbao',
   ref_line = 0,
@@ -26,17 +27,26 @@ plot_fixefs <- function(
 
 #' @export
 #' @rdname plot_fixefs
-plot_fixefs.brmsfit <- function(model,
-                                order,
-                                sd_multi,
-                                keep_intercept,
-                                palette,
-                                ref_line,
-                                trans,
-                                plot,
-                                ...) {
+plot_fixefs.brmsfit <- function(
+  model,
+  order,
+  prob,
+  keep_intercept,
+  palette,
+  ref_line,
+  trans,
+  plot,
+  ...
+) {
 
-  init <- broom::tidy(model, par_type = 'non-varying')
+  init <- summary(model, prob = prob)$fixed %>%
+    dplyr::as_tibble(rownames = 'term') %>%
+    dplyr::rename_with(function(x)
+      gsub(tolower(x), pattern = ' |\\. ', replacement = '.')) %>%
+    dplyr::rename(std.error = est.error) %>%
+    dplyr::rename_with(.cols = matches('l-'), function(x) 'ui_l') %>%
+    dplyr::rename_with(.cols = matches('u-'), function(x) 'ui_u') %>%
+    select(-(rhat:tail_ess))
 
   if (!isTRUE(keep_intercept)) {
     init <- init %>%
@@ -54,18 +64,8 @@ plot_fixefs.brmsfit <- function(model,
   init <- init[ord,]
 
   # grab coefs and sd
-  coefs <- init[,'estimate']
-  sds   <- init[,'std.error']
-
-  # create uis based on multiplier
-  ui  <- coefs  + outer(sds, c(-sd_multi, sd_multi))
-
-  out <-
-    data.frame(value = coefs,
-               ui) %>%
-    dplyr::mutate(Coefficient = init$term) %>%
-    dplyr::rename(ui_l = X1,
-                  ui_u = X2)
+  out <- init %>%
+    rename(Coefficient = term, value = estimate)
 
   # call internal gg
   if (plot) {

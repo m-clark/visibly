@@ -50,23 +50,29 @@ plot_coefs <- function(model_input,
 
 
   model_input %>%
-    ggplot2::ggplot(aes(x = Coefficient, y=value)) +
+    ggplot2::ggplot(aes(x = Coefficient, y = value)) +
     ggplot2::geom_hline(yintercept = ref_line, alpha = .1) +
-    geom_line(aes(group=Coefficient, y=ui_value, color=value_sc),
-              data=listcol,
-              size=5, show.legend = FALSE) +
-    ggplot2::geom_point(size=3 + .05,     # point border
+    geom_line(
+      aes(group = Coefficient, y = ui_value, color = value_sc),
+      data = listcol,
+      size = 5,
+      show.legend = FALSE
+    ) +
+    ggplot2::geom_point(size = 3 + .05,
+                        # point border
                         color = pointcol,
-                        alpha=1) +
-    ggplot2::geom_point(size=3,
+                        alpha = 1) +
+    ggplot2::geom_point(size = 3,
                         color = '#FFFFFF',
-                        alpha=1) +
-    ggplot2::geom_point(size=.5,
+                        alpha = 1) +
+    ggplot2::geom_point(size = .5,
                         color = pointcol,
-                        alpha=1) +
-    scico::scale_color_scico(begin = 1, end = 0, palette = palette) +
+                        alpha = 1) +
+    scico::scale_color_scico(begin = 1,
+                             end = 0,
+                             palette = palette) +
     ggplot2::coord_flip() +
-    ggplot2::labs(x='', y='Coefficient') +
+    ggplot2::labs(x = '', y = 'Coefficient') +
     theme_clean()
 
 

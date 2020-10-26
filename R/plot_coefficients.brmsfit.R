@@ -11,7 +11,7 @@
 #' @export
 plot_coefficients.brmsfit <- function(model,
                                       order = 'decreasing',
-                                      sd_multi = 2,
+                                      prob = .95,
                                       keep_intercept = FALSE,
                                       palette = 'bilbao',
                                       ref_line = 0,
@@ -21,19 +21,21 @@ plot_coefficients.brmsfit <- function(model,
                                       which_ranef = NULL,
                                       ...) {
 
-  if (!isTRUE(ranef)) plot_fixefs(model,
-                                  order,
-                                  sd_multi,
-                                  keep_intercept,
-                                  palette,
-                                  ref_line,
-                                  trans,
-                                  plot)
-  else plot_ranefs(model,
-                   sd_multi,
-                   ref_line,
-                   trans,
-                   plot,
-                   which_ranef)
+  if (!isTRUE(ranef))
+    plot_fixefs(model,
+                order,
+                prob,
+                keep_intercept,
+                palette,
+                ref_line,
+                trans,
+                plot)
+  else
+    plot_ranefs(model,
+                sd_multi,
+                ref_line,
+                trans,
+                plot,
+                which_ranef)
 }
 
