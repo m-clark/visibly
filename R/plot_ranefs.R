@@ -1,9 +1,11 @@
 #' Plot coefficients with uncertainty
-#' @description This isn't really meant to be directly called, but is instead
-#'   internally used by the plot_coefficients function.
 #'
-#' @param model  The brmsfit or lme4 model
+#' @description This isn't really meant to be directly called, but is instead
+#'   internally used by the `plot_coefficients` function.
+#'
+#' @param model  The `brmsfit` or `lme4` model
 #' @param sd_multi The sd multiplier
+#' @param prob The uncertainty level
 #' @param ref_line The reference line
 #' @param trans A transformation to be applied to the coefficient.  Currently unused.
 #' @param plot Whether to plot or just provide the data.
@@ -16,13 +18,16 @@
 #'
 #' @examples
 #' #placeholder
-plot_ranefs <- function(model,
-                        sd_multi = 2,
-                        ref_line = 0,
-                        trans = NULL,
-                        plot = TRUE,
-                        which_ranef = NULL,
-                        ...) {
+plot_ranefs <- function(
+  model,
+  sd_multi = 2,
+  prob = .95,
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  which_ranef = NULL,
+  ...
+) {
 
   UseMethod(generic = 'plot_ranefs')
 
@@ -30,14 +35,18 @@ plot_ranefs <- function(model,
 
 
 #' @describeIn  plot_ranefs
-plot_ranefs.brmsfit <- function(model,
-                                sd_multi,
-                                ref_line,
-                                trans,
-                                plot,
-                                which_ranef,
-                                ...) {
-  init <- brms::ranef(model)
+plot_ranefs.brmsfit <- function(
+  model,
+  prob,
+  ref_line,
+  trans,
+  plot,
+  which_ranef,
+  ...
+  ) {
+
+  prob <-  (1 - prob)/2
+  init <- brms::ranef(model, probs = c(prob, 1 - prob))
 
   if(is.null(which_ranef))
     stop('Need the name of the random effect to be plotted.')
@@ -49,35 +58,28 @@ plot_ranefs.brmsfit <- function(model,
       )
 
   init <- init[[which_ranef]]
+
   n_ranef <- dim(init)[3]
 
   re_plot_list <- vector('list', n_ranef)
 
   for (re in 1:n_ranef) {
-    res <- init[,,re]
-    ord <- order(res[,'Estimate'])
+    res <- init[, , re]
 
+    # reorder based on value
+    ord <- order(res[, 'Estimate'])
     res <- res[ord,]
 
-    # grab coefs and sd
-    coefs <- res[,'Estimate']
-    sds   <- res[,'Est.Error']
+    # rename for plotting
+    colnames(res)[grepl(colnames(res), pattern = '^Q[0-9]+\\.')] <- c('ui_l', 'ui_u')
 
-    # create uis based on multiplier
-    ui  <- coefs  + outer(sds, c(-sd_multi, sd_multi))
-
-    out <-
-      data.frame(value = coefs,
-                 ui) %>%
-      tibble::rownames_to_column(var='Coefficient') %>%
-      dplyr::rename(ui_l = X1,
-                    ui_u = X2)
+    out <- data.frame(res) %>%
+      rename(value = Estimate) %>%
+      tibble::rownames_to_column(var = 'Coefficient')
 
     # call internal gg
     if (plot) {
-      re_plot_list[[re]] <- plot_coefs_re(out,
-                                         ref_line = ref_line)
-
+      re_plot_list[[re]] <- plot_coefs_re(out, ref_line = ref_line)
     } else {
       re_plot_list[[re]] <- out
     }

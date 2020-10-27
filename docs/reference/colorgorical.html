@@ -43,7 +43,7 @@
 
 <meta property="og:title" content="Create a colorgorical palette — colorgorical" />
 <meta property="og:description" content="An interface for creating palettes from
-  colorgorical." />
+colorgorical." />
 
 
 
@@ -142,20 +142,20 @@
 
     <div class="ref-description">
     <p>An interface for creating palettes from
-  <a href='http://vrl.cs.brown.edu/color/'>colorgorical</a>.</p>
+<a href='http://vrl.cs.brown.edu/color/'>colorgorical</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>colorgorical</span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>perceptualDifference</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>nameDifference</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>nameUniqueness</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>pairPreference</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>hueFilters</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>lightnessRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"25"</span>, <span class='st'>"85"</span>),
-  <span class='kw'>startPalette</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"HEX"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>colorgorical</span><span class='op'>(</span>
+  n <span class='op'>=</span> <span class='fl'>10</span>,
+  perceptualDifference <span class='op'>=</span> <span class='fl'>0</span>,
+  nameDifference <span class='op'>=</span> <span class='fl'>0</span>,
+  nameUniqueness <span class='op'>=</span> <span class='fl'>0</span>,
+  pairPreference <span class='op'>=</span> <span class='fl'>0</span>,
+  hueFilters <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  lightnessRange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"25"</span>, <span class='st'>"85"</span><span class='op'>)</span>,
+  startPalette <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  output <span class='op'>=</span> <span class='st'>"HEX"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -208,44 +208,44 @@ is returned.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function accesses the colorgorical website to create a color
-  palette. It requires two other packages to work: <code>httr</code> and
-  <code>jsonlite</code>, and if you want a hex value, <code>colorspace</code>.</p>
+palette. It requires two other packages to work: <code>httr</code> and
+<code>jsonlite</code>, and if you want a hex value, <code>colorspace</code>.</p>
 <p>The following are relevant parts from the descriptions at the website.</p>
 <p><b>Perceptual Distance</b>: Increasing Perceptual Distance favors palette
-  colors that are more easily discriminable to the human eye. To accurately
-  model human color acuity, this is performed using CIEDE2000 in CIE Lab
-  color space.</p>
+colors that are more easily discriminable to the human eye. To accurately
+model human color acuity, this is performed using CIEDE2000 in CIE Lab
+color space.</p>
 <p><b>Name Difference</b>: Increasing Name Difference favors palette colors
-  that share few common names. This is similar to perceptual distance, but
-  can lead to different results in certain areas of color space. This happens
-  when there are many different names for perceptually close colors (e.g.,
-  red and pink are perceptually close but named differently). Colorgorical
-  calculates this using Heer and Stone's Name Difference function, which is
-  built on top of the XKCD color-name survey.</p>
+that share few common names. This is similar to perceptual distance, but
+can lead to different results in certain areas of color space. This happens
+when there are many different names for perceptually close colors (e.g.,
+red and pink are perceptually close but named differently). Colorgorical
+calculates this using Heer and Stone's Name Difference function, which is
+built on top of the XKCD color-name survey.</p>
 <p><b>Pair Preference</b>: Increasing Pair Preference favors palette colors
-  that are, on average, predicted to be more aesthetically preferable
-  together. Typically these colors are similar in hue, have different
-  lightness, and are cooler colors (blues and greens). Pair Preference is
-  based off of Schloss and Palmer's research on color preference.</p>
+that are, on average, predicted to be more aesthetically preferable
+together. Typically these colors are similar in hue, have different
+lightness, and are cooler colors (blues and greens). Pair Preference is
+based off of Schloss and Palmer's research on color preference.</p>
 <p><b>Name Uniqueness</b>: Increasing Name Uniqueness favors palette colors
-  that are uniquely named. Some colors like red are readily named and are
-  favored, whereas other colors are less obviously named and are ignored.
-  Like, Name Difference, Name Uniqueness is based on Heer and Stone's
-  color-name research.</p>
+that are uniquely named. Some colors like red are readily named and are
+favored, whereas other colors are less obviously named and are ignored.
+Like, Name Difference, Name Uniqueness is based on Heer and Stone's
+color-name research.</p>
 <p><b>Select hue filter</b>: You can limit which colors are selected by either
-  dragging over the wheel to select a hue range, or by entering the angles
-  manually (e.g., select only reds). You can also make multiple selections
-  after one another to select many different hue ranges (e.g., select both
-  greens and purples).</p>
+dragging over the wheel to select a hue range, or by entering the angles
+manually (e.g., select only reds). You can also make multiple selections
+after one another to select many different hue ranges (e.g., select both
+greens and purples).</p>
 <p><b>Select lightness range</b>: You can change whether Colorgorical samples
-  lighter or darker colors.</p>
+lighter or darker colors.</p>
 <p><b>Add starting colors</b>: You can guarantee that certain colors are in
-  your palette. Note, as near as I can tell, it is only guaranteed if you
-  have already created a palette at the website and start with one of the
-  generated colors. Otherwise, it appears to pick something close to the
-  starting point(s) given the settings. See the example.</p>
+your palette. Note, as near as I can tell, it is only guaranteed if you
+have already created a palette at the website and start with one of the
+generated colors. Otherwise, it appears to pick something close to the
+starting point(s) given the settings. See the example.</p>
 <p>NOTE: Because JSON is being used behind the scenes, for <code>hueFilters</code>
-  and <code>startPalette</code>, the values must be given as a list.</p>
+and <code>startPalette</code>, the values must be given as a list.</p>
 <p>For example:</p>
 <p><code>hueFilters = list(c(90, 180))</code></p>
 <p><code>startPalette = list(c(59, 62, 70))</code></p>
@@ -274,7 +274,7 @@ at GitHub</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

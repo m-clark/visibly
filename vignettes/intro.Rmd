@@ -61,23 +61,26 @@ pal = create_palette('#ff5500',
                      name = 'orange_you_glad_you_have_this_color')
 library(ggplot2)
 
-ggplot(mtcars, aes(x=wt, y=mpg)) +
-  geom_point(aes(color=factor(cyl)), size=10, alpha=.5) +
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(aes(color = factor(cyl)), size = 10, alpha = .5) +
   scale_color_manual(values = pal$triadic) +
   theme_clean()
 ```
 
 ```{r use2}
 library(dplyr)
-mtcars %>% 
-  mutate(cyl = factor(cyl)) %>% 
-  tidyext::num_by(wt, cyl) %>% 
-  ggplot(aes(x=cyl, y=Mean)) +
-  geom_col(aes(fill=cyl), width=.5, alpha=.85) +
+
+mtcars %>%
+  mutate(cyl = factor(cyl)) %>%
+  tidyext::num_by(wt, cyl) %>%
+  ggplot(aes(x = cyl, y = Mean)) +
+  geom_col(aes(fill = cyl), width = .5, alpha = .85) +
   scale_fill_manual(values = palettes$Rblue$triadic) +
   theme_clean() +
-  theme(legend.key.size = unit(.015, 'npc'),
-        axis.title.y = element_text(size=20, hjust=-.05))
+  theme(
+    legend.key.size = unit(.015, 'npc'),
+    axis.title.y = element_text(size = 20, hjust = -.05)
+  )
 ```
 
 
@@ -114,7 +117,7 @@ qplot(
 colorgorical(
   n = 10,
   perceptualDifference = .5,
-  startPalette = list(c(10,-60, 45)),
+  startPalette = list(c(10, -60, 45)), 
   output = 'hex'
 )
 
@@ -194,7 +197,9 @@ corr_heat(cor_matrix)
 The <span class="pack">psych</span> package is used to for the factor analysis, which is better suited to survey data and similar settings, where items are of the same type, and you can supply arguments to its <span class="func">fa</span> function. The plot comes from <span class="pack">plotly</span>, and hovering over the squares provides the value.
 
 ```{r corrheat2}
-corr_heat(cor_matrix, n_factors = 2, psych_opts = list(fm='ml', rot='oblimin'))
+corr_heat(cor_matrix,
+          n_factors = 2,
+          psych_opts = list(fm = 'ml', rot = 'oblimin'))
 ```
 
 The color scheme is based on the previously mentioned scico package.
@@ -243,12 +248,15 @@ Change the palette, order and more.
 
 ```{r lm1}
 fit_lm = lm(mpg ~ ., mtcars)
-plot_coefficients(fit_lm, 
-                  palette='oslo', 
-                  order = 'decreasing', 
-                  sd_multi = 1,
-                  keep_intercept = TRUE,
-                  ref_line = c(-1:1))
+
+plot_coefficients(
+  fit_lm,
+  palette = 'oslo',
+  order = 'decreasing',
+  sd_multi = 1,
+  keep_intercept = TRUE,
+  ref_line = c(-1:1)
+)
 ```
 
 #### Data only
@@ -256,7 +264,7 @@ plot_coefficients(fit_lm,
 You may want to do your own visualization, or go beyond the default settings. Rather than providing a couple dozen arguments for you to tweak, just so you can still feel like you can't get it just quite right.  Here's the data, do with it what you will!
 
 ```{r data}
-plot_coefficients(fit_lm, plot=FALSE)
+plot_coefficients(fit_lm, plot = FALSE)
 ```
 
 
@@ -266,7 +274,9 @@ I do a lot of mixed models, which is my main reason for providing this functiona
 
 ```{r fe1}
 library(lme4)
+
 fit_mer = lmer(Reaction ~ Days + (Days|Subject), sleepstudy)
+
 plot_coefficients(fit_mer)
 ```
 
@@ -282,6 +292,7 @@ Now for a different palette.  Again, these only apply to fixed effects visualiza
 fit_mer2 = lmer(count ~ zAge + zBase * Trt + 
                   (1 | patient), 
                 data = brms::epilepsy)
+
 plot_coefficients(fit_mer2, 
                   palette = 'berlin')
 ```
@@ -305,10 +316,12 @@ I like <span class="pack">brms</span> quite a bit and use it a lot. It served as
 
 ```{r fe_brms1, eval=FALSE}
 library(brms)
+
 fit_brms = brm(count ~ log_Age_c + log_Base4_c * Trt + 
                  (1 | patient) + (1 | obs), 
                data = epilepsy,
                family = poisson)
+
 plot_coefficients(fit_brms)
 ```
 
@@ -330,6 +343,7 @@ Some very rudimentary plotting of basic GAM effects provided by the <span class=
 
 ```{r gam}
 library(mgcv)
+
 d = gamSim()
 
 gam_model = gam(y ~ x0 + s(x1) + s(x2, bs='gp') + s(x3, bs='ps'), data=d)

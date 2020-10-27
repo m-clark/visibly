@@ -1,22 +1,26 @@
 #' Plot coefficients with uncertainty
 #' @description This isn't really meant to be directly called, but is instead
 #'   internally used by the plot_coefficients function.
-#' @inheritParams plot_coefficients
+#' @inheritParams plot_coefficients.glm
+#' @inheritParams plot_coefficients.brmsfit
 #' @return a ggplot2 object or the effect estimates
 #'
 #' @seealso \link[visibly]{plot_coefficients}
 #'
 #' @examples
 #' #placeholder
-plot_fixefs <- function(model,
-                        order = 'decreasing',
-                        sd_multi = 2,
-                        keep_intercept = FALSE,
-                        palette = 'bilbao',
-                        ref_line = 0,
-                        trans = NULL,
-                        plot = TRUE,
-                        ...) {
+plot_fixefs <- function(
+  model,
+  order = 'decreasing',
+  sd_multi = 2,
+  prob = .95,
+  keep_intercept = FALSE,
+  palette = 'bilbao',
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  ...
+) {
 
   UseMethod(generic = 'plot_fixefs')
 
@@ -24,17 +28,26 @@ plot_fixefs <- function(model,
 
 #' @export
 #' @rdname plot_fixefs
-plot_fixefs.brmsfit <- function(model,
-                                order,
-                                sd_multi,
-                                keep_intercept,
-                                palette,
-                                ref_line,
-                                trans,
-                                plot,
-                                ...) {
+plot_fixefs.brmsfit <- function(
+  model,
+  order,
+  prob,
+  keep_intercept,
+  palette,
+  ref_line,
+  trans,
+  plot,
+  ...
+) {
 
-  init <- broom::tidy(model, par_type = 'non-varying')
+  init <- summary(model, prob = prob)$fixed %>%
+    dplyr::as_tibble(rownames = 'term') %>%
+    dplyr::rename_with(function(x)
+      gsub(tolower(x), pattern = ' |\\. ', replacement = '.')) %>%
+    dplyr::rename(std.error = est.error) %>%
+    dplyr::rename_with(.cols = dplyr::matches('l-'), function(x) 'ui_l') %>%
+    dplyr::rename_with(.cols = dplyr::matches('u-'), function(x) 'ui_u') %>%
+    select(-(rhat:tail_ess))
 
   if (!isTRUE(keep_intercept)) {
     init <- init %>%
@@ -52,18 +65,8 @@ plot_fixefs.brmsfit <- function(model,
   init <- init[ord,]
 
   # grab coefs and sd
-  coefs <- init[,'estimate']
-  sds   <- init[,'std.error']
-
-  # create uis based on multiplier
-  ui  <- coefs  + outer(sds, c(-sd_multi, sd_multi))
-
-  out <-
-    data.frame(value = coefs,
-               ui) %>%
-    dplyr::mutate(Coefficient = init$term) %>%
-    dplyr::rename(ui_l = X1,
-                  ui_u = X2)
+  out <- init %>%
+    rename(Coefficient = term, value = estimate)
 
   # call internal gg
   if (plot) {
@@ -77,19 +80,24 @@ plot_fixefs.brmsfit <- function(model,
 }
 
 #' @rdname plot_fixefs
-plot_fixefs.merMod <- function(model,
-                               order,
-                               sd_multi,
-                               keep_intercept,
-                               palette,
-                               ref_line,
-                               trans,
-                               plot,
-                               ...) {
+plot_fixefs.merMod <- function(
+  model,
+  order,
+  sd_multi,
+  keep_intercept,
+  palette,
+  ref_line,
+  trans,
+  plot,
+  ...
+  ) {
 
   # suppress char/fac warnings
-  init <- suppressWarnings({broom::tidy(model)}) %>%
-    dplyr::filter(group == 'fixed')
+  init <- summary(model)$coefficients %>%
+    dplyr::as_tibble(rownames = 'term') %>%
+    dplyr::rename_with(function(x)
+      gsub(tolower(x), pattern = ' |\\. ', replacement = '.')) %>%
+    mutate(term = gsub(term, pattern = '\\(|\\)', replacement = ''))
 
   if (!isTRUE(keep_intercept)) {
     init <- init %>%
@@ -123,9 +131,9 @@ plot_fixefs.merMod <- function(model,
   # call internal gg
   if (plot) {
     plot_coefs(out,
-               palette = palette,
+               palette  = palette,
                ref_line = ref_line,
-               trans =  trans)
+               trans    =  trans)
   } else {
     out
   }

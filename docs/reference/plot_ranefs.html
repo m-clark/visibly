@@ -43,7 +43,7 @@
 
 <meta property="og:title" content="Plot coefficients with uncertainty — plot_ranefs" />
 <meta property="og:description" content="This isn't really meant to be directly called, but is instead
-  internally used by the plot_coefficients function." />
+internally used by the plot_coefficients function." />
 
 
 
@@ -142,35 +142,40 @@
 
     <div class="ref-description">
     <p>This isn't really meant to be directly called, but is instead
-  internally used by the plot_coefficients function.</p>
+internally used by the <code>plot_coefficients</code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_ranefs</span>(
-  <span class='no'>model</span>,
-  <span class='kw'>sd_multi</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>ref_line</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>trans</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>which_ranef</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>
-)
+    <pre class="usage"><span class='fu'>plot_ranefs</span><span class='op'>(</span>
+  <span class='va'>model</span>,
+  sd_multi <span class='op'>=</span> <span class='fl'>2</span>,
+  prob <span class='op'>=</span> <span class='fl'>0.95</span>,
+  ref_line <span class='op'>=</span> <span class='fl'>0</span>,
+  trans <span class='op'>=</span> <span class='cn'>NULL</span>,
+  plot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  which_ranef <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
 <span class='co'># S3 method for brmsfit</span>
-<span class='fu'>plot_ranefs</span>(<span class='no'>model</span>, <span class='no'>sd_multi</span>, <span class='no'>ref_line</span>, <span class='no'>trans</span>, <span class='no'>plot</span>, <span class='no'>which_ranef</span>, <span class='no'>...</span>)
+<span class='fu'>plot_ranefs</span><span class='op'>(</span><span class='va'>model</span>, <span class='va'>prob</span>, <span class='va'>ref_line</span>, <span class='va'>trans</span>, <span class='va'>plot</span>, <span class='va'>which_ranef</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for merMod</span>
-<span class='fu'>plot_ranefs</span>(<span class='no'>model</span>, <span class='no'>sd_multi</span>, <span class='no'>ref_line</span>, <span class='no'>trans</span>, <span class='no'>plot</span>, <span class='no'>which_ranef</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>plot_ranefs</span><span class='op'>(</span><span class='va'>model</span>, <span class='va'>sd_multi</span>, <span class='va'>ref_line</span>, <span class='va'>trans</span>, <span class='va'>plot</span>, <span class='va'>which_ranef</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>model</th>
-      <td><p>The brmsfit or lme4 model</p></td>
+      <td><p>The <code>brmsfit</code> or <code>lme4</code> model</p></td>
     </tr>
     <tr>
       <th>sd_multi</th>
       <td><p>The sd multiplier</p></td>
+    </tr>
+    <tr>
+      <th>prob</th>
+      <td><p>The uncertainty level</p></td>
     </tr>
     <tr>
       <th>ref_line</th>
@@ -209,7 +214,7 @@
     <div class='dont-index'><p><a href='plot_coefficients.html'>plot_coefficients</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>#placeholder
+    <pre class="examples"><div class='input'><span class='co'>#placeholder</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -226,7 +231,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

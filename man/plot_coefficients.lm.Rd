@@ -33,9 +33,11 @@
 \item{model}{The lm or glm model}
 
 \item{order}{The order of the plots- "increasing", "decreasing", or a numeric
-vector giving the order. The default is NULL, i.e. the default ordering. Not applied to random effects.}
+vector giving the order. The default is NULL, i.e. the default ordering.
+Not applied to random effects.}
 
-\item{sd_multi}{The multiplier that determines the width of the interval. Default is 2.}
+\item{sd_multi}{For non-brmsfit objects, the multiplier that determines the
+width of the interval. Default is 2.}
 
 \item{keep_intercept}{Default is FALSE. Intercepts are typically on a very
 different scale than covariate effects.}
@@ -60,7 +62,8 @@ A basic plot of coefficients with their uncertainty interval for
 lm and glm objects.
 }
 \details{
-This is more or less a function that serves as the basis for other models I actually use.
+This is more or less a function that serves as the basis for other
+models I actually use.
 }
 \examples{
 mod = lm(mpg ~ ., mtcars)

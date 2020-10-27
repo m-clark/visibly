@@ -9,6 +9,7 @@
 plot_ranefs(
   model,
   sd_multi = 2,
+  prob = 0.95,
   ref_line = 0,
   trans = NULL,
   plot = TRUE,
@@ -16,14 +17,16 @@ plot_ranefs(
   ...
 )
 
-\method{plot_ranefs}{brmsfit}(model, sd_multi, ref_line, trans, plot, which_ranef, ...)
+\method{plot_ranefs}{brmsfit}(model, prob, ref_line, trans, plot, which_ranef, ...)
 
 \method{plot_ranefs}{merMod}(model, sd_multi, ref_line, trans, plot, which_ranef, ...)
 }
 \arguments{
-\item{model}{The brmsfit or lme4 model}
+\item{model}{The \code{brmsfit} or \code{lme4} model}
 
 \item{sd_multi}{The sd multiplier}
+
+\item{prob}{The uncertainty level}
 
 \item{ref_line}{The reference line}
 
@@ -40,7 +43,7 @@ a ggplot2 object or the effect estimates
 }
 \description{
 This isn't really meant to be directly called, but is instead
-internally used by the plot_coefficients function.
+internally used by the \code{plot_coefficients} function.
 }
 \section{Methods (by class)}{
 \itemize{

@@ -43,7 +43,7 @@
 
 <meta property="og:title" content="Create a color palette — create_palette" />
 <meta property="og:description" content="Uses colortools package (and possibly scales) to easily create a
-  color palette based on a initial input color." />
+color palette based on a initial input color." />
 
 
 
@@ -142,10 +142,10 @@
 
     <div class="ref-description">
     <p>Uses colortools package (and possibly scales) to easily create a
-  color palette based on a initial input color.</p>
+color palette based on a initial input color.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_palette</span>(<span class='no'>colorhex</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>toHCL</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>create_palette</span><span class='op'>(</span><span class='va'>colorhex</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, toHCL <span class='op'>=</span> <span class='cn'>FALSE</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, alpha <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,17 +178,18 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Will return complementary, analogous/adjacent, split complementary,
-  triadic, square and tetradic color values relative to the initial color.
-  Note that if you want sequential, qualitative, diverging etc., other
-  packages like
-  <a href='https://cran.rstudio.com/web/packages/colorspace/'>RColorBrewer</a>,
-  <a href='https://cran.rstudio.com/web/packages/colorspace/'>colorspace</a>, and
-  <a href='https://cran.rstudio.com/web/packages/colortools/'>colortools</a> will
-  do that for you.</p>
+triadic, square and tetradic color values relative to the initial color.
+Note that if you want sequential, qualitative, diverging etc., other
+packages like
+<a href='https://cran.rstudio.com/web/packages/colorspace/'>RColorBrewer</a>,
+<a href='https://cran.rstudio.com/web/packages/colorspace/'>colorspace</a>, and
+<a href='https://cran.rstudio.com/web/packages/colortools/'>colortools</a> will
+do that for you.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>visibly</span>)
-<span class='fu'>create_palette</span>(<span class='kw'>colorhex</span> <span class='kw'>=</span> <span class='st'>'#ff5500'</span>, <span class='kw'>name</span><span class='kw'>=</span><span class='st'>'orange'</span>)</div><div class='output co'>#&gt; $orange
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/m-clark/visibly'>visibly</a></span><span class='op'>)</span>
+<span class='fu'>create_palette</span><span class='op'>(</span>colorhex <span class='op'>=</span> <span class='st'>'#ff5500'</span>, name<span class='op'>=</span><span class='st'>'orange'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $orange
 #&gt; [1] "#ff5500"
 #&gt; 
 #&gt; $complementary
@@ -208,7 +209,8 @@
 #&gt; 
 #&gt; $tetradic
 #&gt; [1] "#FF5500" "#AAFF00" "#00AAFF" "#5500FF"
-#&gt; </div><div class='input'><span class='fu'>create_palette</span>(<span class='kw'>colorhex</span> <span class='kw'>=</span> <span class='st'>'#ff5500'</span>, <span class='kw'>name</span><span class='kw'>=</span><span class='st'>'orange'</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>.5</span>)</div><div class='output co'>#&gt; $orange
+#&gt; </div><div class='input'><span class='fu'>create_palette</span><span class='op'>(</span>colorhex <span class='op'>=</span> <span class='st'>'#ff5500'</span>, name<span class='op'>=</span><span class='st'>'orange'</span>, alpha<span class='op'>=</span><span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $orange
 #&gt; [1] "#FF550080"
 #&gt; 
 #&gt; $complementary
@@ -245,7 +247,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

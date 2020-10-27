@@ -4,43 +4,10 @@
 \alias{plot_coefficients}
 \title{Plot coefficients}
 \usage{
-plot_coefficients(
-  model,
-  order = "decreasing",
-  sd_multi = 2,
-  keep_intercept = FALSE,
-  palette = "bilbao",
-  ref_line = 0,
-  trans = NULL,
-  plot = TRUE,
-  ranef = FALSE,
-  which_ranef = NULL,
-  ...
-)
+plot_coefficients(model, ...)
 }
 \arguments{
-\item{model}{The model that is the point of this function. For example, lm, glm, gam, lme4, brms.}
-
-\item{order}{The order of the plots- "increasing", "decreasing", or a numeric
-vector giving the order. The default is NULL, i.e. the default ordering. Not applied to random effects.}
-
-\item{sd_multi}{The multiplier that determines the width of the interval. Default is 2.}
-
-\item{keep_intercept}{Default is FALSE. Intercepts are typically on a very
-different scale than covariate effects.}
-
-\item{palette}{A scico palette. Default is 'bilbao'.}
-
-\item{ref_line}{A reference line. Default is zero.}
-
-\item{trans}{A transformation function to be applied to the coefficients
-(e.g. exponentiation).}
-
-\item{plot}{Default is TRUE, but sometimes you just want the data.}
-
-\item{ranef}{If applicable, whether to plot random effects instead of fixed effects.}
-
-\item{which_ranef}{If plotting random effects, which one to plot.}
+\item{model}{The model. For example, lm, glm, gam, lme4, brms.}
 
 \item{...}{Other arguments applied for specific methods.}
 }

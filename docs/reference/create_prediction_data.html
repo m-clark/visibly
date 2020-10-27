@@ -43,7 +43,7 @@
 
 <meta property="og:title" content="Generate prediction data — create_prediction_data" />
 <meta property="og:description" content="Straightforward way to quickly create data to make model
-  predictions." />
+predictions." />
 
 
 
@@ -142,16 +142,16 @@
 
     <div class="ref-description">
     <p>Straightforward way to quickly create data to make model
-  predictions.</p>
+predictions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_prediction_data</span>(
-  <span class='no'>model_data</span>,
-  <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>num</span> <span class='kw'>=</span> <span class='no'>mean</span>,
-  <span class='kw'>cat</span> <span class='kw'>=</span> <span class='st'>"most_common"</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>create_prediction_data</span><span class='op'>(</span>
+  <span class='va'>model_data</span>,
+  conditional_data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  num <span class='op'>=</span> <span class='va'>mean</span>,
+  cat <span class='op'>=</span> <span class='st'>"most_common"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,39 +188,44 @@ most frequently occurring category (most_common, the default).</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Given data that was used in a model, create data that can be used
-  for predictions at key values, especially as a prelude to visualization.
-  Some package functions can be found that do this, but are specific to
-  certain models or don't quite provide the flexibility I want. Specifically,
-  this allows for an arbitrary function to apply to numeric variables, and
-  for categorical(ish) variables, one has the option for the most common
-  category (ties go to the first category), or the reference level if a
-  factor. For now class Date is treated as categorical.</p>
+for predictions at key values, especially as a prelude to visualization.
+Some package functions can be found that do this, but are specific to
+certain models or don't quite provide the flexibility I want. Specifically,
+this allows for an arbitrary function to apply to numeric variables, and
+for categorical(ish) variables, one has the option for the most common
+category (ties go to the first category), or the reference level if a
+factor. For now class Date is treated as categorical.</p>
 <p>In addition, one may supply their own data to set certain variables at any
-  particular values via the <code>conditional_data</code> argument, for example,
-  using <code>expand.grid</code> or <code><a href='https://tidyr.tidyverse.org/reference/expand.html'>tidyr::crossing</a></code>. Variables not supplied
-  as columns in the <code>conditional_data</code> are treated as above.</p>
+particular values via the <code>conditional_data</code> argument, for example,
+using <code>expand.grid</code> or <code><a href='https://tidyr.tidyverse.org/reference/expand.html'>tidyr::crossing</a></code>. Variables not supplied
+as columns in the <code>conditional_data</code> are treated as above.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tidyext</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://m-clark.github.io/tidyext'>tidyext</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘tidyext’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:visibly’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    create_prediction_data</span></div><div class='input'><span class='fu'>create_prediction_data</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-#&gt; 1     5.843333    3.057333        3.758    1.199333  setosa</div><div class='input'><span class='fu'>create_prediction_data</span>(<span class='no'>iris</span>, <span class='kw'>num</span> <span class='kw'>=</span> <span class='no'>median</span>,
-                       <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span>(
-                         <span class='kw'>Sepal.Width</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>3</span>,<span class='fl'>5</span>),
-                         <span class='kw'>Species</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'virginica'</span>)
-                         )
-                       )</div><div class='output co'>#&gt;   Sepal.Width   Species Sepal.Length Petal.Length Petal.Width
+#&gt; <span class='message'>    create_prediction_data</span></div><div class='input'><span class='fu'>create_prediction_data</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#&gt; 1     5.843333    3.057333        3.758    1.199333  setosa</div><div class='input'><span class='fu'>create_prediction_data</span><span class='op'>(</span><span class='va'>iris</span>, num <span class='op'>=</span> <span class='va'>median</span>,
+                       <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>
+                         Sepal.Width<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>3</span>,<span class='fl'>5</span><span class='op'>)</span>,
+                         Species <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'setosa'</span>, <span class='st'>'virginica'</span><span class='op'>)</span>
+                         <span class='op'>)</span>
+                       <span class='op'>)</span>
+</div><div class='output co'>#&gt;   Sepal.Width   Species Sepal.Length Petal.Length Petal.Width
 #&gt; 1           0    setosa          5.8         4.35         1.3
 #&gt; 2           3    setosa          5.8         4.35         1.3
 #&gt; 3           5    setosa          5.8         4.35         1.3
 #&gt; 4           0 virginica          5.8         4.35         1.3
 #&gt; 5           3 virginica          5.8         4.35         1.3
-#&gt; 6           5 virginica          5.8         4.35         1.3</div><div class='input'><span class='fu'>create_prediction_data</span>(<span class='no'>iris</span>, <span class='kw'>num</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='no'>x</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>.75</span>))</div><div class='output co'>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#&gt; 6           5 virginica          5.8         4.35         1.3</div><div class='input'><span class='fu'>create_prediction_data</span><span class='op'>(</span><span class='va'>iris</span>, num <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, p<span class='op'>=</span><span class='fl'>.75</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 #&gt; 1          6.4         3.3          5.1         1.8  setosa</div><div class='input'>
-<span class='no'>test_mod</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>mpg</span>  ~ <span class='no'>wt</span> + <span class='no'>cyl</span>, <span class='no'>mtcars</span>)
-<span class='no'>nd</span> <span class='kw'>=</span> <span class='fu'>create_prediction_data</span>(<span class='no'>test_mod</span>$<span class='no'>model</span>)
-<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>test_mod</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>nd</span>)</div><div class='output co'>#&gt;        1 
+<span class='va'>test_mod</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mpg</span>  <span class='op'>~</span> <span class='va'>wt</span> <span class='op'>+</span> <span class='va'>cyl</span>, <span class='va'>mtcars</span><span class='op'>)</span>
+<span class='va'>nd</span> <span class='op'>=</span> <span class='fu'>create_prediction_data</span><span class='op'>(</span><span class='va'>test_mod</span><span class='op'>$</span><span class='va'>model</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>test_mod</span>, newdata <span class='op'>=</span> <span class='va'>nd</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        1 
 #&gt; 20.09062 </div><div class='input'>
 </div></pre>
   </div>
@@ -238,7 +243,7 @@ most frequently occurring category (most_common, the default).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
