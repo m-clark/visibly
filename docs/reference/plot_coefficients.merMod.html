@@ -144,35 +144,37 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for merMod</span>
-<span class='fu'><a href='plot_coefficients.html'>plot_coefficients</a></span>(
-  <span class='no'>model</span>,
-  <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>"decreasing"</span>,
-  <span class='kw'>sd_multi</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>keep_intercept</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"bilbao"</span>,
-  <span class='kw'>ref_line</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>trans</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ranef</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>which_ranef</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>
-)</pre>
+<span class='fu'><a href='plot_coefficients.html'>plot_coefficients</a></span><span class='op'>(</span>
+  <span class='va'>model</span>,
+  order <span class='op'>=</span> <span class='st'>"decreasing"</span>,
+  sd_multi <span class='op'>=</span> <span class='fl'>2</span>,
+  keep_intercept <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  palette <span class='op'>=</span> <span class='st'>"bilbao"</span>,
+  ref_line <span class='op'>=</span> <span class='fl'>0</span>,
+  trans <span class='op'>=</span> <span class='cn'>NULL</span>,
+  plot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ranef <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  which_ranef <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>model</th>
-      <td><p>The model that is the point of this function. For example, lm, glm, gam, lme4, brms.</p></td>
+      <td><p>The model. For example, lm, glm, gam, lme4, brms.</p></td>
     </tr>
     <tr>
       <th>order</th>
       <td><p>The order of the plots- "increasing", "decreasing", or a numeric
-vector giving the order. The default is NULL, i.e. the default ordering. Not applied to random effects.</p></td>
+vector giving the order. The default is NULL, i.e. the default ordering.
+Not applied to random effects.</p></td>
     </tr>
     <tr>
       <th>sd_multi</th>
-      <td><p>The multiplier that determines the width of the interval. Default is 2.</p></td>
+      <td><p>For non-brmsfit objects, the multiplier that determines the
+width of the interval. Default is 2.</p></td>
     </tr>
     <tr>
       <th>keep_intercept</th>
@@ -198,7 +200,8 @@ different scale than covariate effects.</p></td>
     </tr>
     <tr>
       <th>ranef</th>
-      <td><p>If applicable, whether to plot random effects instead of fixed effects.</p></td>
+      <td><p>If applicable, whether to plot random effects instead of fixed
+effects.</p></td>
     </tr>
     <tr>
       <th>which_ranef</th>
@@ -213,17 +216,17 @@ different scale than covariate effects.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A ggplot of the coefficients and their interval estimates. Or the
-  data that would be used to create the plot.</p>
+data that would be used to create the plot.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This plots the fixed or random effects of lme4 objects. For more
-  information on the fixed effects, see <a href='plot_coefficients.html'>plot_coefficients</a>.It
-  requires the <a href='https://rdrr.io/pkg/lme4/man/lme4-package.html'>lme4</a> package.  The plot for random effects is
-  basically the dotplot demonstrated at <code><a href='https://rdrr.io/pkg/lme4/man/ranef.html'>?lme4::ranef</a></code>, but instead uses
-  <a href='https://ggplot2.tidyverse.org/reference/ggplot2-package.html'>ggplot2</a> so you would have a little easier time working with
-  it to do with as you wish (for multiple random effects, a list of ggplot
-  objects can be returned). Many of the options for fixed effects are
-  removed, as they either don't make much sense or for practical reasons.</p>
+information on the fixed effects, see <a href='plot_coefficients.html'>plot_coefficients</a>.It
+requires the <a href='https://rdrr.io/pkg/lme4/man/lme4-package.html'>lme4</a> package.  The plot for random effects is
+basically the dotplot demonstrated at <code><a href='https://rdrr.io/pkg/lme4/man/ranef.html'>?lme4::ranef</a></code>, but instead uses
+<a href='https://ggplot2.tidyverse.org/reference/ggplot2-package.html'>ggplot2</a> so you would have a little easier time working with
+it to do with as you wish (for multiple random effects, a list of ggplot
+objects can be returned). Many of the options for fixed effects are
+removed, as they either don't make much sense or for practical reasons.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other model visualization: 
@@ -236,8 +239,10 @@ different scale than covariate effects.</p></td>
 <code><a href='plot_gam.html'>plot_gam</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='input'><span class='no'>fit_mer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span>(<span class='no'>Reaction</span> ~ <span class='no'>Days</span> + (<span class='no'>Days</span><span class='kw'>|</span><span class='no'>Subject</span>), <span class='no'>sleepstudy</span>)
-<span class='fu'><a href='plot_coefficients.html'>plot_coefficients</a></span>(<span class='no'>fit_mer</span>, <span class='kw'>ranef</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>which_ranef</span> <span class='kw'>=</span> <span class='st'>'Subject'</span>)</div><div class='output co'>#&gt; $`(Intercept)`</div><div class='img'><img src='plot_coefficients.merMod-1.png' alt='' width='700' height='1133' /></div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/lme4/lme4/'>lme4</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='input'><span class='va'>fit_mer</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span><span class='op'>(</span><span class='va'>Reaction</span> <span class='op'>~</span> <span class='va'>Days</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>Days</span><span class='op'>|</span><span class='va'>Subject</span><span class='op'>)</span>, <span class='va'>sleepstudy</span><span class='op'>)</span>
+<span class='fu'><a href='plot_coefficients.html'>plot_coefficients</a></span><span class='op'>(</span><span class='va'>fit_mer</span>, ranef <span class='op'>=</span> <span class='cn'>TRUE</span>, which_ranef <span class='op'>=</span> <span class='st'>'Subject'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $`(Intercept)`</div><div class='img'><img src='plot_coefficients.merMod-1.png' alt='' width='700' height='1133' /></div><div class='output co'>#&gt; 
 #&gt; $Days</div><div class='img'><img src='plot_coefficients.merMod-2.png' alt='' width='700' height='1133' /></div><div class='output co'>#&gt; </div><div class='input'>
 </div></pre>
   </div>
@@ -255,7 +260,7 @@ different scale than covariate effects.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

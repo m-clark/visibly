@@ -1,7 +1,8 @@
 #' Plot coefficients with uncertainty
 #' @description This isn't really meant to be directly called, but is instead
 #'   internally used by the plot_coefficients function.
-#' @inheritParams plot_coefficients
+#' @inheritParams plot_coefficients.glm
+#' @inheritParams plot_coefficients.brmsfit
 #' @return a ggplot2 object or the effect estimates
 #'
 #' @seealso \link[visibly]{plot_coefficients}

@@ -143,33 +143,33 @@
     <p>Plot 1d marginal effects from mgcv GAM model results.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_gam</span>(
-  <span class='no'>model</span>,
-  <span class='no'>main_var</span>,
-  <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>line_color</span> <span class='kw'>=</span> <span class='st'>"#7B321C"</span>,
-  <span class='kw'>ribbon_color</span> <span class='kw'>=</span> <span class='st'>"#28688640"</span>,
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+    <pre class="usage"><span class='fu'>plot_gam</span><span class='op'>(</span>
+  <span class='va'>model</span>,
+  <span class='va'>main_var</span>,
+  conditional_data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  line_color <span class='op'>=</span> <span class='st'>"#7B321C"</span>,
+  ribbon_color <span class='op'>=</span> <span class='st'>"#28688640"</span>,
+  ncol <span class='op'>=</span> <span class='cn'>NULL</span>,
+  nrow <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>plot_gam_1d</span>(
-  <span class='no'>model</span>,
-  <span class='no'>main_var</span>,
-  <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>line_color</span> <span class='kw'>=</span> <span class='st'>"#ff5500"</span>,
-  <span class='kw'>ribbon_color</span> <span class='kw'>=</span> <span class='st'>"#00aaff"</span>
-)
+<span class='fu'>plot_gam_1d</span><span class='op'>(</span>
+  <span class='va'>model</span>,
+  <span class='va'>main_var</span>,
+  conditional_data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  line_color <span class='op'>=</span> <span class='st'>"#ff5500"</span>,
+  ribbon_color <span class='op'>=</span> <span class='st'>"#00aaff"</span>
+<span class='op'>)</span>
 
-<span class='fu'>plot_gam_multi1d</span>(
-  <span class='no'>model</span>,
-  <span class='no'>main_var</span>,
-  <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>line_color</span> <span class='kw'>=</span> <span class='st'>"#ff5500"</span>,
-  <span class='kw'>ribbon_color</span> <span class='kw'>=</span> <span class='st'>"#00aaff"</span>,
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='no'>ncol</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='no'>nrow</span>
-)</pre>
+<span class='fu'>plot_gam_multi1d</span><span class='op'>(</span>
+  <span class='va'>model</span>,
+  <span class='va'>main_var</span>,
+  conditional_data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  line_color <span class='op'>=</span> <span class='st'>"#ff5500"</span>,
+  ribbon_color <span class='op'>=</span> <span class='st'>"#00aaff"</span>,
+  ncol <span class='op'>=</span> <span class='va'>ncol</span>,
+  nrow <span class='op'>=</span> <span class='va'>nrow</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -212,12 +212,12 @@ Supply a data frame with desired values of the model covariates.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is fairly 'no-frills' at the moment. Only 1d or
-  multiple 1d smooths of numeric variables are able to be plotted. If
-  conditional data is not supplied, it will be created by
-  <a href='create_prediction_data.html'>create_prediction_data</a>, which defaults to means for
-  numeric, most common category for categorical variables, and 500
-  observations.  It currently will fail if you have a mix of 2d and 1d and do
-  not specify a smooth.</p>
+multiple 1d smooths of numeric variables are able to be plotted. If
+conditional data is not supplied, it will be created by
+<a href='create_prediction_data.html'>create_prediction_data</a>, which defaults to means for
+numeric, most common category for categorical variables, and 500
+observations.  It currently will fail if you have a mix of 2d and 1d and do
+not specify a smooth.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other model visualization: 
@@ -230,10 +230,12 @@ Supply a data frame with desired values of the model covariates.</p></td>
 <code><a href='plot_gam_check.html'>plot_gam_check</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mgcv</span>) <span class='co'># you don't need this function if you don't use this package</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: nlme</span></div><div class='output co'>#&gt; <span class='message'></span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>mgcv</span><span class='op'>)</span> <span class='co'># you don't need this function if you don't use this package</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: nlme</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘nlme’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:lme4’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    lmList</span></div><div class='output co'>#&gt; <span class='message'>This is mgcv 1.8-31. For overview type 'help("mgcv-package")'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>    lmList</span></div><div class='output co'>#&gt; <span class='message'>This is mgcv 1.8-33. For overview type 'help("mgcv-package")'.</span></div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:nlme’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    collapse</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
@@ -241,47 +243,52 @@ Supply a data frame with desired values of the model covariates.</p></td>
 #&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='co'># example taken from the mgcv plot.gam help file.</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>0</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>
 <span class='co'>## fake some data...</span>
-<span class='no'>f1</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>2</span> * <span class='no'>x</span>)
-}
-<span class='no'>f2</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='fl'>0.2</span> * <span class='no'>x</span> ^ <span class='fl'>11</span> * (<span class='fl'>10</span> * (<span class='fl'>1</span> - <span class='no'>x</span>)) ^ <span class='fl'>6</span> + <span class='fl'>10</span> * (<span class='fl'>10</span> * <span class='no'>x</span>) ^ <span class='fl'>3</span> * (<span class='fl'>1</span> - <span class='no'>x</span>) ^ <span class='fl'>10</span>
-}
-<span class='no'>f3</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='no'>x</span> * <span class='fl'>0</span>
-}
+<span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fl'>2</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fl'>0.2</span> <span class='op'>*</span> <span class='va'>x</span> <span class='op'>^</span> <span class='fl'>11</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>10</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>^</span> <span class='fl'>6</span> <span class='op'>+</span> <span class='fl'>10</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>10</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>)</span> <span class='op'>^</span> <span class='fl'>3</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>x</span><span class='op'>)</span> <span class='op'>^</span> <span class='fl'>10</span>
+<span class='op'>}</span>
+<span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>*</span> <span class='fl'>0</span>
+<span class='op'>}</span>
 
-<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>200</span>
-<span class='no'>sig2</span> <span class='kw'>&lt;-</span> <span class='fl'>4</span>
+<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>200</span>
+<span class='va'>sig2</span> <span class='op'>&lt;-</span> <span class='fl'>4</span>
 
-<span class='no'>d</span> <span class='kw'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(
-  <span class='kw'>x0</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>50</span>),
-  <span class='kw'>x1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span>),
-  <span class='kw'>x2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span>),
-  <span class='kw'>x3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span>),
-  <span class='kw'>e</span>  <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='no'>sig2</span>)),
-  <span class='kw'>y</span>  <span class='kw'>=</span> <span class='fl'>2</span> * <span class='no'>x0</span> + <span class='fu'>f1</span>(<span class='no'>x1</span>) + <span class='fu'>f2</span>(<span class='no'>x2</span>) + <span class='fu'>f3</span>(<span class='no'>x3</span>) + <span class='no'>e</span>
-) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>x0</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='no'>x0</span>))
+<span class='va'>d</span> <span class='op'>=</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+  x0 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>50</span><span class='op'>)</span>,
+  x1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  x2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  x3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  e  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='fl'>0</span>, <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>sig2</span><span class='op'>)</span><span class='op'>)</span>,
+  y  <span class='op'>=</span> <span class='fl'>2</span> <span class='op'>*</span> <span class='va'>x0</span> <span class='op'>+</span> <span class='fu'>f1</span><span class='op'>(</span><span class='va'>x1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>f2</span><span class='op'>(</span><span class='va'>x2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>f3</span><span class='op'>(</span><span class='va'>x3</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>e</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>x0 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>gam</a></span>(<span class='no'>y</span> ~ <span class='no'>x0</span> + <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/s.html'>s</a></span>(<span class='no'>x1</span>) + <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/s.html'>s</a></span>(<span class='no'>x2</span>) + <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/s.html'>s</a></span>(<span class='no'>x3</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>)
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>gam</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>x0</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/s.html'>s</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/s.html'>s</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/s.html'>s</a></span><span class='op'>(</span><span class='va'>x3</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>visibly</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/m-clark/visibly'>visibly</a></span><span class='op'>)</span>
 
-<span class='fu'>plot_gam</span>(<span class='no'>b</span>,
-         <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>x2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>500</span>)),
-         <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x2</span>)</div><div class='img'><img src='plot_gam-1.png' alt='' width='700' height='1133' /></div><div class='input'>
-<span class='fu'>plot_gam</span>(<span class='no'>b</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x2</span>)</div><div class='img'><img src='plot_gam-2.png' alt='' width='700' height='1133' /></div><div class='input'>
+<span class='fu'>plot_gam</span><span class='op'>(</span><span class='va'>b</span>,
+         conditional_data <span class='op'>=</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>x2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>500</span><span class='op'>)</span><span class='op'>)</span>,
+         main_var <span class='op'>=</span> <span class='va'>x2</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_gam-1.png' alt='' width='700' height='1133' /></div><div class='input'>
+<span class='fu'>plot_gam</span><span class='op'>(</span><span class='va'>b</span>, main_var <span class='op'>=</span> <span class='va'>x2</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_gam-2.png' alt='' width='700' height='1133' /></div><div class='input'>
 
-<span class='fu'>plot_gam</span>(<span class='no'>b</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='no'>x2</span>, <span class='no'>x1</span>))</div><div class='img'><img src='plot_gam-3.png' alt='' width='700' height='1133' /></div><div class='input'>
-<span class='fu'>plot_gam</span>(<span class='no'>b</span>,
-         <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>x1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>500</span>),
-                                       <span class='kw'>x2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>500</span>)),
-         <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='no'>x2</span>, <span class='no'>x1</span>))</div><div class='img'><img src='plot_gam-4.png' alt='' width='700' height='1133' /></div><div class='input'>
+<span class='fu'>plot_gam</span><span class='op'>(</span><span class='va'>b</span>, main_var <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>x2</span>, <span class='va'>x1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_gam-3.png' alt='' width='700' height='1133' /></div><div class='input'>
+<span class='fu'>plot_gam</span><span class='op'>(</span><span class='va'>b</span>,
+         conditional_data <span class='op'>=</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>x1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>500</span><span class='op'>)</span>,
+                                       x2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>500</span><span class='op'>)</span><span class='op'>)</span>,
+         main_var <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>x2</span>, <span class='va'>x1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_gam-4.png' alt='' width='700' height='1133' /></div><div class='input'>
 <span class='co'># compare with mgcv plot</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>b</span>, <span class='kw'>pages</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='img'><img src='plot_gam-5.png' alt='' width='700' height='1133' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>b</span>, pages<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_gam-5.png' alt='' width='700' height='1133' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -298,7 +305,7 @@ Supply a data frame with desired values of the model covariates.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -230,7 +230,10 @@ corr_heat <- function(cormat,
   # Plot --------------------------------------------------------------------
 
   if (three_d) {
-    p <-
+    # plotly gives a warning it can't do limits, then does them; this appears
+    # the only way to suppress, but then won't work for Rmd html output; see
+    # issue #1202
+    suppressWarnings({
       plotly::plot_ly(z = ~cormat, name = "") %>%
       plotly::add_surface(colors = pal) %>%
       plotly::colorbar(limits = c(ll, ul)) %>%
@@ -240,11 +243,8 @@ corr_heat <- function(cormat,
         zaxis = zlo
       )) %>%
       theme_plotly()
-
-    # plotly gives a warning it can't do limits, then does them; this appears
-    # the only way to suppress, but then won't work for Rmd html output; see
-    # issue #1202
-    suppressWarnings({ print(p) })
+    })
+    # suppressWarnings({ print(p) })
 
   } else {
     plotly::plot_ly(z = ~cormat) %>%

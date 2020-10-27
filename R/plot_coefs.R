@@ -1,18 +1,22 @@
 #' Plot coefficients with uncertainty
 #'
-#' @description This isn't really meant to be directly called, but is instead
+#' @description This isn't meant to be directly called, but is instead
 #'   internally used by the plot_coefficients function.
 #'
 #' @param model_input Processed model effects
-#' @inheritParams plot_coefficients
+#' @param palette Passed from other methods.
+#' @param ref_line Passed from other methods.
+#' @param trans Passed from other methods.
 #'
 #' @return  A ggplot of the coefficients with their corresponding uncertainty
 #'   bars.
 #'
-plot_coefs <- function(model_input,
-                       palette,
-                       ref_line,
-                       trans) {
+plot_coefs <- function(
+  model_input,
+  palette,
+  ref_line,
+  trans
+) {
 
   if (!requireNamespace("scico", quietly = TRUE)) {
     stop("scico package is needed for this function to work.
@@ -23,6 +27,7 @@ plot_coefs <- function(model_input,
   model_input <- model_input %>%
     dplyr::mutate(bold = ifelse(sign(ui_l)*sign(ui_u) == 1, 1, .9),
                   Coefficient = ordered(Coefficient, levels=Coefficient)) # sigh
+
   if (!is.null(trans))
     model_input <- model_input %>%
       dplyr::mutate_at(vars(value, contains('ui')), trans)
@@ -45,6 +50,7 @@ plot_coefs <- function(model_input,
   # sigh again
 
   pointcol <- scico::scico(n = 1, begin = 1, palette = palette)
+
   if (pointcol == "#FFFFFF")
     pointcol <- scico::scico(n = 1, begin = 0, end = 0, palette = palette)
 

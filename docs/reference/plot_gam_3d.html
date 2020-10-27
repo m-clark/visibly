@@ -143,15 +143,15 @@
     <p>3d plot of 2d smooths for generalized additive models.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_gam_3d</span>(
-  <span class='no'>model</span>,
-  <span class='no'>main_var</span>,
-  <span class='no'>second_var</span>,
-  <span class='kw'>conditional_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>n_plot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>dmb</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plot_gam_3d</span><span class='op'>(</span>
+  <span class='va'>model</span>,
+  <span class='va'>main_var</span>,
+  <span class='va'>second_var</span>,
+  conditional_data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  n_plot <span class='op'>=</span> <span class='fl'>100</span>,
+  dmb <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,8 +194,8 @@ cost of your own waiting time.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This works like <a href='plot_gam_2d.html'>plot_gam_2d</a>, the only difference
-  being that a 3d plot is generated instead. It uses <a href='https://rdrr.io/pkg/scico/man/scico.html'>scico</a> for
-  the palette.  It is expected that the two input variables are continuous</p>
+being that a 3d plot is generated instead. It uses <a href='https://rdrr.io/pkg/scico/man/scico.html'>scico</a> for
+the palette.  It is expected that the two input variables are continuous</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other model visualization: 
@@ -208,12 +208,14 @@ cost of your own waiting time.</p></td>
 <code><a href='plot_gam.html'>plot_gam</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mgcv</span>); <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>visibly</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>0</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>mgcv</span><span class='op'>)</span>; <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/m-clark/visibly'>visibly</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>
 
-<span class='no'>d</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/gamSim.html'>gamSim</a></span>(<span class='fl'>2</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>.1</span>)$<span class='no'>data</span></div><div class='output co'>#&gt; Bivariate smoothing example</div><div class='input'><span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>gam</a></span>(<span class='no'>y</span> ~ <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/s.html'>s</a></span>(<span class='no'>x</span>, <span class='no'>z</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>)
-<span class='fu'>plot_gam_3d</span>(<span class='no'>mod</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>second_var</span> <span class='kw'>=</span> <span class='no'>z</span>)
-<span class='fu'>plot_gam_3d</span>(<span class='no'>mod</span>, <span class='kw'>main_var</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>second_var</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>palette</span><span class='kw'>=</span><span class='st'>'tokyo'</span>)</div></pre>
+<span class='va'>d</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/gamSim.html'>gamSim</a></span><span class='op'>(</span><span class='fl'>2</span>, scale<span class='op'>=</span><span class='fl'>.1</span><span class='op'>)</span><span class='op'>$</span><span class='va'>data</span>
+</div><div class='output co'>#&gt; Bivariate smoothing example</div><div class='input'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>gam</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/pkg/mgcv/man/s.html'>s</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>z</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
+<span class='fu'>plot_gam_3d</span><span class='op'>(</span><span class='va'>mod</span>, main_var <span class='op'>=</span> <span class='va'>x</span>, second_var <span class='op'>=</span> <span class='va'>z</span><span class='op'>)</span>
+<span class='fu'>plot_gam_3d</span><span class='op'>(</span><span class='va'>mod</span>, main_var <span class='op'>=</span> <span class='va'>x</span>, second_var <span class='op'>=</span> <span class='va'>z</span>, palette<span class='op'>=</span><span class='st'>'tokyo'</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -229,7 +231,7 @@ cost of your own waiting time.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

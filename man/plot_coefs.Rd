@@ -9,18 +9,17 @@ plot_coefs(model_input, palette, ref_line, trans)
 \arguments{
 \item{model_input}{Processed model effects}
 
-\item{palette}{A scico palette. Default is 'bilbao'.}
+\item{palette}{Passed from other methods.}
 
-\item{ref_line}{A reference line. Default is zero.}
+\item{ref_line}{Passed from other methods.}
 
-\item{trans}{A transformation function to be applied to the coefficients
-(e.g. exponentiation).}
+\item{trans}{Passed from other methods.}
 }
 \value{
 A ggplot of the coefficients with their corresponding uncertainty
 bars.
 }
 \description{
-This isn't really meant to be directly called, but is instead
+This isn't meant to be directly called, but is instead
 internally used by the plot_coefficients function.
 }

@@ -7,7 +7,7 @@
 \method{plot_coefficients}{brmsfit}(
   model,
   order = "decreasing",
-  sd_multi = 2,
+  prob = 0.95,
   keep_intercept = FALSE,
   palette = "bilbao",
   ref_line = 0,
@@ -19,12 +19,14 @@
 )
 }
 \arguments{
-\item{model}{The model that is the point of this function. For example, lm, glm, gam, lme4, brms.}
+\item{model}{The model. For example, lm, glm, gam, lme4, brms.}
 
 \item{order}{The order of the plots- "increasing", "decreasing", or a numeric
-vector giving the order. The default is NULL, i.e. the default ordering. Not applied to random effects.}
+vector giving the order. The default is NULL, i.e. the default ordering.
+Not applied to random effects.}
 
-\item{sd_multi}{The multiplier that determines the width of the interval. Default is 2.}
+\item{prob}{For \code{brmsfit} objects, the interval for the uncertainty level.
+Default is .95.}
 
 \item{keep_intercept}{Default is FALSE. Intercepts are typically on a very
 different scale than covariate effects.}
@@ -38,7 +40,8 @@ different scale than covariate effects.}
 
 \item{plot}{Default is TRUE, but sometimes you just want the data.}
 
-\item{ranef}{If applicable, whether to plot random effects instead of fixed effects.}
+\item{ranef}{If applicable, whether to plot random effects instead of fixed
+effects.}
 
 \item{which_ranef}{If plotting random effects, which one to plot.}
 
