@@ -44,8 +44,8 @@ plot_fixefs.brmsfit <- function(
     dplyr::rename_with(function(x)
       gsub(tolower(x), pattern = ' |\\. ', replacement = '.')) %>%
     dplyr::rename(std.error = est.error) %>%
-    dplyr::rename_with(.cols = matches('l-'), function(x) 'ui_l') %>%
-    dplyr::rename_with(.cols = matches('u-'), function(x) 'ui_u') %>%
+    dplyr::rename_with(.cols = dplyr::matches('l-'), function(x) 'ui_l') %>%
+    dplyr::rename_with(.cols = dplyr::matches('u-'), function(x) 'ui_u') %>%
     select(-(rhat:tail_ess))
 
   if (!isTRUE(keep_intercept)) {

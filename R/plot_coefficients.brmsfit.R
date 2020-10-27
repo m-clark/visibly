@@ -9,17 +9,19 @@
 #' @family model visualization
 #'
 #' @export
-plot_coefficients.brmsfit <- function(model,
-                                      order = 'decreasing',
-                                      prob = .95,
-                                      keep_intercept = FALSE,
-                                      palette = 'bilbao',
-                                      ref_line = 0,
-                                      trans = NULL,
-                                      plot = TRUE,
-                                      ranef = FALSE,
-                                      which_ranef = NULL,
-                                      ...) {
+plot_coefficients.brmsfit <- function(
+  model,
+  order = 'decreasing',
+  prob = .95,
+  keep_intercept = FALSE,
+  palette = 'bilbao',
+  ref_line = 0,
+  trans = NULL,
+  plot = TRUE,
+  ranef = FALSE,
+  which_ranef = NULL,
+  ...
+) {
 
   if (!isTRUE(ranef))
     plot_fixefs(model,
@@ -32,7 +34,7 @@ plot_coefficients.brmsfit <- function(model,
                 plot)
   else
     plot_ranefs(model,
-                sd_multi,
+                prob,
                 ref_line,
                 trans,
                 plot,
