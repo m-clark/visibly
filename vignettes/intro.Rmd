@@ -86,14 +86,17 @@ mtcars %>%
 
 Another way to create palettes is with a function that works with [colorgorical](http://vrl.cs.brown.edu/color).  It connects to that website to create colors based on things like whether they perceptually go together aesthetically, whether they are more or less perceptually distinct, or even if their name is unique.
 
-```{r colorgorical, eval=2:4, echo=1}
+```{r colorgorical, eval=F}
 colorgorical(
   n = 6,
   pairPreference = 1,
   startPalette = list(c(10,-60, 45)),
   output = 'hex'
 )
+```
 
+
+```{r colorgorical-show, eval=T, echo=F}
 x = c(
   "#002B00",
   "#95C857",
@@ -113,14 +116,18 @@ qplot(
 )
 ```
 
-```{r colorgorical2, eval=2:4, echo=1}
+
+```{r colorgorical2, eval=F}
 colorgorical(
   n = 10,
   perceptualDifference = .5,
   startPalette = list(c(10, -60, 45)), 
   output = 'hex'
 )
+```
 
+
+```{r colorgorical2-show, eval=T, echo=F}
 x = c(
   "#002B00",
   "#D57381",
@@ -312,28 +319,28 @@ plots[[1]] + plots[[2]]
 
 #### brms
 
-I like <span class="pack">brms</span> quite a bit and use it a lot. It served as the motivation for these coefficient plots, as did <span class="pack">bayesplot</span>, and <span class="pack">tidyposterior</span>.
+I like <span class="pack">brms</span> quite a bit and use it a lot. It served as the motivation for these coefficient plots, as did <span class="pack">bayesplot</span>, and <span class="pack">tidybayes</span>.
 
 ```{r fe_brms1, eval=FALSE}
 library(brms)
 
-fit_brms = brm(count ~ log_Age_c + log_Base4_c * Trt + 
+fit_brms_two = brm(count ~ zAge + zBase * Trt + 
                  (1 | patient) + (1 | obs), 
                data = epilepsy,
                family = poisson)
 
-plot_coefficients(fit_brms)
+plot_coefficients(fit_brms_two)
 ```
 
 ```{r fe_brms1_vis, echo = FALSE}
 load('../tests/testthat/brms_res.RData')
-plot_coefficients(fit1)
+plot_coefficients(fit_brms_two)
 ```
 
 And now the random effects.
 
 ```{r re_brms1}
-plot_coefficients(fit1, ranef = TRUE, which_ranef = 'patient') +
+plot_coefficients(fit_brms_two, ranef = TRUE, which_ranef = 'patient') +
   theme(axis.text.x = element_text(angle = -90))
 ```
 

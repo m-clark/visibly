@@ -41,7 +41,6 @@ Suggests:
   plotly,
   psych,
   rmarkdown,
-  rstan,
   scales,
   scico,
   svglite,
