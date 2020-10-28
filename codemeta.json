@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/m-clark/visibly",
   "issueTracker": "https://github.com/m-clark/visibly/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -409,7 +409,7 @@
   ],
   "releaseNotes": "https://github.com/m-clark/visibly/blob/master/NEWS.md",
   "readme": "https://github.com/m-clark/visibly/blob/master/README.md",
-  "fileSize": "240740.583KB",
+  "fileSize": "240064.424KB",
   "contIntegration": "https://codecov.io/github/m-clark/visibly?branch=master",
   "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/"],
   "keywords": [

@@ -1,7 +1,5 @@
-[![Build
-Status](https://travis-ci.org/m-clark/visibly.svg?branch=master)](https://travis-ci.org/m-clark/visibly)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/m-clark/visibly?branch=master&svg=true)](https://ci.appveyor.com/project/m-clark/visibly)
+[![R build
+status](https://github.com/m-clark/mixedup/workflows/R-CMD-check/badge.svg)](https://github.com/m-clark/mixedup/actions)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/m-clark/visibly/master.svg)](https://codecov.io/github/m-clark/visibly?branch=master)
 [![Project Status: Active – The project has reached a stable, usable
@@ -71,8 +69,7 @@ $tetradic
 [1] "#FFEFD5" "#E5FFD5" "#D5E5FF" "#EFD5FF"
 ```
 
-Plot it to get a feel for
-things.
+Plot it to get a feel for things.
 
 ``` r
 create_palette('#ff5500', plot = T)
@@ -107,8 +104,7 @@ One of the built-in palettes is based on R’s blue. Others are based on
 red-blue palette from
 [RColorBrewer](https://github.com/cran/RColorBrewer/blob/master/R/ColorBrewer.R).
 
-A clean theme for
-<span class="pack">plotly</span>.
+A clean theme for <span class="pack">plotly</span>.
 
 <!-- Plotly does all wonder of screwup here because size is so hard, so just export the png -->
 
@@ -120,7 +116,7 @@ mtcars %>%
   theme_plotly()
 ```
 
-<img src="man/figures/plotly_wtf.png" style="display:block; margin: 0 auto;" width='50%'>
+<img src="man/figures/plotly_wtf.png" style="display:block; margin: 0 auto;">
 
 Visualize a correlation matrix via factor analysis.
 

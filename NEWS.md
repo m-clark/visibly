@@ -1,8 +1,12 @@
 # visibly 0.2
 
+## visibly 0.2.9
+* Fix for [issue #11](https://github.com/m-clark/visibly/issues/11)
+* Other cleanup
+
+
 ## visibly 0.2.8
 * Minor fixes for R 4.0 and dplyr 1.0.
-
 
 ## visibly 0.2.7
 * Fix issue with imported function `create_prediction_data`.
