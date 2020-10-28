@@ -14,10 +14,9 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "author": [
     {
       "@type": "Person",
@@ -263,6 +262,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "rstan",
+      "name": "rstan",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rstan"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "scales",
       "name": "scales",
       "provider": {
@@ -410,13 +421,9 @@
   ],
   "releaseNotes": "https://github.com/m-clark/visibly/blob/master/NEWS.md",
   "readme": "https://github.com/m-clark/visibly/blob/master/README.md",
-  "fileSize": "35970.526KB",
-  "contIntegration": [
-    "https://travis-ci.org/m-clark/visibly",
-    "https://ci.appveyor.com/project/m-clark/visibly",
-    "https://codecov.io/github/m-clark/visibly?branch=master"
-  ],
-  "developmentStatus": "https://www.repostatus.org/#active",
+  "fileSize": "265901.056KB",
+  "contIntegration": "https://codecov.io/github/m-clark/visibly?branch=master",
+  "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/"],
   "keywords": [
     "r",
     "visualization",

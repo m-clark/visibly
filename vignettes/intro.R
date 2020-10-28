@@ -1,9 +1,9 @@
 ## ----setup, include=FALSE, cache=FALSE----------------------------------------
 knitr::opts_chunk$set(
-  echo = T,
-  message = F,
-  warning = F,
-  error = F,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE,
   collapse = TRUE,
   comment = NA,
   R.options = list(width = 220),
@@ -12,9 +12,9 @@ knitr::opts_chunk$set(
   fig.align = 'center',
   out.width = '75%',
   fig.asp = .75,
-  cache.rebuild = F,
-  cache = F
-)                                                     # cache
+  cache.rebuild = FALSE,
+  cache = FALSE
+)
 
 ## ----example, echo=-(1:3)-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # bc r cmd build randomly decided margins were too large when they were okay
@@ -31,22 +31,25 @@ pal = create_palette('#ff5500',
                      name = 'orange_you_glad_you_have_this_color')
 library(ggplot2)
 
-ggplot(mtcars, aes(x=wt, y=mpg)) +
-  geom_point(aes(color=factor(cyl)), size=10, alpha=.5) +
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(aes(color = factor(cyl)), size = 10, alpha = .5) +
   scale_color_manual(values = pal$triadic) +
   theme_clean()
 
 ## ----use2-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 library(dplyr)
-mtcars %>% 
-  mutate(cyl = factor(cyl)) %>% 
-  tidyext::num_by(wt, cyl) %>% 
-  ggplot(aes(x=cyl, y=Mean)) +
-  geom_col(aes(fill=cyl), width=.5, alpha=.85) +
+
+mtcars %>%
+  mutate(cyl = factor(cyl)) %>%
+  tidyext::num_by(wt, cyl) %>%
+  ggplot(aes(x = cyl, y = Mean)) +
+  geom_col(aes(fill = cyl), width = .5, alpha = .85) +
   scale_fill_manual(values = palettes$Rblue$triadic) +
   theme_clean() +
-  theme(legend.key.size = unit(.015, 'npc'),
-        axis.title.y = element_text(size=20, hjust=-.05))
+  theme(
+    legend.key.size = unit(.015, 'npc'),
+    axis.title.y = element_text(size = 20, hjust = -.05)
+  )
 
 ## ----colorgorical, eval=2:4, echo=1---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 colorgorical(
@@ -78,7 +81,7 @@ qplot(
 colorgorical(
   n = 10,
   perceptualDifference = .5,
-  startPalette = list(c(10,-60, 45)),
+  startPalette = list(c(10, -60, 45)), 
   output = 'hex'
 )
 
@@ -130,7 +133,9 @@ cor_matrix = cor(bfi, use='pair')
 corr_heat(cor_matrix)
 
 ## ----corrheat2------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-corr_heat(cor_matrix, n_factors = 2, psych_opts = list(fm='ml', rot='oblimin'))
+corr_heat(cor_matrix,
+          n_factors = 2,
+          psych_opts = list(fm = 'ml', rot = 'oblimin'))
 
 ## ----corrheat3------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 corr_heat(cor_matrix, pal = 'broc')
@@ -149,19 +154,24 @@ plot_coefficients(fit_lm)
 
 ## ----lm1------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 fit_lm = lm(mpg ~ ., mtcars)
-plot_coefficients(fit_lm, 
-                  palette='oslo', 
-                  order = 'decreasing', 
-                  sd_multi = 1,
-                  keep_intercept = TRUE,
-                  ref_line = c(-1:1))
+
+plot_coefficients(
+  fit_lm,
+  palette = 'oslo',
+  order = 'decreasing',
+  sd_multi = 1,
+  keep_intercept = TRUE,
+  ref_line = c(-1:1)
+)
 
 ## ----data-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-plot_coefficients(fit_lm, plot=FALSE)
+plot_coefficients(fit_lm, plot = FALSE)
 
 ## ----fe1------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 library(lme4)
+
 fit_mer = lmer(Reaction ~ Days + (Days|Subject), sleepstudy)
+
 plot_coefficients(fit_mer)
 
 ## ----re1------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -171,6 +181,7 @@ plot_coefficients(fit_mer, ranef = TRUE, which_ranef = 'Subject')
 fit_mer2 = lmer(count ~ zAge + zBase * Trt + 
                   (1 | patient), 
                 data = brms::epilepsy)
+
 plot_coefficients(fit_mer2, 
                   palette = 'berlin')
 
@@ -183,13 +194,15 @@ plots[[1]] + plots[[2]]
 
 ## ----fe_brms1, eval=FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #  library(brms)
+#  
 #  fit_brms = brm(count ~ log_Age_c + log_Base4_c * Trt +
 #                   (1 | patient) + (1 | obs),
 #                 data = epilepsy,
 #                 family = poisson)
+#  
 #  plot_coefficients(fit_brms)
 
-## ----fe_brms1_vis, echo=FALSE---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## ----fe_brms1_vis, echo = FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 load('../tests/testthat/brms_res.RData')
 plot_coefficients(fit1)
 
@@ -199,6 +212,7 @@ plot_coefficients(fit1, ranef = TRUE, which_ranef = 'patient') +
 
 ## ----gam------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 library(mgcv)
+
 d = gamSim()
 
 gam_model = gam(y ~ x0 + s(x1) + s(x2, bs='gp') + s(x3, bs='ps'), data=d)

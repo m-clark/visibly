@@ -15,10 +15,10 @@ vignette: >
 
 ```{r setup, include=FALSE, cache=FALSE}
 knitr::opts_chunk$set(
-  echo = T,
-  message = F,
-  warning = F,
-  error = F,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE,
   collapse = TRUE,
   comment = NA,
   R.options = list(width = 220),
@@ -27,9 +27,9 @@ knitr::opts_chunk$set(
   fig.align = 'center',
   out.width = '75%',
   fig.asp = .75,
-  cache.rebuild = F,
-  cache = F
-)                                                     # cache
+  cache.rebuild = FALSE,
+  cache = FALSE
+)
 ```
 
 
@@ -325,7 +325,7 @@ fit_brms = brm(count ~ log_Age_c + log_Base4_c * Trt +
 plot_coefficients(fit_brms)
 ```
 
-```{r fe_brms1_vis, echo=FALSE}
+```{r fe_brms1_vis, echo = FALSE}
 load('../tests/testthat/brms_res.RData')
 plot_coefficients(fit1)
 ```
